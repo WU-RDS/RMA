@@ -231,10 +231,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.0.3" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#portfolio-management"><i class="fa fa-check"></i><b>5.0.3</b> Portfolio Management</a></li>
 <li class="chapter" data-level="5.0.4" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#pricing"><i class="fa fa-check"></i><b>5.0.4</b> Pricing</a></li>
 <li class="chapter" data-level="5.0.5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#finance"><i class="fa fa-check"></i><b>5.0.5</b> Finance</a></li>
-<li class="chapter" data-level="5.0.6" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#categorical-variables-2"><i class="fa fa-check"></i><b>5.0.6</b> Categorical variables</a></li>
-<li class="chapter" data-level="5.0.7" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#continuous-variables-2"><i class="fa fa-check"></i><b>5.0.7</b> Continuous variables</a></li>
-<li class="chapter" data-level="5.0.8" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#saving-plots-1"><i class="fa fa-check"></i><b>5.0.8</b> Saving plots</a></li>
-<li class="chapter" data-level="5.0.9" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#ggplot-extensions-1"><i class="fa fa-check"></i><b>5.0.9</b> ggplot extensions</a></li>
 <li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#references-2"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
@@ -450,19 +446,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="load-data" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Load data<a href="group-project-1.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="group-project-1.html#cb492-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb492-2"><a href="group-project-1.html#cb492-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb492-3"><a href="group-project-1.html#cb492-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb492-4"><a href="group-project-1.html#cb492-4" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
-<span id="cb492-5"><a href="group-project-1.html#cb492-5" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
-<span id="cb492-6"><a href="group-project-1.html#cb492-6" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb492-7"><a href="group-project-1.html#cb492-7" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb492-8"><a href="group-project-1.html#cb492-8" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
-<span id="cb492-9"><a href="group-project-1.html#cb492-9" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb492-10"><a href="group-project-1.html#cb492-10" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb492-11"><a href="group-project-1.html#cb492-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb492-12"><a href="group-project-1.html#cb492-12" tabindex="-1"></a>playlist_data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2023/main/data/playlist_data_fin.csv&quot;</span>)</span>
-<span id="cb492-13"><a href="group-project-1.html#cb492-13" tabindex="-1"></a><span class="fu">names</span>(playlist_data)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="group-project-1.html#cb440-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb440-2"><a href="group-project-1.html#cb440-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb440-3"><a href="group-project-1.html#cb440-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb440-4"><a href="group-project-1.html#cb440-4" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb440-5"><a href="group-project-1.html#cb440-5" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
+<span id="cb440-6"><a href="group-project-1.html#cb440-6" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb440-7"><a href="group-project-1.html#cb440-7" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb440-8"><a href="group-project-1.html#cb440-8" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb440-9"><a href="group-project-1.html#cb440-9" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb440-10"><a href="group-project-1.html#cb440-10" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb440-11"><a href="group-project-1.html#cb440-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb440-12"><a href="group-project-1.html#cb440-12" tabindex="-1"></a>playlist_data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2023/main/data/playlist_data_fin.csv&quot;</span>)</span>
+<span id="cb440-13"><a href="group-project-1.html#cb440-13" tabindex="-1"></a><span class="fu">names</span>(playlist_data)</span></code></pre></div>
 <pre><code>##  [1] &quot;playlist_id&quot;          &quot;playlist_owner&quot;       &quot;playlist_name&quot;       
 ##  [4] &quot;spotify_pl&quot;           &quot;major_pl&quot;             &quot;artist_pl&quot;           
 ##  [7] &quot;german_pl&quot;            &quot;context_pl&quot;           &quot;content_pl&quot;          
@@ -478,25 +474,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="question-1" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Question 1<a href="group-project-1.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="group-project-1.html#cb494-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="group-project-1.html#cb442-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-2" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> Question 2<a href="group-project-1.html#question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="group-project-1.html#cb495-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="group-project-1.html#cb443-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-3" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Question 3<a href="group-project-1.html#question-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="group-project-1.html#cb496-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="group-project-1.html#cb444-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-4" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> Question 4<a href="group-project-1.html#question-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="group-project-1.html#cb497-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="group-project-1.html#cb445-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 
 <p><link rel="stylesheet" type="text/css" media="all" href="style.css" /></p>

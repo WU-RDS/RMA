@@ -171,7 +171,7 @@ You may create subsets of the data frame, e.g., using mathematical expressions u
 library(tidyverse)
 filter(sales_data, private_label == "private label") # show only products that belong to private labels
 filter(sales_data, top10_sales > 100000) # show only products that sold more than 100,000 units  
-filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "RBio-Kaisersemmel"
+filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
 private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
 ```
 
@@ -179,8 +179,15 @@ private_labels <- filter(sales_data, private_label == "private label") # creates
 You may also change the order of the rows in a `data.frame` by using the ```arrange()```-function
 
 ```{r}
-#Arrange by genre (ascending: A - Z) and streams (descending: maximum - minimum)
-arrange(sales_data, top10_product_names, desc(top10_sales))
+# Arrange by sales (descending: most - least) 
+arrange(sales_data, desc(top10_sales))
+```
+
+You can order observations by several characteristics. Please note that the order of variables in the ```arrange()```-function specifies the order of arranging the data set. For example, here we first arrange the observations by the brand of the product, and only then require ordering by sales amounts:
+
+```{r}
+# Arrange by brand (ascending by default) and then sales (descending: most - least) 
+arrange(sales_data, top10_brand, desc(top10_sales))
 ```
 
 #### Inspecting the content of a data frame
@@ -223,7 +230,7 @@ dim(sales_data) # returns the dimensions of a data frame
 ls(sales_data) # list all objects associated with an object
 ```
 
-#### Select, append and delete variables to/from data frames
+#### Select, group, append and delete variables to/from data frames
 
 To return a single column in a data frame, use the ```$``` notation. For example, this returns all values associated with the variable "top10_track_streams":
   

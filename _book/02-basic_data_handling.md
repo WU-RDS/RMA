@@ -306,7 +306,7 @@ filter(sales_data, top10_sales > 100000) # show only products that sold more tha
 </div>
 
 ```r
-filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "RBio-Kaisersemmel"
+filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
 ```
 
 <div data-pagedtable="false">
@@ -324,13 +324,27 @@ You may also change the order of the rows in a `data.frame` by using the ```arra
 
 
 ```r
-#Arrange by genre (ascending: A - Z) and streams (descending: maximum - minimum)
-arrange(sales_data, top10_product_names, desc(top10_sales))
+# Arrange by sales (descending: most - least) 
+arrange(sales_data, desc(top10_sales))
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+You can order observations by several characteristics. Please note that the order of variables in the ```arrange()```-function specifies the order of arranging the data set. For example, here we first arrange the observations by the brand of the product, and only then require ordering by sales amounts:
+
+
+```r
+# Arrange by brand (ascending by default) and then sales (descending: most - least) 
+arrange(sales_data, top10_brand, desc(top10_sales))
+```
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"},{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -430,7 +444,7 @@ ls(sales_data) # list all objects associated with an object
 ## [4] "top10_brand"           "top10_product_names"   "top10_sales"
 ```
 
-#### Select, append and delete variables to/from data frames
+#### Select, group, append and delete variables to/from data frames
 
 To return a single column in a data frame, use the ```$``` notation. For example, this returns all values associated with the variable "top10_track_streams":
   

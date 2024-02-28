@@ -72,13 +72,10 @@ This course combines asynchronous teaching elements (e.g., texts and pre-recorde
 
 The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions and quizzes, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week. Learning checks will also be performed in class as means of tracking participation as well as students' understanding of the material. 
 
-During each session except for the first one, students will be given a quiz, covering the materials assigned for that class. For example, for session 3 (Mar 21), students should prepare themselves by reviewing chapter 5 (Retail Metrics & KPIs), as outlined in the table below, as well as answering the questions in the Learning check of the respective chapter. When in class, a short recap of the material will be done, and students will have an opportunity to ask questions. After that, a short quiz will be taken. Next, the session will be continued with practical computer exercises.
-
-**Please note that for session 2 (Mar 14), you should prepare for quiz on the materials covered in session 1!** There will be no quiz on the materials of chapters 2-4.
 
 
 <br>
-**Lecture dates (5039)**
+**Lecture dates**
 <br>
 ```{r eval = TRUE, echo = FALSE, warning=FALSE, message = FALSE}
 library(dplyr)
