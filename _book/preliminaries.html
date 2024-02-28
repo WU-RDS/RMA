@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Preliminaries | Retail Marketing Analytics 2023</title>
+  <title>1 Preliminaries | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Preliminaries | Retail Marketing Analytics 2023" />
+  <meta property="og:title" content="1 Preliminaries | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An Introduction to Data Analytics Using R" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Preliminaries | Retail Marketing Analytics 2023" />
+  <meta name="twitter:title" content="1 Preliminaries | Retail Marketing Analytics 2024" />
   
   <meta name="twitter:description" content="An Introduction to Data Analytics Using R" />
   
@@ -54,13 +54,15 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -201,10 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="data-handling.html"><a href="data-handling.html#data-import-and-export"><i class="fa fa-check"></i><b>3.2</b> Data import and export</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data-handling.html"><a href="data-handling.html#getting-data-for-this-course"><i class="fa fa-check"></i><b>3.2.1</b> Getting data for this course</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-handling.html"><a href="data-handling.html#import-data-created-by-other-software-packages"><i class="fa fa-check"></i><b>3.2.2</b> Import data created by other software packages</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-handling.html"><a href="data-handling.html#import-data-from-qualtrics"><i class="fa fa-check"></i><b>3.2.3</b> Import data from Qualtrics</a></li>
-<li class="chapter" data-level="3.2.4" data-path="data-handling.html"><a href="data-handling.html#export-data"><i class="fa fa-check"></i><b>3.2.4</b> Export data</a></li>
-<li class="chapter" data-level="3.2.5" data-path="data-handling.html"><a href="data-handling.html#import-data-from-the-web"><i class="fa fa-check"></i><b>3.2.5</b> Import data from the Web</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-handling.html"><a href="data-handling.html#export-data"><i class="fa fa-check"></i><b>3.2.2</b> Export data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-handling.html"><a href="data-handling.html#learning-check-1"><i class="fa fa-check"></i>Learning check</a></li>
 </ul></li>
@@ -225,54 +224,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#learning-check-2"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>5</b> Statistical inference</a>
+<li class="chapter" data-level="5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html"><i class="fa fa-check"></i><b>5</b> Metrics and KPIs in retail</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>5.1</b> If we knew it all</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>5.1.1</b> Sampling from a known population</a></li>
-<li class="chapter" data-level="5.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>5.1.2</b> Standard error of the mean</a></li>
+<li class="chapter" data-level="5.0.1" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#margins-profits"><i class="fa fa-check"></i><b>5.0.1</b> Margins &amp; Profits</a></li>
+<li class="chapter" data-level="5.0.2" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#shares"><i class="fa fa-check"></i><b>5.0.2</b> Shares</a></li>
+<li class="chapter" data-level="5.0.3" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#portfolio-management"><i class="fa fa-check"></i><b>5.0.3</b> Portfolio Management</a></li>
+<li class="chapter" data-level="5.0.4" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#pricing"><i class="fa fa-check"></i><b>5.0.4</b> Pricing</a></li>
+<li class="chapter" data-level="5.0.5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#finance"><i class="fa fa-check"></i><b>5.0.5</b> Finance</a></li>
+<li class="chapter" data-level="5.0.6" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#categorical-variables-2"><i class="fa fa-check"></i><b>5.0.6</b> Categorical variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#continuous-variables-2"><i class="fa fa-check"></i><b>5.0.7</b> Continuous variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#saving-plots-1"><i class="fa fa-check"></i><b>5.0.8</b> Saving plots</a></li>
+<li class="chapter" data-level="5.0.9" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#ggplot-extensions-1"><i class="fa fa-check"></i><b>5.0.9</b> ggplot extensions</a></li>
+<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#references-2"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.2</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>5.3</b> Using what we actually know</a></li>
-<li class="chapter" data-level="5.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>5.4</b> Confidence Intervals for the Sample Mean</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-2"><i class="fa fa-check"></i>References</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>6</b> Supervised learning</a>
+<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical inference</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear regression</a>
+<li class="chapter" data-level="6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>6.1</b> If we knew it all</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>6.1.1</b> Correlation</a></li>
-<li class="chapter" data-level="6.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Regression analysis</a></li>
-<li class="chapter" data-level="6.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>6.1.3</b> Categorical predictors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>6.1.1</b> Sampling from a known population</a></li>
+<li class="chapter" data-level="6.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>6.1.2</b> Standard error of the mean</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>6.2</b> Logistic regression</a>
+<li class="chapter" data-level="6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>6.3</b> Using what we actually know</a></li>
+<li class="chapter" data-level="6.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>6.4</b> Confidence Intervals for the Sample Mean</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-3"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>7</b> Supervised learning</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>6.2.1</b> Motivation and intuition</a></li>
-<li class="chapter" data-level="6.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>6.2.2</b> Technical details of the model</a></li>
-<li class="chapter" data-level="6.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>6.2.3</b> Estimation in R</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-3"><i class="fa fa-check"></i>References</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>7</b> Unsupervised learning</a>
+<li class="chapter" data-level="7.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.1</b> Principal component analysis</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Steps in factor analysis</a></li>
+<li class="chapter" data-level="7.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>7.1.1</b> Correlation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Regression analysis</a></li>
+<li class="chapter" data-level="7.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>7.1.3</b> Categorical predictors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>7.2</b> Cluster analysis</a>
+<li class="chapter" data-level="7.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>7.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>7.2.1</b> K-Means</a></li>
+<li class="chapter" data-level="7.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>7.2.1</b> Motivation and intuition</a></li>
+<li class="chapter" data-level="7.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>7.2.2</b> Technical details of the model</a></li>
+<li class="chapter" data-level="7.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>7.2.3</b> Estimation in R</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>8.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Steps in factor analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>8.2</b> Cluster analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>8.2.1</b> K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-6"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-5"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="8" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>8</b> R Markdown</a>
+<li class="chapter" data-level="9" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>9</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>8.1</b> Introduction to R Markdown</a>
+<li class="chapter" data-level="9.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>9.1</b> Introduction to R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-document"><i class="fa fa-check"></i>Creating a new R Markdown document</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#text-and-equations"><i class="fa fa-check"></i>Text and Equations</a></li>
@@ -280,42 +293,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#latex-math"><i class="fa fa-check"></i>LaTeX Math</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>9</b> Assignment solutions</a>
+<li class="chapter" data-level="10" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>10</b> Assignment solutions</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>9.1</b> Assignment 1</a>
+<li class="chapter" data-level="10.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>10.1</b> Assignment 1</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>9.1.1</b> Q1</a></li>
-<li class="chapter" data-level="9.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>9.1.2</b> Q2</a></li>
-<li class="chapter" data-level="9.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>9.1.3</b> Q3</a></li>
-<li class="chapter" data-level="9.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>9.1.4</b> Q4</a></li>
-<li class="chapter" data-level="9.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>9.1.5</b> Q5</a></li>
-<li class="chapter" data-level="9.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>9.1.6</b> Q6</a></li>
-<li class="chapter" data-level="9.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>9.1.7</b> Q7</a></li>
-<li class="chapter" data-level="9.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>9.1.8</b> Q8</a></li>
-<li class="chapter" data-level="9.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>9.1.9</b> Q9</a></li>
-<li class="chapter" data-level="9.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>9.1.10</b> Q10</a></li>
+<li class="chapter" data-level="10.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>10.1.1</b> Q1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>10.1.2</b> Q2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>10.1.3</b> Q3</a></li>
+<li class="chapter" data-level="10.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>10.1.4</b> Q4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>10.1.5</b> Q5</a></li>
+<li class="chapter" data-level="10.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>10.1.6</b> Q6</a></li>
+<li class="chapter" data-level="10.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>10.1.7</b> Q7</a></li>
+<li class="chapter" data-level="10.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>10.1.8</b> Q8</a></li>
+<li class="chapter" data-level="10.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>10.1.9</b> Q9</a></li>
+<li class="chapter" data-level="10.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>10.1.10</b> Q10</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>9.2</b> Assignment 2</a>
+<li class="chapter" data-level="10.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>10.2</b> Assignment 2</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>9.2.1</b> Q1</a></li>
-<li class="chapter" data-level="9.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>9.2.2</b> Q2</a></li>
-<li class="chapter" data-level="9.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>9.2.3</b> Q3</a></li>
-<li class="chapter" data-level="9.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>9.2.4</b> Q4</a></li>
+<li class="chapter" data-level="10.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>10.2.1</b> Q1</a></li>
+<li class="chapter" data-level="10.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>10.2.2</b> Q2</a></li>
+<li class="chapter" data-level="10.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>10.2.3</b> Q3</a></li>
+<li class="chapter" data-level="10.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>10.2.4</b> Q4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>10</b> Group project</a>
+<li class="chapter" data-level="11" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>11</b> Group project</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>10.1</b> Data analysis</a></li>
-<li class="chapter" data-level="10.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>10.3</b> Question 1</a></li>
-<li class="chapter" data-level="10.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>10.4</b> Question 2</a></li>
-<li class="chapter" data-level="10.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>10.5</b> Question 3</a></li>
-<li class="chapter" data-level="10.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>10.6</b> Question 4</a></li>
+<li class="chapter" data-level="11.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>11.1</b> Data analysis</a></li>
+<li class="chapter" data-level="11.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>11.2</b> Load data</a></li>
+<li class="chapter" data-level="11.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>11.3</b> Question 1</a></li>
+<li class="chapter" data-level="11.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>11.4</b> Question 2</a></li>
+<li class="chapter" data-level="11.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>11.5</b> Question 3</a></li>
+<li class="chapter" data-level="11.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>11.6</b> Question 4</a></li>
 </ul></li>
 <li class="part"><span><b>IV FAQ</b></span></li>
-<li class="chapter" data-level="11" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>11</b> FAQ</a>
+<li class="chapter" data-level="12" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>12</b> FAQ</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>11.1</b> Common error messages</a>
+<li class="chapter" data-level="12.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>12.1</b> Common error messages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#a-general-note-on-error-messages"><i class="fa fa-check"></i>A general note on error messages</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-filefile-rt-cannot-open-the-connection"><i class="fa fa-check"></i>Error in file(file, “rt”): cannot open the connection</a></li>
@@ -326,46 +339,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-could-not-find-function-function"><i class="fa fa-check"></i>Error in CALL: could not find function “FUNCTION”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-incorrect-number-of-dimension"><i class="fa fa-check"></i>Error in CALL: incorrect number of dimension</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>11.2</b> Installation of R packages</a>
+<li class="chapter" data-level="12.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>12.2</b> Installation of R packages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-are-the-different-ways-to-install-r-packages"><i class="fa fa-check"></i>What are the different ways to install R packages?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-packages-due-to-error-in-contrib.urlrepossource-or-warning-message-package-packagename-is-not-available-for-this-version-of-r"><i class="fa fa-check"></i>I cannot install packages due to “Error in contrib.url(repos,”source”)” or “Warning message: package ‘PACKAGENAME’ is not available for this version of R”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-libraries-with-graphical-output-e.g.-summarytools-magick-fail-to-installload-properly-on-macos"><i class="fa fa-check"></i>Some libraries with graphical output (e.g., summarytools, magick) fail to install/load properly on MacOS</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-some-packages-on-macos"><i class="fa fa-check"></i>I cannot install some packages on MacOS</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>11.3</b> Issues with statistics and data</a>
+<li class="chapter" data-level="12.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>12.3</b> Issues with statistics and data</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-does-a-multi-item-scale-lead-to-increased-reliability"><i class="fa fa-check"></i>Why does a multi-item scale lead to increased reliability?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-can-demeaningstandardization-lead-to-missing-values"><i class="fa fa-check"></i>Why can demeaning/standardization lead to missing values?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#the-confidence-interval-ci-of-the-mean-seems-very-small-compared-to-the-dispersion-of-my-sample.-can-this-be-correct"><i class="fa fa-check"></i>The confidence interval (CI) of the mean seems very small compared to the dispersion of my sample. Can this be correct?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>11.4</b> Errors related to specific methods</a>
+<li class="chapter" data-level="12.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>12.4</b> Errors related to specific methods</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression-1"><i class="fa fa-check"></i>Logistic regression</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#when-using-logistic-regression-error-in-weights-y-non-numeric-argument-to-binary-operator"><i class="fa fa-check"></i>When using logistic regression: Error in weights * y : non-numeric argument to binary operator</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>11.5</b> General settings and options</a>
+<li class="chapter" data-level="12.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>12.5</b> General settings and options</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#numbers-are-formatted-weirdly"><i class="fa fa-check"></i>Numbers are formatted weirdly</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>11.6</b> Data visualization/output issues</a>
+<li class="chapter" data-level="12.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>12.6</b> Data visualization/output issues</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-the-geom-colors-in-a-ggplot-be-changed"><i class="fa fa-check"></i>How can the <code>geom</code> colors in a <code>ggplot</code> be changed?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-are-some-histograms-displayed-differently"><i class="fa fa-check"></i>Why are some histograms displayed differently?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-labels-in-plots-are-cut-off.-how-can-i-extend-the-plot-margins"><i class="fa fa-check"></i>Some labels in plots are cut off. How can I extend the plot margins?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>11.7</b> Issues with functions and function arguments</a>
+<li class="chapter" data-level="12.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>12.7</b> Issues with functions and function arguments</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#problems-with-factor-and-as.factor"><i class="fa fa-check"></i>Problems with <code>factor</code> and <code>as.factor</code></a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-find-an-explanation-of-the-output-of-a-function"><i class="fa fa-check"></i>How can I find an explanation of the output of a function?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-the-margin-argument-do"><i class="fa fa-check"></i>What does the <code>MARGIN</code> argument do?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>11.8</b> Issues with R Markdown</a>
+<li class="chapter" data-level="12.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>12.8</b> Issues with R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-get-an-error-when-knitting-to-pdf-but-it-works-for-html"><i class="fa fa-check"></i>I get an error when <code>knit</code>ting to PDF but it works for HTML</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-am-not-sure-where-r-code-latex-math-and-text-go"><i class="fa fa-check"></i>I am not sure where R-code, LaTeX math, and text go</a></li>
 </ul></li>
-<li class="chapter" data-level="11.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>11.9</b> New questions</a></li>
+<li class="chapter" data-level="12.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>12.9</b> New questions</a></li>
 </ul></li>
 </ul>
 
@@ -376,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Retail Marketing Analytics 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Retail Marketing Analytics 2024</a>
           </h1>
         </div>
 
@@ -386,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="preliminaries" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Preliminaries<a href="preliminaries.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter provides an overview of the parameters you need to consider when planning a marketing research study. It is crucial to carefully consider these parameters <em>before</em> conducting your research because empirical studies can be costly and you need to make sure that you will be able to interpret the results from your research in the desired way. For example, in many cases marketing research is about measuring the effectiveness of a firm’s marketing activities. However, quantifying the return on marketing expenditures is not a trivial task. As the nineteenth century Philadelphia retailer John Wanamaker supposedly said</p>
+<p>This chapter provides an overview of the parameters you need to consider when planning a marketing research study. It is crucial to carefully consider these parameters <em>before</em> conducting your research because empirical studies can be costly and you need to make sure that you will be able to interpret the results from your research in the desired way. For example, in many cases marketing research is about measuring the effectiveness of a firm’s marketing activities. However, quantifying the return on marketing expenditures is not a trivial task. As the nineteenth century Philadelphia retailer John Wanamaker supposedly said,</p>
 <blockquote>
 <p>“Half the money I spend on advertising is wasted;<br />
 the trouble is I don’t know which half.”</p>
@@ -404,10 +417,6 @@ the trouble is I don’t know which half.”</p>
 </ul>
 <div id="marketing-foundations-recap" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Marketing foundations (recap)<a href="preliminaries.html#marketing-foundations-recap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/9t-eoue2YOk" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>You will surely have come across various definitions of the term <em>Marketing</em> during your studies. For example, the popular textbook by Kotler &amp; Armstrong (2009) defines Marketing as:</p>
 <blockquote>
 <p>“The process by which companies create value for customers and build strong
@@ -418,7 +427,7 @@ customer relationships in order to capture value from customers in return.”</p
 </blockquote>
 <p>The corresponding marketing process can be depicted by as follows:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="images/mr_process.JPG" alt="The marketing process Kotler &amp; Armstrong (2009)" width="90%" />
+<img src="images/mr_process.JPG" alt="The marketing process Kotler & Armstrong (2009)" width="90%" />
 <p class="caption">
 Figure 1.1: The marketing process Kotler &amp; Armstrong (2009)
 </p>
@@ -449,10 +458,6 @@ Figure 1.2: The research process (based on Field et al. 2012)
 </div>
 <div id="choosing-a-research-design" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Choosing a research design<a href="preliminaries.html#choosing-a-research-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/yItQ7O4NqRc" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>Once you have sufficient clarity on your research hypothesis, you should specify the <strong>research design</strong>. Research designs can be classified according to different criteria, including the data source, the method of analysis, and by the research objective (Malhotra 2010).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="images/mr_designs.JPG" alt="Research designs (based on Malhotra 2010)" width="80%" />
@@ -599,10 +604,6 @@ Figure 1.6: Spurious correlation
 <p>There are some standard ways of collecting data and two of them will be discussed here: 1) experimental research and 2) observational research.</p>
 <div id="experimental-research" class="section level5 hasAnchor" number="1.2.3.1.1">
 <h5><span class="header-section-number">1.2.3.1.1</span> Experimental research<a href="preliminaries.html#experimental-research" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/BvZzmyld8Wc" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>In the last section, we saw that causal research questions are the ones that matter most to marketing managers. In our example, the question we asked was ‘(By how much) Can we increase the probability that a customer will make a purchase within the next month using targeted online advertising?’. In this section, we will see that experiments are a proper way of establishing a causal relationship. Or, as the famous quote by Box, Hunter, and Hunter (1978) puts is:</p>
 <blockquote>
 <p>“To find out what happens when you change something,
@@ -701,10 +702,6 @@ Figure 1.10: Guidelines for field experiments
 </div>
 <div id="observational-research" class="section level5 hasAnchor" number="1.2.3.1.2">
 <h5><span class="header-section-number">1.2.3.1.2</span> Observational research<a href="preliminaries.html#observational-research" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/uxGJ-pEHPjw" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>In contrast to experimental research, in observational research the researcher observes what happens naturally, <strong>without interfering</strong>. In the previous section we saw that experiments are a proper way of establishing causal relationships. The question then is the following: when the most interesting research questions are causal questions and experiments are the ‘gold standard’ to infer causal effects, why are researchers often confronted with observational data? As the statistician Andrew Gelman (2010) puts it:</p>
 <blockquote>
 <p>“Given the manifest virtues of experiments, why do I almost always analyze observational data?
@@ -746,7 +743,7 @@ Figure 1.11: Cross-sectional vs. longitudinal design
 </div>
 <p>The main advantage of a longitudinal design is that it allows researcher to observe changes over time, which is particularly helpful for the identification of causal effects. Although the observational units self-select into the test and control conditions, it is often possible to account for unobserved individual-level differences by focusing on the change over time. A method that lends itself very well for this purpose is the difference-in-differences (DiD) estimator. Continuing with the example from above, imagine we would have only conducted one cross-sectional study at T2 (after the streaming service had been introduced to the market). As can be seen from the figure below, Spotify users spend, on average, more money on music products from other channels (CDs &amp; downloads). However, you cannot conclude from this observation that Spotify <em>causes</em> them to spend more money on music from other channels. Rather, in the absence of random assignment, the users self-selected into the test and control conditions and it is likely that music enthusiasts (i.e., consumers with a high interest in music) started using the streaming service. The unobserved factor in this case is the ‘interest in music products’.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="images/spotify_study.JPG" alt="Example of DID study design (Wlömert &amp; Papies 2016)" width="70%" />
+<img src="images/spotify_study.JPG" alt="Example of DID study design (Wlömert & Papies 2016)" width="70%" />
 <p class="caption">
 Figure 1.12: Example of DID study design (Wlömert &amp; Papies 2016)
 </p>
@@ -830,10 +827,6 @@ Yt,pre + (Yc,post - Yc,pre)
 <p>After deciding on the method of data collection, you need to clarify how you will measure the specified variables.</p>
 <div id="levels-of-measurement" class="section level5 hasAnchor" number="1.2.3.2.1">
 <h5><span class="header-section-number">1.2.3.2.1</span> Levels of measurement<a href="preliminaries.html#levels-of-measurement" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/QsKkuKpR2fM" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>The first distinction you need to consider pertains to the level of measurement. This step is important because the level of measurement determines what type of analysis you will be able to apply once the data has been collected. Thus, you should make sure that your plan for the data analysis is aligned with the levels of measurement of the dependent and independent variables. There are different characteristics that a scale can have:</p>
 <ul>
 <li><strong>Description</strong>: Unique labels or descriptors that are used to designate each value of the scale.</li>
@@ -909,10 +902,6 @@ Figure 1.20: Scaling techniques
 </div>
 <div id="measurement-accuracy" class="section level5 hasAnchor" number="1.2.3.2.2">
 <h5><span class="header-section-number">1.2.3.2.2</span> Measurement accuracy<a href="preliminaries.html#measurement-accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/TXmisb-hpeY" frameborder="0" allowfullscreen>
-</iframe>
-</div>
 <p>Once you have decided on which scale types to use, you should ensure that your measures accurately represent the variable you intended to measure. More precisely, the two goals of measurement are validity (truthfulness; i.e., our measure captures the variable we intended to measure), and reliability (consistency; i.e., the measure consistently measures the same variable). However, it is important to acknowledge that a measurement is not the true value of the characteristic of interest but rather an observation of it. Hence, the difference between the information sought by the researcher and the information generated by the measurement process is the <em>measurement error</em>. There are two types of measurement errors: 1) random error, leading to an overall less precise measurement of the variable of interest, and 2) systematic error, causing the observed value to consistently deviate from the variable of interest. Thus, the observed measurement of a variable <span class="math inline">\(X\)</span> can be expressed in terms of the deviation from the true value with respect to the random and systematic measurement errors as follows:
 <br><br>
 <span class="math inline">\(X_O = X_T + X_S + X_R\)</span>, where<br>
@@ -992,97 +981,97 @@ Figure 1.25: Formative vs. reflective measurement
 </ul>
 <p><strong>(LC1.2) Which of the answers is correct? A nominal scale …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />…has an absolute zero point</li>
-<li><input type="checkbox" disabled="" />…possesses all properties of an ordinal scale</li>
-<li><input type="checkbox" disabled="" checked="" />…can have numerical values</li>
-<li><input type="checkbox" disabled="" checked="" />…serves as a label to classify/categorize objects</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />…has an absolute zero point</label></li>
+<li><label><input type="checkbox" />…possesses all properties of an ordinal scale</label></li>
+<li><label><input type="checkbox" />…can have numerical values</label></li>
+<li><label><input type="checkbox" />…serves as a label to classify/categorize objects</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.3) Which of these statements regarding formative constructs are true?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />Indicators (items) measure the cause for the change of the not directly observable construct</li>
-<li><input type="checkbox" disabled="" />Indicators (items) measure the effect of the change in a not directly observable construct</li>
-<li><input type="checkbox" disabled="" />The indicators (items) of the scale should be highly correlated</li>
-<li><input type="checkbox" disabled="" />Multi-item measurement is particularly important for the increase in the reliability of the measurement</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />Indicators (items) measure the cause for the change of the not directly observable construct</label></li>
+<li><label><input type="checkbox" />Indicators (items) measure the effect of the change in a not directly observable construct</label></li>
+<li><label><input type="checkbox" />The indicators (items) of the scale should be highly correlated</label></li>
+<li><label><input type="checkbox" />Multi-item measurement is particularly important for the increase in the reliability of the measurement</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.4) In causal inference tasks, …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />…the main concern is to generate predictions of future outcomes</li>
-<li><input type="checkbox" disabled="" />…the main concern is to maximize the explained variance</li>
-<li><input type="checkbox" disabled="" />…observational research is the ‘gold standard’</li>
-<li><input type="checkbox" disabled="" checked="" />…randomization minimizes unsystematic variation</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />…the main concern is to generate predictions of future outcomes</label></li>
+<li><label><input type="checkbox" />…the main concern is to maximize the explained variance</label></li>
+<li><label><input type="checkbox" />…observational research is the ‘gold standard’</label></li>
+<li><label><input type="checkbox" />…randomization minimizes unsystematic variation</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.5) True or false? Reliability refers to the consistency of a measurement.</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />True</li>
-<li><input type="checkbox" disabled="" />False</li>
+<li><label><input type="checkbox" />True</label></li>
+<li><label><input type="checkbox" />False</label></li>
 </ul>
 <p><strong>(LC1.5) Using a between-subjects design, we … </strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />… manipulate the independent variable (treatment) using different persons for each group</li>
-<li><input type="checkbox" disabled="" />… manipulate independent variable using the same participants for each group</li>
-<li><input type="checkbox" disabled="" />… manipulate the dependent variable (treatment) using different persons for each group</li>
-<li><input type="checkbox" disabled="" />… manipulate dependent variable using the same participants for each group</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />… manipulate the independent variable (treatment) using different persons for each group</label></li>
+<li><label><input type="checkbox" />… manipulate independent variable using the same participants for each group</label></li>
+<li><label><input type="checkbox" />… manipulate the dependent variable (treatment) using different persons for each group</label></li>
+<li><label><input type="checkbox" />… manipulate dependent variable using the same participants for each group</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.6) When conducting field experiments, the term crossover effect means …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />… that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment</li>
-<li><input type="checkbox" disabled="" />… that a treated individual affects the outcomes for other untreated individuals<br />
-</li>
-<li><input type="checkbox" disabled="" />… that individuals can be part of both the test and the control condition</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />… that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment</label></li>
+<li><label><input type="checkbox" />… that a treated individual affects the outcomes for other untreated individuals<br />
+</label></li>
+<li><label><input type="checkbox" />… that individuals can be part of both the test and the control condition</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.7) Conditions for causality are …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />… a cause and an effect should vary together in the way predicted by the hypothesis under consideration</li>
-<li><input type="checkbox" disabled="" />… random assignment of test units</li>
-<li><input type="checkbox" disabled="" checked="" />… the causing event must occur before the effect</li>
-<li><input type="checkbox" disabled="" checked="" />… absence of other possible causal factors</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />… a cause and an effect should vary together in the way predicted by the hypothesis under consideration</label></li>
+<li><label><input type="checkbox" />… random assignment of test units</label></li>
+<li><label><input type="checkbox" />… the causing event must occur before the effect</label></li>
+<li><label><input type="checkbox" />… absence of other possible causal factors</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.8) The effect of the treatment on the treated in DID models can be written as …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" /><span class="math inline">\((Yt,pre - Yt,post) − (Yc,post - Yc,pre)\)</span><br />
-</li>
-<li><input type="checkbox" disabled="" checked="" /><span class="math inline">\((Yt,post - Yt,pre) − (Yc,post - Yc,pre)\)</span></li>
-<li><input type="checkbox" disabled="" /><span class="math inline">\((Yt,pre - Yt,post) − (Yc,pre - Yc,post)\)</span><br />
-</li>
-<li><input type="checkbox" disabled="" /><span class="math inline">\((Yt,post - Yt,pre) − (Yc,pre - Yc,post)\)</span><br />
-</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" /><span class="math inline">\((Yt,pre - Yt,post) − (Yc,post - Yc,pre)\)</span><br />
+</label></li>
+<li><label><input type="checkbox" /><span class="math inline">\((Yt,post - Yt,pre) − (Yc,post - Yc,pre)\)</span></label></li>
+<li><label><input type="checkbox" /><span class="math inline">\((Yt,pre - Yt,post) − (Yc,pre - Yc,post)\)</span><br />
+</label></li>
+<li><label><input type="checkbox" /><span class="math inline">\((Yt,post - Yt,pre) − (Yc,pre - Yc,post)\)</span><br />
+</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.9) In predictive modeling tasks …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />… once major concern are unobserved confounders</li>
-<li><input type="checkbox" disabled="" checked="" />… one major concern is overfitting</li>
-<li><input type="checkbox" disabled="" checked="" />… we primarily care about the predictive ability of the model<br />
-</li>
-<li><input type="checkbox" disabled="" />… we primarily care about causal effects</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />… once major concern are unobserved confounders</label></li>
+<li><label><input type="checkbox" />… one major concern is overfitting</label></li>
+<li><label><input type="checkbox" />… we primarily care about the predictive ability of the model<br />
+</label></li>
+<li><label><input type="checkbox" />… we primarily care about causal effects</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.10) True or false? For ordinal scales, the magnitude of difference between scale points is known</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />True</li>
-<li><input type="checkbox" disabled="" checked="" />False</li>
+<li><label><input type="checkbox" />True</label></li>
+<li><label><input type="checkbox" />False</label></li>
 </ul>
 <p><strong>(LC1.11) For which scale types is it meaningful to compute the mean?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />Ratio</li>
-<li><input type="checkbox" disabled="" />Nominal</li>
-<li><input type="checkbox" disabled="" checked="" />Interval<br />
-</li>
-<li><input type="checkbox" disabled="" />Ordinal</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />Ratio</label></li>
+<li><label><input type="checkbox" />Nominal</label></li>
+<li><label><input type="checkbox" />Interval<br />
+</label></li>
+<li><label><input type="checkbox" />Ordinal</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC1.12) In predictive modeling tasks …</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />… we primarily care about the predictive ability of the model</li>
-<li><input type="checkbox" disabled="" checked="" />… one major concern is overfitting</li>
-<li><input type="checkbox" disabled="" />… we primarily care about causal effects</li>
-<li><input type="checkbox" disabled="" />… one major concern are unobserved confounders</li>
+<li><label><input type="checkbox" />… we primarily care about the predictive ability of the model</label></li>
+<li><label><input type="checkbox" />… one major concern is overfitting</label></li>
+<li><label><input type="checkbox" />… we primarily care about causal effects</label></li>
+<li><label><input type="checkbox" />… one major concern are unobserved confounders</label></li>
 </ul>
 </div>
 <div id="references" class="section level2 unnumbered hasAnchor">

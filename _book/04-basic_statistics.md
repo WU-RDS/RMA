@@ -10,17 +10,9 @@ output:
 
 # Summarizing data
 
+
 ## Summary statistics
 
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/03-basic_statistics.R)
-:::
-
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wGBbLyjUquY" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 
 
@@ -533,11 +525,6 @@ As you can see, the output also includes a visualization of the frequency distri
 
 #### Using frequency distributions to go beyond the data
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/O6zyyV1ycgA" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 The frequency distribution can be used to make statements about the probability that a certain observed value will occur if the observations come from a known probability distribution. For normally distributed data, the following table can be used to look up the probability that a certain value will occur. For example, the value of -1.96 has a probability of 2.5% (i.e., .0250).  
 
@@ -607,6 +594,7 @@ pnorm(-1.96)
 ```
 ## [1] 0.0249979
 ```
+
 To also take the other end of the distribution into consideration, we would need to multiply this value by to. This way, we arrive at a value of 5%.
 
 

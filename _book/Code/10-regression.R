@@ -1,5 +1,3 @@
-# The following code is taken from the fourth chapter of the online script, which provides more detailed explanations:
-# https://wu-rds.github.io/MRDA2021/regression.html
 
 #-------------------------------------------------------------------#
 #---------------------Install missing packages----------------------#
@@ -19,7 +17,6 @@ lapply(req_packages, install.packages)
 options(scipen = 999, digits = 8) 
 
 # Create data set
-## ------------------------------------------------------------------------
 library(psych)
 attitude <- c(6,9,8,3,10,4,5,2,11,9,10,2)
 duration <- c(10,12,12,4,12,6,8,2,18,9,17,2)
@@ -27,19 +24,17 @@ att_data <- data.frame(attitude, duration)
 att_data <- att_data[order(-attitude), ]
 att_data$respodentID <- c(1:12)
 str(att_data)
-psych::describe(att_data[, c("attitude","duration")])
+psych::describe(att_data[, c("attitude", "duration")])
 
 # Scatterplot
-## ------------------------------------------------------------------------
 library(ggplot2)
-ggplot(att_data,aes(duration, attitude)) + 
-  geom_point(size=3) + 
+ggplot(att_data, aes(duration, attitude)) + 
+  geom_point(size = 3) + 
   labs(x = "Duration",y = "Attitude", size = 12) +
   theme_bw()
 
 # Compute covariance
-# ... manually
-## ------------------------------------------------------------------------
+# ... manually 
 x <- att_data$duration
 x_bar <- mean(att_data$duration)
 y <- att_data$attitude
@@ -47,33 +42,29 @@ y_bar <- mean(att_data$attitude)
 N <- nrow(att_data)
 cov_x_y <- (sum((x - x_bar)*(y - y_bar))) / (N - 1)
 cov_x_y
+
 # ... using the cov function 
-## ------------------------------------------------------------------------
 cov(att_data$duration, att_data$attitude)          
 
 # Compute correlation coefficient
 # ... manually
-## ------------------------------------------------------------------------
 x_sd <- sd(att_data$duration)
 y_sd <- sd(att_data$attitude)
 r <- cov_x_y/(x_sd*y_sd)
 r
+
 # ... using functions
-## ------------------------------------------------------------------------
 cor(att_data[, c("attitude", "duration")], method = "pearson")
-## ------------------------------------------------------------------------
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "pearson", conf.level = 0.95)
 
 # Non-parametric test
-## ------------------------------------------------------------------------
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "spearman", conf.level = 0.95, exact = FALSE)
 
 # Spurious correlation
-## ------------------------------------------------------------------------
 drownings <- c(109,102,102,98,85,95,96,98,123,94,102)
 years <- c(1999:2009)
 cage_movies <- c(2,2,2,3,1,1,2,3,4,1,4)
-data_cage <- data.frame(years,drownings,cage_movies)
+data_cage <- data.frame(years, drownings, cage_movies)
 cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", method = "pearson", conf.level = 0.95)
 
 #-------------------------------------------------------------------#
@@ -81,302 +72,176 @@ cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", 
 #-------------------------------------------------------------------#
 
 # Load and inspect data
-## ------------------------------------------------------------------------
-regression <- read.table("https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/music_sales_regression.dat", 
-                          sep = "\t", 
-                          header = TRUE) #read in data
-regression$country <- factor(regression$country, levels = c(0:1), labels = c("local", "international")) #convert grouping variable to factor
-regression$genre <- factor(regression$genre, levels = c(1:3), labels = c("rock", "pop","electronic")) #convert grouping variable to factor
+#regression <- read.table("https://github.com/dariayudaeva/RMA2024/blob/main/data/bud_store102.csv", 
+#                          sep = ",", 
+#                          header = TRUE) # read in data
+
+regression <- read.table("/Users/dariayudaeva/Desktop/RDS/3_Teaching/2024/RMA24/RMA2024/data/bud_store102.csv", 
+                         sep = ",", 
+                         header = TRUE) # read in data
+str(regression)
+regression$store <- as.factor(regression$store) #convert grouping variable to factor
+regression$brand_id <- as.factor(regression$brand_id) #convert grouping variable to factor
+regression$saledummy_B <- as.factor(regression$saledummy_B) #convert grouping variable to factor
+regression$saledummy_C <- as.factor(regression$saledummy_C) #convert grouping variable to factor
+regression$saledummy_S <- as.factor(regression$saledummy_S) #convert grouping variable to factor
 head(regression)
 
 # Descriptive statistics
-## ------------------------------------------------------------------------
 psych::describe(regression)
 
 # Plot the data 
-## ------------------------------------------------------------------------
-ggplot(regression, mapping = aes(adspend, sales)) + 
+mean_price <- mean(regression$price_ounce)
+mean_sales <- mean(regression$move_ounce)
+
+scatter <- ggplot(regression, aes(price_ounce, move_ounce))
+scatter + geom_point() + labs(x = "price (ounce)", y = "sales (ounce)")
+
+scatter + geom_point() + 
+  labs(x = "price (ounce)", y = "sales (ounce)") + 
+  geom_vline(color = "red", size = 1, xintercept = mean_price) + 
+  geom_hline(color = "red", size = 1, yintercept = mean_sales)
+
+# ... using ggplot2
+ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
   geom_point(shape = 1) +
-  geom_smooth(method = "lm", fill = "blue", alpha = 0.1) + 
-  geom_hline(yintercept = mean(regression$sales), linetype="dotted") + #mean of sales
-  geom_vline(xintercept = mean(regression$adspend), linetype="dotted") + #mean of advertising
-  labs(x = "Advertising expenditures (EUR)", y = "Number of sales") + 
-  theme_bw()
+  geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
+  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + #mean of price
+  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
+  theme_minimal()
 
-# Alternatively, using ggstatsplot
-library(ggstatsplot)
-scatterplot <- ggscatterstats(
-  data = regression,
-  x = adspend,
-  y = sales,
-  xlab = "Advertising expenditure (EUR)", # label for x axis
-  ylab = "Sales", # label for y axis
-  line.color = "black", # changing regression line color line
-  title = "Advertising expenditure and Sales", # title text for the plot
-  marginal.type = "histogram", # type of marginal distribution to be displayed
-  xfill = "steelblue", # color fill for x-axis marginal distribution
-  yfill = "darkgrey", # color fill for y-axis marginal distribution
-  xalpha = 0.6, # transparency for x-axis marginal distribution
-  yalpha = 0.6, # transparency for y-axis marginal distribution
-  bf.message = FALSE,
-  messages = FALSE # turn off messages and notes
-)
-scatterplot
-#save plot (optional)
-## ------------------------------------------------------------------------
-ggsave("scatterplot.jpg", height = 6, width = 7.5,scatterplot)
+# add regression line:
+ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
+  geom_point(shape = 1) +
+  geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
+  geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
+  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + #mean of price
+  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
+  theme_minimal()
 
-# Compute regression coefficients 
-# ... manually
-## ------------------------------------------------------------------------
-cov_y_x <- cov(regression$adspend, regression$sales)
-cov_y_x
-var_x <- var(regression$adspend)
-var_x
-beta_1 <- cov_y_x/var_x
-beta_1
-# ... or, alternatively
-cor_y_x <- cor(regression$adspend, regression$sales)
-beta_1_a <- cor_y_x * (sd(regression$sales)/sd(regression$adspend))
-beta_1_a
+### Line Plots ###
+# Sales per week 
+ggplot(data = regression, aes(week, move_ounce)) + 
+  geom_line(color = "forestgreen") + labs(x = "Week", y = "Sales") +
+  theme_minimal()
 
-## ------------------------------------------------------------------------
-beta_0 <- mean(regression$sales) - beta_1*mean(regression$adspend)
-beta_0
+# Price per week
+ggplot(data = regression, aes(week, price_ounce)) +
+  geom_line(color = "darkorange") + labs(x = "Week", y = "Price") +
+  theme_minimal()
 
-# ... using the lm()-function
-## ------------------------------------------------------------------------
-simple_regression <- lm(sales ~ adspend, data = regression) #estimate linear model
-summary(simple_regression) #summary of results
 
-# Compute the standard error by hand
-SEE <- sqrt(sum((regression$sales - predict(simple_regression))^2)/198)
-SEE
-SE <- SEE*sqrt(1/sum((regression$adspend-mean(regression$adspend))^2))
-SE
-t_calc <- beta_1/SE
-t_calc
-t_crit <- qt(0.975,198)
-t_crit
-t_calc > t_crit
+# log-log transformation
+ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) + 
+  geom_point(shape = 1) +
+  geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
+  labs(x = "Price", y = "Sales") + 
+  theme_minimal()
+
+### More Line Plots ###
+# Sales per week 
+ggplot(data = regression, aes(week, log(move_ounce))) + 
+  geom_line(color = "forestgreen") + labs(x = "Week", y = "Log-sales") +
+  theme_minimal()
+
+# Price per week
+ggplot(data = regression, aes(week, log(price_ounce))) +
+  geom_line(color = "darkorange") + labs(x = "Week", y = "Log-price") +
+  theme_minimal()
+
+
+#-------------------------------------------------------------------#
+#----------------------Simple linear regression---------------------#
+#-------------------------------------------------------------------#
+
+# syntax: lm(DV ~ IV, data)
+# create an object that stores the results of regression estimation
+sales_reg <- lm(move_ounce ~ price_ounce, data = regression) #estimate linear model
+summary(sales_reg) #summary of results
+
+# Using the model for making predictions: sales if price is set to 2 EUR
+prediction <- summary(sales_reg)$coefficients[1,1] + 
+  summary(sales_reg)$coefficients[2,1]*2 # the slope * 2 EUR
+prediction
+
+sales_reg2 <- lm(log(move_ounce) ~ log(price_ounce), data = regression)
+summary(sales_reg2) #remember that now the interpretation changed
 
 # Confidence intervals
-## ------------------------------------------------------------------------
-confint(simple_regression)
-
-# Compute R2 manually
-## ------------------------------------------------------------------------
-anova(simple_regression)
-## ------------------------------------------------------------------------
-r2 <- anova(simple_regression)$'Sum Sq'[1]/(anova(simple_regression)$'Sum Sq'[1] + anova(simple_regression)$'Sum Sq'[2]) #compute R2
-r2
-
-# Compute F-test manually
-## ------------------------------------------------------------------------
-anova(simple_regression) #anova results
-f_calc <- anova(simple_regression)$'Mean Sq'[1]/anova(simple_regression)$'Mean Sq'[2] #compute F
-f_calc
-f_crit <- qf(.95, df1 = 1, df2 = 198) #critical value
-f_crit
-f_calc > f_crit #test if calculated test statistic is larger than critical value
-
-# Using the model for making predictions
-## ------------------------------------------------------------------------
-prediction <- summary(simple_regression)$coefficients[1,1] + # the intercept
-              summary(simple_regression)$coefficients[2,1]*1800 # the slope * 800
-prediction
+confint(sales_reg2)
 
 #-------------------------------------------------------------------#
 #--------------------Multiple linear regression---------------------#
 #-------------------------------------------------------------------#
 
 # Run the model
-## ------------------------------------------------------------------------
-multiple_regression <- lm(sales ~ adspend + airplay + starpower, data = regression) #estimate linear model
-summary(multiple_regression) #summary of results
+multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, data = regression) #estimate linear model
+summary(multiple_sales_reg) #summary of results
 
 # Confidence intervals
-## ------------------------------------------------------------------------
-confint(multiple_regression)
+confint(multiple_sales_reg)
 
 # visualization
-## ------------------------------------------------------------------------
-ggcoefstats(x = multiple_regression,
-            title = "Sales predicted by adspend, airplay, & starpower")
-#save plot (optional)
-## ------------------------------------------------------------------------
-ggsave("lm_out.jpg", height = 6, width = 7.5)
+ggcoefstats(x = multiple_sales_reg,
+            title = "Sales prediction")
 
-# reporting using stargazer
-# https://www.jakeruss.com/cheatsheets/stargazer/
+# add predicted sales to the data frame
+regression$logmove_ounce_hat <- fitted(multiple_sales_reg)
+# plot sales and predicted sales per week
+ggplot(data = regression, aes(week, log(move_ounce))) +
+  geom_vline(xintercept = regression$promoweek, colour = "grey") +
+  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 1) +
+  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 1) +
+  scale_color_manual(values = c("black", "red")) +
+  theme_minimal()
+
+# reporting using stargazer (https://www.jakeruss.com/cheatsheets/stargazer/)
 library(stargazer)
-stargazer(multiple_regression, type = "text",ci = FALSE)
-stargazer(multiple_regression, type = "text",ci = TRUE, ci.level = 0.95, ci.separator = "; ")
+stargazer(multiple_sales_reg, type = "text",ci = FALSE)
+stargazer(multiple_sales_reg, type = "text",ci = TRUE, ci.level = 0.95, ci.separator = "; ")
 
 # Standardized coefficients
-## ------------------------------------------------------------------------
 library(lm.beta)
-lm.beta(multiple_regression)
-# The same can be achieved using the scale function on the variables in the regression equation
-## ------------------------------------------------------------------------
-multiple_regression_std <- lm(scale(sales) ~ scale(adspend) + scale(airplay) + scale(starpower), data = regression) #estimate linear model
-summary(multiple_regression_std) #summary of results
+lm.beta(multiple_sales_reg)
+
 
 # Plot of model fit (predicted vs. observed values)
-## ------------------------------------------------------------------------
-regression$yhat <- predict(multiple_regression)
-## ------------------------------------------------------------------------
-ggplot(regression,aes(x = yhat, y = sales)) +  
+regression$yhat <- predict(multiple_sales_reg)
+ggplot(regression, aes(x = yhat, y = log(move_ounce))) +  
   geom_point(size=2,shape=1) +  #Use hollow circles
   scale_x_continuous(name="predicted values") +
   scale_y_continuous(name="observed values") +
   geom_abline(intercept = 0, slope = 1) +
   theme_bw()
+
 # Plot model fit for bivariate model (predicted vs. observed values)
-## ------------------------------------------------------------------------
-regression$yhat_1 <- predict(simple_regression)
-## ------------------------------------------------------------------------
-ggplot(regression,aes(x = yhat_1, y = sales)) +  
+regression$yhat_1 <- predict(sales_reg)
+ggplot(regression, aes(x = yhat_1, y = log(move_ounce))) +  
   geom_point(size=2,shape=1) +  #Use hollow circles
   scale_x_continuous(name="predicted values") +
   scale_y_continuous(name="observed values") +
   geom_abline(intercept = 0, slope = 1) +
   theme_bw()
+
+# Model comparison 
+## ------------------------------------------------------------------------
+non_linear_reg$pred_lin_reg <- predict(linear_reg)
+non_linear_reg$pred_log_reg <- predict(log_reg)
+ggplot(data = non_linear_reg) +
+  geom_point(aes(x = advertising, y = sales),shape=1) + 
+  geom_line(data = non_linear_reg,aes(x=advertising,y=pred_lin_reg),color="blue", size=1.05) + 
+  geom_line(data = non_linear_reg,aes(x=advertising,y=exp(pred_log_reg)),color="red", size=1.05) + theme_bw()
+
+# Making predictions
+advertising <- 1000
+pred <- exp(log_reg$coefficients[1] + log_reg$coefficients[2]*log(advertising))
+pred
 
 # Added variable plots
-## ------------------------------------------------------------------------
-library(car)
-avPlots(multiple_regression)
+library(car) 
+avPlots(multiple_sales_reg)
 
-# Using the model for making predictions
-## ------------------------------------------------------------------------
-summary(multiple_regression)$coefficients[1,1] + 
-  summary(multiple_regression)$coefficients[2,1]*800 + 
-  summary(multiple_regression)$coefficients[3,1]*30 + 
-  summary(multiple_regression)$coefficients[4,1]*5
 
-#-------------------------------------------------------------------#
-#-------------------------Potential problems------------------------#
-#-------------------------------------------------------------------#
-
-# Outliers
-## ------------------------------------------------------------------------
-regression$stud_resid <- rstudent(multiple_regression)
-head(regression)
-## ------------------------------------------------------------------------
-plot(1:nrow(regression),regression$stud_resid, ylim=c(-3.3,3.3)) #create scatterplot 
-abline(h=c(-3,3),col="red",lty=2) #add reference lines
-## ------------------------------------------------------------------------
-outliers <- subset(regression,abs(stud_resid)>3)
-outliers
-
-# Influential observations
-## ------------------------------------------------------------------------
-plot(multiple_regression,4)
-plot(multiple_regression,5)
-
-# Linear specification
-## ------------------------------------------------------------------------
-avPlots(multiple_regression)
-
-# Constant error variance (homoscedasticity)
-## ------------------------------------------------------------------------
-plot(multiple_regression, 1)
-# Breusch-Pagan Test
-library(lmtest)
-bptest(multiple_regression)
-# If test is significant, transform the data, or use robust SE's:
-library(sandwich)
-coeftest(multiple_regression, vcov = vcovHC(multiple_regression))
-
-# Normal distribution of residuals
-## ------------------------------------------------------------------------
-plot(multiple_regression,2)
-shapiro.test(resid(multiple_regression))
-# If the residuals do not follow a normal distribution, transform the data or use bootstrapping
-# To obtain confidence intervals
-library(boot)
-# function to obtain regression coefficients
-bs <- function(formula, data, indices) {
-  d <- data[indices,] # allows boot to select sample
-  fit <- lm(formula, data=d)
-  return(coef(fit))
-}
-# bootstrapping with 2000 replications
-boot_out <- boot(data=regression, statistic=bs, R=2000, formula = sales ~ adspend + airplay + starpower)
-# get 95% confidence intervals
-boot.ci(boot_out, type="bca", index=1) # intercept
-boot.ci(boot_out, type="bca", index=2) # adspend
-boot.ci(boot_out, type="bca", index=3) # airplay
-boot.ci(boot_out, type="bca", index=4) # starpower
-# view results
-plot(boot_out, index=1) # intercept
-plot(boot_out, index=2) # adspend
-plot(boot_out, index=3) # airplay
-plot(boot_out, index=4) # starpower
-
-# Multicollinearity
-## ------------------------------------------------------------------------
-library(Hmisc)
-rcorr(as.matrix(regression[,c("adspend","airplay","starpower")]))
-plot(regression[,c("adspend","airplay","starpower")])
-
-# alternatively...
-library(ggstatsplot)
-ggcorrmat(
-  data = regression[,c("adspend","airplay","starpower")],
-  matrix.type = "lower", # type of visualization matrix
-  colors = c("darkgrey", "white", "steelblue"),
-  title = "Correlalogram of independent variables")
-
-# compute variance inflation factors
-vif(multiple_regression)
-
-#-------------------------------------------------------------------#
-#----------------------Out-of-sample prediction---------------------#
-#-------------------------------------------------------------------#
-
-# randomly split into training and test data:
-set.seed(123)
-n <- nrow(regression)
-train <- sample(1:n,round(n*2/3))
-test <- (1:n)[-train]
-
-# estimate linear model based on training data
-multiple_train <- lm(sales ~ adspend + airplay + starpower, data = regression, subset=train) 
-summary(multiple_train) #summary of results
-
-# using coefficients to predict test data
-pred_lm <- predict(multiple_train,newdata = regression[test,])
-cor(regression[test,"sales"],pred_lm)^2 # R^2 for test data
-
-# plot predicted vs. observed values for test data
-plot(regression[test,"sales"],pred_lm,xlab="y measured",ylab="y predicted",cex.lab=1.3)
-abline(c(0,1))
-
-#-------------------------------------------------------------------#
-#-------------------------Variable selection------------------------#
-#-------------------------------------------------------------------#
-
-set.seed(123)
-# Add another random variable
-regression$var_test <- rnorm(nrow(regression),0,1)
-
-# Model comparison with anova
-lm0 <- lm(sales ~ 1, data = regression) 
-lm1 <- lm(sales ~ adspend, data = regression) 
-lm2 <- lm(sales ~ adspend + airplay, data = regression) 
-lm3 <- lm(sales ~ adspend + airplay + starpower, data = regression) 
-lm4 <- lm(sales ~ adspend + airplay + starpower + var_test, data = regression) 
-anova(lm0, lm1, lm2, lm3, lm4)
-
-# Stepwise variable selection
-# Automatic model selection with step
-model_lmstep <- step(lm4)
-model_lmstep
-
-# Comparison of the models
-anova(model_lmstep,lm4)
 
 #-------------------------------------------------------------------#
 #-----------------------Categorical predictors----------------------#

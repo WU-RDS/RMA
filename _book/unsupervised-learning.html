@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Unsupervised learning | Retail Marketing Analytics 2023</title>
+  <title>8 Unsupervised learning | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Unsupervised learning | Retail Marketing Analytics 2023" />
+  <meta property="og:title" content="8 Unsupervised learning | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An Introduction to Data Analytics Using R" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Unsupervised learning | Retail Marketing Analytics 2023" />
+  <meta name="twitter:title" content="8 Unsupervised learning | Retail Marketing Analytics 2024" />
   
   <meta name="twitter:description" content="An Introduction to Data Analytics Using R" />
   
@@ -54,13 +54,15 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -201,10 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="data-handling.html"><a href="data-handling.html#data-import-and-export"><i class="fa fa-check"></i><b>3.2</b> Data import and export</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data-handling.html"><a href="data-handling.html#getting-data-for-this-course"><i class="fa fa-check"></i><b>3.2.1</b> Getting data for this course</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-handling.html"><a href="data-handling.html#import-data-created-by-other-software-packages"><i class="fa fa-check"></i><b>3.2.2</b> Import data created by other software packages</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-handling.html"><a href="data-handling.html#import-data-from-qualtrics"><i class="fa fa-check"></i><b>3.2.3</b> Import data from Qualtrics</a></li>
-<li class="chapter" data-level="3.2.4" data-path="data-handling.html"><a href="data-handling.html#export-data"><i class="fa fa-check"></i><b>3.2.4</b> Export data</a></li>
-<li class="chapter" data-level="3.2.5" data-path="data-handling.html"><a href="data-handling.html#import-data-from-the-web"><i class="fa fa-check"></i><b>3.2.5</b> Import data from the Web</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-handling.html"><a href="data-handling.html#export-data"><i class="fa fa-check"></i><b>3.2.2</b> Export data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-handling.html"><a href="data-handling.html#learning-check-1"><i class="fa fa-check"></i>Learning check</a></li>
 </ul></li>
@@ -225,54 +224,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#learning-check-2"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>5</b> Statistical inference</a>
+<li class="chapter" data-level="5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html"><i class="fa fa-check"></i><b>5</b> Metrics and KPIs in retail</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>5.1</b> If we knew it all</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>5.1.1</b> Sampling from a known population</a></li>
-<li class="chapter" data-level="5.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>5.1.2</b> Standard error of the mean</a></li>
+<li class="chapter" data-level="5.0.1" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#margins-profits"><i class="fa fa-check"></i><b>5.0.1</b> Margins &amp; Profits</a></li>
+<li class="chapter" data-level="5.0.2" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#shares"><i class="fa fa-check"></i><b>5.0.2</b> Shares</a></li>
+<li class="chapter" data-level="5.0.3" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#portfolio-management"><i class="fa fa-check"></i><b>5.0.3</b> Portfolio Management</a></li>
+<li class="chapter" data-level="5.0.4" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#pricing"><i class="fa fa-check"></i><b>5.0.4</b> Pricing</a></li>
+<li class="chapter" data-level="5.0.5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#finance"><i class="fa fa-check"></i><b>5.0.5</b> Finance</a></li>
+<li class="chapter" data-level="5.0.6" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#categorical-variables-2"><i class="fa fa-check"></i><b>5.0.6</b> Categorical variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#continuous-variables-2"><i class="fa fa-check"></i><b>5.0.7</b> Continuous variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#saving-plots-1"><i class="fa fa-check"></i><b>5.0.8</b> Saving plots</a></li>
+<li class="chapter" data-level="5.0.9" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#ggplot-extensions-1"><i class="fa fa-check"></i><b>5.0.9</b> ggplot extensions</a></li>
+<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#references-2"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.2</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>5.3</b> Using what we actually know</a></li>
-<li class="chapter" data-level="5.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>5.4</b> Confidence Intervals for the Sample Mean</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-2"><i class="fa fa-check"></i>References</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>6</b> Supervised learning</a>
+<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical inference</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear regression</a>
+<li class="chapter" data-level="6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>6.1</b> If we knew it all</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>6.1.1</b> Correlation</a></li>
-<li class="chapter" data-level="6.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Regression analysis</a></li>
-<li class="chapter" data-level="6.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>6.1.3</b> Categorical predictors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>6.1.1</b> Sampling from a known population</a></li>
+<li class="chapter" data-level="6.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>6.1.2</b> Standard error of the mean</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>6.2</b> Logistic regression</a>
+<li class="chapter" data-level="6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>6.3</b> Using what we actually know</a></li>
+<li class="chapter" data-level="6.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>6.4</b> Confidence Intervals for the Sample Mean</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-3"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>7</b> Supervised learning</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>6.2.1</b> Motivation and intuition</a></li>
-<li class="chapter" data-level="6.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>6.2.2</b> Technical details of the model</a></li>
-<li class="chapter" data-level="6.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>6.2.3</b> Estimation in R</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-3"><i class="fa fa-check"></i>References</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>7</b> Unsupervised learning</a>
+<li class="chapter" data-level="7.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.1</b> Principal component analysis</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Steps in factor analysis</a></li>
+<li class="chapter" data-level="7.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>7.1.1</b> Correlation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Regression analysis</a></li>
+<li class="chapter" data-level="7.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>7.1.3</b> Categorical predictors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>7.2</b> Cluster analysis</a>
+<li class="chapter" data-level="7.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>7.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>7.2.1</b> K-Means</a></li>
+<li class="chapter" data-level="7.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>7.2.1</b> Motivation and intuition</a></li>
+<li class="chapter" data-level="7.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>7.2.2</b> Technical details of the model</a></li>
+<li class="chapter" data-level="7.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>7.2.3</b> Estimation in R</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>8.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Steps in factor analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>8.2</b> Cluster analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>8.2.1</b> K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-6"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-5"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="8" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>8</b> R Markdown</a>
+<li class="chapter" data-level="9" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>9</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>8.1</b> Introduction to R Markdown</a>
+<li class="chapter" data-level="9.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>9.1</b> Introduction to R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-document"><i class="fa fa-check"></i>Creating a new R Markdown document</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#text-and-equations"><i class="fa fa-check"></i>Text and Equations</a></li>
@@ -280,42 +293,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#latex-math"><i class="fa fa-check"></i>LaTeX Math</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>9</b> Assignment solutions</a>
+<li class="chapter" data-level="10" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>10</b> Assignment solutions</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>9.1</b> Assignment 1</a>
+<li class="chapter" data-level="10.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>10.1</b> Assignment 1</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>9.1.1</b> Q1</a></li>
-<li class="chapter" data-level="9.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>9.1.2</b> Q2</a></li>
-<li class="chapter" data-level="9.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>9.1.3</b> Q3</a></li>
-<li class="chapter" data-level="9.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>9.1.4</b> Q4</a></li>
-<li class="chapter" data-level="9.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>9.1.5</b> Q5</a></li>
-<li class="chapter" data-level="9.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>9.1.6</b> Q6</a></li>
-<li class="chapter" data-level="9.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>9.1.7</b> Q7</a></li>
-<li class="chapter" data-level="9.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>9.1.8</b> Q8</a></li>
-<li class="chapter" data-level="9.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>9.1.9</b> Q9</a></li>
-<li class="chapter" data-level="9.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>9.1.10</b> Q10</a></li>
+<li class="chapter" data-level="10.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>10.1.1</b> Q1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>10.1.2</b> Q2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>10.1.3</b> Q3</a></li>
+<li class="chapter" data-level="10.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>10.1.4</b> Q4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>10.1.5</b> Q5</a></li>
+<li class="chapter" data-level="10.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>10.1.6</b> Q6</a></li>
+<li class="chapter" data-level="10.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>10.1.7</b> Q7</a></li>
+<li class="chapter" data-level="10.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>10.1.8</b> Q8</a></li>
+<li class="chapter" data-level="10.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>10.1.9</b> Q9</a></li>
+<li class="chapter" data-level="10.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>10.1.10</b> Q10</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>9.2</b> Assignment 2</a>
+<li class="chapter" data-level="10.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>10.2</b> Assignment 2</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>9.2.1</b> Q1</a></li>
-<li class="chapter" data-level="9.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>9.2.2</b> Q2</a></li>
-<li class="chapter" data-level="9.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>9.2.3</b> Q3</a></li>
-<li class="chapter" data-level="9.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>9.2.4</b> Q4</a></li>
+<li class="chapter" data-level="10.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>10.2.1</b> Q1</a></li>
+<li class="chapter" data-level="10.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>10.2.2</b> Q2</a></li>
+<li class="chapter" data-level="10.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>10.2.3</b> Q3</a></li>
+<li class="chapter" data-level="10.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>10.2.4</b> Q4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>10</b> Group project</a>
+<li class="chapter" data-level="11" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>11</b> Group project</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>10.1</b> Data analysis</a></li>
-<li class="chapter" data-level="10.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
-<li class="chapter" data-level="10.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>10.3</b> Question 1</a></li>
-<li class="chapter" data-level="10.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>10.4</b> Question 2</a></li>
-<li class="chapter" data-level="10.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>10.5</b> Question 3</a></li>
-<li class="chapter" data-level="10.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>10.6</b> Question 4</a></li>
+<li class="chapter" data-level="11.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>11.1</b> Data analysis</a></li>
+<li class="chapter" data-level="11.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>11.2</b> Load data</a></li>
+<li class="chapter" data-level="11.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>11.3</b> Question 1</a></li>
+<li class="chapter" data-level="11.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>11.4</b> Question 2</a></li>
+<li class="chapter" data-level="11.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>11.5</b> Question 3</a></li>
+<li class="chapter" data-level="11.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>11.6</b> Question 4</a></li>
 </ul></li>
 <li class="part"><span><b>IV FAQ</b></span></li>
-<li class="chapter" data-level="11" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>11</b> FAQ</a>
+<li class="chapter" data-level="12" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>12</b> FAQ</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>11.1</b> Common error messages</a>
+<li class="chapter" data-level="12.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>12.1</b> Common error messages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#a-general-note-on-error-messages"><i class="fa fa-check"></i>A general note on error messages</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-filefile-rt-cannot-open-the-connection"><i class="fa fa-check"></i>Error in file(file, “rt”): cannot open the connection</a></li>
@@ -326,46 +339,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-could-not-find-function-function"><i class="fa fa-check"></i>Error in CALL: could not find function “FUNCTION”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-incorrect-number-of-dimension"><i class="fa fa-check"></i>Error in CALL: incorrect number of dimension</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>11.2</b> Installation of R packages</a>
+<li class="chapter" data-level="12.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>12.2</b> Installation of R packages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-are-the-different-ways-to-install-r-packages"><i class="fa fa-check"></i>What are the different ways to install R packages?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-packages-due-to-error-in-contrib.urlrepossource-or-warning-message-package-packagename-is-not-available-for-this-version-of-r"><i class="fa fa-check"></i>I cannot install packages due to “Error in contrib.url(repos,”source”)” or “Warning message: package ‘PACKAGENAME’ is not available for this version of R”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-libraries-with-graphical-output-e.g.-summarytools-magick-fail-to-installload-properly-on-macos"><i class="fa fa-check"></i>Some libraries with graphical output (e.g., summarytools, magick) fail to install/load properly on MacOS</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-some-packages-on-macos"><i class="fa fa-check"></i>I cannot install some packages on MacOS</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>11.3</b> Issues with statistics and data</a>
+<li class="chapter" data-level="12.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>12.3</b> Issues with statistics and data</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-does-a-multi-item-scale-lead-to-increased-reliability"><i class="fa fa-check"></i>Why does a multi-item scale lead to increased reliability?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-can-demeaningstandardization-lead-to-missing-values"><i class="fa fa-check"></i>Why can demeaning/standardization lead to missing values?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#the-confidence-interval-ci-of-the-mean-seems-very-small-compared-to-the-dispersion-of-my-sample.-can-this-be-correct"><i class="fa fa-check"></i>The confidence interval (CI) of the mean seems very small compared to the dispersion of my sample. Can this be correct?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>11.4</b> Errors related to specific methods</a>
+<li class="chapter" data-level="12.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>12.4</b> Errors related to specific methods</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression-1"><i class="fa fa-check"></i>Logistic regression</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#when-using-logistic-regression-error-in-weights-y-non-numeric-argument-to-binary-operator"><i class="fa fa-check"></i>When using logistic regression: Error in weights * y : non-numeric argument to binary operator</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>11.5</b> General settings and options</a>
+<li class="chapter" data-level="12.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>12.5</b> General settings and options</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#numbers-are-formatted-weirdly"><i class="fa fa-check"></i>Numbers are formatted weirdly</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>11.6</b> Data visualization/output issues</a>
+<li class="chapter" data-level="12.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>12.6</b> Data visualization/output issues</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-the-geom-colors-in-a-ggplot-be-changed"><i class="fa fa-check"></i>How can the <code>geom</code> colors in a <code>ggplot</code> be changed?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-are-some-histograms-displayed-differently"><i class="fa fa-check"></i>Why are some histograms displayed differently?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-labels-in-plots-are-cut-off.-how-can-i-extend-the-plot-margins"><i class="fa fa-check"></i>Some labels in plots are cut off. How can I extend the plot margins?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>11.7</b> Issues with functions and function arguments</a>
+<li class="chapter" data-level="12.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>12.7</b> Issues with functions and function arguments</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#problems-with-factor-and-as.factor"><i class="fa fa-check"></i>Problems with <code>factor</code> and <code>as.factor</code></a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-find-an-explanation-of-the-output-of-a-function"><i class="fa fa-check"></i>How can I find an explanation of the output of a function?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-the-margin-argument-do"><i class="fa fa-check"></i>What does the <code>MARGIN</code> argument do?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>11.8</b> Issues with R Markdown</a>
+<li class="chapter" data-level="12.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>12.8</b> Issues with R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-get-an-error-when-knitting-to-pdf-but-it-works-for-html"><i class="fa fa-check"></i>I get an error when <code>knit</code>ting to PDF but it works for HTML</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-am-not-sure-where-r-code-latex-math-and-text-go"><i class="fa fa-check"></i>I am not sure where R-code, LaTeX math, and text go</a></li>
 </ul></li>
-<li class="chapter" data-level="11.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>11.9</b> New questions</a></li>
+<li class="chapter" data-level="12.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>12.9</b> New questions</a></li>
 </ul></li>
 </ul>
 
@@ -376,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Retail Marketing Analytics 2023</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Retail Marketing Analytics 2024</a>
           </h1>
         </div>
 
@@ -384,15 +397,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="unsupervised-learning" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">7</span> Unsupervised learning<a href="unsupervised-learning.html#unsupervised-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="principal-component-analysis" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Principal component analysis<a href="unsupervised-learning.html#principal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="unsupervised-learning" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Unsupervised learning<a href="unsupervised-learning.html#unsupervised-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="principal-component-analysis" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Principal component analysis<a href="unsupervised-learning.html#principal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="infobox download">
 <p><a href="./Code/11-pca.R">You can download the corresponding R-Code here</a></p>
 </div>
-<div id="introduction-1" class="section level3 hasAnchor" number="7.1.1">
-<h3><span class="header-section-number">7.1.1</span> Introduction<a href="unsupervised-learning.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="introduction-1" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Introduction<a href="unsupervised-learning.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <br>
 <div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kY4fGoFhNUQ" frameborder="0" allowfullscreen>
@@ -415,9 +428,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Item 6</strong>: The most important consideration in buying a toothpaste is attractive teeth.</li>
 </ul>
 <p>Let’s assume you collect data from 30 respondents and you use 7-point itemized rating scales to measure the extent of agreement to each of these statements. This is the data that you have collected:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="unsupervised-learning.html#cb352-1" aria-hidden="true" tabindex="-1"></a>factor_analysis <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/toothpaste.dat&quot;</span>,</span>
-<span id="cb352-2"><a href="unsupervised-learning.html#cb352-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span>
-<span id="cb352-3"><a href="unsupervised-learning.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(factor_analysis)  <span class="co">#inspect data</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="unsupervised-learning.html#cb364-1" tabindex="-1"></a>factor_analysis <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/toothpaste.dat&quot;</span>,</span>
+<span id="cb364-2"><a href="unsupervised-learning.html#cb364-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span>
+<span id="cb364-3"><a href="unsupervised-learning.html#cb364-3" tabindex="-1"></a><span class="fu">str</span>(factor_analysis)  <span class="co">#inspect data</span></span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    30 obs. of  6 variables:
 ##  $ prevent_cavities: int  7 1 6 4 1 6 5 6 3 2 ...
 ##  $ shiny_teeth     : int  3 3 2 5 2 3 3 4 4 6 ...
@@ -425,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ fresh_breath    : int  4 4 4 6 3 4 3 4 3 6 ...
 ##  $ prevent_decay   : int  6 3 7 6 2 6 4 7 2 1 ...
 ##  $ attract_teeth   : int  4 4 3 5 2 4 3 4 3 6 ...</code></pre>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="unsupervised-learning.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factor_analysis)  <span class="co">#inspect data</span></span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="unsupervised-learning.html#cb366-1" tabindex="-1"></a><span class="fu">head</span>(factor_analysis)  <span class="co">#inspect data</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["prevent_cavities"],"name":[1],"type":["int"],"align":["right"]},{"label":["shiny_teeth"],"name":[2],"type":["int"],"align":["right"]},{"label":["strengthen_gum"],"name":[3],"type":["int"],"align":["right"]},{"label":["fresh_breath"],"name":[4],"type":["int"],"align":["right"]},{"label":["prevent_decay"],"name":[5],"type":["int"],"align":["right"]},{"label":["attract_teeth"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"7","2":"3","3":"6","4":"4","5":"6","6":"4"},{"1":"1","2":"3","3":"2","4":"4","5":"3","6":"4"},{"1":"6","2":"2","3":"7","4":"4","5":"7","6":"3"},{"1":"4","2":"5","3":"4","4":"6","5":"6","6":"5"},{"1":"1","2":"2","3":"2","4":"3","5":"2","6":"2"},{"1":"6","2":"3","3":"6","4":"4","5":"6","6":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -434,8 +447,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>A <strong>construct</strong> is a specific type of concept that exists at a higher level of abstraction than everyday concepts. In this example, the <em>perceived benefits</em> of toothpaste represent the construct that we would like to measure. The construct is unobservable (‘latent’) but it can be inferred from other measurable variables (items) that together comprise a scale (latent construct). A <strong>multi-item scale</strong> consists of multiple items, where an item is a single question or statement to be evaluated. In the above example, we use six items to measure the perceived benefits of toothpaste. If several items correlate highly, they might measure aspects of a common underlying dimension (a.k.a. factors). That is, specific patterns in the correlation matrix signal the existence of one or more factors underlying the data. Let’s inspect the correlation matrix using the <code>rcorr()</code> function from the <code>Hmisc</code> package.</p>
 <p><br></p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="unsupervised-learning.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;Hmisc&quot;</span>)</span>
-<span id="cb355-2"><a href="unsupervised-learning.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(factor_analysis))</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="unsupervised-learning.html#cb367-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;Hmisc&quot;</span>)</span>
+<span id="cb367-2"><a href="unsupervised-learning.html#cb367-2" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(factor_analysis))</span></code></pre></div>
 <pre><code>##                  prevent_cavities shiny_teeth strengthen_gum fresh_breath
 ## prevent_cavities             1.00       -0.05           0.87        -0.09
 ## shiny_teeth                 -0.05        1.00          -0.16         0.57
@@ -479,21 +492,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The goal of factor analysis is to explain the maximum amount of total variance in a correlation matrix by transforming the original variables into linear components. This means that the correlation matrix is broken down into a smaller set of dimensions. The generalized formal representation of the linear relationship between a latent factor <em>Y</em> and the set of variables can be written as:</p>
 <p><span class="math display" id="eq:factor1">\[\begin{equation}
 Y_i=b_1X_{1i} + b_2X_{2i} + b_nX_{ni}+\epsilon_i
-\tag{7.1}
+\tag{8.1}
 \end{equation}\]</span></p>
 <p>where X<sub>n</sub> represents the data that we have collected for the different variables. To make it more explicit, the equation could also be written as</p>
 <p><span class="math display" id="eq:factor2">\[\begin{equation}
 Factor_i=b_1Variable_{1i} + b_2Variable_{2i} + b_nVariable_{ni}+\epsilon_i
-\tag{7.2}
+\tag{8.2}
 \end{equation}\]</span></p>
 <p>where the dependent variable “Factor” refers to the factor score of person <em>i</em> on the underlying dimensions. In our case, the initial inspection suggested two underlying factors (i.e., health benefits and social benefits), so that we can construct two equations that describe both factors in terms of the variables that we have measured:</p>
 <p><span class="math display" id="eq:factor3">\[\begin{equation}
 Health_i=b_1X_{1i} + b_2X_{2i} + b_3X_{3i}+ b_4X_{4i}+ b_5X_{5i}+ b_6X_{6i}+\epsilon_i
-\tag{7.3}
+\tag{8.3}
 \end{equation}\]</span></p>
 <p><span class="math display" id="eq:factor4">\[\begin{equation}
 Social_i=b_1X_{1i} + b_2X_{2i} + b_3X_{3i}+ b_4X_{4i}+ b_5X_{5i}+ b_6X_{6i}+\epsilon_i
-\tag{7.4}
+\tag{8.4}
 \end{equation}\]</span></p>
 <p>where the b’s in each equation represent the <strong>factor loadings</strong>. You can see that both equations include the same set of predictors. However, their values in each equation will be different, depending on the importance of each variable to the respective factor. Once the factor loadings have been computed (we will see how this is done below), we can summarize them in a component matrix, which is usually denoted as <code>A</code>:</p>
 <p><span class="math display">\[\mathbf{A} = \left[\begin{array}
@@ -508,7 +521,7 @@ Social_i=b_1X_{1i} + b_2X_{2i} + b_3X_{3i}+ b_4X_{4i}+ b_5X_{5i}+ b_6X_{6i}+\eps
 <p>The linear relation between the factors and the factor loadings can also be shown in a graph, where each axis represents a factor and the variables are placed on the coordinates according to the strength of the relationship between the variable and each factor. The greater the loading of variables on a factor, the more that factor explains relationships between those variables. You can also think of the factor loadings as the correlations between a factor and a variable.</p>
 <p><br></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-5-1.png" alt="Factor loadings" width="672" />
+<img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-5-1.png" alt="Factor loadings" width="672" />
 <p class="caption">
 Figure 1.4: Factor loadings
 </p>
@@ -520,19 +533,19 @@ Figure 1.4: Factor loadings
 Health_i=&amp; 0.93*preventCavities_{i} -0.3*shinyTeeth_{i} + 0.94*strengthenGum_{i}\\
           &amp;-0.34*freshBreath_{i} + 0.87*preventDecay_{i} - 0.18*attractTeeth_{i}
 \end{split}
-\tag{7.5}
+\tag{8.5}
 \end{equation}\]</span></p>
 <p><span class="math display" id="eq:factor6">\[\begin{equation}
 \begin{split}
 Social_i=&amp; 0.25*preventCavities_{i} + 0.80*shinyTeeth_{i} + 0.13*strengthenGum_{i}\\
          &amp;+ 0.79*freshBreath_{i}+ 0.35*preventDecay_{i}+ 0.87*attractTeeth_{i}
 \end{split}
-\tag{7.6}
+\tag{8.6}
 \end{equation}\]</span></p>
 <p>where the variable names are replaced by the values that were observed for respondent <em>i</em> to compute the factor scores for respondent <em>i</em>. This means that we have reduced the number of variables from six to two. Note that this is a rather simple approach that is intended to explain the underlying logic. However, that the resulting factor scores will depend on the measurement scales of the variables. If different measurement scales would be used, the resulting factor scores for different factors could not be compared. Thus, R will compute the factor scores using more sophisticated methods as we will see below.</p>
 </div>
-<div id="steps-in-factor-analysis" class="section level3 hasAnchor" number="7.1.2">
-<h3><span class="header-section-number">7.1.2</span> Steps in factor analysis<a href="unsupervised-learning.html#steps-in-factor-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="steps-in-factor-analysis" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Steps in factor analysis<a href="unsupervised-learning.html#steps-in-factor-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <br>
 <div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pIlsdFcTV5o" frameborder="0" allowfullscreen>
@@ -540,18 +553,18 @@ Social_i=&amp; 0.25*preventCavities_{i} + 0.80*shinyTeeth_{i} + 0.13*strengthenG
 </div>
 <p><br></p>
 <p>Now that we have a broad understanding of how factor analysis works, let’s use another example to go through the process of deriving factors step by step. In this section, we will use the R anxiety questionnaire from the book by Andy Field et al.. The questionnaire is intended to measure the various aspects of student’s anxiety towards learning R. It includes 23 items for which respondents are asked to indicate on a five-point Likert scale to what extent they agree with the respective statements. The questionnaire is shown in the following figure:</p>
-<div class="figure">
-<img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/ra_anx_quest.JPG" alt="" />
-<p class="caption">The R anxiety questionnaire (source: Field, A. et al. (2012): Discovering Statistics Using R, p. 768)</p>
+<div class="float">
+<img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/ra_anx_quest.JPG" alt="The R anxiety questionnaire (source: Field, A. et al. (2012): Discovering Statistics Using R, p. 768)" />
+<div class="figcaption">The R anxiety questionnaire (source: Field, A. et al. (2012): Discovering Statistics Using R, p. 768)</div>
 </div>
 <p>Let’s assume, we have collected data from 2,571 respondents and stored the results in the data set “raq.dat”.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="unsupervised-learning.html#cb357-1" aria-hidden="true" tabindex="-1"></a>raq_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/raq.dat&quot;</span>,</span>
-<span id="cb357-2"><a href="unsupervised-learning.html#cb357-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span></code></pre></div>
-<div id="are-the-assumptions-satisfied" class="section level4 hasAnchor" number="7.1.2.1">
-<h4><span class="header-section-number">7.1.2.1</span> Are the assumptions satisfied?<a href="unsupervised-learning.html#are-the-assumptions-satisfied" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="unsupervised-learning.html#cb369-1" tabindex="-1"></a>raq_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/raq.dat&quot;</span>,</span>
+<span id="cb369-2"><a href="unsupervised-learning.html#cb369-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span></code></pre></div>
+<div id="are-the-assumptions-satisfied" class="section level4 hasAnchor" number="8.1.2.1">
+<h4><span class="header-section-number">8.1.2.1</span> Are the assumptions satisfied?<a href="unsupervised-learning.html#are-the-assumptions-satisfied" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Since PCA is based the correlation between variables, the first step is to inspect the correlation matrix, which can be created using the <code>cor()</code> function.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="unsupervised-learning.html#cb358-1" aria-hidden="true" tabindex="-1"></a>raq_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(raq_data)</span>
-<span id="cb358-2"><a href="unsupervised-learning.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(raq_matrix, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="unsupervised-learning.html#cb370-1" tabindex="-1"></a>raq_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(raq_data)</span>
+<span id="cb370-2"><a href="unsupervised-learning.html#cb370-2" tabindex="-1"></a><span class="fu">round</span>(raq_matrix, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##        Q01    Q02    Q03    Q04    Q05    Q06    Q07    Q08    Q09    Q10
 ## Q01  1.000 -0.099 -0.337  0.436  0.402  0.217  0.305  0.331 -0.092  0.214
 ## Q02 -0.099  1.000  0.318 -0.112 -0.119 -0.074 -0.159 -0.050  0.315 -0.084
@@ -626,36 +639,38 @@ Social_i=&amp; 0.25*preventCavities_{i} + 0.80*shinyTeeth_{i} + 0.13*strengthenG
 ## Q23 -0.068  0.230  1.000</code></pre>
 <p>If the variables measure the same construct, we would expect to see a certain degree of correlation between the variables. Even if the variables turn out to measure different dimensions of the same underlying construct, we would still expect to see some degree of correlation. So the first problem that could occur is that the <strong>correlations are not high enough</strong>. A first approach would be to scan the correlation matrix for correlations lower than about 0.3 and identify variables that have many correlations below this threshold. If your data set contains many variables, this task can be quite tedious. To make the task a little easier, you could proceed as follows.</p>
 <p>Create a dataframe from the correlation matrix and set the diagonal elements to missing since these are always 1:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="unsupervised-learning.html#cb360-1" aria-hidden="true" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(raq_matrix)</span>
-<span id="cb360-2"><a href="unsupervised-learning.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(correlations) <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="unsupervised-learning.html#cb372-1" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(raq_matrix)</span>
+<span id="cb372-2"><a href="unsupervised-learning.html#cb372-2" tabindex="-1"></a><span class="fu">diag</span>(correlations) <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
 <p>Now we can use the <code>apply()</code> function to count the number of correlations for each variable that are below a certain threshold (say, 0.3). The <code>apply()</code> function is very useful as it lets you apply function by the rows or columns in your dataframe. In the following example <code>abs(correlations) &lt; 0.3</code> returns a logical value for the correlation matrix that returns <code>TRUE</code> if the statement is true. The second argument <code>1</code> means that the function should be applied to the rows (<code>2</code> would apply it to the columns). The third argument states the function that should be applied. In our case, we would like to count the number of absolute correlations below 0.3 so we apply the <code>sum</code> function, which sums the number of <code>TRUE</code> occurrences by row. The final argument <code>na.rm = TRUE</code> simply tells R to neglect the missing values that we have created for the diagonals of the matrix.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="unsupervised-learning.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations) <span class="sc">&lt;</span> <span class="fl">0.3</span>, <span class="dv">1</span>, sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="unsupervised-learning.html#cb373-1" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations) <span class="sc">&lt;</span> <span class="fl">0.3</span>, <span class="dv">1</span>, sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Q01 Q02 Q03 Q04 Q05 Q06 Q07 Q08 Q09 Q10 Q11 Q12 Q13 Q14 Q15 Q16 Q17 Q18 Q19 Q20 
 ##   9  20   6   8  11  14   8  16  21  20   8   8   6   8  11   8   8   8  21  20 
 ## Q21 Q22 Q23 
 ##   9  22  22</code></pre>
 <p>The output shows you the number of correlations below the threshold for each variable. In a similar way, it would also be possible to compute the mean correlation for each variable.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="unsupervised-learning.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations), <span class="dv">1</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##       Q01       Q02       Q03       Q04       Q05       Q06       Q07       Q08 
-## 0.2786461 0.1590732 0.3193955 0.3044131 0.2671130 0.2685230 0.3341477 0.2581210 
-##       Q09       Q10       Q11       Q12       Q13       Q14       Q15       Q16 
-## 0.1555957 0.2105303 0.3197517 0.3263889 0.3277661 0.3179673 0.2902898 0.3345197 
-##       Q17       Q18       Q19       Q20       Q21       Q22       Q23 
-## 0.3084564 0.3421177 0.2173012 0.2121990 0.3222743 0.1621558 0.0798525</code></pre>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="unsupervised-learning.html#cb375-1" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations), <span class="dv">1</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##         Q01         Q02         Q03         Q04         Q05         Q06 
+## 0.278646131 0.159073190 0.319395515 0.304413134 0.267113035 0.268523028 
+##         Q07         Q08         Q09         Q10         Q11         Q12 
+## 0.334147692 0.258121015 0.155595734 0.210530276 0.319751704 0.326388926 
+##         Q13         Q14         Q15         Q16         Q17         Q18 
+## 0.327766094 0.317967282 0.290289792 0.334519653 0.308456407 0.342117715 
+##         Q19         Q20         Q21         Q22         Q23 
+## 0.217301237 0.212198951 0.322274290 0.162155830 0.079852503</code></pre>
 <p>Another way to make the correlations more salient is to plot the correlation matrix using different colors that indicate the strength of the correlations. This can be done using the <code>corPolot()</code> function from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="unsupervised-learning.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corPlot</span>(correlations, <span class="at">numbers =</span> <span class="cn">TRUE</span>, <span class="at">upper =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb365-2"><a href="unsupervised-learning.html#cb365-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">diag =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Correlations between variables&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="unsupervised-learning.html#cb377-1" tabindex="-1"></a><span class="fu">corPlot</span>(correlations, <span class="at">numbers =</span> <span class="cn">TRUE</span>, <span class="at">upper =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb377-2"><a href="unsupervised-learning.html#cb377-2" tabindex="-1"></a>    <span class="at">diag =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Correlations between variables&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-11-1.png" alt="Correlation matrix" width="960" />
+<img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-11-1.png" alt="Correlation matrix" width="960" />
 <p class="caption">
 Figure 1.9: Correlation matrix
 </p>
 </div>
 <p>You will, however, notice that this is a rather subjective approach. The <strong>Bartlett’s test</strong> is a statistical test that can be used to test whether all the off-diagonal elements in the population correlation matrix are zero (i.e., whether the population correlation matrix resembles an identify matrix). Thus, it tests whether the correlations are overall too small. If the matrix is an identify matrix, it means that all variables are independent. Thus, a significant test statistic (i.e., p &lt; 0.05) indicates that there is some relationship between variables. The test can be implemented using the <code>cortest.bartlett()</code> function from the <code>psych</code> package:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="unsupervised-learning.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb366-2"><a href="unsupervised-learning.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(raq_matrix, <span class="at">n =</span> <span class="fu">nrow</span>(raq_data))</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="unsupervised-learning.html#cb378-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb378-2"><a href="unsupervised-learning.html#cb378-2" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(raq_matrix, <span class="at">n =</span> <span class="fu">nrow</span>(raq_data))</span></code></pre></div>
 <pre><code>## $chisq
-## [1] 19334.49
+## [1] 19334.492
 ## 
 ## $p.value
 ## [1] 0
@@ -664,21 +679,21 @@ Figure 1.9: Correlation matrix
 ## [1] 253</code></pre>
 <p>In our example, the p-value is less than 0.05, which is good news since it confirms that overall the correlation between variables is different from zero.</p>
 <p>The other problem that might occur is that <strong>the correlations are too high</strong>. Actually, a certain degree of multicollinearity is not a problem in PCA. However, it is important to avoid extreme multicollinearity (i.e., variables are highly correlated) and singularity (i.e., variables are perfectly correlated). Multicollinearity causes problems, because it becomes difficult to determine the unique contribution of a variable (as was the case in linear regression analysis). Again, inspecting the entire correlation matrix when there are many variables will be a tedious task. .</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="unsupervised-learning.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations) <span class="sc">&gt;</span> <span class="fl">0.8</span>, <span class="dv">1</span>, sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="unsupervised-learning.html#cb380-1" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">abs</span>(correlations) <span class="sc">&gt;</span> <span class="fl">0.8</span>, <span class="dv">1</span>, sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Q01 Q02 Q03 Q04 Q05 Q06 Q07 Q08 Q09 Q10 Q11 Q12 Q13 Q14 Q15 Q16 Q17 Q18 Q19 Q20 
 ##   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
 ## Q21 Q22 Q23 
 ##   0   0   0</code></pre>
 <p>The results do not suggest any extreme or perfect correlations. Again, there is a more objective measure that could be applied. The <strong>determinant</strong> tells us whether the correlation matrix is singular (determinant = 0), or if all variables are completely unrelated (determinant = 1), or somewhere in between. As a rule of thumb, the determinant should be greater than 0.00001. The <code>det()</code> function can be used to compute the determinant:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="unsupervised-learning.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">det</span>(raq_matrix)</span></code></pre></div>
-<pre><code>## [1] 0.0005271037</code></pre>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="unsupervised-learning.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">det</span>(raq_matrix) <span class="sc">&gt;</span> <span class="fl">0.00001</span></span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="unsupervised-learning.html#cb382-1" tabindex="-1"></a><span class="fu">det</span>(raq_matrix)</span></code></pre></div>
+<pre><code>## [1] 0.00052710372</code></pre>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="unsupervised-learning.html#cb384-1" tabindex="-1"></a><span class="fu">det</span>(raq_matrix) <span class="sc">&gt;</span> <span class="fl">0.00001</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>As you can see, the determinant is larger than the threshold, indicating that the overall correlation between variables is not too strong.</p>
 <p>Finally, you should test if the correlation pattern in the matrix is appropriate for factor analysis using the Kaiser-Meyer-Olkin (KMO) measure of sampling adequacy. This statistic is a measure of the proportion of variance among variables that might be common variance.</p>
 <p><span class="math display" id="eq:MSA">\[\begin{equation}
 MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}^{}{p^2_{jk}}}
-\tag{7.7}
+\tag{8.7}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(r_{jk}\)</span> is the correlation between two variables of interest and <span class="math inline">\(p_{jk}\)</span> is their partial correlation. The partial correlation measures the degree of association between the two variables, when the effect of the remaining variables is controlled for. It can takes values between 0 (bad) and 1 (good), where a value of 0 indicates that the sum of partial correlations is large relative to the sum of correlations. If the remaining correlation between two variables remains high if you control for all the other variables, this provides an indication that the correlation is fairly concentrated and on a subset of the variables and factor analysis is likely to be inappropriate. In contrast, a value close to 1 means that the sum of the partial correlations is fairly is low, indicating a more compact pattern of correlations between a larger set of variables. Values should at least exceed 0.50, with the thresholds:</p>
 <ul>
@@ -690,7 +705,7 @@ MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}
 <li>&gt;.90 = marvelous</li>
 </ul>
 <p>The KMO measure of sampling adequacy can be computed using the <code>KMO()</code> function from the <code>psych</code> package:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="unsupervised-learning.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(raq_data)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="unsupervised-learning.html#cb386-1" tabindex="-1"></a><span class="fu">KMO</span>(raq_data)</span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = raq_data)
 ## Overall MSA =  0.93
@@ -701,8 +716,8 @@ MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}
 ## 0.93 0.95 0.94 0.89 0.93 0.88 0.77</code></pre>
 <p>You can see that the statistic is calculated for the entire matrix and for each variable individually. In our example, the values for all variables as well as the overall matrix is above 0.5, suggesting that factor analysis is appropriate.</p>
 </div>
-<div id="deriving-factors" class="section level4 hasAnchor" number="7.1.2.2">
-<h4><span class="header-section-number">7.1.2.2</span> Deriving factors<a href="unsupervised-learning.html#deriving-factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="deriving-factors" class="section level4 hasAnchor" number="8.1.2.2">
+<h4><span class="header-section-number">8.1.2.2</span> Deriving factors<a href="unsupervised-learning.html#deriving-factors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <br>
 <div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HfDyoNjJ6Rs" frameborder="0" allowfullscreen>
@@ -718,8 +733,8 @@ MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}
 </ul>
 <p>Often, the decision is made based on a combination of different criteria.</p>
 <p>By extracting as many factors as there are variables we can inspect their eigenvalues and make decisions about which factors to extract. Since we have 23 variables, we set the argument <code>nfactors</code> to 23.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="unsupervised-learning.html#cb376-1" aria-hidden="true" tabindex="-1"></a>pc1 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">23</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb376-2"><a href="unsupervised-learning.html#cb376-2" aria-hidden="true" tabindex="-1"></a>pc1</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="unsupervised-learning.html#cb388-1" tabindex="-1"></a>pc1 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">23</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb388-2"><a href="unsupervised-learning.html#cb388-2" tabindex="-1"></a>pc1</span></code></pre></div>
 <pre><code>## Principal Components Analysis
 ## Call: principal(r = raq_data, nfactors = 23, rotate = &quot;none&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
@@ -772,28 +787,28 @@ MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}
 ## Q22  0.08  0.15  0.09  0.01  0.04 -0.06  0.02  0.00  0.01 -0.01  0.01  1
 ## Q23 -0.01 -0.07 -0.12 -0.06 -0.03  0.05 -0.03  0.01 -0.01 -0.02  0.00  1
 ##                       u2 com
-## Q01 -0.00000000000000111 6.0
-## Q02 -0.00000000000000377 6.1
+## Q01  0.00000000000000022 6.0
+## Q02  0.00000000000000000 6.1
 ## Q03  0.00000000000000067 4.4
-## Q04 -0.00000000000000111 4.9
-## Q05 -0.00000000000000067 5.2
-## Q06 -0.00000000000000044 4.4
-## Q07 -0.00000000000000044 4.1
-## Q08 -0.00000000000000133 5.7
-## Q09 -0.00000000000000133 5.0
-## Q10  0.00000000000000022 7.7
-## Q11 -0.00000000000000133 4.1
-## Q12 -0.00000000000000155 3.8
-## Q13 -0.00000000000000155 4.2
-## Q14 -0.00000000000000111 4.3
-## Q15 -0.00000000000000067 5.6
-## Q16 -0.00000000000000178 4.0
-## Q17 -0.00000000000000155 4.3
-## Q18 -0.00000000000000111 3.4
-## Q19 -0.00000000000000089 3.5
-## Q20  0.00000000000000044 8.7
-## Q21 -0.00000000000000022 4.6
-## Q22  0.00000000000000000 7.2
+## Q04  0.00000000000000078 4.9
+## Q05 -0.00000000000000033 5.2
+## Q06  0.00000000000000033 4.4
+## Q07  0.00000000000000056 4.1
+## Q08  0.00000000000000111 5.7
+## Q09  0.00000000000000067 5.0
+## Q10 -0.00000000000000022 7.7
+## Q11  0.00000000000000100 4.1
+## Q12  0.00000000000000011 3.8
+## Q13  0.00000000000000100 4.2
+## Q14  0.00000000000000022 4.3
+## Q15  0.00000000000000067 5.6
+## Q16 -0.00000000000000067 4.0
+## Q17  0.00000000000000067 4.3
+## Q18  0.00000000000000111 3.4
+## Q19  0.00000000000000033 3.5
+## Q20  0.00000000000000033 8.7
+## Q21  0.00000000000000022 4.6
+## Q22  0.00000000000000111 7.2
 ## Q23  0.00000000000000011 4.2
 ## 
 ##                        PC1  PC2  PC3  PC4  PC5  PC6  PC7  PC8  PC9 PC10 PC11
@@ -824,18 +839,18 @@ MSA_j=\frac{\sum_{k\ne j}^{}{r^2_{jk}}}{\sum_{k\ne j}^{}{r^2_{jk}}+\sum_{k\ne j}
 ## Fit based upon off diagonal values = 1</code></pre>
 <p>The output is quite complex, but we will focus only on the <code>SS loadings</code> for now, which are the Eigenvalues (a.k.a. sum of squared loadings). One common rule is to retain factors with eigenvalues greater than 1.0. So based on this rule, we would extract four factors (i.e., the SS loadings for the fifth factor is &lt; 1).</p>
 <p>You can also plot the eigenvalues against the number of factors in order of extraction using a so-called <strong>Scree plot</strong>:</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="unsupervised-learning.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pc1<span class="sc">$</span>values, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span>
-<span id="cb378-2"><a href="unsupervised-learning.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="unsupervised-learning.html#cb390-1" tabindex="-1"></a><span class="fu">plot</span>(pc1<span class="sc">$</span>values, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span>
+<span id="cb390-2"><a href="unsupervised-learning.html#cb390-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-17-1.png" alt="Scree plot" width="672" />
+<img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-17-1.png" alt="Scree plot" width="672" />
 <p class="caption">
 Figure 1.14: Scree plot
 </p>
 </div>
 <p>The dashed line is simply a visualization of the rule that we will retain factors with Eigenvalues &gt; 1 (suggesting four factors). Another criterion based on this plot would be to find the point where the curve flattens (point of inflection). If the largest few eigenvalues in the covariance matrix dominate in magnitude, then the scree plot will exhibit an “elbow”. From that point onward, the incremental gain in explained variance is rather low. Also according to this criterion, we would extract four factors. Taken together, the results suggest that we should extract four factors.</p>
 <p>Now that we know how many components we want to extract, we can rerun the analysis, specifying that number:</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="unsupervised-learning.html#cb379-1" aria-hidden="true" tabindex="-1"></a>pc2 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb379-2"><a href="unsupervised-learning.html#cb379-2" aria-hidden="true" tabindex="-1"></a>pc2</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="unsupervised-learning.html#cb391-1" tabindex="-1"></a>pc2 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb391-2"><a href="unsupervised-learning.html#cb391-2" tabindex="-1"></a>pc2</span></code></pre></div>
 <pre><code>## Principal Components Analysis
 ## Call: principal(r = raq_data, nfactors = 4, rotate = &quot;none&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
@@ -881,8 +896,8 @@ Figure 1.14: Scree plot
 <p>Now that the output is less complex, we can inspect the remaining statistics. The first part of the output is the <strong>factor matrix</strong>, which contains the factor loadings of all the variables on the four extracted factors (i.e., PC1, PC2, PC3, PC4). As we have said before, the <strong>factor loadings</strong> are the correlations between the variables and the factors. The factor matrix also contains the columns “h2” and “u2”. “h2” refers to the <strong>communality</strong>, which is the proportion of variance a variable shares with all the other variables being considered. This is also the proportion of variance explained by the common factors. In contrast, “u2” refers to the unique variance, which is the proportion of the variance that is unique to a particular variable. In PCA, we are primarily interested in the common variance. When the communality is very low (say &lt;.30), a variable is “quite unique” and should be removed, as it is definitely measuring “something else”. In our example, all communalities (i.e., h2) are above 0.3 so that we retain all variables.</p>
 <p>Note that there is a difference between PCA and common factor analysis. PCA focuses on the variance and aims to reproduce the total variable variance. This means that the components reflect both common and unique variance of the variables. Factor analysis, in contrast, focuses on the correlation and aims to reproduce the correlations among variables. Here, the factors only represent the common variance that variable share and do not include the unique variance. In other words, while factor analysis focuses on explaining the off-diagonal terms in the correlation matrix (i.e., shared co-variance), PCA focuses on explaining the diagonal terms (i.e., the variances). However, although PCA aims to reproduce the on-diagonal terms in the correlation matrix, it also tends to fit the off-diagonal correlations quite well. Hence, the results are often comparable. See also <a href="https://en.wikipedia.org/wiki/Principal_component_analysis#Relation_between_PCA_and_factor_analysis" target="_blank">here</a>.</p>
 <p>You should also take a closer look at the residuals in order to check whether you have extracted the correct number of factors. The difference between the reproduced and the actual correlation matrices are the residuals. We can extract the residuals from our model using the <code>factor.residuals()</code> function from the <code>psych</code> package. It takes the original correlation matrix and the factor loadings as arguments:</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="unsupervised-learning.html#cb381-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">factor.residuals</span>(raq_matrix, pc2<span class="sc">$</span>loadings)</span>
-<span id="cb381-2"><a href="unsupervised-learning.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(residuals, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="unsupervised-learning.html#cb393-1" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">factor.residuals</span>(raq_matrix, pc2<span class="sc">$</span>loadings)</span>
+<span id="cb393-2"><a href="unsupervised-learning.html#cb393-2" tabindex="-1"></a><span class="fu">round</span>(residuals, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##        Q01    Q02    Q03    Q04    Q05    Q06    Q07    Q08    Q09    Q10
 ## Q01  0.565  0.013  0.035 -0.011  0.027 -0.001 -0.061 -0.081 -0.050  0.042
 ## Q02  0.013  0.586 -0.062  0.022  0.003 -0.041 -0.011 -0.052 -0.115 -0.023
@@ -956,8 +971,8 @@ Figure 1.14: Scree plot
 ## Q22 -0.033  0.536 -0.177
 ## Q23 -0.100 -0.177  0.588</code></pre>
 <p>Note that the diagonal elements in the residual matrix correspond to the unique variance in each variable that cannot be explained by the factors (i.e., “u2” in the output above). For example, the proportion of unique variance for question 1 is 0.57, which is reflected in the first cell in the residual matrix. The off-diagonal elements represent the difference between the actual correlations and the correlation based on the reproduced correlation matrix for all variable pairs. To see this, the reproduced correlation matrix could be generated by using the <code>factor.model()</code> function:</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="unsupervised-learning.html#cb383-1" aria-hidden="true" tabindex="-1"></a>reproduced_matrix <span class="ot">&lt;-</span> <span class="fu">factor.model</span>(pc2<span class="sc">$</span>loadings)</span>
-<span id="cb383-2"><a href="unsupervised-learning.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(reproduced_matrix, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="unsupervised-learning.html#cb395-1" tabindex="-1"></a>reproduced_matrix <span class="ot">&lt;-</span> <span class="fu">factor.model</span>(pc2<span class="sc">$</span>loadings)</span>
+<span id="cb395-2"><a href="unsupervised-learning.html#cb395-2" tabindex="-1"></a><span class="fu">round</span>(reproduced_matrix, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##        Q01    Q02    Q03    Q04    Q05    Q06    Q07    Q08    Q09    Q10
 ## Q01  0.435 -0.112 -0.372  0.447  0.376  0.218  0.366  0.412 -0.042  0.172
 ## Q02 -0.112  0.414  0.380 -0.134 -0.122 -0.033 -0.148  0.002  0.430 -0.061
@@ -1033,48 +1048,48 @@ Figure 1.14: Scree plot
 <p>You can see that the reproduced correlation between the first and second variable is -0.112. From the correlation table from the beginning we know, however, that the observed correlation was -0.099. Hence, the difference between the observed and reproduced correlation is: (-0.099)-(-0.112) = 0.013, which corresponds to the residual of this variable pair in the residual matrix. Note that the diagonal elements in the reproduced matrix correspond to the communalities in the model summary above (i.e., “h2”).</p>
 <p>A measure of fit can now be computed based on the size of the residuals. In the worst case, the residuals would be as large as the correlations in the original matrix, which would be the case if we extracted no factors at all. A measure of fit could therefore be the sum of the squared residuals divided by the sum of the squared correlations. We square the residuals to account for positive and negative deviations. <strong>Values &gt;0.90 are considered indicators of good fit.</strong> From the output above, you can see that: “Fit based upon off diagonal values = 0.96”. Thus, we conclude that the model fit is sufficient.</p>
 <p>You could also manually compute this statistic by summing over the squared residuals and correlations, take their ratio and subtract it from one (note that we use the <code>upper.tri()</code> function to use the upper triangle of the matrix only; this has the effect of discarding the diagonal elements and the elements below the diagonal).</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="unsupervised-learning.html#cb385-1" aria-hidden="true" tabindex="-1"></a>ssr <span class="ot">&lt;-</span> (<span class="fu">sum</span>(residuals[<span class="fu">upper.tri</span>((residuals))]<span class="sc">^</span><span class="dv">2</span>))  <span class="co">#sum of squared residuals </span></span>
-<span id="cb385-2"><a href="unsupervised-learning.html#cb385-2" aria-hidden="true" tabindex="-1"></a>ssc <span class="ot">&lt;-</span> (<span class="fu">sum</span>(raq_matrix[<span class="fu">upper.tri</span>((raq_matrix))]<span class="sc">^</span><span class="dv">2</span>))  <span class="co">#sum of squared correlations</span></span>
-<span id="cb385-3"><a href="unsupervised-learning.html#cb385-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (ssr<span class="sc">/</span>ssc)  <span class="co">#model fit</span></span></code></pre></div>
-<pre><code>## [1] 0.9645252</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="unsupervised-learning.html#cb397-1" tabindex="-1"></a>ssr <span class="ot">&lt;-</span> (<span class="fu">sum</span>(residuals[<span class="fu">upper.tri</span>((residuals))]<span class="sc">^</span><span class="dv">2</span>))  <span class="co">#sum of squared residuals </span></span>
+<span id="cb397-2"><a href="unsupervised-learning.html#cb397-2" tabindex="-1"></a>ssc <span class="ot">&lt;-</span> (<span class="fu">sum</span>(raq_matrix[<span class="fu">upper.tri</span>((raq_matrix))]<span class="sc">^</span><span class="dv">2</span>))  <span class="co">#sum of squared correlations</span></span>
+<span id="cb397-3"><a href="unsupervised-learning.html#cb397-3" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (ssr<span class="sc">/</span>ssc)  <span class="co">#model fit</span></span></code></pre></div>
+<pre><code>## [1] 0.96452515</code></pre>
 <p>In a next step, we check the size of the residuals. <strong>If fewer residuals than 50% have absolute values greater than 0.05 the model is a good fit.</strong> This can be tested using the following code. We first convert the residuals to a matrix and select the upper triangular again to avoid duplicates. Finally, we count all occurrences where the absolute value is larger than 0.05 and divide it by the number of total observations to get the proportion.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="unsupervised-learning.html#cb387-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(residuals[<span class="fu">upper.tri</span>((residuals))])</span>
-<span id="cb387-2"><a href="unsupervised-learning.html#cb387-2" aria-hidden="true" tabindex="-1"></a>large_res <span class="ot">&lt;-</span> <span class="fu">abs</span>(residuals) <span class="sc">&gt;</span> <span class="fl">0.05</span></span>
-<span id="cb387-3"><a href="unsupervised-learning.html#cb387-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(large_res)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="unsupervised-learning.html#cb399-1" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(residuals[<span class="fu">upper.tri</span>((residuals))])</span>
+<span id="cb399-2"><a href="unsupervised-learning.html#cb399-2" tabindex="-1"></a>large_res <span class="ot">&lt;-</span> <span class="fu">abs</span>(residuals) <span class="sc">&gt;</span> <span class="fl">0.05</span></span>
+<span id="cb399-3"><a href="unsupervised-learning.html#cb399-3" tabindex="-1"></a><span class="fu">sum</span>(large_res)</span></code></pre></div>
 <pre><code>## [1] 91</code></pre>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="unsupervised-learning.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(large_res)<span class="sc">/</span><span class="fu">nrow</span>(residuals)</span></code></pre></div>
-<pre><code>## [1] 0.3596838</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="unsupervised-learning.html#cb401-1" tabindex="-1"></a><span class="fu">sum</span>(large_res)<span class="sc">/</span><span class="fu">nrow</span>(residuals)</span></code></pre></div>
+<pre><code>## [1] 0.35968379</code></pre>
 <p>In our example, we can confirm that the proportion of residuals &gt; 0.05 is less than 50%.</p>
 <p>Another way to evaluate the residuals is by looking at their mean value (rather, we square the residuals first to account for positive and negative values, compute the mean and then take the square root).</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="unsupervised-learning.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>(residuals<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## [1] 0.05549286</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="unsupervised-learning.html#cb403-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>(residuals<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.055492864</code></pre>
 <p>This means that our mean residual is 0.055 and this value should be as low as possible.</p>
 <p>Finally, we need to validate if the residuals are approximately normally distributed, which we do by using a histogram, a Q-Q plot and the Shapiro test.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="unsupervised-learning.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="unsupervised-learning.html#cb405-1" tabindex="-1"></a><span class="fu">hist</span>(residuals)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Hinstogram of residuals" width="672" />
+<img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Hinstogram of residuals" width="672" />
 <p class="caption">
 Figure 1.21: Hinstogram of residuals
 </p>
 </div>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="unsupervised-learning.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(residuals)</span>
-<span id="cb394-2"><a href="unsupervised-learning.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="unsupervised-learning.html#cb406-1" tabindex="-1"></a><span class="fu">qqnorm</span>(residuals)</span>
+<span id="cb406-2"><a href="unsupervised-learning.html#cb406-2" tabindex="-1"></a><span class="fu">qqline</span>(residuals)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Q-Q plot" width="672" />
+<img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Q-Q plot" width="672" />
 <p class="caption">
 Figure 1.22: Q-Q plot
 </p>
 </div>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="unsupervised-learning.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="unsupervised-learning.html#cb407-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(residuals)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals
-## W = 0.99436, p-value = 0.4691</code></pre>
+## W = 0.994359, p-value = 0.46905</code></pre>
 <p>All of the tests suggest that the distribution of the residuals is approximately normal.</p>
 </div>
-<div id="factor-interpretation" class="section level4 hasAnchor" number="7.1.2.3">
-<h4><span class="header-section-number">7.1.2.3</span> Factor interpretation<a href="unsupervised-learning.html#factor-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="factor-interpretation" class="section level4 hasAnchor" number="8.1.2.3">
+<h4><span class="header-section-number">8.1.2.3</span> Factor interpretation<a href="unsupervised-learning.html#factor-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <br>
 <div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9WicakaJvdU" frameborder="0" allowfullscreen>
@@ -1087,8 +1102,8 @@ Figure 1.22: Q-Q plot
 <li>oblique (assumes that factors are intercorrelated)</li>
 </ul>
 <p>To carry out a orthogonal rotation, we change the rotate option in the <code>principal()</code> function from “none” to “varimax” (we could also exclude it altogether because varimax is the default if the option is not specified):</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="unsupervised-learning.html#cb397-1" aria-hidden="true" tabindex="-1"></a>pc3 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb397-2"><a href="unsupervised-learning.html#cb397-2" aria-hidden="true" tabindex="-1"></a>pc3</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="unsupervised-learning.html#cb409-1" tabindex="-1"></a>pc3 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb409-2"><a href="unsupervised-learning.html#cb409-2" tabindex="-1"></a>pc3</span></code></pre></div>
 <pre><code>## Principal Components Analysis
 ## Call: principal(r = raq_data, nfactors = 4, rotate = &quot;varimax&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
@@ -1132,7 +1147,7 @@ Figure 1.22: Q-Q plot
 ## 
 ## Fit based upon off diagonal values = 0.96</code></pre>
 <p>Interpreting the factor loading matrix is a little complex, so we can make it easier by using the <code>print.psych()</code> function, which we can use to exclude loading below a cutoff from the display and order the variables by their loading within each factor. In the following, we will only display loadings that exceed the value 0.3.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="unsupervised-learning.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print.psych</span>(pc3, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="unsupervised-learning.html#cb411-1" tabindex="-1"></a><span class="fu">print.psych</span>(pc3, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Principal Components Analysis
 ## Call: principal(r = raq_data, nfactors = 4, rotate = &quot;varimax&quot;)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
@@ -1184,9 +1199,9 @@ Figure 1.22: Q-Q plot
 <li><strong>Factor 4:</strong> Peer evaluation</li>
 </ul>
 <p>The previous type of rotation (i.e., “varimax”) assumed that the the factors are independent. Oblique rotation is another type of rotation that can handle correlation between the factors. The command for an oblique rotation is very similar to that for an orthogonal rotation – we just change the rotate option from “varimax” to “oblimin”.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="unsupervised-learning.html#cb401-1" aria-hidden="true" tabindex="-1"></a>pc4 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;oblimin&quot;</span>,</span>
-<span id="cb401-2"><a href="unsupervised-learning.html#cb401-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">scores =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb401-3"><a href="unsupervised-learning.html#cb401-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print.psych</span>(pc4, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="unsupervised-learning.html#cb413-1" tabindex="-1"></a>pc4 <span class="ot">&lt;-</span> <span class="fu">principal</span>(raq_data, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;oblimin&quot;</span>,</span>
+<span id="cb413-2"><a href="unsupervised-learning.html#cb413-2" tabindex="-1"></a>    <span class="at">scores =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb413-3"><a href="unsupervised-learning.html#cb413-3" tabindex="-1"></a><span class="fu">print.psych</span>(pc4, <span class="at">cut =</span> <span class="fl">0.3</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Principal Components Analysis
 ## Call: principal(r = raq_data, nfactors = 4, rotate = &quot;oblimin&quot;, scores = TRUE)
 ## Standardized loadings (pattern matrix) based upon correlation matrix
@@ -1238,23 +1253,23 @@ Figure 1.22: Q-Q plot
 ## Fit based upon off diagonal values = 0.96</code></pre>
 <p>The component correlations indicate that the factors might indeed be correlated, so oblique rotation might actually be more appropriate in this case.</p>
 </div>
-<div id="creating-new-variables" class="section level4 hasAnchor" number="7.1.2.4">
-<h4><span class="header-section-number">7.1.2.4</span> Creating new variables<a href="unsupervised-learning.html#creating-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="creating-new-variables" class="section level4 hasAnchor" number="8.1.2.4">
+<h4><span class="header-section-number">8.1.2.4</span> Creating new variables<a href="unsupervised-learning.html#creating-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Once we have decided on the final model, we can calculate the new variables as the weighted sum of the variables that form a factor. This means, we estimate a person’s score on a factor based on their scores on the items that constitute the measurement scales. These scores are also referred to as the <strong>factor scores</strong>. Because we have used the <code>scores = TRUE</code> argument in the previous command, the factor scores have already been created for us. By default, R uses the regression method to compute the factor scores, which controls for differences in the units of measurement. You can access the residuals as follows:</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="unsupervised-learning.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pc4<span class="sc">$</span>scores)</span></code></pre></div>
-<pre><code>##              TC1        TC4         TC3        TC2
-## [1,]  0.37296709  1.8808424  0.95979596  0.3910711
-## [2,]  0.63334164  0.2374679  0.29090777 -0.3504080
-## [3,]  0.39712768 -0.1056263 -0.09333769  0.9249353
-## [4,] -0.78741595  0.2956628 -0.77703307  0.2605666
-## [5,]  0.04425942  0.6815179  0.59786611 -0.6912687
-## [6,] -1.70018648  0.2091685  0.02784164  0.6653081</code></pre>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="unsupervised-learning.html#cb415-1" tabindex="-1"></a><span class="fu">head</span>(pc4<span class="sc">$</span>scores)</span></code></pre></div>
+<pre><code>##               TC1         TC4          TC3         TC2
+## [1,]  0.372967091  1.88084243  0.959795965  0.39107112
+## [2,]  0.633341638  0.23746787  0.290907774 -0.35040802
+## [3,]  0.397127681 -0.10562626 -0.093337690  0.92493526
+## [4,] -0.787415950  0.29566276 -0.777033066  0.26056657
+## [5,]  0.044259422  0.68151790  0.597866111 -0.69126867
+## [6,] -1.700186481  0.20916853  0.027841645  0.66530811</code></pre>
 <p>We can also use the <code>cbind()</code> function to add the computed factor scores to the existing data set:</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="unsupervised-learning.html#cb405-1" aria-hidden="true" tabindex="-1"></a>raq_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(raq_data, pc4<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="unsupervised-learning.html#cb417-1" tabindex="-1"></a>raq_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(raq_data, pc4<span class="sc">$</span>scores)</span></code></pre></div>
 <p>This way, it is easier to use the new variables in subsequent analysis (e.g., t-tests, regression, ANOVA, cluster analysis).</p>
 </div>
-<div id="reliability-analysis" class="section level4 hasAnchor" number="7.1.2.5">
-<h4><span class="header-section-number">7.1.2.5</span> Reliability analysis<a href="unsupervised-learning.html#reliability-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="reliability-analysis" class="section level4 hasAnchor" number="8.1.2.5">
+<h4><span class="header-section-number">8.1.2.5</span> Reliability analysis<a href="unsupervised-learning.html#reliability-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <br>
 <div align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/inQgMCzFRAc" frameborder="0" allowfullscreen>
@@ -1264,7 +1279,7 @@ Figure 1.22: Q-Q plot
 <p>When you are using multi-item scales to measure a latent construct (e.g., the output from the PCA above), it is useful to check the reliability of your scale. Reliability means that our items should consistently reflect the construct that they are intended to measure. In other words, individual items should produce results consistent with the overall scale. This means that for a scale to be reliable, the score of a person on one half of the items should be similar to the score derived based on the other half of the items (split-half reliability). The problem is that there are several ways in which data can be split. A measure that reflects this underlying intuition is <strong>Cronbach’s alpha</strong>, which is approximately equal to the average of all possible split-half reliabilities. It is computed as follows:</p>
 <p><span class="math display" id="eq:calpha">\[\begin{equation}
 \alpha=\frac{N^2\overline{Cov}}{\sum{s^2_{item}}+\sum{Cov_{item}}}
-\tag{7.8}
+\tag{8.8}
 \end{equation}\]</span></p>
 <p>The share of the items common variance (inter-correlation) in the total variance is supposed to be as high as possible across all items. The thresholds are as follows:</p>
 <ul>
@@ -1273,14 +1288,14 @@ Figure 1.22: Q-Q plot
 <li>&gt;0.9 desirable for applied research</li>
 </ul>
 <p>To see if the subscales that were derived from the previous PCA exhibit a sufficient degree of reliability, we first create subsets of our data set that contain the respective items for each of the factors (we use the results from the oblimin rotation here):</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="unsupervised-learning.html#cb406-1" aria-hidden="true" tabindex="-1"></a>computer_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>,</span>
-<span id="cb406-2"><a href="unsupervised-learning.html#cb406-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">18</span>)]</span>
-<span id="cb406-3"><a href="unsupervised-learning.html#cb406-3" aria-hidden="true" tabindex="-1"></a>statistics_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">16</span>,</span>
-<span id="cb406-4"><a href="unsupervised-learning.html#cb406-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, <span class="dv">21</span>)]</span>
-<span id="cb406-5"><a href="unsupervised-learning.html#cb406-5" aria-hidden="true" tabindex="-1"></a>math_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">17</span>)]</span>
-<span id="cb406-6"><a href="unsupervised-learning.html#cb406-6" aria-hidden="true" tabindex="-1"></a>peer_evaluation <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">23</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="unsupervised-learning.html#cb418-1" tabindex="-1"></a>computer_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>,</span>
+<span id="cb418-2"><a href="unsupervised-learning.html#cb418-2" tabindex="-1"></a>    <span class="dv">18</span>)]</span>
+<span id="cb418-3"><a href="unsupervised-learning.html#cb418-3" tabindex="-1"></a>statistics_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">16</span>,</span>
+<span id="cb418-4"><a href="unsupervised-learning.html#cb418-4" tabindex="-1"></a>    <span class="dv">20</span>, <span class="dv">21</span>)]</span>
+<span id="cb418-5"><a href="unsupervised-learning.html#cb418-5" tabindex="-1"></a>math_fear <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">17</span>)]</span>
+<span id="cb418-6"><a href="unsupervised-learning.html#cb418-6" tabindex="-1"></a>peer_evaluation <span class="ot">&lt;-</span> raq_data[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">19</span>, <span class="dv">22</span>, <span class="dv">23</span>)]</span></code></pre></div>
 <p>Now we can use the <code>alpha()</code> function from the <code>psych</code> package to test the reliability. Note that the <code>keys</code> argument may be used to indicate reverse coded items. In the example below, the second item of the “statistics_fear” factor is reverse coded as indicated by the <code>-1</code>, meaning that it is phrased in a “positive” way, while the remaining items belonging to this factor are phrased in a “negative” way. This is often done to check if respondents are giving consistent answers.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="unsupervised-learning.html#cb407-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(computer_fear)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="unsupervised-learning.html#cb419-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(computer_fear)</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = computer_fear)
@@ -1322,8 +1337,8 @@ Figure 1.22: Q-Q plot
 ## Q14 0.07 0.18 0.38 0.31 0.06    0
 ## Q15 0.06 0.18 0.30 0.39 0.07    0
 ## Q18 0.06 0.12 0.31 0.37 0.14    0</code></pre>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="unsupervised-learning.html#cb409-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(statistics_fear, <span class="at">keys =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
-<span id="cb409-2"><a href="unsupervised-learning.html#cb409-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="unsupervised-learning.html#cb421-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(statistics_fear, <span class="at">keys =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb421-2"><a href="unsupervised-learning.html#cb421-2" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = statistics_fear, keys = c(1, -1, 1, 1, 1, 1, 
@@ -1369,7 +1384,7 @@ Figure 1.22: Q-Q plot
 ## Q16 0.06 0.16 0.42 0.33 0.04    0
 ## Q20 0.22 0.37 0.25 0.15 0.02    0
 ## Q21 0.09 0.29 0.34 0.26 0.02    0</code></pre>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="unsupervised-learning.html#cb411-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(math_fear)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="unsupervised-learning.html#cb423-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(math_fear)</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = math_fear)
@@ -1399,7 +1414,7 @@ Figure 1.22: Q-Q plot
 ## Q08 0.03 0.06 0.19 0.58 0.15    0
 ## Q11 0.02 0.06 0.22 0.53 0.16    0
 ## Q17 0.03 0.10 0.27 0.52 0.08    0</code></pre>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="unsupervised-learning.html#cb413-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(peer_evaluation)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="unsupervised-learning.html#cb425-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(peer_evaluation)</span></code></pre></div>
 <pre><code>## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = peer_evaluation)
@@ -1439,8 +1454,8 @@ Figure 1.22: Q-Q plot
 </div>
 </div>
 </div>
-<div id="cluster-analysis" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Cluster analysis<a href="unsupervised-learning.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="cluster-analysis" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Cluster analysis<a href="unsupervised-learning.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="images/cluster.PNG" width="25%" style="display: block; margin: auto;" /></p>
 <div class="infobox download">
 <p><a href="./Code/12-cluster.R">You can download the corresponding R-Code here</a></p>
@@ -1459,89 +1474,89 @@ Figure 1.22: Q-Q plot
 </div>
 <p><br></p>
 <p>Let’s try to create a recommendation system using track features. In our data we have the ISRC, name of the track, name of the artist and audio features of the track. We are going to use the audio features to cluster tracks together such that given one track we can easily identify similar tracks by looking at which cluster it belongs to.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="unsupervised-learning.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/WU-RDS/MRDA2021/raw/main/trackfeatures.RData&quot;</span>))</span>
-<span id="cb415-2"><a href="unsupervised-learning.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remove duplicates</span></span>
-<span id="cb415-3"><a href="unsupervised-learning.html#cb415-3" aria-hidden="true" tabindex="-1"></a>tracks <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tracks[<span class="sc">!</span><span class="fu">duplicated</span>(tracks<span class="sc">$</span>isrc),</span>
-<span id="cb415-4"><a href="unsupervised-learning.html#cb415-4" aria-hidden="true" tabindex="-1"></a>    ])</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="unsupervised-learning.html#cb427-1" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/WU-RDS/MRDA2021/raw/main/trackfeatures.RData&quot;</span>))</span>
+<span id="cb427-2"><a href="unsupervised-learning.html#cb427-2" tabindex="-1"></a><span class="co"># remove duplicates</span></span>
+<span id="cb427-3"><a href="unsupervised-learning.html#cb427-3" tabindex="-1"></a>tracks <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tracks[<span class="sc">!</span><span class="fu">duplicated</span>(tracks<span class="sc">$</span>isrc),</span>
+<span id="cb427-4"><a href="unsupervised-learning.html#cb427-4" tabindex="-1"></a>    ])</span></code></pre></div>
 <p>To get an idea of how clustering might work let’s first take a look at just with two variables, energy and acousticness, and two artists, Robin Schulz and Adele. We immediately see that Adele’s songs are more to the top left (high acousticness, low energy) whereas Robin Schulz’s songs are mostly on the bottom right (low acousticness, high energy).</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="unsupervised-learning.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb416-2"><a href="unsupervised-learning.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb416-3"><a href="unsupervised-learning.html#cb416-3" aria-hidden="true" tabindex="-1"></a>robin_schulz <span class="ot">&lt;-</span> tracks[<span class="fu">str_detect</span>(tracks<span class="sc">$</span>artistName,</span>
-<span id="cb416-4"><a href="unsupervised-learning.html#cb416-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Robin Schulz&quot;</span>), ]</span>
-<span id="cb416-5"><a href="unsupervised-learning.html#cb416-5" aria-hidden="true" tabindex="-1"></a>robin_schulz<span class="sc">$</span>artist <span class="ot">&lt;-</span> <span class="st">&quot;Robin Schulz&quot;</span></span>
-<span id="cb416-6"><a href="unsupervised-learning.html#cb416-6" aria-hidden="true" tabindex="-1"></a>adele <span class="ot">&lt;-</span> tracks[<span class="fu">str_detect</span>(tracks<span class="sc">$</span>artistName, <span class="st">&quot;Adele&quot;</span>),</span>
-<span id="cb416-7"><a href="unsupervised-learning.html#cb416-7" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb416-8"><a href="unsupervised-learning.html#cb416-8" aria-hidden="true" tabindex="-1"></a>adele<span class="sc">$</span>artist <span class="ot">&lt;-</span> <span class="st">&quot;Adele&quot;</span></span>
-<span id="cb416-9"><a href="unsupervised-learning.html#cb416-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb416-10"><a href="unsupervised-learning.html#cb416-10" aria-hidden="true" tabindex="-1"></a>example_tracks <span class="ot">&lt;-</span> <span class="fu">rbind</span>(robin_schulz, adele)</span>
-<span id="cb416-11"><a href="unsupervised-learning.html#cb416-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example_tracks, <span class="fu">aes</span>(<span class="at">x =</span> energy, <span class="at">y =</span> acousticness,</span>
-<span id="cb416-12"><a href="unsupervised-learning.html#cb416-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> artist)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<div id="k-means" class="section level3 hasAnchor" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> K-Means<a href="unsupervised-learning.html#k-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="unsupervised-learning.html#cb428-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb428-2"><a href="unsupervised-learning.html#cb428-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb428-3"><a href="unsupervised-learning.html#cb428-3" tabindex="-1"></a>robin_schulz <span class="ot">&lt;-</span> tracks[<span class="fu">str_detect</span>(tracks<span class="sc">$</span>artistName,</span>
+<span id="cb428-4"><a href="unsupervised-learning.html#cb428-4" tabindex="-1"></a>    <span class="st">&quot;Robin Schulz&quot;</span>), ]</span>
+<span id="cb428-5"><a href="unsupervised-learning.html#cb428-5" tabindex="-1"></a>robin_schulz<span class="sc">$</span>artist <span class="ot">&lt;-</span> <span class="st">&quot;Robin Schulz&quot;</span></span>
+<span id="cb428-6"><a href="unsupervised-learning.html#cb428-6" tabindex="-1"></a>adele <span class="ot">&lt;-</span> tracks[<span class="fu">str_detect</span>(tracks<span class="sc">$</span>artistName, <span class="st">&quot;Adele&quot;</span>),</span>
+<span id="cb428-7"><a href="unsupervised-learning.html#cb428-7" tabindex="-1"></a>    ]</span>
+<span id="cb428-8"><a href="unsupervised-learning.html#cb428-8" tabindex="-1"></a>adele<span class="sc">$</span>artist <span class="ot">&lt;-</span> <span class="st">&quot;Adele&quot;</span></span>
+<span id="cb428-9"><a href="unsupervised-learning.html#cb428-9" tabindex="-1"></a></span>
+<span id="cb428-10"><a href="unsupervised-learning.html#cb428-10" tabindex="-1"></a>example_tracks <span class="ot">&lt;-</span> <span class="fu">rbind</span>(robin_schulz, adele)</span>
+<span id="cb428-11"><a href="unsupervised-learning.html#cb428-11" tabindex="-1"></a><span class="fu">ggplot</span>(example_tracks, <span class="fu">aes</span>(<span class="at">x =</span> energy, <span class="at">y =</span> acousticness,</span>
+<span id="cb428-12"><a href="unsupervised-learning.html#cb428-12" tabindex="-1"></a>    <span class="at">color =</span> artist)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div id="k-means" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> K-Means<a href="unsupervised-learning.html#k-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the most popular algorithms for clustering is the <strong>K-means</strong> algorithm. The “K” stands for the number of clusters that are specified as a hyperparameter (more on how to set that parameter later). The algorithm then tries to separate the observations into K clusters such that the within-cluster sum of squared differences form the cluster mean of the features (e.g., our audio features) is minimized. Therefore, it is important to <code>scale</code> all variables before performing clustering such that they all contribute equally to the distance between the observations. Minimizing the within-cluster sum of squares is equivalent to minimizing the sum of the squared deviations of observations pairwise in the same cluster and maximizing the sum of squared deviations of observations in different clusters. Intuitively the algorithm groups observations by iteratively calculating the mean or center of each cluster, assigning each observation to the cluster with the closest mean and re-calculating the mean… The algorithm has “converged” (i.e., is done) when the assignments no longer change.
 Let’s try it out with our two artists. In order to perform clustering we first have to remove all missing values from the used variables as for those we cannot calculate distances. Because we know that there are two artists in the sample we will start with two clusters.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="unsupervised-learning.html#cb417-1" aria-hidden="true" tabindex="-1"></a>tracks_scale <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">artist =</span> example_tracks<span class="sc">$</span>artist,</span>
-<span id="cb417-2"><a href="unsupervised-learning.html#cb417-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">energy =</span> <span class="fu">scale</span>(example_tracks<span class="sc">$</span>energy), <span class="at">acousticness =</span> <span class="fu">scale</span>(example_tracks<span class="sc">$</span>acousticness))</span>
-<span id="cb417-3"><a href="unsupervised-learning.html#cb417-3" aria-hidden="true" tabindex="-1"></a>tracks_scale <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tracks_scale)</span>
-<span id="cb417-4"><a href="unsupervised-learning.html#cb417-4" aria-hidden="true" tabindex="-1"></a>kmeans_clusters <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(tracks_scale[<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>)</span>
-<span id="cb417-5"><a href="unsupervised-learning.html#cb417-5" aria-hidden="true" tabindex="-1"></a>kmeans_clusters<span class="sc">$</span>centers</span></code></pre></div>
-<pre><code>##      energy acousticness
-## 1 -1.439466    1.3234653
-## 2  0.500684   -0.4603358</code></pre>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="unsupervised-learning.html#cb429-1" tabindex="-1"></a>tracks_scale <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">artist =</span> example_tracks<span class="sc">$</span>artist,</span>
+<span id="cb429-2"><a href="unsupervised-learning.html#cb429-2" tabindex="-1"></a>    <span class="at">energy =</span> <span class="fu">scale</span>(example_tracks<span class="sc">$</span>energy), <span class="at">acousticness =</span> <span class="fu">scale</span>(example_tracks<span class="sc">$</span>acousticness))</span>
+<span id="cb429-3"><a href="unsupervised-learning.html#cb429-3" tabindex="-1"></a>tracks_scale <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(tracks_scale)</span>
+<span id="cb429-4"><a href="unsupervised-learning.html#cb429-4" tabindex="-1"></a>kmeans_clusters <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(tracks_scale[<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>)</span>
+<span id="cb429-5"><a href="unsupervised-learning.html#cb429-5" tabindex="-1"></a>kmeans_clusters<span class="sc">$</span>centers</span></code></pre></div>
+<pre><code>##        energy acousticness
+## 1 -1.43946637   1.32346535
+## 2  0.50068396  -0.46033577</code></pre>
 <p>The <code>kmeans</code> function returns, among other statistics, the centers of each cluster and a cluster identifier for each observation which we can add to our original data. In our case one cluster’s center is rather low in energy and high acousticness and the second one has higher energy and lower acousticness.</p>
 <p>In our plot we can add a color for each cluster and a different marker shape for each artist. We observe that cluster 1 corresponds mostly to Robin Schulz songs and cluster 2 mostly to Adele. Alternatively we can also look at the counts in each cluster per artist using the <code>table</code> function.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="unsupervised-learning.html#cb419-1" aria-hidden="true" tabindex="-1"></a>tracks_scale<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(kmeans_clusters<span class="sc">$</span>cluster)</span>
-<span id="cb419-2"><a href="unsupervised-learning.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tracks_scale, <span class="fu">aes</span>(<span class="at">x =</span> energy, <span class="at">y =</span> acousticness,</span>
-<span id="cb419-3"><a href="unsupervised-learning.html#cb419-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> cluster, <span class="at">shape =</span> artist)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb419-4"><a href="unsupervised-learning.html#cb419-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="unsupervised-learning.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tracks_scale<span class="sc">$</span>artist, tracks_scale<span class="sc">$</span>cluster)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="unsupervised-learning.html#cb431-1" tabindex="-1"></a>tracks_scale<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(kmeans_clusters<span class="sc">$</span>cluster)</span>
+<span id="cb431-2"><a href="unsupervised-learning.html#cb431-2" tabindex="-1"></a><span class="fu">ggplot</span>(tracks_scale, <span class="fu">aes</span>(<span class="at">x =</span> energy, <span class="at">y =</span> acousticness,</span>
+<span id="cb431-3"><a href="unsupervised-learning.html#cb431-3" tabindex="-1"></a>    <span class="at">color =</span> cluster, <span class="at">shape =</span> artist)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb431-4"><a href="unsupervised-learning.html#cb431-4" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="unsupervised-learning.html#cb432-1" tabindex="-1"></a><span class="fu">table</span>(tracks_scale<span class="sc">$</span>artist, tracks_scale<span class="sc">$</span>cluster)</span></code></pre></div>
 <pre><code>##               
 ##                 1  2
 ##   Adele        14  9
 ##   Robin Schulz  2 37</code></pre>
 <p>In the previous example it was easy to set the number of clusters. However, if we use all artists in our data the best value for “K” is not immediately obvious. Surely some artists should be in the same cluster. We can user the <code>NbClust</code> package to determine the best number of clusters according to various indices (see <code>?NbClust</code>). First we scale all our variables and then we use the scaled versions to determine “K”. To make computations faster we will use songs by 5 famous artists. Then we count how many indices would choose a certain number of clusters. The two best candidates are 3 clusters, chosen by 13 indices and 2 clusters, chosen by 5 indices.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="unsupervised-learning.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb422-2"><a href="unsupervised-learning.html#cb422-2" aria-hidden="true" tabindex="-1"></a>famous_artists <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ed Sheeran&quot;</span>, <span class="st">&quot;Eminem&quot;</span>, <span class="st">&quot;Rihanna&quot;</span>,</span>
-<span id="cb422-3"><a href="unsupervised-learning.html#cb422-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Taylor Swift&quot;</span>, <span class="st">&quot;Queen&quot;</span>)</span>
-<span id="cb422-4"><a href="unsupervised-learning.html#cb422-4" aria-hidden="true" tabindex="-1"></a>famous_tracks <span class="ot">&lt;-</span> tracks[tracks<span class="sc">$</span>artistName <span class="sc">%in%</span> famous_artists,</span>
-<span id="cb422-5"><a href="unsupervised-learning.html#cb422-5" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb422-6"><a href="unsupervised-learning.html#cb422-6" aria-hidden="true" tabindex="-1"></a>famous_tracks_scale <span class="ot">&lt;-</span> <span class="fu">scale</span>(famous_tracks[<span class="dv">4</span><span class="sc">:</span><span class="fu">ncol</span>(famous_tracks)])</span>
-<span id="cb422-7"><a href="unsupervised-learning.html#cb422-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb422-8"><a href="unsupervised-learning.html#cb422-8" aria-hidden="true" tabindex="-1"></a>opt_K <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(famous_tracks_scale, <span class="at">method =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
-<span id="cb422-9"><a href="unsupervised-learning.html#cb422-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max.nc =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-38-1.png" width="672" /><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-38-2.png" width="672" /></p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="unsupervised-learning.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(opt_K<span class="sc">$</span>Best.nc[<span class="st">&quot;Number_clusters&quot;</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="unsupervised-learning.html#cb434-1" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb434-2"><a href="unsupervised-learning.html#cb434-2" tabindex="-1"></a>famous_artists <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ed Sheeran&quot;</span>, <span class="st">&quot;Eminem&quot;</span>, <span class="st">&quot;Rihanna&quot;</span>,</span>
+<span id="cb434-3"><a href="unsupervised-learning.html#cb434-3" tabindex="-1"></a>    <span class="st">&quot;Taylor Swift&quot;</span>, <span class="st">&quot;Queen&quot;</span>)</span>
+<span id="cb434-4"><a href="unsupervised-learning.html#cb434-4" tabindex="-1"></a>famous_tracks <span class="ot">&lt;-</span> tracks[tracks<span class="sc">$</span>artistName <span class="sc">%in%</span> famous_artists,</span>
+<span id="cb434-5"><a href="unsupervised-learning.html#cb434-5" tabindex="-1"></a>    ]</span>
+<span id="cb434-6"><a href="unsupervised-learning.html#cb434-6" tabindex="-1"></a>famous_tracks_scale <span class="ot">&lt;-</span> <span class="fu">scale</span>(famous_tracks[<span class="dv">4</span><span class="sc">:</span><span class="fu">ncol</span>(famous_tracks)])</span>
+<span id="cb434-7"><a href="unsupervised-learning.html#cb434-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb434-8"><a href="unsupervised-learning.html#cb434-8" tabindex="-1"></a>opt_K <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(famous_tracks_scale, <span class="at">method =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
+<span id="cb434-9"><a href="unsupervised-learning.html#cb434-9" tabindex="-1"></a>    <span class="at">max.nc =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-38-1.png" width="672" /><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-38-2.png" width="672" /></p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="unsupervised-learning.html#cb435-1" tabindex="-1"></a><span class="fu">table</span>(opt_K<span class="sc">$</span>Best.nc[<span class="st">&quot;Number_clusters&quot;</span>, ])</span></code></pre></div>
 <pre><code>## 
 ##  0  2  3  4  8 10 
 ##  2  5 13  1  1  4</code></pre>
 <p>We can now proceed as before with running the k-means algorithm. Looking at the centers for each of the clusters could give us an indication for the types of songs we can expect in each of them (recall that they are assigned based on their distance to the center). Cluster 2, for example will include acoustic soungs and cluster 3 includes more energetic, faster songs.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="unsupervised-learning.html#cb425-1" aria-hidden="true" tabindex="-1"></a>kmeans_tracks <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(famous_tracks_scale, <span class="dv">3</span>)</span>
-<span id="cb425-2"><a href="unsupervised-learning.html#cb425-2" aria-hidden="true" tabindex="-1"></a>kmeans_tracks<span class="sc">$</span>centers</span></code></pre></div>
-<pre><code>##   danceability     energy   loudness       mode speechiness acousticness
-## 1    0.2758301  0.4526214  0.4853302 -0.1461378  -0.2576401   -0.5618965
-## 2   -0.5385548 -0.9566495 -0.8742383  0.2632910  -0.4147683    0.9772843
-## 3    0.3678342  0.7543900  0.4954862 -0.1492974   1.5546155   -0.5015270
-##   instrumentalness   liveness    valence       tempo duration_ms
-## 1       0.06266324 -0.2524251  0.4012080  0.03789976 -0.09047459
-## 2      -0.06816719 -0.2728148 -0.6158085 -0.17761023  0.09754255
-## 3      -0.02849344  1.2469257  0.1885188  0.26482862  0.04295692</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="unsupervised-learning.html#cb437-1" tabindex="-1"></a>kmeans_tracks <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(famous_tracks_scale, <span class="dv">3</span>)</span>
+<span id="cb437-2"><a href="unsupervised-learning.html#cb437-2" tabindex="-1"></a>kmeans_tracks<span class="sc">$</span>centers</span></code></pre></div>
+<pre><code>##   danceability      energy    loudness        mode speechiness acousticness
+## 1   0.27583013  0.45262138  0.48533019 -0.14613775 -0.25764006  -0.56189652
+## 2  -0.53855482 -0.95664951 -0.87423829  0.26329095 -0.41476830   0.97728432
+## 3   0.36783417  0.75439003  0.49548619 -0.14929736  1.55461550  -0.50152699
+##   instrumentalness    liveness     valence        tempo  duration_ms
+## 1      0.062663241 -0.25242508  0.40120798  0.037899761 -0.090474590
+## 2     -0.068167189 -0.27281478 -0.61580855 -0.177610227  0.097542547
+## 3     -0.028493444  1.24692568  0.18851883  0.264828616  0.042956919</code></pre>
 <p>To get a quick overview of the centers we can user a radar plot. This allows us to quickly observe similarities and distinguishing features of clusters.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="unsupervised-learning.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
-<span id="cb427-2"><a href="unsupervised-learning.html#cb427-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
-<span id="cb427-3"><a href="unsupervised-learning.html#cb427-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb427-4"><a href="unsupervised-learning.html#cb427-4" aria-hidden="true" tabindex="-1"></a>centers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kmeans_tracks<span class="sc">$</span>centers)</span>
-<span id="cb427-5"><a href="unsupervised-learning.html#cb427-5" aria-hidden="true" tabindex="-1"></a>centers<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
-<span id="cb427-6"><a href="unsupervised-learning.html#cb427-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggRadar</span>(centers, <span class="fu">aes</span>(<span class="at">color =</span> cluster), <span class="at">rescale =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb427-7"><a href="unsupervised-learning.html#cb427-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Centers&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="unsupervised-learning.html#cb439-1" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb439-2"><a href="unsupervised-learning.html#cb439-2" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
+<span id="cb439-3"><a href="unsupervised-learning.html#cb439-3" tabindex="-1"></a></span>
+<span id="cb439-4"><a href="unsupervised-learning.html#cb439-4" tabindex="-1"></a>centers <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kmeans_tracks<span class="sc">$</span>centers)</span>
+<span id="cb439-5"><a href="unsupervised-learning.html#cb439-5" tabindex="-1"></a>centers<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb439-6"><a href="unsupervised-learning.html#cb439-6" tabindex="-1"></a><span class="fu">ggRadar</span>(centers, <span class="fu">aes</span>(<span class="at">color =</span> cluster), <span class="at">rescale =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb439-7"><a href="unsupervised-learning.html#cb439-7" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Centers&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>We can use a barplot to visualize the number of songs an artist has in each cluster. While Eminem’s songs are mostly in cluster 3, Taylor Swift’s and Ed Sheeran’s are mostly in cluster 1 and 2.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="unsupervised-learning.html#cb428-1" aria-hidden="true" tabindex="-1"></a>famous_tracks<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(kmeans_tracks<span class="sc">$</span>cluster)</span>
-<span id="cb428-2"><a href="unsupervised-learning.html#cb428-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(famous_tracks, <span class="fu">aes</span>(<span class="at">y =</span> cluster, <span class="at">fill =</span> artistName)) <span class="sc">+</span></span>
-<span id="cb428-3"><a href="unsupervised-learning.html#cb428-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="unsupervised-learning.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(famous_tracks<span class="sc">$</span>artistName, famous_tracks<span class="sc">$</span>cluster)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="unsupervised-learning.html#cb440-1" tabindex="-1"></a>famous_tracks<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(kmeans_tracks<span class="sc">$</span>cluster)</span>
+<span id="cb440-2"><a href="unsupervised-learning.html#cb440-2" tabindex="-1"></a><span class="fu">ggplot</span>(famous_tracks, <span class="fu">aes</span>(<span class="at">y =</span> cluster, <span class="at">fill =</span> artistName)) <span class="sc">+</span></span>
+<span id="cb440-3"><a href="unsupervised-learning.html#cb440-3" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="unsupervised-learning.html#cb441-1" tabindex="-1"></a><span class="fu">table</span>(famous_tracks<span class="sc">$</span>artistName, famous_tracks<span class="sc">$</span>cluster)</span></code></pre></div>
 <pre><code>##               
 ##                 1  2  3
 ##   Ed Sheeran   23 34  2
@@ -1550,146 +1565,146 @@ Let’s try it out with our two artists. In order to perform clustering we first
 ##   Rihanna      13  1  1
 ##   Taylor Swift 64 44  3</code></pre>
 <p>We could use the clustering to make recommendations on both the artist and song level (assuming that people like songs with similar audio features). If you like “Lose Yourself” by Eminem (cluster 3), we would recommend “I Forgot That You Existed” (cluster 3) bu not “The Archer” (cluster 2) by Taylor Swift.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="unsupervised-learning.html#cb431-1" aria-hidden="true" tabindex="-1"></a>recommendation <span class="ot">&lt;-</span> famous_tracks[<span class="fu">str_detect</span>(famous_tracks<span class="sc">$</span>trackName,</span>
-<span id="cb431-2"><a href="unsupervised-learning.html#cb431-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Lose Yourself|I Forgot That You Existed|The Archer&quot;</span>),</span>
-<span id="cb431-3"><a href="unsupervised-learning.html#cb431-3" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb431-4"><a href="unsupervised-learning.html#cb431-4" aria-hidden="true" tabindex="-1"></a>recommendation[<span class="fu">c</span>(<span class="st">&quot;trackName&quot;</span>, <span class="st">&quot;artistName&quot;</span>, <span class="st">&quot;cluster&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="unsupervised-learning.html#cb443-1" tabindex="-1"></a>recommendation <span class="ot">&lt;-</span> famous_tracks[<span class="fu">str_detect</span>(famous_tracks<span class="sc">$</span>trackName,</span>
+<span id="cb443-2"><a href="unsupervised-learning.html#cb443-2" tabindex="-1"></a>    <span class="st">&quot;Lose Yourself|I Forgot That You Existed|The Archer&quot;</span>),</span>
+<span id="cb443-3"><a href="unsupervised-learning.html#cb443-3" tabindex="-1"></a>    ]</span>
+<span id="cb443-4"><a href="unsupervised-learning.html#cb443-4" tabindex="-1"></a>recommendation[<span class="fu">c</span>(<span class="st">&quot;trackName&quot;</span>, <span class="st">&quot;artistName&quot;</span>, <span class="st">&quot;cluster&quot;</span>)]</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["trackName"],"name":[1],"type":["chr"],"align":["left"]},{"label":["artistName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["cluster"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Lose Yourself - From \"8 Mile\" Soundtrack","2":"Eminem","3":"3"},{"1":"The Archer","2":"Taylor Swift","3":"2"},{"1":"I Forgot That You Existed","2":"Taylor Swift","3":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="unsupervised-learning.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(recommendation, <span class="fu">aes</span>(instrumentalness, speechiness,</span>
-<span id="cb432-2"><a href="unsupervised-learning.html#cb432-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> cluster)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> trackName),</span>
-<span id="cb432-3"><a href="unsupervised-learning.html#cb432-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="st">&quot;inward&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="unsupervised-learning.html#cb444-1" tabindex="-1"></a><span class="fu">ggplot</span>(recommendation, <span class="fu">aes</span>(instrumentalness, speechiness,</span>
+<span id="cb444-2"><a href="unsupervised-learning.html#cb444-2" tabindex="-1"></a>    <span class="at">color =</span> cluster)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> trackName),</span>
+<span id="cb444-3"><a href="unsupervised-learning.html#cb444-3" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="st">&quot;inward&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>We can use the <code>fviz_cluster</code> function from the <code>factoextra</code> library to get a partial picture. If there are more than 2 variables used for clustering, the package performs a PCA and uses the first two principal components for the visualization.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="unsupervised-learning.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb433-2"><a href="unsupervised-learning.html#cb433-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_tracks, <span class="at">data =</span> famous_tracks_scale,</span>
-<span id="cb433-3"><a href="unsupervised-learning.html#cb433-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="at">palette =</span> <span class="st">&quot;Dynamic&quot;</span>), <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
-<span id="cb433-4"><a href="unsupervised-learning.html#cb433-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>, <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>())</span></code></pre></div>
-<p><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="unsupervised-learning.html#cb445-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb445-2"><a href="unsupervised-learning.html#cb445-2" tabindex="-1"></a><span class="fu">fviz_cluster</span>(kmeans_tracks, <span class="at">data =</span> famous_tracks_scale,</span>
+<span id="cb445-3"><a href="unsupervised-learning.html#cb445-3" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="at">palette =</span> <span class="st">&quot;Dynamic&quot;</span>), <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>,</span>
+<span id="cb445-4"><a href="unsupervised-learning.html#cb445-4" tabindex="-1"></a>    <span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>, <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>())</span></code></pre></div>
+<p><img src="09-unsupervised_learning_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 </div>
-<div id="learning-check-5" class="section level2 unnumbered hasAnchor">
-<h2>Learning check<a href="unsupervised-learning.html#learning-check-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-check-6" class="section level2 unnumbered hasAnchor">
+<h2>Learning check<a href="unsupervised-learning.html#learning-check-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>(LC7.1) The goals of PCA are…</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />…to identify underlying dimensions that explain correlations among variables.</li>
-<li><input type="checkbox" disabled="" />…to identify multiplicative effects in a linear regression.</li>
-<li><input type="checkbox" disabled="" checked="" />…to identify a smaller set of uncorrelated variables.</li>
-<li><input type="checkbox" disabled="" />…to identify interaction terms in a linear regression.</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" checked="" />…to identify underlying dimensions that explain correlations among variables.</label></li>
+<li><label><input type="checkbox" />…to identify multiplicative effects in a linear regression.</label></li>
+<li><label><input type="checkbox" checked="" />…to identify a smaller set of uncorrelated variables.</label></li>
+<li><label><input type="checkbox" />…to identify interaction terms in a linear regression.</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.2) What are typical hypotheses in PCA concerning how many factors will emerge?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />A reduction greater than 50% of the input variables</li>
-<li><input type="checkbox" disabled="" />Between a third and a fourth of the input variables</li>
-<li><input type="checkbox" disabled="" />A reduction smaller than 50% of the input variables</li>
-<li><input type="checkbox" disabled="" checked="" />None of the above</li>
+<li><label><input type="checkbox" />A reduction greater than 50% of the input variables</label></li>
+<li><label><input type="checkbox" />Between a third and a fourth of the input variables</label></li>
+<li><label><input type="checkbox" />A reduction smaller than 50% of the input variables</label></li>
+<li><label><input type="checkbox" checked="" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.3) What assumptions have to be fulfilled for using PCA?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />Variables must be in interval or ratio scale</li>
-<li><input type="checkbox" disabled="" checked="" />Existence of some underlying factor structure</li>
-<li><input type="checkbox" disabled="" checked="" />The correlation matrix must have sufficient number of correlations</li>
-<li><input type="checkbox" disabled="" />Variables must be measured using ordinal scales</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" checked="" />Variables must be in interval or ratio scale</label></li>
+<li><label><input type="checkbox" checked="" />Existence of some underlying factor structure</label></li>
+<li><label><input type="checkbox" checked="" />The correlation matrix must have sufficient number of correlations</label></li>
+<li><label><input type="checkbox" />Variables must be measured using ordinal scales</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.4) What is the correct interpretation of the b-values in the following mathematical representation concerning exploratory factor analysis (EFA)?</strong> <span class="math inline">\(Factor_i=b_1*Variable_1 + b_2*Variable_2+…+b_nVariable_n\)</span></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />Regression coefficients</li>
-<li><input type="checkbox" disabled="" />Correlations between the variables</li>
-<li><input type="checkbox" disabled="" checked="" />Weights of a variable on a factor</li>
-<li><input type="checkbox" disabled="" checked="" />Factor loadings</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />Regression coefficients</label></li>
+<li><label><input type="checkbox" />Correlations between the variables</label></li>
+<li><label><input type="checkbox" checked="" />Weights of a variable on a factor</label></li>
+<li><label><input type="checkbox" checked="" />Factor loadings</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.5) What is the null hypothesis of the Bartlett’s test of sphericity?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />All variables are correlated in the population</li>
-<li><input type="checkbox" disabled="" />The correlation matrix is singular</li>
-<li><input type="checkbox" disabled="" />All variables are uncorrelated in the population</li>
-<li><input type="checkbox" disabled="" checked="" />The correlation matrix is an identity matrix</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />All variables are correlated in the population</label></li>
+<li><label><input type="checkbox" />The correlation matrix is singular</label></li>
+<li><label><input type="checkbox" />All variables are uncorrelated in the population</label></li>
+<li><label><input type="checkbox" checked="" />The correlation matrix is an identity matrix</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.6) Before conducting PCA, how can you test the sampling adequacy of your data (i.e., how suited your data is for Factor Analysis)?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />Kaiser-Meyer-Olkin (KMO) test with scores &lt;0.5</li>
-<li><input type="checkbox" disabled="" checked="" />Kaiser-Meyer-Olkin (KMO) test with scores &gt;0.5</li>
-<li><input type="checkbox" disabled="" />By inspecting the scree plot</li>
-<li><input type="checkbox" disabled="" />Cronbach’s alpha test with scores &gt;0.7</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />Kaiser-Meyer-Olkin (KMO) test with scores &lt;0.5</label></li>
+<li><label><input type="checkbox" checked="" />Kaiser-Meyer-Olkin (KMO) test with scores &gt;0.5</label></li>
+<li><label><input type="checkbox" />By inspecting the scree plot</label></li>
+<li><label><input type="checkbox" />Cronbach’s alpha test with scores &gt;0.7</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.7) What is communality?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" />Proportion of common variance in a variable</li>
-<li><input type="checkbox" disabled="" />Variance that is unique to a particular variable</li>
-<li><input type="checkbox" disabled="" />Proportion of unique variance in a variable</li>
-<li><input type="checkbox" disabled="" />Covariance between two factors</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" checked="" />Proportion of common variance in a variable</label></li>
+<li><label><input type="checkbox" />Variance that is unique to a particular variable</label></li>
+<li><label><input type="checkbox" />Proportion of unique variance in a variable</label></li>
+<li><label><input type="checkbox" />Covariance between two factors</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.8) Orthogonal factor rotation assumes:</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />Inter-correlated factors</li>
-<li><input type="checkbox" disabled="" checked="" />Uncorrelated factors</li>
-<li><input type="checkbox" disabled="" />Outer-correlated factors</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />Inter-correlated factors</label></li>
+<li><label><input type="checkbox" checked="" />Uncorrelated factors</label></li>
+<li><label><input type="checkbox" />Outer-correlated factors</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.9) Imagine you want to conduct a PCA on 10 variables without factor rotation and in a first step, you wish to find out how many components you should extract. How would the corresponding R Code look?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" checked="" /><code>principal(data, nfactors = 10, rotate = "none")</code></li>
-<li><input type="checkbox" disabled="" /><code>principal(data, nfactors = “varimax”, rotate = 10)</code></li>
-<li><input type="checkbox" disabled="" /><code>principal(data, nfactors = 10, rotate = "oblimin")</code></li>
-<li><input type="checkbox" disabled="" /><code>principal(data, nfactors = 10, rotate = "varimax")</code></li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" checked="" /><code>principal(data, nfactors = 10, rotate = "none")</code></label></li>
+<li><label><input type="checkbox" /><code>principal(data, nfactors = “varimax”, rotate = 10)</code></label></li>
+<li><label><input type="checkbox" /><code>principal(data, nfactors = 10, rotate = "oblimin")</code></label></li>
+<li><label><input type="checkbox" /><code>principal(data, nfactors = 10, rotate = "varimax")</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.10) How many factors should be extracted based on the Scree Plot and the Eigenvalues below?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />1</li>
-<li><input type="checkbox" disabled="" />2</li>
-<li><input type="checkbox" disabled="" />3</li>
-<li><input type="checkbox" disabled="" checked="" />4</li>
-<li><input type="checkbox" disabled="" />5</li>
-<li><input type="checkbox" disabled="" />15</li>
-<li><input type="checkbox" disabled="" />23</li>
+<li><label><input type="checkbox" />1</label></li>
+<li><label><input type="checkbox" />2</label></li>
+<li><label><input type="checkbox" />3</label></li>
+<li><label><input type="checkbox" checked="" />4</label></li>
+<li><label><input type="checkbox" />5</label></li>
+<li><label><input type="checkbox" />15</label></li>
+<li><label><input type="checkbox" />23</label></li>
 </ul>
 <p><img src="images/eigenvalues11.png" width="75%" style="display: block; margin: auto;" /></p>
 <p><strong>(LC7.11) Which of the following statements regarding cluster analysis are TRUE?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />The goal is to reduce the number of columns in a data set</li>
-<li><input type="checkbox" disabled="" checked="" />The goal is to reduce the number of rows in a data set</li>
-<li><input type="checkbox" disabled="" />H-Means is a popular clustering method</li>
-<li><input type="checkbox" disabled="" />The goal is to establish a relationship between a dependent variable and an independent variable</li>
-<li><input type="checkbox" disabled="" checked="" />The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters</li>
-<li><input type="checkbox" disabled="" checked="" />It is an unsupervised learning method</li>
+<li><label><input type="checkbox" />The goal is to reduce the number of columns in a data set</label></li>
+<li><label><input type="checkbox" checked="" />The goal is to reduce the number of rows in a data set</label></li>
+<li><label><input type="checkbox" />H-Means is a popular clustering method</label></li>
+<li><label><input type="checkbox" />The goal is to establish a relationship between a dependent variable and an independent variable</label></li>
+<li><label><input type="checkbox" checked="" />The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters</label></li>
+<li><label><input type="checkbox" checked="" />It is an unsupervised learning method</label></li>
 </ul>
 <p><strong>(LC7.12) What is the main objective of k-means clustering in data analysis?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />To find the best-fitting linear regression model.</li>
-<li><input type="checkbox" disabled="" />To identify underlying factors that explain correlations among variables.</li>
-<li><input type="checkbox" disabled="" checked="" />To partition data into clusters based on similarity.</li>
-<li><input type="checkbox" disabled="" />To calculate the correlation between variables.</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />To find the best-fitting linear regression model.</label></li>
+<li><label><input type="checkbox" />To identify underlying factors that explain correlations among variables.</label></li>
+<li><label><input type="checkbox" checked="" />To partition data into clusters based on similarity.</label></li>
+<li><label><input type="checkbox" />To calculate the correlation between variables.</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.13) In the k-means algorithm, what does “k” represent?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />The number of variables in the dataset.</li>
-<li><input type="checkbox" disabled="" checked="" />The number of clusters to be formed.</li>
-<li><input type="checkbox" disabled="" />The number of iterations to converge.</li>
-<li><input type="checkbox" disabled="" />The number of outliers in the data.</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />The number of variables in the dataset.</label></li>
+<li><label><input type="checkbox" checked="" />The number of clusters to be formed.</label></li>
+<li><label><input type="checkbox" />The number of iterations to converge.</label></li>
+<li><label><input type="checkbox" />The number of outliers in the data.</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.14) What is the primary limitation of the k-means clustering algorithm?</strong></p>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />It is computationally expensive.</li>
-<li><input type="checkbox" disabled="" checked="" />It requires specifying the number of clusters in advance.</li>
-<li><input type="checkbox" disabled="" />It cannot handle categorical data.</li>
-<li><input type="checkbox" disabled="" />It always produces spherical clusters.</li>
-<li><input type="checkbox" disabled="" />None of the above</li>
+<li><label><input type="checkbox" />It is computationally expensive.</label></li>
+<li><label><input type="checkbox" checked="" />It requires specifying the number of clusters in advance.</label></li>
+<li><label><input type="checkbox" />It cannot handle categorical data.</label></li>
+<li><label><input type="checkbox" />It always produces spherical clusters.</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 </div>
-<div id="references-4" class="section level2 unnumbered hasAnchor">
-<h2>References<a href="unsupervised-learning.html#references-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="references-5" class="section level2 unnumbered hasAnchor">
+<h2>References<a href="unsupervised-learning.html#references-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Field, A., Miles J., &amp; Field, Z. (2012): Discovering Statistics Using R. Sage Publications, <strong>chapter 17</strong></li>
 <li>Malhotra, N. K.(2010). Marketing Research: An Applied Orientation (6th. ed.). Prentice Hall. <strong>chapter 19</strong></li>

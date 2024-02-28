@@ -5,7 +5,7 @@ seq(1,10) #same result
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------------------------
-seq(to = 10,from = 1) #produces desired results
+seq(to = 10, from = 1) #produces desired results
 seq(10,1) #produces reversed sequence
 
 

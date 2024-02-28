@@ -13,9 +13,6 @@ output:
 
 ## Data visualization
 
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/04-visualization.R)
-:::
 
 This section discusses the important topic of data visualization and how to produce appropriate graphics to describe your data visually. You should always visualize your data first. 
 
@@ -35,11 +32,6 @@ ggplot2 is built around the idea of constructing plots by stacking layers on top
 
 ### Categorical variables
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FCx9yrkwm68" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 #### Bar plot
 
@@ -339,11 +331,6 @@ ggplot(table_plot_cond_rel_1, aes(x = genre, y = Freq, fill = explicit)) + #use 
 
 ### Continuous variables
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WuMp80qZGc4" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 #### Histogram
 
@@ -783,11 +770,6 @@ ggsave("test_plot.jpg", height = 5, width = 8.5)
 
 ### ggplot extensions
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/X8zGovLeCrk" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 As the ggplot2 package became more and more popular over the past years, more and more extensions have been developed by users that can be used for specific purposes that are not yet covered by the standard functionality of ggplot2. You can find a list of the extensions <a href="https://exts.ggplot2.tidyverse.org/gallery/" target="_blank">here</a>. Below, you can find some example for the additional options.  
 
@@ -938,12 +920,12 @@ ggmap(de_map_g_str, extent = "device") +
 
 - [ ] Nominal
 - [ ] Ordinal
-- [x] Interval
-- [x] Ratio
+- [ ] Interval
+- [ ] Ratio
 
 **(LC4.2) How can you compute the standardized variate of a variable X?**
 
-- [x] $Z=\frac{X_i-\bar{X}}{s}$
+- [ ] $Z=\frac{X_i-\bar{X}}{s}$
 - [ ] $Z=\frac{\bar{X}+X_i}{s}$
 - [ ] $Z=\frac{s}{\bar{X}+X_i}$
 - [ ] $Z=s*({\bar{X}+X_i)}$
@@ -962,7 +944,7 @@ ggmap(de_map_g_str, extent = "device") +
 - [ ] `df$mpg_std <- zscore(df$mpg)`
 - [ ] `df$mpg_std <- stdv(df$mpg)`
 - [ ] `df$mpg_std <- std.scale(df$mpg)`
-- [x] `df$mpg_std <- scale(df$mpg)`
+- [ ] `df$mpg_std <- scale(df$mpg)`
 - [ ] None of the above 	
 
 **(LC4.4) How could you produce the below output?**
@@ -973,7 +955,7 @@ ggmap(de_map_g_str, extent = "device") +
   </script>
 </div>
 
-- [x] `describe(select(mtcars, hp, mpg, qsec))`
+- [ ] `describe(select(mtcars, hp, mpg, qsec))`
 - [ ] `summary(select(mtcars, hp, mpg, qsec))`
 - [ ] `table(select(mtcars, hp, mpg, qsec))`
 - [ ] `str(select(mtcars, hp, mpg, qsec))`
@@ -989,7 +971,7 @@ ggmap(de_map_g_str, extent = "device") +
 ```
 
 - [ ] `describe(mtcars$carb)`
-- [x] `table(mtcars$carb)`
+- [ ] `table(mtcars$carb)`
 - [ ] `str(mtcars$carb)`
 - [ ] `prop.table(mtcars$carb)`
 - [ ] None of the above 	
@@ -998,7 +980,7 @@ ggmap(de_map_g_str, extent = "device") +
 
 - [ ] Two categorical variables
 - [ ] One categorical and one continuous variable
-- [x] Two continuous variables
+- [ ] Two continuous variables
 - [ ] One continuous variable
 - [ ] None of the above 	
 
@@ -1007,8 +989,8 @@ ggmap(de_map_g_str, extent = "device") +
 <img src="05-visualization_files/figure-html/unnamed-chunk-58-1.png" width="672" />
 
 - [ ] This is a bar chart
-- [x] This is a histogram
-- [x] It shows the frequency distribution of a continuous variable
+- [ ] This is a histogram
+- [ ] It shows the frequency distribution of a continuous variable
 - [ ] It shows the frequency distribution of a categorical variable
 - [ ] None of the above 	
 
@@ -1017,14 +999,14 @@ ggmap(de_map_g_str, extent = "device") +
 <img src="05-visualization_files/figure-html/unnamed-chunk-59-1.png" width="50%" />
 
 - [ ] This is a bar chart
-- [x] 50% of observations are contained in the gray area
+- [ ] 50% of observations are contained in the gray area
 - [ ] The horizontal black line indicates the mean
-- [x] This is a boxplot
+- [ ] This is a boxplot
 - [ ] None of the above 	
 
 **(LC4.9) Which function can help you to save a graph made with `ggplot()`?** 
 
-- [x] `ggsave()`
+- [ ] `ggsave()`
 - [ ] `write.plot()`
 - [ ] `save.plot()`
 - [ ] `export.plot()`
@@ -1032,7 +1014,7 @@ ggmap(de_map_g_str, extent = "device") +
 **(LC4.10) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
 
 - [ ] 1.645
-- [x] 1.960
+- [ ] 1.960
 - [ ] 2.580
 - [ ] 3.210
 - [ ] None of the above 	

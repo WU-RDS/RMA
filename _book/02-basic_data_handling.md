@@ -14,15 +14,6 @@ This chapter covers the basics of data handling in R.
 
 ## Basic data handling
 
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/01-basic_data_handling.R)
-:::
-
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-Ib9xY7pcAw" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 ### Creating objects
 
@@ -177,33 +168,33 @@ Entering a vector of data into R can be done with the ``` c(x1,x2,..,x_n)``` ("c
 
 ```r
 #Numeric:
-top10_track_streams <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) 
+top10_sales <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) 
 
 #Character:
-top10_artist_names <- c("Axwell /\\ Ingrosso", "Imagine Dragons", "J. Balvin", "Robin Schulz", "Jonas Blue", "David Guetta", "French Montana", "Calvin Harris", "Liam Payne", "Lauv") # Characters have to be put in ""
+top10_product_names <- c("Bio-Kaisersemmel", "Laktosefreie Bio-Vollmilch", "Ottakringer Helles", "Milka Ganze Haselnüsse", "Bio-Toastkäse Scheiben", "Ottakringer Bio Zwickl", "Vienna Coffee House Espresso", "Bio-Mozzarella", "Basmati Reis", "Bananen") # Characters have to be put in ""
 
 #Factor variable with two categories:
-top10_track_explicit <- c(0,0,0,0,0,0,1,1,0,0)
-top10_track_explicit <- factor(top10_track_explicit, 
+private_label <- c(1,1,0,0,1,0,0,1,1,1)
+private_label <- factor(private_label, 
                                levels = 0:1, 
-                               labels = c("not explicit", "explicit"))
+                               labels = c("national brand", "private label"))
 
 #Factor variable with more than two categories:
-top10_artist_genre <- c("Dance","Alternative","Latino","Dance","Dance","Dance","Hip-Hop/Rap","Dance","Pop","Pop")
-top10_artist_genre <- as.factor(top10_artist_genre)
+top10_brand <- c("Ja! Natürlich", "Ja! Natürlich", "Ottakringer", "Milka", "Ja! Natürlich", "Ottakringer", "Julius Meinl", "Ja! Natürlich", "Billa Bio", "Clever")
+top10_brand <- as.factor(top10_brand)
 
 #Date:
-top_10_track_release_date <- as.Date(c("2017-05-24", "2017-06-23", "2017-07-03", "2017-06-30", "2017-05-05", "2017-06-09", "2017-07-14", "2017-06-16", "2017-05-18", "2017-05-19"))
+date_most_sold <- as.Date(c("2023-05-24", "2023-06-23", "2023-09-01", "2023-06-30", "2023-05-05", "2023-06-09", "2023-07-14", "2023-06-16", "2023-05-18", "2023-05-19"))
 
 #Logical
-top10_track_explicit_1 <- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE)  
+private_label_logical <- c(TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE)  
 ```
 
 In order to "return" a vector we can now simply enter its name:
 
 
 ```r
-top10_track_streams
+top10_sales
 ```
 
 ```
@@ -211,19 +202,19 @@ top10_track_streams
 ```
 
 ```r
-top_10_track_release_date
+date_most_sold
 ```
 
 ```
-##  [1] "2017-05-24" "2017-06-23" "2017-07-03" "2017-06-30" "2017-05-05"
-##  [6] "2017-06-09" "2017-07-14" "2017-06-16" "2017-05-18" "2017-05-19"
+##  [1] "2023-05-24" "2023-06-23" "2023-09-01" "2023-06-30" "2023-05-05"
+##  [6] "2023-06-09" "2023-07-14" "2023-06-16" "2023-05-18" "2023-05-19"
 ```
 
 In order to check the type of a variable the ```class()``` function is used.
 
 
 ```r
-class(top_10_track_release_date)
+class(date_most_sold)
 ```
 
 ```
@@ -240,12 +231,12 @@ Data frames are similar to matrices but are more flexible in the sense that they
 
 
 ```r
-music_data <- data.frame(top10_track_streams, 
-                         top10_artist_names, 
-                         top10_track_explicit, 
-                         top10_artist_genre, 
-                         top_10_track_release_date, 
-                         top10_track_explicit_1)
+sales_data <- data.frame(top10_sales, 
+                         top10_product_names, 
+                         private_label, 
+                         top10_brand, 
+                         date_most_sold, 
+                         private_label_logical)
 ```
 
 #### Accessing data in data frames
@@ -254,12 +245,12 @@ When entering the name of a data frame, R returns the entire data frame:
 
 
 ```r
-music_data # Returns the entire data frame
+sales_data # Returns the entire data frame
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE"},{"1":"94690","2":"French Montana","3":"explicit","4":"Hip-Hop/Rap","5":"2017-07-14","6":"TRUE"},{"1":"89011","2":"Calvin Harris","3":"explicit","4":"Dance","5":"2017-06-16","6":"TRUE"},{"1":"87869","2":"Liam Payne","3":"not explicit","4":"Pop","5":"2017-05-18","6":"FALSE"},{"1":"85599","2":"Lauv","3":"not explicit","4":"Pop","5":"2017-05-19","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -269,22 +260,22 @@ Sometimes it is convenient to return only specific values instead of the entire 
 
 
 ```r
-music_data[ , 2:4] # all rows and columns 2,3,4
+sales_data[ , 2:4] # all rows and columns 2,3,4
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_artist_names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[2],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Axwell /\\\\ Ingrosso","2":"not explicit","3":"Dance"},{"1":"Imagine Dragons","2":"not explicit","3":"Alternative"},{"1":"J. Balvin","2":"not explicit","3":"Latino"},{"1":"Robin Schulz","2":"not explicit","3":"Dance"},{"1":"Jonas Blue","2":"not explicit","3":"Dance"},{"1":"David Guetta","2":"not explicit","3":"Dance"},{"1":"French Montana","2":"explicit","3":"Hip-Hop/Rap"},{"1":"Calvin Harris","2":"explicit","3":"Dance"},{"1":"Liam Payne","2":"not explicit","3":"Pop"},{"1":"Lauv","2":"not explicit","3":"Pop"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_product_names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[2],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Bio-Kaisersemmel","2":"private label","3":"Ja! Natürlich"},{"1":"Laktosefreie Bio-Vollmilch","2":"private label","3":"Ja! Natürlich"},{"1":"Ottakringer Helles","2":"national brand","3":"Ottakringer"},{"1":"Milka Ganze Haselnüsse","2":"national brand","3":"Milka"},{"1":"Bio-Toastkäse Scheiben","2":"private label","3":"Ja! Natürlich"},{"1":"Ottakringer Bio Zwickl","2":"national brand","3":"Ottakringer"},{"1":"Vienna Coffee House Espresso","2":"national brand","3":"Julius Meinl"},{"1":"Bio-Mozzarella","2":"private label","3":"Ja! Natürlich"},{"1":"Basmati Reis","2":"private label","3":"Billa Bio"},{"1":"Bananen","2":"private label","3":"Clever"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 ```r
-music_data[5:7, ] # rows 5,6,7 and all columns
+sales_data[5:7, ] # rows 5,6,7 and all columns
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE","_rn_":"5"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE","_rn_":"6"},{"1":"94690","2":"French Montana","3":"explicit","4":"Hip-Hop/Rap","5":"2017-07-14","6":"TRUE","_rn_":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","_rn_":"6"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE","_rn_":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -295,93 +286,37 @@ You may create subsets of the data frame, e.g., using mathematical expressions u
 
 ```r
 library(tidyverse)
-```
-
-```
-## Warning: package 'tidyverse' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'tibble' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'tidyr' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'readr' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'purrr' was built under R version 4.2.2
-```
-
-```
-## Warning: package 'dplyr' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'stringr' was built under R version 4.2.2
-```
-
-```
-## Warning: package 'forcats' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'lubridate' was built under R version 4.2.3
-```
-
-```
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.2     v readr     2.1.4
-## v forcats   1.0.0     v stringr   1.5.0
-## v ggplot2   3.4.2     v tibble    3.2.1
-## v lubridate 1.9.2     v tidyr     1.3.0
-## v purrr     1.0.1     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
-```
-
-```r
-filter(music_data, top10_track_explicit == "explicit") # show only tracks with explicit lyrics  
+filter(sales_data, private_label == "private label") # show only products that belong to private labels
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"94690","2":"French Montana","3":"explicit","4":"Hip-Hop/Rap","5":"2017-07-14","6":"TRUE"},{"1":"89011","2":"Calvin Harris","3":"explicit","4":"Dance","5":"2017-06-16","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 ```r
-filter(music_data, top10_track_streams > 100000) # show only tracks with more than 100,000 streams  
+filter(sales_data, top10_sales > 100000) # show only products that sold more than 100,000 units  
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 ```r
-filter(music_data, top10_artist_names == 'Robin Schulz') # returns all observations from artist "Robin Schulz"
+filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "RBio-Kaisersemmel"
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 ```r
-explicit_tracks <- filter(music_data, top10_track_explicit == "explicit") # assign a new data.frame for explicit tracs only
+private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
 ```
 
 
@@ -390,12 +325,12 @@ You may also change the order of the rows in a `data.frame` by using the ```arra
 
 ```r
 #Arrange by genre (ascending: A - Z) and streams (descending: maximum - minimum)
-arrange(music_data, top10_artist_genre, desc(top10_track_streams))
+arrange(sales_data, top10_product_names, desc(top10_sales))
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE"},{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE"},{"1":"89011","2":"Calvin Harris","3":"explicit","4":"Dance","5":"2017-06-16","6":"TRUE"},{"1":"94690","2":"French Montana","3":"explicit","4":"Hip-Hop/Rap","5":"2017-07-14","6":"TRUE"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE"},{"1":"87869","2":"Liam Payne","3":"not explicit","4":"Pop","5":"2017-05-18","6":"FALSE"},{"1":"85599","2":"Lauv","3":"not explicit","4":"Pop","5":"2017-05-19","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE"},{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl","5":"2023-07-14","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -405,12 +340,12 @@ The ```head()``` function displays the first X elements/rows of a vector, matrix
 
 
 ```r
-head(music_data, 3) # returns the first X rows (here, the first 3 rows)
+head(sales_data, 3) # returns the first X rows (here, the first 3 rows)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE","_rn_":"1"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE","_rn_":"2"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -418,12 +353,12 @@ The ```tail()``` function is similar, except it displays the last elements/rows.
 
 
 ```r
-tail(music_data, 3) # returns the last X rows (here, the last 3 rows)
+tail(sales_data, 3) # returns the last X rows (here, the last 3 rows)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"89011","2":"Calvin Harris","3":"explicit","4":"Dance","5":"2017-06-16","6":"TRUE","_rn_":"8"},{"1":"87869","2":"Liam Payne","3":"not explicit","4":"Pop","5":"2017-05-18","6":"FALSE","_rn_":"9"},{"1":"85599","2":"Lauv","3":"not explicit","4":"Pop","5":"2017-05-19","6":"FALSE","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich","5":"2023-06-16","6":"TRUE","_rn_":"8"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio","5":"2023-05-18","6":"TRUE","_rn_":"9"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever","5":"2023-05-19","6":"TRUE","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -431,37 +366,36 @@ tail(music_data, 3) # returns the last X rows (here, the last 3 rows)
 
 
 ```r
-names(music_data) # returns the names of the variables in the data frame
+names(sales_data) # returns the names of the variables in the data frame
 ```
 
 ```
-## [1] "top10_track_streams"       "top10_artist_names"       
-## [3] "top10_track_explicit"      "top10_artist_genre"       
-## [5] "top_10_track_release_date" "top10_track_explicit_1"
+## [1] "top10_sales"           "top10_product_names"   "private_label"        
+## [4] "top10_brand"           "date_most_sold"        "private_label_logical"
 ```
 
 ```str()``` displays the internal structure of an R object. In the case of a data frame, it returns the class (e.g., numeric, factor, etc.) of each variable, as well as the number of observations and the number of variables. 
 
 
 ```r
-str(music_data) # returns the structure of the data frame
+str(sales_data) # returns the structure of the data frame
 ```
 
 ```
 ## 'data.frame':	10 obs. of  6 variables:
-##  $ top10_track_streams      : num  163608 126687 120480 110022 108630 ...
-##  $ top10_artist_names       : chr  "Axwell /\\ Ingrosso" "Imagine Dragons" "J. Balvin" "Robin Schulz" ...
-##  $ top10_track_explicit     : Factor w/ 2 levels "not explicit",..: 1 1 1 1 1 1 2 2 1 1
-##  $ top10_artist_genre       : Factor w/ 5 levels "Alternative",..: 2 1 4 2 2 2 3 2 5 5
-##  $ top_10_track_release_date: Date, format: "2017-05-24" "2017-06-23" ...
-##  $ top10_track_explicit_1   : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ top10_sales          : num  163608 126687 120480 110022 108630 ...
+##  $ top10_product_names  : chr  "Bio-Kaisersemmel" "Laktosefreie Bio-Vollmilch" "Ottakringer Helles" "Milka Ganze Haselnüsse" ...
+##  $ private_label        : Factor w/ 2 levels "national brand",..: 2 2 1 1 2 1 1 2 2 2
+##  $ top10_brand          : Factor w/ 6 levels "Billa Bio","Clever",..: 3 3 6 5 3 6 4 3 1 2
+##  $ date_most_sold       : Date, format: "2023-05-24" "2023-06-23" ...
+##  $ private_label_logical: logi  TRUE TRUE FALSE FALSE TRUE FALSE ...
 ```
 
 ```nrow()``` and ```ncol()``` return the rows and columns of a data frame or matrix, respectively. ```dim()``` displays the dimensions of an R object.
 
 
 ```r
-nrow(music_data) # returns the number of rows 
+nrow(sales_data) # returns the number of rows 
 ```
 
 ```
@@ -469,7 +403,7 @@ nrow(music_data) # returns the number of rows
 ```
 
 ```r
-ncol(music_data) # returns the number of columns 
+ncol(sales_data) # returns the number of columns 
 ```
 
 ```
@@ -477,7 +411,7 @@ ncol(music_data) # returns the number of columns
 ```
 
 ```r
-dim(music_data) # returns the dimensions of a data frame
+dim(sales_data) # returns the dimensions of a data frame
 ```
 
 ```
@@ -488,13 +422,12 @@ dim(music_data) # returns the dimensions of a data frame
 
 
 ```r
-ls(music_data) # list all objects associated with an object
+ls(sales_data) # list all objects associated with an object
 ```
 
 ```
-## [1] "top_10_track_release_date" "top10_artist_genre"       
-## [3] "top10_artist_names"        "top10_track_explicit"     
-## [5] "top10_track_explicit_1"    "top10_track_streams"
+## [1] "date_most_sold"        "private_label"         "private_label_logical"
+## [4] "top10_brand"           "top10_product_names"   "top10_sales"
 ```
 
 #### Select, append and delete variables to/from data frames
@@ -503,7 +436,7 @@ To return a single column in a data frame, use the ```$``` notation. For example
   
 
 ```r
-music_data$top10_track_streams
+sales_data$top10_sales
 ```
 
 ```
@@ -514,12 +447,12 @@ If you want to select more than one variable you can use the `select` function. 
 
 
 ```r
-select(music_data, top10_artist_names, top10_track_streams, top10_track_explicit)
+select(sales_data, top10_product_names, top10_sales, private_label)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_artist_names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["top10_track_streams"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Axwell /\\\\ Ingrosso","2":"163608","3":"not explicit"},{"1":"Imagine Dragons","2":"126687","3":"not explicit"},{"1":"J. Balvin","2":"120480","3":"not explicit"},{"1":"Robin Schulz","2":"110022","3":"not explicit"},{"1":"Jonas Blue","2":"108630","3":"not explicit"},{"1":"David Guetta","2":"95639","3":"not explicit"},{"1":"French Montana","2":"94690","3":"explicit"},{"1":"Calvin Harris","2":"89011","3":"explicit"},{"1":"Liam Payne","2":"87869","3":"not explicit"},{"1":"Lauv","2":"85599","3":"not explicit"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_product_names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["top10_sales"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Bio-Kaisersemmel","2":"163608","3":"private label"},{"1":"Laktosefreie Bio-Vollmilch","2":"126687","3":"private label"},{"1":"Ottakringer Helles","2":"120480","3":"national brand"},{"1":"Milka Ganze Haselnüsse","2":"110022","3":"national brand"},{"1":"Bio-Toastkäse Scheiben","2":"108630","3":"private label"},{"1":"Ottakringer Bio Zwickl","2":"95639","3":"national brand"},{"1":"Vienna Coffee House Espresso","2":"94690","3":"national brand"},{"1":"Bio-Mozzarella","2":"89011","3":"private label"},{"1":"Basmati Reis","2":"87869","3":"private label"},{"1":"Bananen","2":"85599","3":"private label"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -527,12 +460,12 @@ select(music_data, top10_artist_names, top10_track_streams, top10_track_explicit
 
 
 ```r
-select(music_data, -top_10_track_release_date, -top10_track_explicit_1)
+select(sales_data, -date_most_sold, -private_label_logical)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance"},{"1":"94690","2":"French Montana","3":"explicit","4":"Hip-Hop/Rap"},{"1":"89011","2":"Calvin Harris","3":"explicit","4":"Dance"},{"1":"87869","2":"Liam Payne","3":"not explicit","4":"Pop"},{"1":"85599","2":"Lauv","3":"not explicit","4":"Pop"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer"},{"1":"94690","2":"Vienna Coffee House Espresso","3":"national brand","4":"Julius Meinl"},{"1":"89011","2":"Bio-Mozzarella","3":"private label","4":"Ja! Natürlich"},{"1":"87869","2":"Basmati Reis","3":"private label","4":"Billa Bio"},{"1":"85599","2":"Bananen","3":"private label","4":"Clever"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -541,16 +474,16 @@ Assume that you wanted to add an additional variable to the data frame. You may 
 
 
 ```r
-# Create new variable as the log of the number of streams 
-music_data$log_streams <- log(music_data$top10_track_streams) 
+# Create new variable as the log of sales
+sales_data$log_sales <- log(sales_data$top10_sales) 
 # Create an ascending count variable which might serve as an ID
-music_data$obs_number <- 1:nrow(music_data)
-head(music_data)
+sales_data$obs_number <- 1:nrow(sales_data)
+head(sales_data)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["top_10_track_release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_streams"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_sales"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -558,31 +491,42 @@ In order to add a function (e.g., `log`) of multiple existing variables to the `
 
 
 ```r
-mutate(music_data, 
-       sqrt_streams = sqrt(top10_track_streams),
-       # "%Y" extracts the year, format returns a character
-       release_year = as.integer(format(top_10_track_release_date, "%Y")) 
-       ) |>
-  select(top10_artist_names, sqrt_streams, release_year)
+music_data_new <- mutate(sales_data, 
+       sqrt_sales = sqrt(top10_sales),
+       # "%m" extracts the month, format returns a character so we convert it to integer
+       most_sales_month = as.integer(format(date_most_sold, "%m")) 
+       ) %>%
+  select(top10_product_names, sqrt_sales, most_sales_month)
+```
+
+Two other important functions of `tidyverse` help calculating important summary statistics, such as totals, averages, etc. By using `group_by` function, we can ask R to pay attention to group-specific observations (e.g., by brand, label, date, ...) to then obtain values of interest by calling `summarize`:
+
+
+```r
+sales_total <- sales_data %>% 
+  group_by(top10_brand) %>%
+  summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
+head(sales_total)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["top10_artist_names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sqrt_streams"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["release_year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Axwell /\\\\ Ingrosso","2":"404.4849","3":"2017"},{"1":"Imagine Dragons","2":"355.9312","3":"2017"},{"1":"J. Balvin","2":"347.1023","3":"2017"},{"1":"Robin Schulz","2":"331.6956","3":"2017"},{"1":"Jonas Blue","2":"329.5907","3":"2017"},{"1":"David Guetta","2":"309.2556","3":"2017"},{"1":"French Montana","2":"307.7174","3":"2017"},{"1":"Calvin Harris","2":"298.3471","3":"2017"},{"1":"Liam Payne","2":"296.4271","3":"2017"},{"1":"Lauv","2":"292.5731","3":"2017"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["top10_brand"],"name":[1],"type":["fct"],"align":["left"]},{"label":["total_sales"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["avg_sales"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Billa Bio","2":"87869","3":"87869.0"},{"1":"Clever","2":"85599","3":"85599.0"},{"1":"Ja! Natürlich","2":"487936","3":"121984.0"},{"1":"Julius Meinl","2":"94690","3":"94690.0"},{"1":"Milka","2":"110022","3":"110022.0"},{"1":"Ottakringer","2":"216119","3":"108059.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+
 
 You can also rename variables in a data frame, e.g., using the ```rename()```-function. In the following code "::" signifies that the function "rename" should be taken from the package "dplyr" (note: this package is part of the `tidyverse`). This can be useful if multiple packages have a function with the same name. Calling a function this way also means that you can access a function without loading the entire package via ```library()```.
 
 
 ```r
-music_data <- dplyr::rename(music_data, genre = top10_artist_genre, release_date = top_10_track_release_date)
-head(music_data)
+sales_data <- dplyr::rename(sales_data, brand = top10_brand)
+head(sales_data)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_streams"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_sales"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -590,13 +534,13 @@ Note that the same can be achieved using:
 
 
 ```r
-names(music_data)[names(music_data)=="genre"] <- "top10_artist_genre"
-head(music_data)
+names(sales_data)[names(sales_data)=="brand"] <- "top10_brand"
+head(sales_data)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_artist_genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_streams"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_sales"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -604,22 +548,13 @@ Or by referring to the index of the variable:
 
 
 ```r
-names(music_data)[4] <- "genre"
-head(music_data)
+names(sales_data)[4] <- "brand"
+head(sales_data)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_track_streams"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_artist_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["top10_track_explicit"],"name":[3],"type":["fct"],"align":["left"]},{"label":["genre"],"name":[4],"type":["fct"],"align":["left"]},{"label":["release_date"],"name":[5],"type":["date"],"align":["right"]},{"label":["top10_track_explicit_1"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_streams"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Axwell /\\\\ Ingrosso","3":"not explicit","4":"Dance","5":"2017-05-24","6":"FALSE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Imagine Dragons","3":"not explicit","4":"Alternative","5":"2017-06-23","6":"FALSE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"J. Balvin","3":"not explicit","4":"Latino","5":"2017-07-03","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Robin Schulz","3":"not explicit","4":"Dance","5":"2017-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Jonas Blue","3":"not explicit","4":"Dance","5":"2017-05-05","6":"FALSE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"David Guetta","3":"not explicit","4":"Dance","5":"2017-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[4],"type":["fct"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["date"],"align":["right"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_sales"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-
-<!-- TODO: change dataset, add summarize, group by -->
-
-
-<br><br>
-
-::: {.infobox_orange .hint data-latex="{hint}"}
-Note that the data handling approach explained in this chapter touches on the so-called 'base R' and 'tidyverse' dialects. There are other dialects in R, which are basically different ways of achieving the same thing. Another popular dialect in R is 'data.table', see e.g., [here](https://wetlandscapes.com/blog/a-comparison-of-r-dialects/) and [here](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/). Once you become more advanced, you may want to look into the other dialects to achieve certain tasks more efficiently. For now, it is sufficient to be aware that there are other approaches to data handling and each dialect has it's strengths and weaknesses. We will be mostly using 'base R' for the tutorial on this website.   
-:::
 

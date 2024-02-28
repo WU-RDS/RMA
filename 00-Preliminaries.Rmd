@@ -21,7 +21,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE, rownames.print = FALSE
 
 # Preliminaries
 
-This chapter provides an overview of the parameters you need to consider when planning a marketing research study. It is crucial to carefully consider these parameters *before* conducting your research because empirical studies can be costly and you need to make sure that you will be able to interpret the results from your research in the desired way. For example, in many cases marketing research is about measuring the effectiveness of a firm's marketing activities. However, quantifying the return on marketing expenditures is not a trivial task. As the nineteenth century Philadelphia retailer John Wanamaker supposedly said 
+This chapter provides an overview of the parameters you need to consider when planning a marketing research study. It is crucial to carefully consider these parameters *before* conducting your research because empirical studies can be costly and you need to make sure that you will be able to interpret the results from your research in the desired way. For example, in many cases marketing research is about measuring the effectiveness of a firm's marketing activities. However, quantifying the return on marketing expenditures is not a trivial task. As the nineteenth century Philadelphia retailer John Wanamaker supposedly said, 
 
 > "Half the money I spend on advertising is wasted;  
 > the trouble is I don't know which half."
@@ -38,9 +38,6 @@ This quote underlines the high level of uncertainty marketing managers face rega
 
 ## Marketing foundations (recap)
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/9t-eoue2YOk" frameborder="0" allowfullscreen></iframe>
-</div>
 
 You will surely have come across various definitions of the term *Marketing* during your studies. For example, the popular textbook by Kotler & Armstrong (2009) defines Marketing as: 
 
@@ -82,9 +79,6 @@ In a next step, you should identify the variables you need to consider in order 
 
 ### Choosing a research design
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/yItQ7O4NqRc" frameborder="0" allowfullscreen></iframe>
-</div>
 
 Once you have sufficient clarity on your research hypothesis, you should specify the **research design**. Research designs can be classified according to different criteria, including the data source, the method of analysis, and by the research objective (Malhotra 2010).  
 
@@ -203,9 +197,6 @@ There are some standard ways of collecting data and two of them will be discusse
 
 ##### Experimental research
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/BvZzmyld8Wc" frameborder="0" allowfullscreen></iframe>
-</div>
 
 In the last section, we saw that causal research questions are the ones that matter most to marketing managers. In our example, the question we asked was '(By how much) Can we increase the probability that a customer will make a purchase within the next month using targeted online advertising?'. In this section, we will see that experiments are a proper way of establishing a causal relationship. Or, as the famous quote by Box, Hunter, and Hunter (1978) puts is: 
  
@@ -298,9 +289,6 @@ knitr::include_graphics("./images/field_experiments_1.JPG")
 
 ##### Observational research
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/uxGJ-pEHPjw" frameborder="0" allowfullscreen></iframe>
-</div>
 
 In contrast to experimental research, in observational research the researcher observes what happens naturally, **without interfering**. In the previous section we saw that experiments are a proper way of establishing causal relationships. The question then is the following: when the most interesting research questions are causal questions and experiments are the 'gold standard' to infer causal effects, why are researchers often confronted with observational data? As the statistician Andrew Gelman (2010) puts it:
 
@@ -446,9 +434,6 @@ After deciding on the method of data collection, you need to clarify how you wil
 
 ##### Levels of measurement
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/QsKkuKpR2fM" frameborder="0" allowfullscreen></iframe>
-</div>
 
 The first distinction you need to consider pertains to the level of measurement. This step is important because the level of measurement determines what type of analysis you will be able to apply once the data has been collected. Thus, you should make sure that your plan for the data analysis is aligned with the levels of measurement of the dependent and independent variables. There are different characteristics that a scale can have:   
 
@@ -522,9 +507,6 @@ knitr::include_graphics("./images/scaling_techniques.JPG")
 
 ##### Measurement accuracy
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/TXmisb-hpeY" frameborder="0" allowfullscreen></iframe>
-</div>
 
 Once you have decided on which scale types to use, you should ensure that your measures accurately represent the variable you intended to measure. More precisely, the two goals of measurement are validity (truthfulness; i.e., our measure captures the variable we intended to measure), and reliability (consistency; i.e., the measure consistently measures the same variable). However, it is important to acknowledge that a measurement is not the true value of the characteristic of interest but rather an observation of it. Hence, the difference between the information sought by the researcher and the information generated by the measurement process is the *measurement error*. There are two types of measurement errors: 1) random error, leading to an overall less precise measurement of the variable of interest, and 2) systematic error, causing the observed value to consistently deviate from the variable of interest. Thus, the observed measurement of a variable $X$ can be expressed in terms of the deviation from the true value with respect to the random and systematic measurement errors as follows: 
 <br><br>
@@ -600,13 +582,13 @@ After discussing all the steps in the research process up to the data collection
 
 - [ ] …has an absolute zero point
 - [ ] …possesses all properties of an ordinal scale
-- [x] …can have numerical values
-- [x] …serves as a label to classify/categorize objects
+- [ ] …can have numerical values
+- [ ] …serves as a label to classify/categorize objects
 - [ ] None of the above 	
 
 **(LC1.3) Which of these statements regarding formative constructs are true?**
 
-- [x] Indicators (items) measure the cause for the change of the not directly observable construct
+- [ ] Indicators (items) measure the cause for the change of the not directly observable construct
 - [ ] Indicators (items) measure the effect of the change in a not directly observable construct
 - [ ] The indicators (items) of the scale should be highly correlated
 - [ ] Multi-item measurement is particularly important for the increase in the reliability of the measurement
@@ -617,17 +599,17 @@ After discussing all the steps in the research process up to the data collection
 - [ ] …the main concern is to generate predictions of future outcomes 
 - [ ] …the main concern is to maximize the explained variance
 - [ ] …observational research is the 'gold standard'
-- [x] …randomization minimizes unsystematic variation
+- [ ] …randomization minimizes unsystematic variation
 - [ ] None of the above 	
 
 **(LC1.5) True or false? Reliability refers to the consistency of a measurement.**
 
-- [x] True 
+- [ ] True 
 - [ ] False
 
 **(LC1.5) Using a between-subjects design, we ... **
 
-- [x] ... manipulate the independent variable (treatment) using different persons for each group
+- [ ] ... manipulate the independent variable (treatment) using different persons for each group
 - [ ] ... manipulate independent variable using the same participants for each group 
 - [ ] ... manipulate the dependent variable (treatment) using different persons for each group
 - [ ] ... manipulate dependent variable using the same participants for each group 
@@ -635,23 +617,23 @@ After discussing all the steps in the research process up to the data collection
 
 **(LC1.6) When conducting field experiments, the term crossover effect means ...**
 
-- [x] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
+- [ ] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
 - [ ] ... that a treated individual affects the outcomes for other untreated individuals  
 - [ ] ... that individuals can be part of both the test and the control condition
 - [ ] None of the above
 
 **(LC1.7) Conditions for causality are ...**
 
-- [x] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
+- [ ] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
 - [ ] ... random assignment of test units
-- [x] ... the causing event must occur before the effect
-- [x] ... absence of other possible causal factors
+- [ ] ... the causing event must occur before the effect
+- [ ] ... absence of other possible causal factors
 - [ ] None of the above
 
 **(LC1.8) The effect of the treatment on the treated in DID models can be written as ...**
 
 - [ ] $(Yt,pre - Yt,post) − (Yc,post - Yc,pre)$  
-- [x] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
+- [ ] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
 - [ ] $(Yt,pre - Yt,post) − (Yc,pre - Yc,post)$  
 - [ ] $(Yt,post - Yt,pre) − (Yc,pre - Yc,post)$  
 - [ ] None of the above
@@ -659,28 +641,28 @@ After discussing all the steps in the research process up to the data collection
 **(LC1.9) In predictive modeling tasks ...**
 
 - [ ] ... once major concern are unobserved confounders
-- [x] ... one major concern is overfitting 
-- [x] ... we primarily care about the predictive ability of the model  
+- [ ] ... one major concern is overfitting 
+- [ ] ... we primarily care about the predictive ability of the model  
 - [ ] ... we primarily care about causal effects 
 - [ ] None of the above
 
 **(LC1.10) True or false? For ordinal scales, the magnitude of difference between scale points is known**
 
 - [ ] True 
-- [x] False
+- [ ] False
 
 **(LC1.11) For which scale types is it meaningful to compute the mean?**
 
-- [x] Ratio
+- [ ] Ratio
 - [ ] Nominal
-- [x] Interval  
+- [ ] Interval  
 - [ ] Ordinal
 - [ ] None of the above
 
 **(LC1.12) In predictive modeling tasks …**
 
-- [x] … we primarily care about the predictive ability of the model
-- [x] … one major concern is overfitting
+- [ ] … we primarily care about the predictive ability of the model
+- [ ] … one major concern is overfitting
 - [ ] … we primarily care about causal effects 
 - [ ] … one major concern are unobserved confounders
 

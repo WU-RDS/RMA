@@ -1,7 +1,7 @@
 ---
 knit: "bookdown::render_book"
 new_session: TRUE
-title: "Retail Marketing Analytics 2023"
+title: "Retail Marketing Analytics 2024"
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
@@ -25,16 +25,16 @@ classoption:
 <img src="logo_rds.png" alt="logo_rds" height="140"  />
 </p>
 <br>
-Welcome to the course **Retail Marketing Analytics**! This course covers the conceptual foundations of data analysis techniques for marketing managers and applications of these methods to different data sets. The course will be delivered in parts using the **flipped classroom** teaching method. This means that students are required to familiarize themselves with the contents by means of **self-study** *before* each session (i.e., by going through the assigned materials on their own). This website is intended to aid the self-study process by providing you with explanations regarding the relevant concepts and methods in text and video format along with code files and commented outputs that will show you how to implement these methods using the **statistical software R**. 
+Welcome to the course **Retail Marketing Analytics**! This course covers the conceptual foundations of data analysis techniques for retail marketing managers and applications of these methods to different data sets. The course will be delivered in parts using the **flipped classroom** teaching method. This means that students are required to familiarize themselves with the contents by means of **self-study** *before* each session (i.e., by going through the assigned materials on their own). This website is intended to aid the self-study process by providing you with explanations regarding the relevant concepts and methods in text and video format along with code files and commented outputs that will show you how to implement these methods using the **statistical software R**. 
 <br><br>
 The self-learning process will be complemented with compulsory in-person **weekly interactive sessions** in the PC lab, which provide ample opportunities to train the acquired knowledge and clarify points that require further discussion. 
 <br><br>
 The following pages outline the course schedule and explain how to use this tutorial in detail. If you have any questions, feel free to send me a short email.
 <br>
 <br>
-Nils Wlömert
+Daria Yudaeva
 <br>
-[nils.wloemert@wu.ac.at](mailto:nils.wloemert@wu.ac.at)
+[daria.yudaeva@wu.ac.at](mailto:daria.yudaeva@wu.ac.at)
 
 
 # Introduction {-}
@@ -47,16 +47,20 @@ This course combines asynchronous teaching elements (e.g., texts and pre-recorde
 2. **Individual assignments**: the individual assignments require you to apply the acquired knowledge to new data sets.
 3. **Group project**: in the group you will design and conduct your own market research project and transfer the knowledge to a real business setting.
 
-The general approach is that students will first familiarize themselves with the contents by going through the materials on their own. This **self-study** process is complemented with in-person **weekly interactive sessions** in the PC lab, which provide ample opportunities to ask questions and clarify points that require further discussion. The schedule for each of the three parts will be explained below. 
 
 ### Schedule {-}
 
 #### In-person lecture {-}
 
-The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week.        
+The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions and quizzes, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week. Learning checks will also be performed in class as means of tracking participation as well as students' understanding of the material. 
+
+During each session except for the first one, students will be given a quiz, covering the materials assigned for that class. For example, for session 3 (Mar 21), students should prepare themselves by reviewing chapter 5 (Retail Metrics & KPIs), as outlined in the table below, as well as answering the questions in the Learning check of the respective chapter. When in class, a short recap of the material will be done, and students will have an opportunity to ask questions. After that, a short quiz will be taken. Next, the session will be continued with practical computer exercises.
+
+**Please note that for session 2 (Mar 14), you should prepare for quiz on the materials covered in session 1!** There will be no quiz on the materials of chapters 2-4.
+
 
 <br>
-**Lecture dates (5138)**
+**Lecture dates (5039)**
 <br>
 <table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
  <thead>
@@ -71,49 +75,65 @@ The contents on this website are divided into weekly readings. To be able to fol
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Oct 12 </td>
+   <td style="text-align:left;"> Mar 7 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 04:00PM - 08:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Introduction to the course <br>Basic concepts </td>
+   <td style="text-align:left;"> Introduction to the course <br>Basic concepts of research design </td>
    <td style="text-align:left;"> 1 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Oct 19 </td>
+   <td style="text-align:left;"> Mar 14 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 04:00PM - 08:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 09 </td>
+   <td style="text-align:left;"> Mar 21 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 04:00PM - 08:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Introduction to inferential statistics <br>Hypothesis testing </td>
+   <td style="text-align:left;"> Retail metrics &amp; KPIs </td>
    <td style="text-align:left;"> 5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 16 </td>
+   <td style="text-align:left;"> Apr 11 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 03:00PM - 08:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Supervised learning </td>
+   <td style="text-align:left;"> Introduction to inferential statistics </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 23 </td>
+   <td style="text-align:left;"> Apr 18 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 03:00PM - 08:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Unsupervised learning </td>
+   <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 7 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 30 </td>
+   <td style="text-align:left;"> Apr 25 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 03:00PM - 05:00PM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.-1.61 </td>
+   <td style="text-align:left;"> Supervised learning II </td>
+   <td style="text-align:left;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> May 2 </td>
+   <td style="text-align:left;"> Thursday </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.-1.61 </td>
+   <td style="text-align:left;"> Unsupervised learning </td>
+   <td style="text-align:left;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> May 16 </td>
+   <td style="text-align:left;"> Thursday </td>
+   <td style="text-align:left;"> 09:00 AM - 11:00 AM </td>
    <td style="text-align:left;"> Online </td>
    <td style="text-align:left;"> Exam </td>
    <td style="text-align:left;"> -- </td>
@@ -123,15 +143,15 @@ The contents on this website are divided into weekly readings. To be able to fol
 <br>
 
 ::: {.infobox_red .caution data-latex="{caution}"}
-We understand that the self-study format might pose challenges to the learning process because we cannot troubleshoot in person outside of the classroom sessions. Remember that it is very unlikely that you are the only student encountering a particular problem. So please make use of the forum on via Canvas (see below) to interact with your peers or ask us questions so that everyone else will benefit from the answer (there are no stupid questions!). In case you cannot get answers to address a specific problem, we will be available during the in-person classroom sessions for coaching.
+The self-study format might pose challenges to the learning process because we cannot troubleshoot in person outside of the classroom sessions. Remember that it is very unlikely that you are the only student encountering a particular problem. So please make use of the Discussions on Canvas (see below) to interact with your peers or ask me questions so that everyone else will benefit from the answer (there are no stupid questions!). In case you cannot get answers to address a specific problem, I will be available during the in-person classroom sessions for coaching.
 :::
 
 #### Individual assignments {-}
 
-There will be 3 individual assignments. These assignments need to be submitted in the [R Markdown format](https://rmarkdown.rstudio.com/) (see chapter 8) via Canvas. There will be a coaching session dedicated to the R Markdown reporting format in the second session, when the first homework is assigned. 
+There will be 3 individual assignments. These assignments need to be submitted in the [R Markdown format](https://rmarkdown.rstudio.com/) (see chapter 8) via Canvas. There will be an in-class session dedicated to the R Markdown reporting format, when the first homework is assigned. 
 
 <br>
-**Assignment schedule - Group A (2206)**
+**Assignment schedule**
 <br>
 <table style="NAborder-bottom: 0;">
  <thead>
@@ -144,18 +164,18 @@ There will be 3 individual assignments. These assignments need to be submitted i
 <tbody>
   <tr>
    <td style="text-align:left;"> Assignment 1: R Basics </td>
-   <td style="text-align:left;"> Oct 19 </td>
-   <td style="text-align:left;"> Nov 2, 11:59PM </td>
+   <td style="text-align:left;"> TBA </td>
+   <td style="text-align:left;"> TBA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Assignment 2: Supervised learning </td>
-   <td style="text-align:left;"> Nov 16 </td>
-   <td style="text-align:left;"> Nov 22, 11:59PM </td>
+   <td style="text-align:left;"> TBA </td>
+   <td style="text-align:left;"> TBA </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Assignment 3: Unsupervised learning </td>
-   <td style="text-align:left;"> Nov 23 </td>
-   <td style="text-align:left;"> Dec 7, 11:59PM </td>
+   <td style="text-align:left;"> TBA </td>
+   <td style="text-align:left;"> TBA </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -166,7 +186,7 @@ There will be 3 individual assignments. These assignments need to be submitted i
 
 #### Group project {-}
 
-The group project consists of an extended analysis of a data set using the methods we covered in the course and the reporting of the results using the R markdown format. The **submission date** for the group project is on **December 15, 2023**. 
+The group project consists of an extended analysis of a data set using the methods we covered in the course and the reporting of the results using the R markdown format. The **submission date** for the group project will be announced soon. 
 
 Again, please make sure that you have exhausted all other resources to solve a particular problem, such as the online tutorial, the forum on Canvas, and other web resources (see below) before you schedule a coaching session. If you feel that other students might have similar questions and would benefit from an answer to a particular question, you should post the question in the forum on Canvas.
 <br>
@@ -175,14 +195,13 @@ Again, please make sure that you have exhausted all other resources to solve a p
 
 Grading is based on the following components:
 
-* **Market research group project** (data analysis & reporting) [weight: 30%]
-* **Individual take-home computer exercises** (statistical analysis of data sets; 3 assignments accounting for 10% each [weight: 30%]
-* **Final online exam** (concepts & methods) [weight: 30%]
-* **Class participation** (quantity & quality of contributions during the weekly sessions, contributions in the online forum, etc.) [weight: 10%]
+* **Market research group project** (data analysis & reporting): **30%**
+* **Individual take-home computer exercises** (statistical analysis of data sets; 3 assignments accounting for 10% each: **30%**
+* **Final online exam** (concepts & methods): **30%**
+* **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
-These grading components will be weighted with the respective weights to arrive at the final grade percentage.
 
-The **final exam** will take place online on **November 30, 2023 from 03:00PM - 05:00PM**. Details about the setup of the exam will be provided in the course. The exam covers questions about the concepts and methods (no coding) and I will provide example exams from the previous years to give you an idea about what type of questions you can expect.   
+The **final exam** will take place online on **May 16, 2024 from 09:00 AM - 11:00 AM**. Details about the setup of the exam will be provided in the course. The exam covers questions about the concepts and methods (no coding) and I will provide example exams from the previous years to give you an idea about what type of questions you can expect.   
 
 To ensure an equal contribution of group members for the group assignment, a **peer assessment** will be conducted among group members, which enters into the computation of the individual grades for the project. This means that the members of a group are required to assess other students regarding their relative contribution. 
 
