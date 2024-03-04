@@ -31,7 +31,8 @@ table(tracks_scale$artist, tracks_scale$cluster)
 
 
 #retail clustering: customer segmentation
-cluster <- read.csv2("data/Mall_Customers.csv", sep = ",")
+cluster <- read.csv("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/Mall_Customers.csv", 
+                       sep = ",", header = T) 
 str(cluster)
 cluster <- cluster %>% rename("Annual_Income" = "Annual.Income..k..",
                               "Spending_Score" = "Spending.Score..1.100.")
@@ -86,8 +87,5 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score, color = cluster_num)
   geom_point() +
   geom_label(aes(label = CustomerID), hjust = "inward") +
   theme_bw()
-
-
-
 
 

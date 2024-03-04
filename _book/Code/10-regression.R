@@ -71,7 +71,7 @@ cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", 
 #-------------------------------------------------------------------#
 
 # Load and inspect data
-regression <- read.table("https://github.com/dariayudaeva/RMA2024/blob/main/data/bud_store102.csv", 
+regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv", 
                           sep = ",", 
                           header = TRUE) # read in data
 
@@ -363,7 +363,8 @@ confint(quad_mod_c)
 #-------------------------------------------------------------------#
 
 # Import data
-churn_data <- readxl::read_xlsx("data/e_commerce_data.xlsx", sheet = "E Comm")
+churn_data <- read.csv("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/e_com_data.csv", 
+                         sep = ",", header = T) 
 head(churn_data)
 str(churn_data)
 # correct the variables types

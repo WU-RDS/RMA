@@ -1,6 +1,3 @@
-# The following code is taken from the fourth chapter of the online script, which provides more detailed explanations:
-# https://imsmwu.github.io/MRDA2020/exploratory-factor-analysis.html
-
 
 #-------------------------------------------------------------------#
 #---------------------Install missing packages----------------------#
@@ -19,10 +16,9 @@ lapply(req_packages, install.packages)
 
 # Load data
 ## ------------------------------------------------------------------------
-pca_data <- read.table("https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/raq.dat", 
-                          sep = "\t", 
+pca_data <- read.csv("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/wholesale_customers_data.csv", 
+                          sep = ",", 
                           header = TRUE) #read in data
-pca_data <- read.csv2("data/wholesale_customers_data.csv", sep = ',')
 head(pca_data)
 
 # STEP 1
