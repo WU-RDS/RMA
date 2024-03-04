@@ -55,7 +55,6 @@ This course combines asynchronous teaching elements (e.g., texts and pre-recorde
 The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions and quizzes, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week. Learning checks will also be performed in class as means of tracking participation as well as students' understanding of the material. 
 
 
-
 <br>
 **Lecture dates**
 <br>
@@ -92,15 +91,15 @@ The contents on this website are divided into weekly readings. To be able to fol
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Retail metrics &amp; KPIs </td>
+   <td style="text-align:left;"> Introduction to inferential statistics </td>
    <td style="text-align:left;"> 5 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Apr 11 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Introduction to inferential statistics </td>
+   <td style="text-align:left;"> 08:30 AM - 11:00 AM / TBD </td>
+   <td style="text-align:left;"> TC.-1.61 / TBD </td>
+   <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
@@ -108,15 +107,15 @@ The contents on this website are divided into weekly readings. To be able to fol
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Supervised learning I </td>
-   <td style="text-align:left;"> 7 </td>
+   <td style="text-align:left;"> Supervised learning II </td>
+   <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Apr 25 </td>
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Supervised learning II </td>
+   <td style="text-align:left;"> Unsupervised learning I </td>
    <td style="text-align:left;"> 7 </td>
   </tr>
   <tr>
@@ -124,7 +123,7 @@ The contents on this website are divided into weekly readings. To be able to fol
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
-   <td style="text-align:left;"> Unsupervised learning </td>
+   <td style="text-align:left;"> Unsupervised learning II </td>
    <td style="text-align:left;"> 8 </td>
   </tr>
   <tr>
@@ -261,7 +260,7 @@ In case you would like to learn more about the capabilities of R related to the 
 
 ### Discussion forum {-}
 
-**We strongly encourage you to ask your questions via the online forum** on the course page on the WU learning platform. The purpose of the forum is to allow you to discuss questions related to the contents with your class mates and us. Please make use of this forum as much as possible and ask questions if something remained unclear. Remember that there are no stupid questions! And if you know the answer to a question that is asked in the forum, it is also a good exercise to explain the concepts to your classmates. 
+**I strongly encourage you to ask your questions via the online forum (Discussions section)** on Canvas. The purpose of the forum is to allow you to discuss questions related to the contents with your classmates and me. Please make use of this forum as much as possible and ask questions if something remained unclear. Remember that there are no stupid questions! And if you know the answer to a question that is asked in the forum, it is also a good exercise to explain the concepts to your classmates. 
 
 ### Other web-resources {-}
 

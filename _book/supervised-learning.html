@@ -387,17 +387,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">6</span> Supervised learning<a href="supervised-learning.html#supervised-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="linear-regression" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Linear regression<a href="supervised-learning.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="infobox download">
-<p><a href="./Code/10-regression.R">You can download the corresponding R-Code here</a></p>
-</div>
 <div id="correlation" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Correlation<a href="supervised-learning.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HeIW9_ijHF4" frameborder="0" allowfullscreen>
-</iframe>
-</div>
-<p><br></p>
 <p>Before we start with regression analysis, we will review the basic concept of correlation first. Correlation helps us to determine the degree to which the variation in one variable, X, is related to the variation in another variable, Y.</p>
 <div id="correlation-coefficient" class="section level4 hasAnchor" number="6.1.1.1">
 <h4><span class="header-section-number">6.1.1.1</span> Correlation coefficient<a href="supervised-learning.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -599,12 +590,6 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 </div>
 <div id="regression-analysis" class="section level3 hasAnchor" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Regression analysis<a href="supervised-learning.html#regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtvDHLuXUEI" frameborder="0" allowfullscreen>
-</iframe>
-</div>
-<p><br></p>
 <p>Correlations measure relationships between variables (i.e., how much two variables covary). Using regression analysis we can predict the outcome of a dependent variable (Y) from one or more independent variables (X). For example, we could be interested in how many products will we will sell if we increase the advertising expenditures by 1000 Euros? In regression analysis, we fit a model to our data and use it to predict the values of the dependent variable from one predictor variable (bivariate regression) or several predictor variables (multiple regression). The following table shows a comparison of correlation and regression analysis:</p>
 <p><br></p>
 <table>
@@ -956,12 +941,6 @@ F=\frac{\frac{SS_M}{k}}{\frac{SS_R}{(n-k-1)}}=\frac{MS_M}{MS_R}
 </div>
 <div id="multiple-linear-regression" class="section level4 hasAnchor" number="6.1.2.2">
 <h4><span class="header-section-number">6.1.2.2</span> Multiple linear regression<a href="supervised-learning.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SDB2PhHMgxg" frameborder="0" allowfullscreen>
-</iframe>
-</div>
-<p><br></p>
 <p>Multiple linear regression is a statistical technique that simultaneously tests the relationships between two or more independent variables and an interval-scaled dependent variable. The general form of the equation is given by:</p>
 <p><span class="math display" id="eq:regequ">\[\begin{equation}
 Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
@@ -1100,10 +1079,6 @@ B_{k}=\beta_{k} * \frac{s_{x_k}}{s_y}
 </div>
 <div id="categorical-predictors" class="section level3 hasAnchor" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Categorical predictors<a href="supervised-learning.html#categorical-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Zttj2HWFL2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
 <div id="two-categories" class="section level4 hasAnchor" number="6.1.3.1">
 <h4><span class="header-section-number">6.1.3.1</span> Two categories<a href="supervised-learning.html#two-categories" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Suppose, you wish to investigate the effect of the variable “country” on sales, which is a categorical variable that can only take two levels (i.e., 0 = local artist, 1 = international artist). Categorical variables with two levels are also called binary predictors. It is straightforward to include these variables in your model as “dummy” variables. Dummy variables are factor variables that can only take two values. For our “country” variable, we can create a new predictor variable that takes the form:</p>
@@ -1252,15 +1227,6 @@ Sales =\beta_0 &amp;+\beta_1*adspend\\
 </div>
 <div id="logistic-regression" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Logistic regression<a href="supervised-learning.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="infobox download">
-<p><a href="./Code/10-regression.R">You can download the corresponding R-Code here</a></p>
-</div>
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/J7T7_ulyQ0I" frameborder="0" allowfullscreen>
-</iframe>
-</div>
-<p><br></p>
 <div id="motivation-and-intuition" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Motivation and intuition<a href="supervised-learning.html#motivation-and-intuition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the last section we saw how to predict continuous outcomes (sales, height, etc.) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the probability of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a song will be a top-10 hit on a popular music streaming platform. In a first step we are going to use only the danceability index as a predictor. Later we are going to add more independent variables.</p>
@@ -1644,15 +1610,15 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 <ul class="task-list">
 <li><label><input type="checkbox" />It describes the difference in means of two variables</label></li>
 <li><label><input type="checkbox" />It describes the causal relation between two variables</label></li>
-<li><label><input type="checkbox" checked="" />It is the standardized covariance</label></li>
-<li><label><input type="checkbox" checked="" />It describes the degree to which the variation in one variable is related to the variation in another variable</label></li>
+<li><label><input type="checkbox" />It is the standardized covariance</label></li>
+<li><label><input type="checkbox" />It describes the degree to which the variation in one variable is related to the variation in another variable</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC6.2) Which line through a scatterplot produces the best fit in a linear regression model?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />The line associated with the steepest slope parameter</label></li>
-<li><label><input type="checkbox" checked="" />The line that minimizes the sum of the squared deviations of the predicted values (regression line) from the observed values</label></li>
-<li><label><input type="checkbox" checked="" />The line that minimizes the sum of the squared residuals</label></li>
+<li><label><input type="checkbox" />The line that minimizes the sum of the squared deviations of the predicted values (regression line) from the observed values</label></li>
+<li><label><input type="checkbox" />The line that minimizes the sum of the squared residuals</label></li>
 <li><label><input type="checkbox" />The line that maximizes the sum of the squared residuals</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
@@ -1660,20 +1626,20 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 <ul class="task-list">
 <li><label><input type="checkbox" />It is always larger than the regular <span class="math inline">\(R^{2}\)</span></label></li>
 <li><label><input type="checkbox" />It increases with every additional variable</label></li>
-<li><label><input type="checkbox" checked="" />It increases only with additional variables that add more explanatory power than pure chance</label></li>
-<li><label><input type="checkbox" checked="" />It contains a “penalty” for including unnecessary variables</label></li>
+<li><label><input type="checkbox" />It increases only with additional variables that add more explanatory power than pure chance</label></li>
+<li><label><input type="checkbox" />It contains a “penalty” for including unnecessary variables</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC6.4) When do you use a logistic regression model?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />When the dependent variable is continuous</label></li>
 <li><label><input type="checkbox" />When the independent and dependent variables are binary</label></li>
-<li><label><input type="checkbox" checked="" />When the dependent variable is binary</label></li>
+<li><label><input type="checkbox" />When the dependent variable is binary</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC6.5) What is the correct way to implement a linear regression model in R? (x = independent variable, y = dependent variable)?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" checked="" /><code>lm(y~x, data=data)</code></label></li>
+<li><label><input type="checkbox" /><code>lm(y~x, data=data)</code></label></li>
 <li><label><input type="checkbox" /><code>lm(x~y + error, data=data)</code></label></li>
 <li><label><input type="checkbox" /><code>lm(x~y, data=data)</code></label></li>
 <li><label><input type="checkbox" /><code>lm(y~x + error, data=data)</code></label></li>
@@ -1682,38 +1648,38 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 <p><strong>(LC6.6) Consider the output from a bivariate correlation below</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />…lower prices cause higher sales.</label></li>
-<li><label><input type="checkbox" checked="" />…lower prices are associated with higher sales and vice versa.</label></li>
+<li><label><input type="checkbox" />…lower prices are associated with higher sales and vice versa.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><img src="images/cor_table11.png" width="75%" style="display: block; margin: auto;" />
 <strong>(LC6.7) When interpreting the statistical significance of a regression coefficient, the p-value…</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />…of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 19 in 20 of getting a regression coefficient as large or larger than the estimated coefficient</label></li>
-<li><label><input type="checkbox" checked="" />…of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 1 in 20 of getting a regression coefficient as large or larger than the estimated coefficient</label></li>
-<li><label><input type="checkbox" checked="" />…of 0.05 means that the effect is statistically significant at the 5% level.</label></li>
-<li><label><input type="checkbox" checked="" />…does not tell you anything about the importance of the effect</label></li>
-<li><label><input type="checkbox" checked="" />…will get smaller, the larger the calculated value of the test statistic (t-value).</label></li>
+<li><label><input type="checkbox" />…of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 1 in 20 of getting a regression coefficient as large or larger than the estimated coefficient</label></li>
+<li><label><input type="checkbox" />…of 0.05 means that the effect is statistically significant at the 5% level.</label></li>
+<li><label><input type="checkbox" />…does not tell you anything about the importance of the effect</label></li>
+<li><label><input type="checkbox" />…will get smaller, the larger the calculated value of the test statistic (t-value).</label></li>
 </ul>
 <p><strong>(LC6.8) In which setting(s) would a regression coefficient be interpreted as “statistically significant”?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" checked="" />When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
+<li><label><input type="checkbox" />When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
 <li><label><input type="checkbox" />When the test-statistic (e.g., t-value) is lower than the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
-<li><label><input type="checkbox" checked="" />When the confidence interval associated with the test does not contain zero</label></li>
-<li><label><input type="checkbox" checked="" />When the p-value is smaller than your specified significance level (e.g., 0.05)</label></li>
+<li><label><input type="checkbox" />When the confidence interval associated with the test does not contain zero</label></li>
+<li><label><input type="checkbox" />When the p-value is smaller than your specified significance level (e.g., 0.05)</label></li>
 </ul>
 <p><strong>(LC6.9) When interpreting the significance of the coefficients in a regression model, what is the relationship between the test statistic (e.g., t-value) and the p-value?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />The lower the absolute value of the test statistic, the lower the p-value</label></li>
 <li><label><input type="checkbox" />The higher the absolute value of the test statistic, the higher the p-value</label></li>
 <li><label><input type="checkbox" />There is no connection between the test statistic and the p-value</label></li>
-<li><label><input type="checkbox" checked="" />The higher the absolute value of the test statistic, the lower the p-value</label></li>
+<li><label><input type="checkbox" />The higher the absolute value of the test statistic, the lower the p-value</label></li>
 </ul>
 <p><strong>(LC6.10) What does the term overfitting refer to?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />A regression model that fits to a specific data set so poorly, that it will not generalize to other samples</label></li>
 <li><label><input type="checkbox" />A regression model that fits to a specific data set so well, that it will generalize to other samples particularly well</label></li>
 <li><label><input type="checkbox" />A regression model that has too many predictor variables</label></li>
-<li><label><input type="checkbox" checked="" />A regression model that fits to a specific data set so well, that it will only predict well within the sample but not generalize to other samples</label></li>
+<li><label><input type="checkbox" />A regression model that fits to a specific data set so well, that it will only predict well within the sample but not generalize to other samples</label></li>
 </ul>
 </div>
 <div id="references-3" class="section level2 unnumbered hasAnchor">

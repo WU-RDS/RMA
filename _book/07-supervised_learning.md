@@ -16,17 +16,8 @@ output:
 
 ## Linear regression
 
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/10-regression.R)
-:::
-
 ### Correlation
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HeIW9_ijHF4" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 Before we start with regression analysis, we will review the basic concept of correlation first. Correlation helps us to determine the degree to which the variation in one variable, X, is related to the variation in another variable, Y. 
 
@@ -340,11 +331,6 @@ As we have already seen in chapter 1, correlation coefficients give no indicatio
 
 ### Regression analysis
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rtvDHLuXUEI" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 Correlations measure relationships between variables (i.e., how much two variables covary). Using regression analysis we can predict the outcome of a dependent variable (Y) from one or more independent variables (X). For example, we could be interested in how many products will we will sell if we increase the advertising expenditures by 1000 Euros? In regression analysis, we fit a model to our data and use it to predict the values of the dependent variable from one predictor variable (bivariate regression) or several predictor variables (multiple regression). The following table shows a comparison of correlation and regression analysis:
 
@@ -839,11 +825,6 @@ The predicted value of the dependent variable is 211 units, i.e., the product wi
 
 #### Multiple linear regression
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SDB2PhHMgxg" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 Multiple linear regression is a statistical technique that simultaneously tests the relationships between two or more independent variables and an interval-scaled dependent variable. The general form of the equation is given by:
 
@@ -1054,9 +1035,6 @@ The results show that for ```adspend``` and ```airplay```, a change by one stand
 
 ### Categorical predictors
 
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Zttj2HWFL2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 
 
@@ -1241,16 +1219,6 @@ summary(multiple_regression)  #summary of results
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
 
 ## Logistic regression
-
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/10-regression.R)
-:::
-
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/J7T7_ulyQ0I" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 
 ### Motivation and intuition
@@ -1818,15 +1786,15 @@ summary(logistf(Y ~ X))
 
 - [ ] It describes the difference in means of two variables
 - [ ] It describes the causal relation between two variables
-- [x] It is the standardized covariance
-- [x] It describes the degree to which the variation in one variable is related to the variation in another variable
+- [ ] It is the standardized covariance
+- [ ] It describes the degree to which the variation in one variable is related to the variation in another variable
 - [ ] None of the above 
 
 **(LC6.2) Which line through a scatterplot produces the best fit in a linear regression model?**
 
 - [ ] The line associated with the steepest slope parameter
-- [x] The line that minimizes the sum of the squared deviations of the predicted values (regression line) from the observed values
-- [x] The line that minimizes the sum of the squared residuals
+- [ ] The line that minimizes the sum of the squared deviations of the predicted values (regression line) from the observed values
+- [ ] The line that minimizes the sum of the squared residuals
 - [ ] The line that maximizes the sum of the squared residuals
 - [ ] None of the above 
 
@@ -1834,20 +1802,20 @@ summary(logistf(Y ~ X))
 
 - [ ] It is always larger than the regular $R^{2}$
 - [ ] It increases with every additional variable
-- [x] It increases only with additional variables that add more explanatory power than pure chance
-- [x] It contains a “penalty” for including unnecessary variables
+- [ ] It increases only with additional variables that add more explanatory power than pure chance
+- [ ] It contains a “penalty” for including unnecessary variables
 - [ ] None of the above 
 
 **(LC6.4) When do you use a logistic regression model?**
 
 - [ ] When the dependent variable is continuous
 - [ ] When the independent and dependent variables are binary
-- [x] When the dependent variable is binary
+- [ ] When the dependent variable is binary
 - [ ] None of the above 
 
 **(LC6.5) What is the correct way to implement a linear regression model in R? (x = independent variable, y = dependent variable)?**
 
-- [x] `lm(y~x, data=data)`
+- [ ] `lm(y~x, data=data)`
 - [ ] `lm(x~y + error, data=data)`
 - [ ] `lm(x~y, data=data)`
 - [ ] `lm(y~x + error, data=data)`
@@ -1856,7 +1824,7 @@ summary(logistf(Y ~ X))
 **(LC6.6) Consider the output from a bivariate correlation below**
 
 - [ ] …lower prices cause higher sales.
-- [x] …lower prices are associated with higher sales and vice versa.
+- [ ] …lower prices are associated with higher sales and vice versa.
 - [ ] None of the above
 
 
@@ -1864,31 +1832,31 @@ summary(logistf(Y ~ X))
 **(LC6.7) When interpreting the statistical significance of a regression coefficient, the p-value…**
 
 - [ ] …of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 19 in 20 of getting a regression coefficient as large or larger than the estimated coefficient
-- [x] …of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 1 in 20 of getting a regression coefficient as large or larger than the estimated coefficient
-- [x] ...of 0.05 means that the effect is statistically significant at the 5% level. 
-- [x] ...does not tell you anything about the importance of the effect
-- [x] …will get smaller, the larger the calculated value of the test statistic (t-value).
+- [ ] …of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 1 in 20 of getting a regression coefficient as large or larger than the estimated coefficient
+- [ ] ...of 0.05 means that the effect is statistically significant at the 5% level. 
+- [ ] ...does not tell you anything about the importance of the effect
+- [ ] …will get smaller, the larger the calculated value of the test statistic (t-value).
 
 **(LC6.8) In which setting(s) would a regression coefficient be interpreted as "statistically significant"?**
 
-- [x] When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)
+- [ ] When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)
 - [ ] When the test-statistic (e.g., t-value) is lower than the critical value of the test statistic at your specified significance level (e.g., 0.05)
-- [x] When the confidence interval associated with the test does not contain zero
-- [x] When the p-value is smaller than your specified significance level (e.g., 0.05)
+- [ ] When the confidence interval associated with the test does not contain zero
+- [ ] When the p-value is smaller than your specified significance level (e.g., 0.05)
 
 **(LC6.9) When interpreting the significance of the coefficients in a regression model, what is the relationship between the test statistic (e.g., t-value) and the p-value?**
 
 - [ ] The lower the absolute value of the test statistic, the lower the p-value
 - [ ] The higher the absolute value of the test statistic, the higher the p-value
 - [ ] There is no connection between the test statistic and the p-value
-- [x] The higher the absolute value of the test statistic, the lower the p-value
+- [ ] The higher the absolute value of the test statistic, the lower the p-value
 
 **(LC6.10) What does the term overfitting refer to?**
 
 - [ ] A regression model that fits to a specific data set so poorly, that it will not generalize to other samples
 - [ ] A regression model that fits to a specific data set so well, that it will generalize to other samples particularly well
 - [ ] A regression model that has too many predictor variables
-- [x] A regression model that fits to a specific data set so well, that it will only predict well within the sample but not generalize to other samples
+- [ ] A regression model that fits to a specific data set so well, that it will only predict well within the sample but not generalize to other samples
 
 ## References {-}
 
