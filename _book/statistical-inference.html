@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Statistical inference | Retail Marketing Analytics 2024</title>
+  <title>5 Statistical inference | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Statistical inference | Retail Marketing Analytics 2024" />
+  <meta property="og:title" content="5 Statistical inference | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An Introduction to Data Analytics Using R" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Statistical inference | Retail Marketing Analytics 2024" />
+  <meta name="twitter:title" content="5 Statistical inference | Retail Marketing Analytics 2024" />
   
   <meta name="twitter:description" content="An Introduction to Data Analytics Using R" />
   
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="metrics-and-kpis-in-retail.html"/>
+<link rel="prev" href="summarizing-data.html"/>
 <link rel="next" href="supervised-learning.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -56,13 +56,13 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -224,64 +224,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#learning-check-2"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#references-1"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html"><i class="fa fa-check"></i><b>5</b> Metrics and KPIs in retail</a>
+<li class="chapter" data-level="5" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>5</b> Statistical inference</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#margins-profits"><i class="fa fa-check"></i><b>5.0.1</b> Margins &amp; Profits</a></li>
-<li class="chapter" data-level="5.0.2" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#shares"><i class="fa fa-check"></i><b>5.0.2</b> Shares</a></li>
-<li class="chapter" data-level="5.0.3" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#portfolio-management"><i class="fa fa-check"></i><b>5.0.3</b> Portfolio Management</a></li>
-<li class="chapter" data-level="5.0.4" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#pricing"><i class="fa fa-check"></i><b>5.0.4</b> Pricing</a></li>
-<li class="chapter" data-level="5.0.5" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#finance"><i class="fa fa-check"></i><b>5.0.5</b> Finance</a></li>
-<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="metrics-and-kpis-in-retail.html"><a href="metrics-and-kpis-in-retail.html#references-2"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>5.1</b> If we knew it all</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>5.1.1</b> Sampling from a known population</a></li>
+<li class="chapter" data-level="5.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>5.1.2</b> Standard error of the mean</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical inference</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>6.1</b> If we knew it all</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>6.1.1</b> Sampling from a known population</a></li>
-<li class="chapter" data-level="6.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>6.1.2</b> Standard error of the mean</a></li>
+<li class="chapter" data-level="5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>5.3</b> Using what we actually know</a></li>
+<li class="chapter" data-level="5.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>5.4</b> Confidence Intervals for the Sample Mean</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-2"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.2</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>6.3</b> Using what we actually know</a></li>
-<li class="chapter" data-level="6.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>6.4</b> Confidence Intervals for the Sample Mean</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-3"><i class="fa fa-check"></i>References</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>7</b> Supervised learning</a>
+<li class="chapter" data-level="6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>6</b> Supervised learning</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression</a>
+<li class="chapter" data-level="6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear regression</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>7.1.1</b> Correlation</a></li>
-<li class="chapter" data-level="7.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Regression analysis</a></li>
-<li class="chapter" data-level="7.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>7.1.3</b> Categorical predictors</a></li>
+<li class="chapter" data-level="6.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>6.1.1</b> Correlation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Regression analysis</a></li>
+<li class="chapter" data-level="6.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>6.1.3</b> Categorical predictors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>7.2</b> Logistic regression</a>
+<li class="chapter" data-level="6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>6.2</b> Logistic regression</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>7.2.1</b> Motivation and intuition</a></li>
-<li class="chapter" data-level="7.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>7.2.2</b> Technical details of the model</a></li>
-<li class="chapter" data-level="7.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>7.2.3</b> Estimation in R</a></li>
+<li class="chapter" data-level="6.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>6.2.1</b> Motivation and intuition</a></li>
+<li class="chapter" data-level="6.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>6.2.2</b> Technical details of the model</a></li>
+<li class="chapter" data-level="6.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>6.2.3</b> Estimation in R</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-3"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8</b> Unsupervised learning</a>
+<li class="chapter" data-level="7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>7</b> Unsupervised learning</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis</a>
+<li class="chapter" data-level="7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.1</b> Principal component analysis</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>8.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Steps in factor analysis</a></li>
+<li class="chapter" data-level="7.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Steps in factor analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>8.2</b> Cluster analysis</a>
+<li class="chapter" data-level="7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>7.2</b> Cluster analysis</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>8.2.1</b> K-Means</a></li>
+<li class="chapter" data-level="7.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>7.2.1</b> K-Means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-6"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-5"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="9" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>9</b> R Markdown</a>
+<li class="chapter" data-level="8" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>8</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>9.1</b> Introduction to R Markdown</a>
+<li class="chapter" data-level="8.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>8.1</b> Introduction to R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-document"><i class="fa fa-check"></i>Creating a new R Markdown document</a></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#text-and-equations"><i class="fa fa-check"></i>Text and Equations</a></li>
@@ -289,42 +279,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#latex-math"><i class="fa fa-check"></i>LaTeX Math</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>10</b> Assignment solutions</a>
+<li class="chapter" data-level="9" data-path="assignment-solutions.html"><a href="assignment-solutions.html"><i class="fa fa-check"></i><b>9</b> Assignment solutions</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>10.1</b> Assignment 1</a>
+<li class="chapter" data-level="9.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-1"><i class="fa fa-check"></i><b>9.1</b> Assignment 1</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>10.1.1</b> Q1</a></li>
-<li class="chapter" data-level="10.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>10.1.2</b> Q2</a></li>
-<li class="chapter" data-level="10.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>10.1.3</b> Q3</a></li>
-<li class="chapter" data-level="10.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>10.1.4</b> Q4</a></li>
-<li class="chapter" data-level="10.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>10.1.5</b> Q5</a></li>
-<li class="chapter" data-level="10.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>10.1.6</b> Q6</a></li>
-<li class="chapter" data-level="10.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>10.1.7</b> Q7</a></li>
-<li class="chapter" data-level="10.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>10.1.8</b> Q8</a></li>
-<li class="chapter" data-level="10.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>10.1.9</b> Q9</a></li>
-<li class="chapter" data-level="10.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>10.1.10</b> Q10</a></li>
+<li class="chapter" data-level="9.1.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1"><i class="fa fa-check"></i><b>9.1.1</b> Q1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2"><i class="fa fa-check"></i><b>9.1.2</b> Q2</a></li>
+<li class="chapter" data-level="9.1.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3"><i class="fa fa-check"></i><b>9.1.3</b> Q3</a></li>
+<li class="chapter" data-level="9.1.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4"><i class="fa fa-check"></i><b>9.1.4</b> Q4</a></li>
+<li class="chapter" data-level="9.1.5" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q5"><i class="fa fa-check"></i><b>9.1.5</b> Q5</a></li>
+<li class="chapter" data-level="9.1.6" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q6"><i class="fa fa-check"></i><b>9.1.6</b> Q6</a></li>
+<li class="chapter" data-level="9.1.7" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q7"><i class="fa fa-check"></i><b>9.1.7</b> Q7</a></li>
+<li class="chapter" data-level="9.1.8" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q8"><i class="fa fa-check"></i><b>9.1.8</b> Q8</a></li>
+<li class="chapter" data-level="9.1.9" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q9"><i class="fa fa-check"></i><b>9.1.9</b> Q9</a></li>
+<li class="chapter" data-level="9.1.10" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q10"><i class="fa fa-check"></i><b>9.1.10</b> Q10</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>10.2</b> Assignment 2</a>
+<li class="chapter" data-level="9.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#assignment-2"><i class="fa fa-check"></i><b>9.2</b> Assignment 2</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>10.2.1</b> Q1</a></li>
-<li class="chapter" data-level="10.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>10.2.2</b> Q2</a></li>
-<li class="chapter" data-level="10.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>10.2.3</b> Q3</a></li>
-<li class="chapter" data-level="10.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>10.2.4</b> Q4</a></li>
+<li class="chapter" data-level="9.2.1" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q1-1"><i class="fa fa-check"></i><b>9.2.1</b> Q1</a></li>
+<li class="chapter" data-level="9.2.2" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q2-1"><i class="fa fa-check"></i><b>9.2.2</b> Q2</a></li>
+<li class="chapter" data-level="9.2.3" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q3-1"><i class="fa fa-check"></i><b>9.2.3</b> Q3</a></li>
+<li class="chapter" data-level="9.2.4" data-path="assignment-solutions.html"><a href="assignment-solutions.html#q4-1"><i class="fa fa-check"></i><b>9.2.4</b> Q4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>11</b> Group project</a>
+<li class="chapter" data-level="10" data-path="group-project-1.html"><a href="group-project-1.html"><i class="fa fa-check"></i><b>10</b> Group project</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>11.1</b> Data analysis</a></li>
-<li class="chapter" data-level="11.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>11.2</b> Load data</a></li>
-<li class="chapter" data-level="11.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>11.3</b> Question 1</a></li>
-<li class="chapter" data-level="11.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>11.4</b> Question 2</a></li>
-<li class="chapter" data-level="11.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>11.5</b> Question 3</a></li>
-<li class="chapter" data-level="11.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>11.6</b> Question 4</a></li>
+<li class="chapter" data-level="10.1" data-path="group-project-1.html"><a href="group-project-1.html#data-analysis"><i class="fa fa-check"></i><b>10.1</b> Data analysis</a></li>
+<li class="chapter" data-level="10.2" data-path="group-project-1.html"><a href="group-project-1.html#load-data"><i class="fa fa-check"></i><b>10.2</b> Load data</a></li>
+<li class="chapter" data-level="10.3" data-path="group-project-1.html"><a href="group-project-1.html#question-1"><i class="fa fa-check"></i><b>10.3</b> Question 1</a></li>
+<li class="chapter" data-level="10.4" data-path="group-project-1.html"><a href="group-project-1.html#question-2"><i class="fa fa-check"></i><b>10.4</b> Question 2</a></li>
+<li class="chapter" data-level="10.5" data-path="group-project-1.html"><a href="group-project-1.html#question-3"><i class="fa fa-check"></i><b>10.5</b> Question 3</a></li>
+<li class="chapter" data-level="10.6" data-path="group-project-1.html"><a href="group-project-1.html#question-4"><i class="fa fa-check"></i><b>10.6</b> Question 4</a></li>
 </ul></li>
 <li class="part"><span><b>IV FAQ</b></span></li>
-<li class="chapter" data-level="12" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>12</b> FAQ</a>
+<li class="chapter" data-level="11" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>11</b> FAQ</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>12.1</b> Common error messages</a>
+<li class="chapter" data-level="11.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>11.1</b> Common error messages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#a-general-note-on-error-messages"><i class="fa fa-check"></i>A general note on error messages</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-filefile-rt-cannot-open-the-connection"><i class="fa fa-check"></i>Error in file(file, “rt”): cannot open the connection</a></li>
@@ -335,46 +325,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-could-not-find-function-function"><i class="fa fa-check"></i>Error in CALL: could not find function “FUNCTION”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-incorrect-number-of-dimension"><i class="fa fa-check"></i>Error in CALL: incorrect number of dimension</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>12.2</b> Installation of R packages</a>
+<li class="chapter" data-level="11.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>11.2</b> Installation of R packages</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-are-the-different-ways-to-install-r-packages"><i class="fa fa-check"></i>What are the different ways to install R packages?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-packages-due-to-error-in-contrib.urlrepossource-or-warning-message-package-packagename-is-not-available-for-this-version-of-r"><i class="fa fa-check"></i>I cannot install packages due to “Error in contrib.url(repos,”source”)” or “Warning message: package ‘PACKAGENAME’ is not available for this version of R”</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-libraries-with-graphical-output-e.g.-summarytools-magick-fail-to-installload-properly-on-macos"><i class="fa fa-check"></i>Some libraries with graphical output (e.g., summarytools, magick) fail to install/load properly on MacOS</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-some-packages-on-macos"><i class="fa fa-check"></i>I cannot install some packages on MacOS</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>12.3</b> Issues with statistics and data</a>
+<li class="chapter" data-level="11.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>11.3</b> Issues with statistics and data</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-does-a-multi-item-scale-lead-to-increased-reliability"><i class="fa fa-check"></i>Why does a multi-item scale lead to increased reliability?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-can-demeaningstandardization-lead-to-missing-values"><i class="fa fa-check"></i>Why can demeaning/standardization lead to missing values?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#the-confidence-interval-ci-of-the-mean-seems-very-small-compared-to-the-dispersion-of-my-sample.-can-this-be-correct"><i class="fa fa-check"></i>The confidence interval (CI) of the mean seems very small compared to the dispersion of my sample. Can this be correct?</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>12.4</b> Errors related to specific methods</a>
+<li class="chapter" data-level="11.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>11.4</b> Errors related to specific methods</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression-1"><i class="fa fa-check"></i>Logistic regression</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#when-using-logistic-regression-error-in-weights-y-non-numeric-argument-to-binary-operator"><i class="fa fa-check"></i>When using logistic regression: Error in weights * y : non-numeric argument to binary operator</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>12.5</b> General settings and options</a>
+<li class="chapter" data-level="11.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>11.5</b> General settings and options</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#numbers-are-formatted-weirdly"><i class="fa fa-check"></i>Numbers are formatted weirdly</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>12.6</b> Data visualization/output issues</a>
+<li class="chapter" data-level="11.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>11.6</b> Data visualization/output issues</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-the-geom-colors-in-a-ggplot-be-changed"><i class="fa fa-check"></i>How can the <code>geom</code> colors in a <code>ggplot</code> be changed?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-are-some-histograms-displayed-differently"><i class="fa fa-check"></i>Why are some histograms displayed differently?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-labels-in-plots-are-cut-off.-how-can-i-extend-the-plot-margins"><i class="fa fa-check"></i>Some labels in plots are cut off. How can I extend the plot margins?</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>12.7</b> Issues with functions and function arguments</a>
+<li class="chapter" data-level="11.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>11.7</b> Issues with functions and function arguments</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#problems-with-factor-and-as.factor"><i class="fa fa-check"></i>Problems with <code>factor</code> and <code>as.factor</code></a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-find-an-explanation-of-the-output-of-a-function"><i class="fa fa-check"></i>How can I find an explanation of the output of a function?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-the-margin-argument-do"><i class="fa fa-check"></i>What does the <code>MARGIN</code> argument do?</a></li>
 </ul></li>
-<li class="chapter" data-level="12.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>12.8</b> Issues with R Markdown</a>
+<li class="chapter" data-level="11.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>11.8</b> Issues with R Markdown</a>
 <ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-get-an-error-when-knitting-to-pdf-but-it-works-for-html"><i class="fa fa-check"></i>I get an error when <code>knit</code>ting to PDF but it works for HTML</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-am-not-sure-where-r-code-latex-math-and-text-go"><i class="fa fa-check"></i>I am not sure where R-code, LaTeX math, and text go</a></li>
 </ul></li>
-<li class="chapter" data-level="12.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>12.9</b> New questions</a></li>
+<li class="chapter" data-level="11.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>11.9</b> New questions</a></li>
 </ul></li>
 </ul>
 
@@ -393,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="statistical-inference" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">6</span> Statistical inference<a href="statistical-inference.html#statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="statistical-inference" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Statistical inference<a href="statistical-inference.html#statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter will provide you with a basic intuition on statistical inference. As marketing researchers we are usually faced with “imperfect” data in the sense that we cannot collect <strong>all</strong> the data we would like. Imagine you are interested in the average amount of time WU students spend listening to music every month. Ideally, we could force all WU students to fill out our survey. Realistically we will only be able to observe a small fraction of students (maybe 500 out of the <span class="math inline">\(25.000+\)</span>). With the data from this small fraction at hand, we want to make an inference about the true average listening time of all WU students. We are going to start with the assumption that we know everything. That is, we first assume that we know all WU students’ listening times and analyze the distribution of the listening time in the entire population. Subsequently, we are going to look at the uncertainty that is introduced by only knowing some of the students’ listening times (i.e., a sample from the population) and how that influences our analysis.</p>
-<div id="if-we-knew-it-all" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> If we knew it all<a href="statistical-inference.html#if-we-knew-it-all" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="if-we-knew-it-all" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> If we knew it all<a href="statistical-inference.html#if-we-knew-it-all" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Assume there are <span class="math inline">\(25,000\)</span> students at WU and every single one has kindly provided us with the hours they listened to music in the past month. Using the code below, the <code>rnorm()</code> function will be used to generate 25,000 observations from a normal distribution with a mean of 50 and a standard deviation of 10. Although you might not be used to working with this type of simulated (i.e., synthetic) data, it is useful when explaining statistical concepts because the properties of the data are known. In this case, for example, we know the true mean (<span class="math inline">\(49.93\)</span> hours) and the true standard deviation (SD = <span class="math inline">\(10.02\)</span>) and thus we can easily summarize the entire distribution. Since the data follows a normal distribution, roughly 95% of the values lie within 2 standard deviations from the mean, as the following plot shows:</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="statistical-inference.html#cb181-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb181-2"><a href="statistical-inference.html#cb181-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -420,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb181-19"><a href="statistical-inference.html#cb181-19" tabindex="-1"></a>     <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">&quot;inches&quot;</span>))) <span class="sc">+</span></span>
 <span id="cb181-20"><a href="statistical-inference.html#cb181-20" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">mean</span>(hours) <span class="sc">+</span> <span class="dv">28</span>, <span class="at">y =</span> <span class="dv">1100</span>, <span class="at">label =</span> <span class="st">&quot;Mean + 2 * SD&quot;</span> )<span class="sc">+</span></span>
 <span id="cb181-21"><a href="statistical-inference.html#cb181-21" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">mean</span>(hours) <span class="sc">-</span><span class="dv">28</span>, <span class="at">y =</span> <span class="dv">1100</span>, <span class="at">label =</span> <span class="st">&quot;Mean - 2 * SD&quot;</span> )</span></code></pre></div>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <div class="infobox_orange hint">
 <p>Notice the <code>set.seed()</code> function we used in the code above. By specifying the seed, we can make sure that the results will be the same as here on the website when you execute the code on your computer. Otherwise, you would end up with a slightly different data set since the observations are generated randomly from the normal distribution.</p>
 </div>
@@ -467,8 +457,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Using this notation, <span class="math inline">\(N\)</span> refers to the number of observations in the entire population (i.e., 25,000 in our example) and <span class="math inline">\(n\)</span> refers to a subset of the population (i.e., a sample). As you can see, we will use different Greek letters to denote the sample statistics and the population parameters. Another difference, you might have noticed is that in the computation of the sample variance, we divide by <span class="math inline">\(n-1\)</span>, not <span class="math inline">\(n\)</span>. This is also know as the <em>‘Bessel’s correction’</em> and it corrects the bias in the estimation of the population variance based on a sample. More specifically, due to the correction, the corrected variance will be larger, since the denominator gets smaller by subtracting 1. This is done because the variance will most of the time be smaller when calculated using the sum of squared deviations from the sample mean, compared to using the sum of deviations from the population mean. The intuition is that, the larger your sample is, the more likely it is to get more population-representative points. Or, to put it another way, it is less likely to get a sample mean which results in differences which are too small. Thus, the larger your sample size <span class="math inline">\(n\)</span>, the less of a correction you need and, hence, the smaller the impact the correction component will be.</p>
-<div id="sampling-from-a-known-population" class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Sampling from a known population<a href="statistical-inference.html#sampling-from-a-known-population" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sampling-from-a-known-population" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Sampling from a known population<a href="statistical-inference.html#sampling-from-a-known-population" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the first step towards a realistic research setting, let us take one sample from this population and calculate the mean listening time. We can simply sample the row numbers of students and then subset the <code>hours</code> vector with the sampled row numbers. The <code>sample()</code> function will be used to draw a sample of size 100 from the population of 25,000 students, and one student can only be drawn once (i.e., <code>replace = FALSE</code>). The following plot shows the distribution of listening times for our sample.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="statistical-inference.html#cb182-1" tabindex="-1"></a>student_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25000</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb182-2"><a href="statistical-inference.html#cb182-2" tabindex="-1"></a>sample_1 <span class="ot">&lt;-</span> hours[student_sample]</span>
@@ -477,44 +467,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb182-5"><a href="statistical-inference.html#cb182-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Hours&quot;</span>) <span class="sc">+</span></span>
 <span id="cb182-6"><a href="statistical-inference.html#cb182-6" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(sample_1)), <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb182-7"><a href="statistical-inference.html#cb182-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">TeX</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Distribution of listening times ($</span><span class="sc">\\</span><span class="st">bar{x}$ = %.2f)&quot;</span>,<span class="fu">round</span>(<span class="fu">mean</span>(sample_1),<span class="dv">2</span>))))</span></code></pre></div>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Observe that in this first draw the mean (<span class="math inline">\(\bar x =\)</span> 49.67) is quite close to the actual mean (<span class="math inline">\(\mu =\)</span> 49.93). It seems like the sample mean is a decent estimate of the population mean. However, we could just be lucky this time and the next sample could turn out to have a different mean. Let us continue by looking at four additional random samples, consisting of 100 students each. The following plot shows the distribution of listening times for the four different samples from the population.</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>It becomes clear that the mean is slightly different for each sample. This is referred to as <strong>sampling variation</strong> and it is completely fine to get a slightly different mean every time we take a sample. We just need to find a way of expressing the uncertainty associated with the fact that we only have data from one sample, because in a realistic setting you are most likely only going to have access to a single sample.</p>
 <p>So in order to make sure that the first draw is not just pure luck and the sample mean is in fact a good estimate for the population mean, let us take <strong>many</strong> (e.g., <span class="math inline">\(20,000\)</span>) different samples from the population. That is, we repeatedly draw 100 students randomly from the population without replacement (that is, once a student has been drawn she or he is removed from the pool and cannot be drawn again) and calculate the mean of each sample. This will show us a range within which the sample mean of any sample we take is likely going to be. We are going to store the means of all the samples in a matrix and then plot a histogram of the means to observe the likely values.</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>As you can see, on average the sample mean (“mean of sample means”) is extremely close to the population mean, despite only sampling <span class="math inline">\(100\)</span> people at a time. This distribution of sample means is also referred to as <strong>sampling distribution</strong> of the sample mean. However, there is some uncertainty, and the means are slightly different for the different samples and range from 45.95 to 54.31.</p>
 </div>
-<div id="standard-error-of-the-mean" class="section level3 hasAnchor" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Standard error of the mean<a href="statistical-inference.html#standard-error-of-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="standard-error-of-the-mean" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Standard error of the mean<a href="statistical-inference.html#standard-error-of-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Due to the variation in the sample means shown in our simulation, it is never possible to say exactly what the population mean is based on a single sample. However, even with a single sample we can infer a range of values within which the population mean is likely contained. In order to do so, notice that the sample means are approximately normally distributed. Another interesting fact is that the mean of sample means (i.e., 49.94) is roughly equal to the population mean (i.e., 49.93). This tells us already that generally the sample mean is a good approximation of the population mean. However, in order to make statements about the expected range of possible values, we would need to know the standard deviation of the sampling distribution. The formal representation of the standard deviation of the sample means is</p>
 <p><span class="math display">\[
 \sigma_{\bar x} = {\sigma \over \sqrt{n}}
 \]</span></p>
 <p>where <span class="math inline">\(\sigma\)</span> is the population SD and <span class="math inline">\(n\)</span> is the sample size. <span class="math inline">\(\sigma_{\bar{x}}\)</span> is referred to as the <strong>Standard Error</strong> of the mean and it expresses the variation in sample means we should expect given the number of observations in our sample and the population SD. That is, it provides a measure of how precisely we can estimate the population mean from the sample mean.</p>
-<div id="sample-size" class="section level4 hasAnchor" number="6.1.2.1">
-<h4><span class="header-section-number">6.1.2.1</span> Sample size<a href="statistical-inference.html#sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="sample-size" class="section level4 hasAnchor" number="5.1.2.1">
+<h4><span class="header-section-number">5.1.2.1</span> Sample size<a href="statistical-inference.html#sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The first thing to notice here is that an increase in the <strong>number of observations per sample</strong> <span class="math inline">\(n\)</span> decreases the range of possible sample means (i.e., the standard error). This makes intuitive sense. Think of the two extremes: sample size <span class="math inline">\(1\)</span> and sample size <span class="math inline">\(25,000\)</span>. With a single person in the sample we do not gain a lot of information and our estimate is very uncertain, which is expressed through a larger standard deviation. Looking at the histogram at the beginning of this chapter showing the number of students for each of the listening times, clearly we would get values below <span class="math inline">\(25\)</span> or above <span class="math inline">\(75\)</span> for some samples. This is way farther away from the population mean than the minimum and the maximum of our <span class="math inline">\(100\)</span> person samples. On the other hand, if we sample every student we get the population mean every time and thus we do not have any uncertainty (assuming the population does not change). Even if we only sample, say <span class="math inline">\(24,000\)</span> people every time, we gain a lot of information about the population and the sample means would not be very different from each other since only up to <span class="math inline">\(1,000\)</span> people are potentially different in any given sample. Thus, with larger (smaller) samples, there is less (more) uncertainty that the sample is a good approximation of the entire population. The following plot shows the relationship between the sample size and the standard error. Samples of increasing size are randomly drawn from the population of WU students. You can see that the standard error is decreasing with the number of observations.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="07-statistical_inference_files/figure-html/unnamed-chunk-6-1.png" alt="Relationship between the sample size and the standard error" width="672" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-6-1.png" alt="Relationship between the sample size and the standard error" width="672" />
 <p class="caption">
-Figure 6.1: Relationship between the sample size and the standard error
+Figure 5.1: Relationship between the sample size and the standard error
 </p>
 </div>
 <p>The following plots show the relationship between the sample size and the standard error in a slightly different way. The plots show the range of sample means resulting from the repeated sampling process for different sample sizes. Notice that the more students are contained in the individual samples, the less uncertainty there is when estimating the population mean from a sample (i.e., the possible values are more closely centered around the mean). So when the sample size is small, the sample mean can expected to be very different the next time we take a sample. When the sample size is large, we can expect the sample means to be more similar every time we take a sample.</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>As you can see, the standard deviation of the sample means (<span class="math inline">\(\sigma_{\bar x}\)</span>) decreases as the sample size increases as a consequence of the reduced uncertainty about the true sample mean when we take larger samples.</p>
 </div>
-<div id="population-standard-deviation" class="section level4 hasAnchor" number="6.1.2.2">
-<h4><span class="header-section-number">6.1.2.2</span> Population standard deviation<a href="statistical-inference.html#population-standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="population-standard-deviation" class="section level4 hasAnchor" number="5.1.2.2">
+<h4><span class="header-section-number">5.1.2.2</span> Population standard deviation<a href="statistical-inference.html#population-standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A second factor determining the standard deviation of the distribution of sample means (<span class="math inline">\(\sigma_{\bar x}\)</span>) is the standard deviation associated with the population parameter (<span class="math inline">\(\sigma\)</span>). Again, looking at the extremes illustrates this well. If all WU students listened to music for approximately the same amount of time, the samples would not differ much from each other. In other words, if the standard deviation in the population is lower, we expect the standard deviation of the sample means to be lower as well. This is illustrated by the following plots.</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>In the first plot (panel A), we assume a much smaller population standard deviation (e.g., <span class="math inline">\(\sigma\)</span> = 1 instead of <span class="math inline">\(\sigma\)</span> = 10). Notice how the smaller (larger) the population standard deviation, the less (more) uncertainty there is when estimating the population mean from a sample (i.e., the possible values are more closely centered around the mean). So when the population SD is large, the sample mean can expected to be very different the next time we take a sample. When the population SD is small, we can expect the sample means to be more similar.</p>
 </div>
 </div>
 </div>
-<div id="the-central-limit-theorem" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> The Central Limit Theorem<a href="statistical-inference.html#the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-central-limit-theorem" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> The Central Limit Theorem<a href="statistical-inference.html#the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The attentive reader might have noticed that the population above was generated using a normal distribution function. It would be very restrictive if we could only analyze populations whose values are normally distributed. Furthermore, we are unable in reality to check whether the population values are normally distributed since we do not know the entire population. However, it turns out that the results generalize to many other distributions. This is described by the <strong>Central Limit Theorem</strong>.</p>
 <p>The central limit theorem states that if <strong>(1)</strong> the population distribution has a mean (there are examples of distributions that don’t have a mean , but we will ignore these here), and <strong>(2)</strong> we take a large enough sample, then the sampling distribution of the sample mean is approximately normally distributed. What exactly “large enough” means depends on the setting, but the interactive element at the end of this chapter illustrates how the sample size influences how accurately we can estimate the population parameters from the sample statistics.</p>
 <p>To illustrate this, let’s repeat the analysis above with a population from a gamma distribution. In the previous example, we assumed a normal distribution so it was more likely for a given student to spend around 50 hours per week listening to music. The following example depicts the case in which most students spend a similar amount of time listening to music, but there are a few students who very rarely listen to music, and some music enthusiasts with a very high level of listening time. In the following code, we will use the <code>rgamma()</code> function to generate 25,000 random observations from the gamma distribution. The gamma distribution is specified by shape and scale parameters instead of the mean and standard deviation of the normal distribution. Here is a histogram of the listening times in the population:</p>
@@ -527,17 +517,17 @@ Figure 6.1: Relationship between the sample size and the standard error
 <span id="cb183-7"><a href="statistical-inference.html#cb183-7" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">TeX</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Population mean ($</span><span class="sc">\\</span><span class="st">mu$) = %.2f; population standard deviation ($</span><span class="sc">\\</span><span class="st">sigma$) = %.2f&quot;</span>,<span class="fu">round</span>(<span class="fu">mean</span>(hours),<span class="dv">2</span>),<span class="fu">round</span>(<span class="fu">sd</span>(hours),<span class="dv">2</span>))),</span>
 <span id="cb183-8"><a href="statistical-inference.html#cb183-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Number of students&#39;</span>, </span>
 <span id="cb183-9"><a href="statistical-inference.html#cb183-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Hours&#39;</span>) </span></code></pre></div>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The vertical black line represents the population mean (<span class="math inline">\(\mu\)</span>), which is 19.98 hours. The following plot depicts the histogram of listening times of four random samples from the population, each consisting of 100 students:</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>As in the previous example, the mean is slightly different every time we take a sample due to sampling variation. Also note that the distribution of listening times no longer follows a normal distribution as a result of the fact that we now assume a gamma distribution for the population with a positive skew (i.e., lower values more likely, higher values less likely).</p>
 <p>Let’s see what happens to the distribution of sample means if we take an increasing number of samples, each drawn from the same gamma population:</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Two things are worth noting: <strong>(1)</strong> The more (hypothetical) samples we take, the more the sampling distribution approaches a normal distribution. <strong>(2)</strong> The mean of the sampling distribution of the sample mean (<span class="math inline">\(\mu_{\bar x}\)</span>) is very similar to the population mean (<span class="math inline">\(\mu\)</span>). From this we can see that the mean of a sample is a good estimate of the population mean.</p>
 <p>In summary, it is important to distinguish two types of variation: <strong>(1)</strong> For each individual sample that we may take in real life, the standard deviation (<span class="math inline">\(s\)</span>) is used to describe the <strong>natural variation</strong> in the data and the data may follow a non-normal distribution. <strong>(2)</strong> If we would (hypothetically!) repeat the study many times, the sampling distribution of the sample mean follows a normal distribution for large samples sizes (even if data from each individual study are non-normal), and the standard error (<span class="math inline">\(\sigma_{\bar x}\)</span>) is used to describe the <strong>variation between study results</strong>. This is an important feature, since many statistical tests assume that the sampling distribution is normally distributed. As we have seen, this does <strong>not</strong> mean that the data from one particular sample needs to follow a normal distribution.</p>
 </div>
-<div id="using-what-we-actually-know" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Using what we actually know<a href="statistical-inference.html#using-what-we-actually-know" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-what-we-actually-know" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Using what we actually know<a href="statistical-inference.html#using-what-we-actually-know" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far we have assumed to know the population standard deviation (<span class="math inline">\(\sigma\)</span>). This an unrealistic assumption since we do not know the entire population. The best guess for the population standard deviation we have is the sample standard deviation, denoted <span class="math inline">\(s\)</span>. Thus, the standard error of the mean is usually estimated from the sample standard deviation:</p>
 <p><span class="math display">\[
 \sigma_{\bar x} \approx SE_{\bar x}={s \over \sqrt{n}}
@@ -547,8 +537,8 @@ Figure 6.1: Relationship between the sample size and the standard error
 <iframe src="https://learn.wu.ac.at/shiny/imsm/clt/" style="border: none; width: 800px; height: 1265px">
 </iframe>
 </div>
-<div id="confidence-intervals-for-the-sample-mean" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Confidence Intervals for the Sample Mean<a href="statistical-inference.html#confidence-intervals-for-the-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="confidence-intervals-for-the-sample-mean" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Confidence Intervals for the Sample Mean<a href="statistical-inference.html#confidence-intervals-for-the-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When we try to estimate parameters of populations (e.g., the population mean <span class="math inline">\(\mu\)</span>) from a sample, the average value from a sample (e.g., the sample mean <span class="math inline">\(\bar x\)</span>) only provides an estimate of what the real population parameter is. The next time you collect a sample of the same size, you could get a different average. This is sampling variation and it is completely fine to get a slightly different sample mean every time we take a sample as we have seen above. However, this inherent uncertainty about the true population parameter means that coming up with an exact estimate (i.e., a <strong>point estimate</strong>) for a particular population parameter is really difficult. That is why it is often informative to construct a range around that statistic (i.e., an <strong>interval estimate</strong>) that likely contains the population parameter with a certain level of confidence. That is, we construct an interval such that for a large share (say 95%) of the sample means we could potentially get, the population mean is within that interval.</p>
 <p>Let us consider one random sample of 100 students from our population above.</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="statistical-inference.html#cb184-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">321</span>)</span>
@@ -565,7 +555,7 @@ Figure 6.1: Relationship between the sample size and the standard error
 <span id="cb184-12"><a href="statistical-inference.html#cb184-12" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(hours_s)), <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb184-13"><a href="statistical-inference.html#cb184-13" tabindex="-1"></a> <span class="fu">ggtitle</span>(<span class="fu">TeX</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Random sample; $n$ = %d; $</span><span class="sc">\\</span><span class="st">bar{x}$ = %.2f; $s$ = %.2f&quot;</span>,sample_size,<span class="fu">round</span>(<span class="fu">mean</span>(hours_s),<span class="dv">2</span>),<span class="fu">round</span>(<span class="fu">sd</span>(hours_s),<span class="dv">2</span>))))</span>
 <span id="cb184-14"><a href="statistical-inference.html#cb184-14" tabindex="-1"></a>plot2</span></code></pre></div>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 <p>From the central limit theorem we know that the sampling distribution of the sample mean is approximately normal and we know that for the normal distribution, 95% of the values lie within about 2 standard deviations from the mean. Actually, it is not exactly 2 standard deviations from the mean. To get the exact number, we can use the quantile function for the normal distribution <code>qnorm()</code>:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="statistical-inference.html#cb185-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
@@ -589,13 +579,13 @@ CI_{upper} = {\bar x} + z_{1-{\alpha \over 2}} * \sigma_{\bar x}
 <p>Note the correct interpretation of the confidence interval: If we’d collected 100 samples, calculated the mean and then calculated a confidence interval for that mean, then, for 95 of these samples, the confidence intervals we constructed would contain the true value of the mean in the population.</p>
 </div>
 <p>This is illustrated in the plot below that shows the mean of the first 100 samples and their confidence intervals:</p>
-<p><img src="07-statistical_inference_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
+<p><img src="06-statistical_inference_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
 <div class="infobox_red caution">
 <p>Note that this does <strong>not</strong> mean that for a specific sample there is a <span class="math inline">\(95\%\)</span> chance that the population mean lies within its confidence interval. The statement depends on the large number of samples we do not actually draw in a real setting. You can view the set of all possible confidence intervals similarly to the sides of a coin or a die. If we throw a coin many times, we are going to observe head roughly half of the times. This does not, however, exclude the possibility of observing tails for the first 10 throws. Similarly, any specific confidence interval might or might not include the population mean but if we take many samples on average <span class="math inline">\(95\%\)</span> of the confidence intervals are going to include the population mean.</p>
 </div>
 </div>
-<div id="learning-check-4" class="section level2 unnumbered hasAnchor">
-<h2>Learning check<a href="statistical-inference.html#learning-check-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-check-3" class="section level2 unnumbered hasAnchor">
+<h2>Learning check<a href="statistical-inference.html#learning-check-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>(LC5.1) What is the correct interpretation of a confidence interval for a significance level of <span class="math inline">\(\alpha\)</span>=0.05?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.</label></li>
@@ -659,8 +649,8 @@ CI_{upper} = {\bar x} + z_{1-{\alpha \over 2}} * \sigma_{\bar x}
 <li><label><input type="checkbox" />3.210</label></li>
 </ul>
 </div>
-<div id="references-3" class="section level2 unnumbered hasAnchor">
-<h2>References<a href="statistical-inference.html#references-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="references-2" class="section level2 unnumbered hasAnchor">
+<h2>References<a href="statistical-inference.html#references-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Field, A., Miles J., &amp; Field, Z. (2012). Discovering Statistics Using R. Sage Publications.</li>
 <li>Malhotra, N. K.(2010). Marketing Research: An Applied Orientation (6th. ed.). Prentice Hall.</li>
@@ -674,7 +664,7 @@ CI_{upper} = {\bar x} + z_{1-{\alpha \over 2}} * \sigma_{\bar x}
           </div>
         </div>
       </div>
-<a href="metrics-and-kpis-in-retail.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="supervised-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

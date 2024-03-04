@@ -6,25 +6,11 @@ output: html_document
 
 # Statistical inference
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8UK4-A3EFHo" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
-
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/05-statistical_inference.R)
-:::
 
 This chapter will provide you with a basic intuition on statistical inference. As marketing researchers we are usually faced with "imperfect" data in the sense that we cannot collect **all** the data we would like. Imagine you are interested in the average amount of time WU students spend listening to music every month. Ideally, we could force all WU students to fill out our survey. Realistically we will only be able to observe a small fraction of students (maybe 500 out of the $25.000+$). With the data from this small fraction at hand, we want to make an inference about the true average listening time of all WU students. We are going to start with the assumption that we know everything. That is, we first assume that we know all WU students' listening times and analyze the distribution of the listening time in the entire population. Subsequently, we are going to look at the uncertainty that is introduced by only knowing some of the students' listening times (i.e., a sample from the population) and how that influences our analysis.
 
 ## If we knew it all 
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/In7KazRGA2I" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 Assume there are $25,000$ students at WU and every single one has kindly provided us with the hours they listened to music in the past month. Using the code below, the ```rnorm()``` function will be used to generate 25,000 observations from a normal distribution with a mean of 50 and a standard deviation of 10. Although you might not be used to working with this type of simulated (i.e., synthetic) data, it is useful when explaining statistical concepts because the properties of the data are known. In this case, for example, we know the true mean ($49.93$ hours) and the true standard deviation (SD = $10.02$) and thus we can easily summarize the entire distribution. Since the data follows a normal distribution, roughly 95% of the values lie within 2 standard deviations from the mean, as the following plot shows:
 
@@ -74,11 +60,6 @@ Using this notation, $N$ refers to the number of observations in the entire popu
 
 ### Sampling from a known population
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qTqI1A9hXyo" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 In the first step towards a realistic research setting, let us take one sample from this population and calculate the mean listening time. We can simply sample the row numbers of students and then subset the ```hours``` vector with the sampled row numbers. The ```sample()``` function will be used to draw a sample of size 100 from the population of 25,000 students, and one student can only be drawn once (i.e., ```replace = FALSE```). The following plot shows the distribution of listening times for our sample.
 
@@ -193,11 +174,6 @@ We will not go into detail about the importance of random samples but basically 
 
 ## Confidence Intervals for the Sample Mean
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zitmV6w0T4o" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 When we try to estimate parameters of populations (e.g., the population mean $\mu$) from a sample, the average value from a sample (e.g., the sample mean $\bar x$) only provides an estimate of what the real population parameter is. The next time you collect a sample of the same size, you could get a different average. This is sampling variation and it is completely fine to get a slightly different sample mean every time we take a sample as we have seen above. However, this inherent uncertainty about the true population parameter means that coming up with an exact estimate (i.e., a **point estimate**) for a particular population parameter is really difficult. That is why it is often informative to construct a range around that statistic (i.e., an **interval estimate**) that likely contains the population parameter with a certain level of confidence. That is, we construct an interval such that for a large share (say 95%) of the sample means we could potentially get, the population mean is within that interval.
 
@@ -285,7 +261,7 @@ Note that this does **not** mean that for a specific sample there is a $95\%$ ch
 
 **(LC5.1) What is the correct interpretation of a confidence interval for a significance level of $\alpha$=0.05?**
 
-- [x] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.
+- [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.
 - [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 5% of these intervals.
 - [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 100% of these intervals.
 - [ ] For a given sample, there is a 95% chance that the true population mean lies within the confidence interval.
@@ -293,25 +269,25 @@ Note that this does **not** mean that for a specific sample there is a $95\%$ ch
 **(LC5.2) Which statements regarding standard error are TRUE?**
 
 - [ ] There is no connection between the standard deviation and the standard error.
-- [x] The standard error is a function of the sample size and the standard deviation.
-- [x] The standard error of the mean decreases as the sample size increases.
-- [x] The standard error of the mean increases as the standard deviation increases.
+- [ ] The standard error is a function of the sample size and the standard deviation.
+- [ ] The standard error of the mean decreases as the sample size increases.
+- [ ] The standard error of the mean increases as the standard deviation increases.
 - [ ] None of the above 	
 
 **(LC5.3) What is the correct definition for the standard error ($SE_{\bar x}$)?**
 
-- [x] ${s \over \sqrt{n}}$
+- [ ] ${s \over \sqrt{n}}$
 - [ ] ${s * \sqrt{n}}$
-- [x] ${\sqrt{s^2} \over \sqrt{n}}$
+- [ ] ${\sqrt{s^2} \over \sqrt{n}}$
 - [ ] ${\sqrt{s} \over n}$
 - [ ] None of the above 	
 
 **(LC5.4) Which of the following do you need to compute a confidence interval around a sample mean?**
 
-- [x] The critical value of the test statistic given a certain level of confidence 
-- [x] A continuous variable (i.e., at least measured at the interval level) 
-- [x] The sample the mean
-- [x] The standard error
+- [ ] The critical value of the test statistic given a certain level of confidence 
+- [ ] A continuous variable (i.e., at least measured at the interval level) 
+- [ ] The sample the mean
+- [ ] The standard error
 - [ ] None of the above 	
 
 **(LC5.5) What is the correct definition for the confidence interval?**
@@ -319,14 +295,14 @@ Note that this does **not** mean that for a specific sample there is a $95\%$ ch
 - [ ] $CI=\bar{x} \pm \frac{z_{1-\frac{a}{n}}}{\sigma_{\bar{x}}}$
 - [ ] $CI=\bar{x} * z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
 - [ ] $CI= z_{1-\frac{a}{n}}*\sigma_{\bar{x}}-\bar{x}$
-- [x] $CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
+- [ ] $CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
 - [ ] None of the above 	
 
 *As a marketing manager at Spotify you wish to find the average listening time of your users. Based on a random sample of 180 users you found that the mean listening time for the sample is 7.34 hours per week and the standard deviation is 6.87 hours.* 
 
 **(LC5.6) What is the 95% confidence interval for the mean listening time (the corresponding z-value for the 95% CI is 1.96)?**
 
-- [x] [6.34;8.34]
+- [ ] [6.34;8.34]
 - [ ] [7.15;7.55]
 - [ ] [6.25;8.15]
 - [ ] [6.54;8.54]
@@ -335,13 +311,13 @@ Note that this does **not** mean that for a specific sample there is a $95\%$ ch
 **(LC5.7) How can you compute the standardized variate of a variable X?**
 
 - [ ] $z = {s \over \sqrt{n}}$
-- [x] $z = {X_i - \bar{X} \over s}$
+- [ ] $z = {X_i - \bar{X} \over s}$
 - [ ] $z = {s \over X_i-\bar{X}}$
 - [ ] $z = s * (X_i-\bar{X}) $
 
 **(LC5.8) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
 
-- [x] 1.960
+- [ ] 1.960
 - [ ] 1.645
 - [ ] 2.580
 - [ ] 3.210

@@ -20,12 +20,6 @@ output:
 
 ### Introduction
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kY4fGoFhNUQ" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
-
 In this chapter, we will focus on exploratory factor analysis. 
 
 Generally, factor analysis is a class of procedures used for data reduction or summary. It is an **interdependence technique**, meaning that there is no distinction between dependent and independent variables and all variables are considered simultaneously. In **exploratory factor analysis**, specific hypotheses about how many factors will emerge, and what items these factors will comprise are not requires (as opposed to confirmatory factor analysis). Principal Components Analysis (PCA) is one of the most frequently used techniques. The goals are …
@@ -196,11 +190,6 @@ where the variable names are replaced by the values that were observed for respo
 
 ### Steps in factor analysis
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pIlsdFcTV5o" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 Now that we have a broad understanding of how factor analysis works, let's use another example to go through the process of deriving factors step by step. In this section, we will use the R anxiety questionnaire from the book by Andy Field et al.. The questionnaire is intended to measure the various aspects of student's anxiety towards learning R. It includes 23 items for which respondents are asked to indicate on a five-point Likert scale to what extent they agree with the respective statements. The questionnaire is shown in the following figure:     
 
@@ -1345,30 +1334,14 @@ The above output would lead us to conclude that the fear of computers, fear of s
 
 <img src="./images/cluster.PNG" width="25%" style="display: block; margin: auto;" />
 
-::: {.infobox .download data-latex="{download}"}
-[You can download the corresponding R-Code here](./Code/12-cluster.R)
-:::
 
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JtYBQcWqzWk" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
+In the previous chapter on factor analysis we tried to reduce the number of variables or columns by identifying underlying dimensions. In order to do so we exploited the fact that some items are highly correlated and therefore might represent the same underlying concept (e.g., health benefits or social benefits). Similarly, in cluster analysis we again do not distinguish between dependent and independent variables. However, in the case of cluster analysis we do not try to reduce the number of variables but the number of observations by grouping similar ones into "clusters". What exactly defines "similarity" depends on the use case. In the case of retailing, we can consider customer segmentation that can, for example, support the recommender systems, used in e-commerce. 
 
-In the previous chapter on factor analysis we tried to reduce the number of variables or columns by identifying underlying dimensions. In order to do so we exploited the fact that some items are highly correlated and therefore might represent the same underlying concept (e.g., health benefits or social benefits). Similarly, in cluster analysis we again do not distinguish between dependent and independent variables. However, in the case of cluster analysis we do not try to reduce the number of variables but the number of observations by grouping similar ones into "clusters". What exactly defines "similarity" depends on the use case. In the case of music, audio features of songs might be used to identify clusters of similar songs (similar to the genre classification) which can be used for recommendation systems. Other use cases are customer segmentation and anomaly (e.g., fraud) detection.
-
-
-<br>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Pv7gf-2lMHE" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
-
-
-Let's try to create a recommendation system using track features. In our data we have the ISRC, name of the track, name of the artist and audio features of the track. We are going to use the audio features to cluster tracks together such that given one track we can easily identify similar tracks by looking at which cluster it belongs to.
+First, to give an illustrative example of how clusters might look, let's tale a step back to music data. Let's try to create a recommendation system using song features. In our data we have the ISRC, name of the track, name of the artist and audio features of the track. We are going to use the audio features to cluster tracks together such that given one track we can easily identify similar tracks by looking at which cluster it belongs to.
 
 
 ```r
+library(NbClust)
 load(url("https://github.com/WU-RDS/MRDA2021/raw/main/trackfeatures.RData"))
 # remove duplicates
 tracks <- na.omit(tracks[!duplicated(tracks$isrc),
@@ -1379,7 +1352,26 @@ To get an idea of how clustering might work let's first take a look at just  wit
 
 
 ```r
-library(ggplot2)
+library(tidyverse)
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.3     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ psych::%+%()       masks ggplot2::%+%()
+## ✖ psych::alpha()     masks ggplot2::alpha()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::src()       masks Hmisc::src()
+## ✖ dplyr::summarize() masks Hmisc::summarize()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+```r
 library(stringr)
 robin_schulz <- tracks[str_detect(tracks$artistName,
     "Robin Schulz"), ]
@@ -1398,65 +1390,77 @@ ggplot(example_tracks, aes(x = energy, y = acousticness,
 ### K-Means
 
 One of the most popular algorithms for clustering is the **K-means** algorithm. The "K" stands for the number of clusters that are specified as a hyperparameter (more on how to set that parameter later). The algorithm then tries to separate the observations into K clusters such that the within-cluster sum of squared differences form the cluster mean of the features (e.g., our audio features) is minimized.  Therefore, it is important to `scale` all variables before performing clustering such that they all contribute equally to the  distance between the observations. Minimizing the within-cluster sum of squares is equivalent to minimizing the sum of the squared deviations of observations pairwise in the same cluster and maximizing the sum of squared deviations of observations in different clusters. Intuitively the algorithm groups observations by iteratively calculating the mean or center of each cluster, assigning each observation to the cluster with the closest mean and re-calculating the mean... The algorithm has "converged" (i.e., is done) when the assignments no longer change. 
-Let's try it out with our two artists. In order to perform clustering we first have to remove all missing values from the used variables as for those we cannot calculate distances. Because we know that there are two artists in the sample we will start with two clusters.
+Let's try it out on customer data. In order to perform clustering we first have to remove all missing values from the used variables as for those we cannot calculate distances. 
 
 
 ```r
-tracks_scale <- data.frame(artist = example_tracks$artist,
-    energy = scale(example_tracks$energy), acousticness = scale(example_tracks$acousticness))
-tracks_scale <- na.omit(tracks_scale)
-kmeans_clusters <- kmeans(tracks_scale[-1], 2)
-kmeans_clusters$centers
+cluster <- read.csv2("data/Mall_Customers.csv", sep = ",")
+str(cluster)
 ```
 
 ```
-##      energy acousticness
-## 1 -1.439466    1.3234653
-## 2  0.500684   -0.4603358
+## 'data.frame':	200 obs. of  5 variables:
+##  $ CustomerID            : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Gender                : chr  "Male" "Male" "Female" "Female" ...
+##  $ Age                   : int  19 21 20 23 31 22 35 23 64 30 ...
+##  $ Annual.Income..k..    : int  15 15 16 16 17 17 18 18 19 19 ...
+##  $ Spending.Score..1.100.: int  39 81 6 77 40 76 6 94 3 72 ...
 ```
 
-The `kmeans` function returns, among other statistics, the centers of each cluster and a cluster identifier for each observation which we can add to our original data. In our case one cluster's center is rather low in energy and high acousticness and the second one has higher energy and lower acousticness. 
+```r
+cluster <- cluster %>%
+    rename(Annual_Income = "Annual.Income..k..", Spending_Score = "Spending.Score..1.100.")
+cluster <- na.omit(cluster[!duplicated(cluster$CustomerID),
+    ])
+```
 
-In our plot we can add a color for each cluster and a different marker shape for each artist. We observe that cluster 1 corresponds mostly to Robin Schulz songs and cluster 2 mostly to Adele. Alternatively we can also look at the counts in each cluster per artist using the `table` function.
+If we use all observations in our data, the best value for "K" is not immediately obvious. Hence, we can use the `NbClust` package to determine the best number of clusters according to various indices (see `?NbClust`). First we scale the variables that can be used for K-means clustering, i.e., interval- or ratio-scaled variables. Then we count how many indices would choose a certain number of clusters. The best candidate is 2 clusters, chosen by 5 indices; all other options are worse (e.g., 5, 6, or 10 clusters have 4 indices, 3 have 3 indices, etc.).
 
 
 ```r
-tracks_scale$cluster <- as.factor(kmeans_clusters$cluster)
-ggplot(tracks_scale, aes(x = energy, y = acousticness,
-    color = cluster, shape = artist)) + geom_point(size = 3) +
-    theme_bw()
+# Scale the data
+cluster_scale <- scale(cluster[, 3:5])
+set.seed(123)
+# get the recommended number of clusters
+opt_K <- NbClust(cluster_scale, method = "kmeans",
+    max.nc = 10)
 ```
 
 <img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
-```r
-table(tracks_scale$artist, tracks_scale$cluster)
+```
+## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## 
 ```
 
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-37-2.png" width="672" />
+
 ```
-##               
-##                 1  2
-##   Adele        14  9
-##   Robin Schulz  2 37
+## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 5 proposed 2 as the best number of clusters 
+## * 3 proposed 3 as the best number of clusters 
+## * 2 proposed 4 as the best number of clusters 
+## * 4 proposed 5 as the best number of clusters 
+## * 4 proposed 6 as the best number of clusters 
+## * 1 proposed 9 as the best number of clusters 
+## * 4 proposed 10 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  2 
+##  
+##  
+## *******************************************************************
 ```
-
-In the previous example it was easy to set the number of clusters. However, if we use all artists in our data the best value for "K" is not immediately obvious. Surely some artists should be in the same cluster. We can user the `NbClust` package to determine the best number of clusters according to various indices (see `?NbClust`). First we scale all our variables and then we use the scaled versions to determine "K". To make computations faster we will use songs by 5 famous artists. Then we count how many indices would choose a certain number of clusters. The two best candidates are 3 clusters, chosen by 13 indices and 2 clusters, chosen by 5 indices.
-
-
-```r
-library(NbClust)
-famous_artists <- c("Ed Sheeran", "Eminem", "Rihanna",
-    "Taylor Swift", "Queen")
-famous_tracks <- tracks[tracks$artistName %in% famous_artists,
-    ]
-famous_tracks_scale <- scale(famous_tracks[4:ncol(famous_tracks)])
-set.seed(123)
-opt_K <- NbClust(famous_tracks_scale, method = "kmeans",
-    max.nc = 10)
-```
-
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-38-1.png" width="672" /><img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-38-2.png" width="672" />
-
 
 ```r
 table(opt_K$Best.nc["Number_clusters", ])
@@ -1464,29 +1468,27 @@ table(opt_K$Best.nc["Number_clusters", ])
 
 ```
 ## 
-##  0  2  3  4  8 10 
-##  2  5 13  1  1  4
+##  0  1  2  3  4  5  6  9 10 
+##  2  1  5  3  2  4  4  1  4
 ```
 
-We can now proceed as before with running the k-means algorithm. Looking at the centers for each of the clusters could give us an indication for the types of songs we can expect in each of them (recall that they are assigned based on their distance to the center). Cluster 2, for example will include acoustic soungs and cluster 3 includes more energetic, faster songs.
-
+Once done, we can plug in the obtained number of clusters into `kmeans` function:
 
 
 ```r
-kmeans_tracks <- kmeans(famous_tracks_scale, 3)
-kmeans_tracks$centers
+kmeans_clusters <- kmeans(cluster_scale, 2)  #specify the number of clusters to be created
+kmeans_clusters$centers
 ```
 
 ```
-##   danceability     energy   loudness       mode speechiness acousticness
-## 1    0.2758301  0.4526214  0.4853302 -0.1461378  -0.2576401   -0.5618965
-## 2   -0.5385548 -0.9566495 -0.8742383  0.2632910  -0.4147683    0.9772843
-## 3    0.3678342  0.7543900  0.4954862 -0.1492974   1.5546155   -0.5015270
-##   instrumentalness   liveness    valence       tempo duration_ms
-## 1       0.06266324 -0.2524251  0.4012080  0.03789976 -0.09047459
-## 2      -0.06816719 -0.2728148 -0.6158085 -0.17761023  0.09754255
-## 3      -0.02849344  1.2469257  0.1885188  0.26482862  0.04295692
+##          Age Annual_Income Spending_Score
+## 1  0.7071480  -0.002469258     -0.6976405
+## 2 -0.7508891   0.002621995      0.7407935
 ```
+
+
+The `kmeans` function returns, among other statistics, the centers of each cluster and a cluster identifier for each observation which we can add to our original data. In our case one cluster's center is rather low in age and high spending and the second one show a different pattern. 
+
 
 To get a quick overview of the centers we can user a radar plot. This allows us to quickly observe similarities and distinguishing features of clusters.
 
@@ -1495,83 +1497,104 @@ To get a quick overview of the centers we can user a radar plot. This allows us 
 library(ggiraph)
 library(ggiraphExtra)
 
-centers <- data.frame(kmeans_tracks$centers)
-centers$cluster <- 1:3
+centers <- data.frame(kmeans_clusters$centers)
+centers$cluster <- 1:2
 ggRadar(centers, aes(color = cluster), rescale = FALSE) +
-    ggtitle("Centers") + theme_bw()
+    ggtitle("Centers") + theme_minimal()
 ```
 
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 
-We can use a barplot to visualize the number of songs an artist has in each cluster. While Eminem's songs are mostly in cluster 3, Taylor Swift's and Ed Sheeran's are mostly in cluster 1 and 2. 
+We can use a barplot to visualize the number of customers in each cluster and color them by one of the other characteristics we know (here it's gender):
 
 
 ```r
-famous_tracks$cluster <- as.factor(kmeans_tracks$cluster)
-ggplot(famous_tracks, aes(y = cluster, fill = artistName)) +
-    geom_bar() + theme_bw()
+cluster$cluster_num <- as.factor(kmeans_clusters$cluster)
+ggplot(cluster, aes(y = cluster_num, fill = Gender)) +
+    geom_bar() + theme_minimal()
 ```
 
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 ```r
-table(famous_tracks$artistName, famous_tracks$cluster)
+table(cluster$Gender, cluster$cluster_num)
 ```
 
 ```
-##               
-##                 1  2  3
-##   Ed Sheeran   23 34  2
-##   Eminem       10  3 32
-##   Queen         9  9  6
-##   Rihanna      13  1  1
-##   Taylor Swift 64 44  3
+##         
+##           1  2
+##   Female 55 57
+##   Male   48 40
 ```
-
-We could use the clustering to make recommendations on both the artist and song level (assuming that people like songs with similar audio features). If you like "Lose Yourself" by Eminem (cluster 3), we would recommend "I Forgot That You Existed" (cluster 3) bu not "The Archer" (cluster 2) by Taylor Swift. 
-
-
-```r
-recommendation <- famous_tracks[str_detect(famous_tracks$trackName,
-    "Lose Yourself|I Forgot That You Existed|The Archer"),
-    ]
-recommendation[c("trackName", "artistName", "cluster")]
-```
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["trackName"],"name":[1],"type":["chr"],"align":["left"]},{"label":["artistName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["cluster"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Lose Yourself - From \"8 Mile\" Soundtrack","2":"Eminem","3":"3"},{"1":"The Archer","2":"Taylor Swift","3":"2"},{"1":"I Forgot That You Existed","2":"Taylor Swift","3":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-
-```r
-ggplot(recommendation, aes(instrumentalness, speechiness,
-    color = cluster)) + geom_point() + geom_label(aes(label = trackName),
-    hjust = "inward") + theme_bw()
-```
-
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 We can use the `fviz_cluster` function from the `factoextra` library to get a partial picture. If there are more than 2 variables used for clustering, the package performs a PCA and uses the first two principal components for the visualization.
 
 
 ```r
 library(factoextra)
-fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
-    palette = hcl.colors(3, palette = "Dynamic"), geom = "point",
-    ellipse.type = "convex", ggtheme = theme_bw())
+fviz_cluster(kmeans_clusters, data = cluster_scale,
+    palette = hcl.colors(2, palette = "Dynamic"), geom = "point",
+    ellipse.type = "convex", ggtheme = theme_minimal())
 ```
 
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+
+
+We could use the clustering to identify customers similar to each other to recommend them goods or services, chosen by their statistical "twins". For example, we want to find customers similar to the one with ID 19:
+
+
+```r
+customer <- cluster %>%
+    filter(CustomerID == 19) %>%
+    distinct(cluster_num, .keep_all = TRUE) %>%
+    select(cluster_num)
+customer
+```
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cluster_num"],"name":[1],"type":["fct"],"align":["left"]}],"data":[{"1":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+```r
+similar_customers <- cluster %>%
+    filter(cluster_num == 1) %>%
+    select(CustomerID, Gender)
+head(similar_customers, 20)
+```
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["CustomerID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Gender"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"3","2":"Female"},{"1":"7","2":"Female"},{"1":"9","2":"Male"},{"1":"11","2":"Male"},{"1":"13","2":"Female"},{"1":"15","2":"Male"},{"1":"17","2":"Female"},{"1":"19","2":"Male"},{"1":"21","2":"Male"},{"1":"23","2":"Female"},{"1":"25","2":"Female"},{"1":"27","2":"Female"},{"1":"29","2":"Female"},{"1":"31","2":"Male"},{"1":"33","2":"Male"},{"1":"35","2":"Female"},{"1":"37","2":"Female"},{"1":"39","2":"Female"},{"1":"41","2":"Female"},{"1":"43","2":"Male"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+See how differently customers from clusters 1 and 2 locate relative to each other:
+
+
+```r
+random_customers <- cluster %>%
+    filter(CustomerID == 19 | CustomerID == 20 | CustomerID ==
+        21)
+
+ggplot(random_customers, aes(Annual_Income, Spending_Score,
+    color = cluster_num)) + geom_point() + geom_label(aes(label = CustomerID),
+    hjust = "inward") + theme_bw()
+```
+
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+
+
 
 ## Learning check {-}
 
 **(LC7.1) The goals of PCA are...**
 
-- [x] ...to identify underlying dimensions that explain correlations among variables.
+- [ ] ...to identify underlying dimensions that explain correlations among variables.
 - [ ] ...to identify multiplicative effects in a linear regression.
-- [x] ...to identify a smaller set of uncorrelated variables.
+- [ ] ...to identify a smaller set of uncorrelated variables.
 - [ ] ...to identify interaction terms in a linear regression.
 - [ ] None of the above 
 
@@ -1580,13 +1603,13 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 - [ ] A reduction greater than 50% of the input variables
 - [ ] Between a third and a fourth of the input variables
 - [ ] A reduction smaller than 50% of the input variables
-- [x] None of the above 
+- [ ] None of the above 
 
 **(LC7.3) What assumptions have to be fulfilled for using PCA?**
 
-- [x] Variables must be in interval or ratio scale
-- [x] Existence of some underlying factor structure
-- [x] The correlation matrix must have sufficient number of correlations
+- [ ] Variables must be in interval or ratio scale
+- [ ] Existence of some underlying factor structure
+- [ ] The correlation matrix must have sufficient number of correlations
 - [ ] Variables must be measured using ordinal scales
 - [ ] None of the above
 
@@ -1594,8 +1617,8 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 
 - [ ] Regression coefficients
 - [ ] Correlations between the variables
-- [x] Weights of a variable on a factor
-- [x] Factor loadings
+- [ ] Weights of a variable on a factor
+- [ ] Factor loadings
 - [ ] None of the above 
 
 **(LC7.5) What is the null hypothesis of the Bartlett’s test of sphericity?**
@@ -1603,20 +1626,20 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 - [ ] All variables are correlated in the population
 - [ ] The correlation matrix is singular
 - [ ] All variables are uncorrelated in the population
-- [x] The correlation matrix is an identity matrix
+- [ ] The correlation matrix is an identity matrix
 - [ ] None of the above 
 
 **(LC7.6) Before conducting PCA, how can you test the sampling adequacy of your data (i.e., how suited your data is for Factor Analysis)?**
 
 - [ ] Kaiser-Meyer-Olkin (KMO) test with scores <0.5
-- [x] Kaiser-Meyer-Olkin (KMO) test with scores >0.5
+- [ ] Kaiser-Meyer-Olkin (KMO) test with scores >0.5
 - [ ] By inspecting the scree plot
 - [ ] Cronbach's alpha test with scores >0.7
 - [ ] None of the above 
 
 **(LC7.7) What is communality?**
 
-- [x] Proportion of common variance in a variable
+- [ ] Proportion of common variance in a variable
 - [ ] Variance that is unique to a particular variable
 - [ ] Proportion of unique variance in a variable
 - [ ] Covariance between two factors
@@ -1625,13 +1648,13 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 **(LC7.8) Orthogonal factor rotation assumes:**
 
 - [ ] Inter-correlated factors
-- [x] Uncorrelated factors
+- [ ] Uncorrelated factors
 - [ ] Outer-correlated factors
 - [ ] None of the above 
 
 **(LC7.9) Imagine you want to conduct a PCA on 10 variables without factor rotation and in a first step, you wish to find out how many components you should extract. How would the corresponding R Code look?**
 
-- [x] `principal(data, nfactors = 10, rotate = "none")`
+- [ ] `principal(data, nfactors = 10, rotate = "none")`
 - [ ] `principal(data, nfactors = “varimax”, rotate = 10)`
 - [ ] `principal(data, nfactors = 10, rotate = "oblimin")`
 - [ ] `principal(data, nfactors = 10, rotate = "varimax")`
@@ -1643,7 +1666,7 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 - [ ] 1
 - [ ] 2
 - [ ] 3
-- [x] 4
+- [ ] 4
 - [ ] 5
 - [ ] 15
 - [ ] 23
@@ -1653,24 +1676,24 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 **(LC7.11) Which of the following statements regarding cluster analysis are TRUE?**
 
 - [ ] The goal is to reduce the number of columns in a data set
-- [x] The goal is to reduce the number of rows in a data set
+- [ ] The goal is to reduce the number of rows in a data set
 - [ ] H-Means is a popular clustering method
 - [ ] The goal is to establish a relationship between a dependent variable and an independent variable 
-- [x] The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters
-- [x] It is an unsupervised learning method
+- [ ] The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters
+- [ ] It is an unsupervised learning method
 
 **(LC7.12) What is the main objective of k-means clustering in data analysis?**
 
 - [ ] To find the best-fitting linear regression model.
 - [ ] To identify underlying factors that explain correlations among variables.
-- [x] To partition data into clusters based on similarity.
+- [ ] To partition data into clusters based on similarity.
 - [ ] To calculate the correlation between variables.
 - [ ] None of the above 
 
 **(LC7.13) In the k-means algorithm, what does "k" represent?**
 
 - [ ] The number of variables in the dataset.
-- [x] The number of clusters to be formed.
+- [ ] The number of clusters to be formed.
 - [ ] The number of iterations to converge.
 - [ ] The number of outliers in the data.
 - [ ] None of the above 
@@ -1678,7 +1701,7 @@ fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
 **(LC7.14) What is the primary limitation of the k-means clustering algorithm?**
 
 - [ ] It is computationally expensive.
-- [x] It requires specifying the number of clusters in advance.
+- [ ] It requires specifying the number of clusters in advance.
 - [ ] It cannot handle categorical data.
 - [ ] It always produces spherical clusters.
 - [ ] None of the above 

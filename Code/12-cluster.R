@@ -1,16 +1,13 @@
-
 options(scipen = 999)
 set.seed(1)
-
-
-load(url("https://github.com/WU-RDS/MRDA2021/raw/main/trackfeatures.RData"))
-# remove duplicates
-tracks <- na.omit(tracks[!duplicated(tracks$isrc), ])
-
-
-
+library(NbClust)
 library(ggplot2)
 library(stringr)
+
+#visualization example
+load(url("https://github.com/WU-RDS/MRDA2021/raw/main/trackfeatures.RData"))
+# remove duplicates
+tracks <- na.omit(tracks[!duplicated(tracks$isrc),])
 robin_schulz <- tracks[str_detect(tracks$artistName, "Robin Schulz"), ]
 robin_schulz$artist <- "Robin Schulz"
 adele <- tracks[str_detect(tracks$artistName, "Adele"), ]
@@ -21,14 +18,10 @@ ggplot(example_tracks, aes(x = energy, y = acousticness, color = artist)) +
   geom_point() +
   theme_bw()
 
-
-
 tracks_scale <- data.frame(artist = example_tracks$artist, energy = scale(example_tracks$energy), acousticness = scale(example_tracks$acousticness))
 tracks_scale <- na.omit(tracks_scale)
 kmeans_clusters <- kmeans(tracks_scale[-1], 2)
 kmeans_clusters$centers
-
-
 
 tracks_scale$cluster <- as.factor(kmeans_clusters$cluster)
 ggplot(tracks_scale, aes(x = energy, y = acousticness, color = cluster, shape = artist)) +
@@ -37,80 +30,64 @@ ggplot(tracks_scale, aes(x = energy, y = acousticness, color = cluster, shape = 
 table(tracks_scale$artist, tracks_scale$cluster)
 
 
+#retail clustering: customer segmentation
+cluster <- read.csv2("data/Mall_Customers.csv", sep = ",")
+str(cluster)
+cluster <- cluster %>% rename("Annual_Income" = "Annual.Income..k..",
+                              "Spending_Score" = "Spending.Score..1.100.")
 
-library(NbClust)
-famous_artists <- c(
-	'Ed Sheeran',
-	'Eminem',
-	'Rihanna',	
-	'Taylor Swift',
-	'Queen'
-	)
-famous_tracks <- tracks[tracks$artistName %in% famous_artists, ]
-famous_tracks_scale <- scale(famous_tracks[4:ncol(famous_tracks)])
+
+# Scale the data
+cluster_scale <- scale(cluster[,3:5]) 
 set.seed(123)
-opt_K <- NbClust(famous_tracks_scale, method = "kmeans", max.nc = 10)
-
-
-
+#get the recommended number of clusters
+opt_K <- NbClust(cluster_scale, method = "kmeans", max.nc = 10)
 table(opt_K$Best.nc["Number_clusters",])
 
 
+kmeans_clusters <- kmeans(cluster_scale, 2) #specify the number of clusters to be created
+kmeans_clusters$centers
 
-kmeans_tracks <- kmeans(famous_tracks_scale, 3)
-kmeans_tracks$centers
-
-
-
+#visualization
 library(ggiraph)
 library(ggiraphExtra)
-
-centers <- data.frame(kmeans_tracks$centers)
-centers$cluster <- 1:3
+centers <- data.frame(kmeans_clusters$centers)
+centers$cluster <- 1:2
 ggRadar(centers, aes(color = cluster), rescale = FALSE) + 
   ggtitle("Centers") +
-  theme_bw()
+  theme_minimal()
 
-
-
-famous_tracks$cluster <- as.factor(kmeans_tracks$cluster)
-ggplot(famous_tracks, aes(y = cluster, fill = artistName)) +
+cluster$cluster_num <- as.factor(kmeans_clusters$cluster)
+ggplot(cluster, aes(y = cluster_num, fill = Gender)) +
   geom_bar() +
-  theme_bw()
-table(famous_tracks$artistName, famous_tracks$cluster)
-
-
-
-recommendation <- famous_tracks[str_detect(famous_tracks$trackName, "Lose Yourself|I Forgot That You Existed|The Archer"),]
-recommendation[c("trackName", "artistName", "cluster")]
-ggplot(recommendation, aes(instrumentalness, speechiness, color = cluster)) +
-  geom_point() +
-  geom_label(aes(label=trackName), hjust = "inward") +
-  theme_bw()
-
+  theme_minimal()
+table(cluster$Gender, cluster$cluster_num)
 
 library(factoextra)
-fviz_cluster(kmeans_tracks, data = famous_tracks_scale,
-             palette = hcl.colors(3, palette = "Dynamic"), 
+fviz_cluster(kmeans_clusters, data = cluster_scale,
+             palette = hcl.colors(2, palette = "Dynamic"), 
              geom = "point",
              ellipse.type = "convex", 
-             ggtheme = theme_bw()
-             )
+             ggtheme = theme_minimal()
+)
 
 
-pf_ri <- tracks[tracks$artistName %in% c("Pink Floyd", "Rihanna"),]
-pf_ri_scale <- scale(pf_ri[,4:ncol(pf_ri)])
-rownames(pf_ri_scale) <- pf_ri$trackName
-hclust_tracks <- hclust(dist(pf_ri_scale))
-plot(hclust_tracks)
+#finding similar customers
+customer <- cluster %>% filter(CustomerID == 19) %>% distinct(cluster_num, .keep_all = TRUE) %>% 
+  select(cluster_num)
+customer
+similar_customers <- cluster %>% filter(cluster_num == 1) %>% select(CustomerID, Gender) 
+head(similar_customers, 20)
 
+#compare:
+random_customers <- cluster %>% filter(CustomerID == 19 | CustomerID == 20 | CustomerID == 21)
 
-
-hclusters <- cutree(hclust_tracks,4)
-pf_ri_hier <- data.frame(pf_ri_scale)
-pf_ri_hier$cluster <- as.factor(hclusters)
-hier_centers <- aggregate(. ~ cluster, pf_ri_hier, mean)
-ggRadar(hier_centers, aes(color = cluster), rescale = T) + 
-  ggtitle("Centers") +
+ggplot(random_customers, aes(Annual_Income, Spending_Score, color = cluster_num)) +
+  geom_point() +
+  geom_label(aes(label = CustomerID), hjust = "inward") +
   theme_bw()
+
+
+
+
 

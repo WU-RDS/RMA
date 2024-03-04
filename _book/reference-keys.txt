@@ -131,12 +131,6 @@ combination-of-plots-ggextra
 appendix
 covariation-plots
 location-data-ggmap
-metrics-and-kpis-in-retail
-margins-profits
-shares
-portfolio-management
-pricing
-finance
 statistical-inference
 if-we-knew-it-all
 sampling-from-a-known-population

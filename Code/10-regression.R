@@ -4,7 +4,6 @@
 #-------------------------------------------------------------------#
 
 # At the top of each script this code snippet will make sure that all required packages are installed
-## ------------------------------------------------------------------------
 req_packages <- c("Hmisc", "psych", "plyr", "ggplot2", "lm.beta", "car", "ggside","ggstatsplot", "stargazer", "sandwich", "lmtest", "boot")
 req_packages <- req_packages[!req_packages %in% installed.packages()]
 lapply(req_packages, install.packages)
@@ -72,13 +71,10 @@ cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", 
 #-------------------------------------------------------------------#
 
 # Load and inspect data
-#regression <- read.table("https://github.com/dariayudaeva/RMA2024/blob/main/data/bud_store102.csv", 
-#                          sep = ",", 
-#                          header = TRUE) # read in data
+regression <- read.table("https://github.com/dariayudaeva/RMA2024/blob/main/data/bud_store102.csv", 
+                          sep = ",", 
+                          header = TRUE) # read in data
 
-regression <- read.table("/Users/dariayudaeva/Desktop/RDS/3_Teaching/2024/RMA24/RMA2024/data/bud_store102.csv", 
-                         sep = ",", 
-                         header = TRUE) # read in data
 str(regression)
 regression$store <- as.factor(regression$store) #convert grouping variable to factor
 regression$brand_id <- as.factor(regression$brand_id) #convert grouping variable to factor
@@ -115,7 +111,7 @@ ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
   geom_point(shape = 1) +
   geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
   geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
-  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + #mean of price
+  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + # mean of price
   labs(x = "Price (ounce)", y = "Sales (ounce)") + 
   theme_minimal()
 
@@ -138,7 +134,7 @@ ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) +
   labs(x = "Price", y = "Sales") + 
   theme_minimal()
 
-### More Line Plots ###
+### More Line Plots 
 # Sales per week 
 ggplot(data = regression, aes(week, log(move_ounce))) + 
   geom_line(color = "forestgreen") + labs(x = "Week", y = "Log-sales") +
@@ -175,7 +171,7 @@ confint(sales_reg2)
 #-------------------------------------------------------------------#
 
 # Run the model
-multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, data = regression) #estimate linear model
+multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, data = regression) # estimate the model
 summary(multiple_sales_reg) #summary of results
 
 # Confidence intervals
@@ -291,7 +287,6 @@ multiple_regression <- lm(sales ~ adspend + airplay + starpower + adspend:airpla
 summary(multiple_regression) 
 
 # Mean centering variables
-## ------------------------------------------------------------------------
 regression$c_adspend <- regression$adspend-mean(regression$adspend)
 regression$c_airplay <- regression$airplay-mean(regression$airplay)
 regression$c_starpower <- regression$starpower-mean(regression$starpower)
@@ -302,78 +297,28 @@ summary(multiple_regression)
 #----------------------Non-linear relationships---------------------#
 #-------------------------------------------------------------------#
 
-# Multiplicative model (aka log-log model)
-# Load and inspect data
-## ------------------------------------------------------------------------
-non_linear_reg <- read.table("https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/non_linear.dat", 
-                          sep = "\t", 
-                          header = TRUE) #read in data
-head(non_linear_reg)
-## ------------------------------------------------------------------------
-ggplot(data = non_linear_reg, aes(x = advertising, y = sales)) +
-  geom_point(shape=1) + 
-  geom_smooth(method = "lm", fill = "blue", alpha=0.1) + 
-  theme_bw()
-# Linear model
-## ------------------------------------------------------------------------
-linear_reg <- lm(sales ~ advertising, data = non_linear_reg)
-summary(linear_reg)
-confint(linear_reg)
-## ------------------------------------------------------------------------
-plot(linear_reg,1)
-plot(linear_reg,2)
-shapiro.test(resid(linear_reg))
-# Multiplicative model (log transformation)
-## ------------------------------------------------------------------------
-ggplot(data = non_linear_reg, aes(x = log(advertising), y = log(sales))) + 
-  geom_point(shape=1) + 
-  geom_smooth(method = "lm", fill = "blue", alpha=0.1) +
-  theme_bw()
-## ------------------------------------------------------------------------
-log_reg <- lm(log(sales) ~ log(advertising), data = non_linear_reg)
-summary(log_reg)
-confint(log_reg)
-## ------------------------------------------------------------------------
-plot(log_reg,1)
-plot(log_reg,2)
-shapiro.test(resid(log_reg))
-# Model comparison 
-## ------------------------------------------------------------------------
-non_linear_reg$pred_lin_reg <- predict(linear_reg)
-non_linear_reg$pred_log_reg <- predict(log_reg)
-ggplot(data = non_linear_reg) +
-  geom_point(aes(x = advertising, y = sales),shape=1) + 
-  geom_line(data = non_linear_reg,aes(x=advertising,y=pred_lin_reg),color="blue", size=1.05) + 
-  geom_line(data = non_linear_reg,aes(x=advertising,y=exp(pred_log_reg)),color="red", size=1.05) + theme_bw()
-# Making predictions
-advertising <- 1000
-pred <- exp(log_reg$coefficients[1] + log_reg$coefficients[2]*log(advertising))
-pred
+# Note: Multiplicative model (log-log) has been covered above 
 
 # Quadratic model
-# Load and inspect data
-## ------------------------------------------------------------------------
 quad_reg <- read.table("https://raw.githubusercontent.com/IMSMWU/MRDA2018/master/data/sales_quad.csv", 
                              sep = ";", 
                              header = TRUE) #read in data
 head(quad_reg)
-## ------------------------------------------------------------------------
 ggplot(data = quad_reg, aes(x = advertising, y = sales)) +
   geom_point(shape=1) + 
   geom_smooth(method = "lm", fill = "blue", alpha=0.1) + 
   theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
 
 # Linear model
-## ------------------------------------------------------------------------
 linear_reg <- lm(sales ~ advertising, data = quad_reg)
 summary(linear_reg)
 confint(linear_reg)
-## ------------------------------------------------------------------------
+
 plot(linear_reg,1)
 plot(linear_reg,2)
 shapiro.test(resid(linear_reg))
+
 # Quadratic model
-## ------------------------------------------------------------------------
 quad_mod <- lm(sales ~ advertising + I(advertising^2), data = quad_reg)
 summary(quad_mod)
 confint(quad_mod)
@@ -382,32 +327,32 @@ ggplot(data = quad_reg, aes(x = predict, y = sales)) +
   geom_point(shape=1) + 
   geom_smooth(method = "lm", fill = "blue", alpha=0.1) +
   theme_bw()
-## ------------------------------------------------------------------------
+
 plot(quad_mod,1)
 plot(quad_mod,2)
 shapiro.test(resid(quad_mod))
+
 # Model comparison 
-## ------------------------------------------------------------------------
 quad_reg$pred_lin_reg <- predict(linear_reg)
 ggplot(data = quad_reg) +
   geom_point(aes(x = advertising, y = sales),shape=1) + 
   geom_line(data = quad_reg,aes(x=advertising,y=pred_lin_reg),color="blue", size=1.05) + 
   geom_line(data = quad_reg,aes(x=advertising,y=predict),color="red", size=1.05) + theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
+
 # Turning point
-## ------------------------------------------------------------------------
 x_turn <- -quad_mod$coefficients[2]/(2*quad_mod$coefficients[3])
 ggplot(data = quad_reg) +
   geom_point(aes(x = advertising, y = sales),shape=1) + 
   geom_line(data = quad_reg,aes(x=advertising,y=predict),color="red", size=1.05) +
   geom_vline(xintercept = x_turn,color="black") +
   geom_vline(xintercept = mean(quad_reg$advertising),color="black", linetype = "dashed", size=1.05) + theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
+
 # Making predictions
 advertising <- 100
 pred <- quad_mod$coefficients[1] + quad_mod$coefficients[2]*advertising+quad_mod$coefficients[3]*(advertising^2)
 pred
 
 # Mean centering
-## ------------------------------------------------------------------------
 quad_reg$c_advertising <- quad_reg$advertising - mean(quad_reg$advertising)
 quad_mod_c <- lm(sales ~ c_advertising + I(c_advertising^2), data = quad_reg)
 summary(quad_mod_c)
@@ -417,89 +362,71 @@ confint(quad_mod_c)
 #------------------------Logistic regression------------------------#
 #-------------------------------------------------------------------#
 
-#Create a function we will be using
-logisticPseudoR2s <- function(LogModel) {
-  dev <- LogModel$deviance 
-  nullDev <- LogModel$null.deviance 
-  modelN <- length(LogModel$fitted.values)
-  R.l <-  1 -  dev / nullDev
-  R.cs <- 1- exp ( -(nullDev - dev) / modelN)
-  R.n <- R.cs / ( 1 - ( exp (-(nullDev / modelN))))
-  cat("Pseudo R^2 for logistic regression\n")
-  cat("Hosmer and Lemeshow R^2  ", round(R.l, 3), "\n")
-  cat("Cox and Snell R^2        ", round(R.cs, 3), "\n")
-  cat("Nagelkerke R^2           ", round(R.n, 3),    "\n")
-}
+# Import data
+churn_data <- readxl::read_xlsx("data/e_commerce_data.xlsx", sheet = "E Comm")
+head(churn_data)
+str(churn_data)
+# correct the variables types
+churn_data$Customer_ID <- as.factor(churn_data$Customer_ID)
+churn_data$Gender <- as.factor(churn_data$Gender)
+churn_data$Annual_Income <- as.numeric(churn_data$Annual_Income)
+churn_data$Total_Spend <- as.numeric(churn_data$Total_Spend)
+churn_data$Average_Transaction_Amount <- as.numeric(churn_data$Average_Transaction_Amount)
+churn_data$Email_Opt_In <- as.factor(churn_data$Email_Opt_In)
+churn_data$Promotion_Response <- as.factor(churn_data$Promotion_Response)
+#change the variable "Target_Churn" to binary type, which is 1 if a customer churned and 0 else:
+churn_data$Target_Churn <- ifelse(churn_data$Target_Churn == "True", 1, 0)
 
-#Import data
-## ------------------------------------------------------------------------
-chart_data <- read.delim2("https://raw.githubusercontent.com/IMSMWU/MRDA2018/master/data/chart_data_logistic.dat",header=T, sep = "\t",stringsAsFactors = F, dec = ".")
-# Inspect data
-head(chart_data)
-str(chart_data)
-#Create a new dummy variable "top10", which is 1 if a song made it to the top10 and 0 else:
-chart_data$top10 <- ifelse(chart_data$rank<11,1,0)
 
 #Scatterplot showing the association between two variables using a linear model
-ggplot(chart_data,aes(danceability,top10)) +  
-  geom_point(shape=1) +
+ggplot(churn_data, aes(CashbackAmount, Churn)) +  
+  geom_point(shape = 1) +
   geom_smooth(method = "lm") +
-  theme_bw()
+  theme_minimal()
 
 #Scatterplot showing the association between two variables using a glm
-ggplot(chart_data,aes(danceability,top10)) +  
-  geom_point(shape=1) +
+ggplot(churn_data, aes(CashbackAmount, Churn)) +  
+  geom_point(shape = 1) +
   geom_smooth(method = "glm", 
               method.args = list(family = "binomial"), 
               se = FALSE) +
-  theme_bw()
+  theme_minimal()
 
 #Run the glm
-logit_model <- glm(top10 ~ danceability,family=binomial(link='logit'),data=chart_data)
+logit_model <- glm(Churn ~ CashbackAmount, family = binomial(link = 'logit'), data = churn_data)
 #Inspect model summary
-summary(logit_model )
-#Inspect Pseudo R2s
-logisticPseudoR2s(logit_model )
+summary(logit_model)
+#Inspect R2
+library(DescTools)
+PseudoR2(logit_model, which = "CoxSnell")
 #Convert coefficients to odds ratios
-exp(coef(logit_model ))
-
-#Re-scale independet variable
-chart_data$danceability_100 <- chart_data$danceability*100 
-#Run the regression model
-logit_model <- glm(top10 ~ danceability_100,family=binomial(link='logit'),data=chart_data)
-#Inspect model summary
-summary(logit_model )
-#Inspect Pseudo R2s
-logisticPseudoR2s(logit_model )
-#Convert coefficients to odds ratios
-exp(coef(logit_model ))
+exp(coef(logit_model))
 #Confidence interval
 confint(logit_model)
+
 #Overall model test
 llh_ratio <- logit_model$null.deviance-logit_model$deviance
 llh_ratio
 library(lmtest)
 lrtest(logit_model)
 
-#Probability of a top 10 hit with a danceability of 50
-prob_50 <- exp(-(-summary(logit_model)$coefficients[1,1]-summary(logit_model)$coefficients[2,1]*50 ))
-prob_50
+#Probability of churn with a cashback amount of 200
+prob_200 <- exp(-(-summary(logit_model)$coefficients[1,1]-summary(logit_model)$coefficients[2,1]*200))
+prob_200
 
-#Probability of a top 10 hit with a danceability of 51
-prob_51 <- exp(-(-summary(logit_model)$coefficients[1,1]-summary(logit_model)$coefficients[2,1]*51 ))
-prob_51
+#Probability of churn with a cashback amount of 201
+prob_201 <- exp(-(-summary(logit_model)$coefficients[1,1]-summary(logit_model)$coefficients[2,1]*201))
+prob_201
 
 #Odds ratio
-prob_51/prob_50
+prob_201/prob_200
 
 #Logistic model with multiple predictors
-#Convert variables
-chart_data$spotify_followers_m <- chart_data$spotifyFollowers/1000000
-chart_data$weeks_since_release <- chart_data$daysSinceRelease/7
-#Run model
-multiple_logit_model <- glm(top10 ~ danceability_100 + spotify_followers_m + weeks_since_release,family=binomial(link='logit'),data=chart_data)
+multiple_logit_model <- glm(Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOrder +
+                              WarehouseToHome + OrderCount + CashbackAmount, 
+                            family = binomial(link = 'logit'), data = churn_data)
 summary(multiple_logit_model)
-logisticPseudoR2s(multiple_logit_model)
+PseudoR2(multiple_logit_model, which = "CoxSnell")
 exp(coef(multiple_logit_model))
 confint(multiple_logit_model)
 

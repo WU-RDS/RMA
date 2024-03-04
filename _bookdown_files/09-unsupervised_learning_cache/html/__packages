@@ -8,3 +8,11 @@ NbClust
 ggiraph
 ggiraphExtra
 factoextra
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+forcats
+lubridate

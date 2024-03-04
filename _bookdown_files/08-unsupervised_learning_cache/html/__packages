@@ -11,3 +11,11 @@ Formula
 Hmisc
 psych
 GPArotation
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+forcats
+lubridate
