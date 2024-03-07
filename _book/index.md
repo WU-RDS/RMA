@@ -81,7 +81,7 @@ The contents on this website are divided into weekly readings. To be able to fol
   <tr>
    <td style="text-align:left;"> Mar 14 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:30 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
@@ -89,7 +89,7 @@ The contents on this website are divided into weekly readings. To be able to fol
   <tr>
    <td style="text-align:left;"> Mar 21 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:30 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Introduction to inferential statistics </td>
    <td style="text-align:left;"> 5 </td>
@@ -97,15 +97,15 @@ The contents on this website are divided into weekly readings. To be able to fol
   <tr>
    <td style="text-align:left;"> Apr 11 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM / TBD </td>
-   <td style="text-align:left;"> TC.-1.61 / TBD </td>
+   <td style="text-align:left;"> 08:30 AM - approx. 11:50 AM (off. 11:30 AM) </td>
+   <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Apr 18 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:30 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Supervised learning II </td>
    <td style="text-align:left;"> 6 </td>
@@ -113,7 +113,7 @@ The contents on this website are divided into weekly readings. To be able to fol
   <tr>
    <td style="text-align:left;"> Apr 25 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:30 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Unsupervised learning I </td>
    <td style="text-align:left;"> 7 </td>
@@ -121,7 +121,7 @@ The contents on this website are divided into weekly readings. To be able to fol
   <tr>
    <td style="text-align:left;"> May 2 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:30 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 08:30 AM - 11:30 AM </td>
    <td style="text-align:left;"> TC.-1.61 </td>
    <td style="text-align:left;"> Unsupervised learning II </td>
    <td style="text-align:left;"> 8 </td>

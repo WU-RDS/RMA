@@ -13,10 +13,6 @@ output:
 <p style="text-align:center;"><img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/Graphics/Rlogo.png" alt="R Logo" width="20%"></p>
 <br>
 
-<div align="center">
-<iframe width="500" height="310" src="https://www.youtube.com/embed/ZrQXjeP-0t4" frameborder="0" allowfullscreen></iframe>
-</div>
-<br>
 
 In this course, we will work with the statistical software package <b>R</b>. Please make sure R is already installed on your computer before the tutorials start. The Comprehensive R Archive Network (CRAN) contains compiled versions of the program that are ready to use free of charge: 
 
