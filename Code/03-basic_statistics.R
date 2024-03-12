@@ -39,14 +39,20 @@ prop.table(table(music_data$explicit)) #relative frequencies
 #some examples
 warner_share <- prop.table(table(music_data$label))
 warner_share <- round(100*warner_share[names(warner_share) == "Warner Music"], digits = 1)
+warner_share
+
 rock_share <- prop.table(table(music_data$genre))
 rock_share <- round(100*rock_share[names(rock_share) == "Rock"], digits = 1)
+rock_share
+
 explicit_share <- prop.table(table(music_data$explicit))
 explicit_share <- round(100*explicit_share[names(explicit_share) == "explicit"], digits = 1)
+explicit_share
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-prop.table(table(select(music_data, genre, explicit)),1) #conditional relative frequencies
+prop.table(table(select(music_data, genre, explicit)),1) # conditional relative frequencies
+prop.table(table(select(music_data, genre, explicit)),2) # another conditional relative frequencies - but now against the second variable (e.g., pop songs are 43.3% of all not explicit songs)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------

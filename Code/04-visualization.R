@@ -311,6 +311,8 @@ music_data_at_se_compare <- filter(music_data_ctry, region %in% c('at','se'))
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 library(tidyr)
 data_wide <- pivot_wider(music_data_at_se_compare, names_from = region, values_from = streams)
+
+
 data_wide
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ratio <- mean(data_wide$at/1000000)/mean(data_wide$se/1000000)
@@ -344,13 +346,4 @@ ggbetweenstats(
    pairwise.comparisons = TRUE # display results from pairwise comparisons
  )
 
-## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-#combine different plot types
-library(ggExtra)
-p <- ggplot(music_data, aes(x = speechiness, y = log_streams)) + 
-  geom_point() +
-    labs(x = "Speechiness", y = "Number of streams (log-scale)", title = "Scatterplot & histograms of streams and speechiness") + 
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5,color = "#666666")) 
-ggExtra::ggMarginal(p, type = "histogram")
 

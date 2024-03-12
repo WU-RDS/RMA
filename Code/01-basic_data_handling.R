@@ -108,13 +108,16 @@ sales_data[5:7, ] # rows 5,6,7 and all columns
 library(tidyverse)
 filter(sales_data, private_label == "private label") # show only products that belong to private labels
 filter(sales_data, top10_sales > 100000) # show only products that sold more than 100,000 units  
-filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "RBio-Kaisersemmel"
+filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
 private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Arrange by genre (ascending: A - Z) and streams (descending: maximum - minimum). Note that you only get an output in the console; no new object was created.
-arrange(sales_data, top10_product_names, desc(top10_sales))
+# Arrange by sales (descending: most - least) 
+arrange(sales_data, desc(top10_sales))
+
+# Arrange by brand (ascending by default) and then sales (descending: most - least) 
+arrange(sales_data, top10_brand, desc(top10_sales))
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -153,7 +156,7 @@ sales_data_new <- mutate(sales_data,
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# To rename a column, use rename() function from dplyr package. On the left side (before =), give the new name, then specify what existing column should be renamed like this
+# To rename a column, use rename() function from dplyr package. On the left side (before "="), give the new name, then specify what existing column should be renamed like this
 sales_data <- dplyr::rename(sales_data, brand = top10_brand)
 head(sales_data)
 
