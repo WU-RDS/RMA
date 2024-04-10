@@ -143,6 +143,17 @@ population-standard-deviation
 the-central-limit-theorem
 using-what-we-actually-know
 confidence-intervals-for-the-sample-mean
+null-hypothesis-statistical-testing-nhst
+the-null-hypothesis
+statistical-inference-on-a-sample
+test-statistic
+z-scores
+t-statistic
+p-values
+confidence-interval
+nhst-considerations
+type-i-and-type-ii-errors
+p-values-1
 supervised-learning
 linear-regression
 correlation

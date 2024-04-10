@@ -227,6 +227,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.2</b> The Central Limit Theorem</a></li>
 <li class="chapter" data-level="5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>5.3</b> Using what we actually know</a></li>
 <li class="chapter" data-level="5.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>5.4</b> Confidence Intervals for the Sample Mean</a></li>
+<li class="chapter" data-level="5.5" data-path="statistical-inference.html"><a href="statistical-inference.html#null-hypothesis-statistical-testing-nhst"><i class="fa fa-check"></i><b>5.5</b> Null Hypothesis Statistical Testing (NHST)</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>5.5.1</b> The null hypothesis</a></li>
+<li class="chapter" data-level="5.5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#statistical-inference-on-a-sample"><i class="fa fa-check"></i><b>5.5.2</b> Statistical inference on a sample</a></li>
+<li class="chapter" data-level="5.5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#nhst-considerations"><i class="fa fa-check"></i><b>5.5.3</b> NHST considerations</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-2"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
@@ -406,19 +412,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="load-data" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Load data<a href="group-project-1.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="group-project-1.html#cb426-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb426-2"><a href="group-project-1.html#cb426-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb426-3"><a href="group-project-1.html#cb426-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb426-4"><a href="group-project-1.html#cb426-4" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
-<span id="cb426-5"><a href="group-project-1.html#cb426-5" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
-<span id="cb426-6"><a href="group-project-1.html#cb426-6" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb426-7"><a href="group-project-1.html#cb426-7" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb426-8"><a href="group-project-1.html#cb426-8" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
-<span id="cb426-9"><a href="group-project-1.html#cb426-9" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb426-10"><a href="group-project-1.html#cb426-10" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb426-11"><a href="group-project-1.html#cb426-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb426-12"><a href="group-project-1.html#cb426-12" tabindex="-1"></a>playlist_data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2023/main/data/playlist_data_fin.csv&quot;</span>)</span>
-<span id="cb426-13"><a href="group-project-1.html#cb426-13" tabindex="-1"></a><span class="fu">names</span>(playlist_data)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="group-project-1.html#cb442-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb442-2"><a href="group-project-1.html#cb442-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb442-3"><a href="group-project-1.html#cb442-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb442-4"><a href="group-project-1.html#cb442-4" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb442-5"><a href="group-project-1.html#cb442-5" tabindex="-1"></a><span class="fu">library</span>(ggiraphExtra)</span>
+<span id="cb442-6"><a href="group-project-1.html#cb442-6" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
+<span id="cb442-7"><a href="group-project-1.html#cb442-7" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb442-8"><a href="group-project-1.html#cb442-8" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb442-9"><a href="group-project-1.html#cb442-9" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb442-10"><a href="group-project-1.html#cb442-10" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb442-11"><a href="group-project-1.html#cb442-11" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb442-12"><a href="group-project-1.html#cb442-12" tabindex="-1"></a>playlist_data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2023/main/data/playlist_data_fin.csv&quot;</span>)</span>
+<span id="cb442-13"><a href="group-project-1.html#cb442-13" tabindex="-1"></a><span class="fu">names</span>(playlist_data)</span></code></pre></div>
 <pre><code>##  [1] &quot;playlist_id&quot;          &quot;playlist_owner&quot;       &quot;playlist_name&quot;       
 ##  [4] &quot;spotify_pl&quot;           &quot;major_pl&quot;             &quot;artist_pl&quot;           
 ##  [7] &quot;german_pl&quot;            &quot;context_pl&quot;           &quot;content_pl&quot;          
@@ -434,25 +440,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="question-1" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Question 1<a href="group-project-1.html#question-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="group-project-1.html#cb428-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="group-project-1.html#cb444-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-2" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Question 2<a href="group-project-1.html#question-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="group-project-1.html#cb429-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="group-project-1.html#cb445-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-3" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Question 3<a href="group-project-1.html#question-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="group-project-1.html#cb430-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="group-project-1.html#cb446-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 </div>
 <div id="question-4" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Question 4<a href="group-project-1.html#question-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Provide a description of your steps here!</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="group-project-1.html#cb431-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="group-project-1.html#cb447-1" tabindex="-1"></a><span class="co"># provide your code here</span></span></code></pre></div>
 <p>Interpret the results here!</p>
 
 <p><link rel="stylesheet" type="text/css" media="all" href="style.css" /></p>

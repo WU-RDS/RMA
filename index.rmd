@@ -117,21 +117,21 @@ mytable = data.frame(
              "Online"
              ),
     Topics = c("Introduction to the course <br>Basic concepts of research design", 
-               "Introduction to R & R Markdown", 
+               "Introduction to R & R Markdown I", 
+               "Introduction to R & R Markdown II", 
                "Introduction to inferential statistics",
                "Supervised learning I",
                "Supervised learning II",
                "Unsupervised learning I",
-               "Unsupervised learning II",
                "Exam"
                ),
     Chapters = c("1",
                  "2, 3, 4", 
+                 "2, 3, 4", 
                  "5", 
-                 "6", 
+                 "6",
                  "6",
                  "7",
-                 "8",
                  "--"
                  ))
 
@@ -161,14 +161,14 @@ mytable_sub_1 = data.frame(
              "Assignment 3: Unsupervised learning"
              ),
     Assigned = c(
-      "TBA",
-      "TBA",
-      "TBA"
+      "TBA / see Canvas",
+      "TBA / see Canvas",
+      "TBA / see Canvas"
     ),
     Submission = c(
-      "TBA",
-      "TBA",
-      "TBA"
+      "TBA / see Canvas",
+      "TBA / see Canvas",
+      "TBA / see Canvas"
     )
     )
 
