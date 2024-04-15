@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Getting started with R | Retail Marketing Analytics 2024</title>
+  <title>9 Assignments: Solutions | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Getting started with R | Retail Marketing Analytics 2024" />
+  <meta property="og:title" content="9 Assignments: Solutions | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An Introduction to Data Analytics Using R" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Getting started with R | Retail Marketing Analytics 2024" />
+  <meta name="twitter:title" content="9 Assignments: Solutions | Retail Marketing Analytics 2024" />
   
   <meta name="twitter:description" content="An Introduction to Data Analytics Using R" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="preliminaries.html"/>
-<link rel="next" href="data-handling.html"/>
+<link rel="prev" href="r-markdown.html"/>
+<link rel="next" href="group-project-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -371,134 +371,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="getting-started-with-r" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Getting started with R<a href="getting-started-with-r.html#getting-started-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p style="text-align:center;">
-<img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/Graphics/Rlogo.png" alt="R Logo" width="20%">
-</p>
-<p><br></p>
-<p>In this course, we will work with the statistical software package <b>R</b>. Please make sure R is already installed on your computer before the tutorials start. The Comprehensive R Archive Network (CRAN) contains compiled versions of the program that are ready to use free of charge:</p>
-<ul>
-<li><a href="http://cran.r-project.org">Download R</a> [FREE download]</li>
-</ul>
-<p><b>RStudio</b> provides a graphical user interface (GUI) that makes working with R easier. You can also download RStudio for free:</p>
-<ul>
-<li><a href="https://www.rstudio.com/products/rstudio/download/#download">Download R Studio</a> (Windows, Linux, OSX, …).</li>
-</ul>
-<p>The R Studio software is built on top of R, which means that you can use R without R Studio, but you cannot use R Studio without R. The reason why we will use R Studio is that it provides a nicer user interface compared to the standard R interface. There are several advantages of R over other statistical software packages:</p>
-<ul>
-<li>It`s free</li>
-<li>A lot of free training material</li>
-<li>Runs on a variety of platforms (Windows, Linux, OSX, …)</li>
-<li>Contains statistical routines not yet available in other programs.</li>
-<li>Active global community (e.g., <a href="https://www.r-bloggers.com/" target="_blank">https://www.r-bloggers.com/</a>).</li>
-<li>Many specialized user-written packages.</li>
-<li>It has its own journal (e.g., <a href="http://journal.r-project.org" target="_blank">http://journal.r-project.org</a>).</li>
-<li>Highly integrated and interfaces to other programs.</li>
-<li>It is becoming increasingly popular among practitioners.</li>
-<li>It is a valuable skill to have on the job market.</li>
-<li>It is not as complicated as you might think.</li>
-<li>R is powerful.</li>
-<li>…</li>
-</ul>
-<div id="how-to-download-and-install-r-and-rstudio" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> How to download and install R and RStudio<a href="getting-started-with-r.html#how-to-download-and-install-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The following video gives you an overview of how to download and install the R and R Studio software.</p>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SAxhoYIt7pk" frameborder="0" allowfullscreen>
-</iframe>
+<div id="assignments-solutions" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Assignments: Solutions<a href="assignments-solutions.html#assignments-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="assignment-1" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Assignment 1<a href="assignments-solutions.html#assignment-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is the <em>technical</em> solution for the first assignment (i.e., it does not include any interpretations while your solutions should have some for <em>each task</em>). Also, plase note that there are multiple possible ways of solving the assignment.</p>
+<div id="load-data" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Load data<a href="assignments-solutions.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="assignments-solutions.html#cb442-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb442-2"><a href="assignments-solutions.html#cb442-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb442-3"><a href="assignments-solutions.html#cb442-3" tabindex="-1"></a></span>
+<span id="cb442-4"><a href="assignments-solutions.html#cb442-4" tabindex="-1"></a>sales_data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/Sales-2019-2020_A1.csv&quot;</span>,</span>
+<span id="cb442-5"><a href="assignments-solutions.html#cb442-5" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb442-6"><a href="assignments-solutions.html#cb442-6" tabindex="-1"></a>sales_data <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb442-7"><a href="assignments-solutions.html#cb442-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%Y&quot;</span>))</span>
+<span id="cb442-8"><a href="assignments-solutions.html#cb442-8" tabindex="-1"></a>sales_data<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">format</span>(sales_data<span class="sc">$</span>date, <span class="st">&quot;%Y&quot;</span>)</span>
+<span id="cb442-9"><a href="assignments-solutions.html#cb442-9" tabindex="-1"></a>sales_data<span class="sc">$</span>order_value_EUR <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(sales_data<span class="sc">$</span>order_value_EUR,</span>
+<span id="cb442-10"><a href="assignments-solutions.html#cb442-10" tabindex="-1"></a>    <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb442-11"><a href="assignments-solutions.html#cb442-11" tabindex="-1"></a><span class="fu">str</span>(sales_data)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    1000 obs. of  11 variables:
+##  $ country        : chr  &quot;Sweden&quot; &quot;Finland&quot; &quot;Portugal&quot; &quot;Portugal&quot; ...
+##  $ order_value_EUR: chr  &quot;17524.02&quot; &quot;116563.40&quot; &quot;296465.56&quot; &quot;74532.02&quot; ...
+##  $ cost           : chr  &quot;14122.61&quot; &quot;92807.78&quot; &quot;257480.34&quot; &quot;59752.32&quot; ...
+##  $ date           : Date, format: &quot;2020-02-12&quot; &quot;2019-09-26&quot; ...
+##  $ category       : chr  &quot;Books&quot; &quot;Games&quot; &quot;Clothing&quot; &quot;Beauty&quot; ...
+##  $ customer_name  : chr  &quot;Goldner-Dibbert&quot; &quot;Hilll-Vandervort&quot; &quot;Larkin-Collier&quot; &quot;Hessel-Stiedemann&quot; ...
+##  $ sales_manager  : chr  &quot;Maxie Marrow&quot; &quot;Hube Corey&quot; &quot;Celine Tumasian&quot; &quot;Celine Tumasian&quot; ...
+##  $ sales_rep      : chr  &quot;Madelon Bront&quot; &quot;Wat Bowkley&quot; &quot;Smitty Culverhouse&quot; &quot;Aurelie Wren&quot; ...
+##  $ device_type    : chr  &quot;Mobile&quot; &quot;Mobile&quot; &quot;PC&quot; &quot;PC&quot; ...
+##  $ order_id       : chr  &quot;70-0511466&quot; &quot;28-6585323&quot; &quot;58-7703341&quot; &quot;14-6700183&quot; ...
+##  $ year           : chr  &quot;2020&quot; &quot;2019&quot; &quot;2019&quot; &quot;2020&quot; ...</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="assignments-solutions.html#cb444-1" tabindex="-1"></a><span class="co"># head(sales_data)</span></span></code></pre></div>
+<p>First, you should check the data and make sure all variables are recorded correctly (correct variable types). From the output above you can see that <code>order_value_EUR</code> and <code>cost</code>, which are measured in ratio scales, are not numeric. Hence, you need to fix this:</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="assignments-solutions.html#cb445-1" tabindex="-1"></a>sales_data<span class="sc">$</span>order_value_EUR <span class="ot">=</span> <span class="fu">as.numeric</span>(sales_data<span class="sc">$</span>order_value_EUR)</span>
+<span id="cb445-2"><a href="assignments-solutions.html#cb445-2" tabindex="-1"></a>sales_data<span class="sc">$</span>cost <span class="ot">=</span> <span class="fu">as.numeric</span>(sales_data<span class="sc">$</span>cost)</span>
+<span id="cb445-3"><a href="assignments-solutions.html#cb445-3" tabindex="-1"></a><span class="fu">head</span>(sales_data, <span class="dv">2</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["order_value_EUR"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["cost"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["date"],"name":[4],"type":["date"],"align":["right"]},{"label":["category"],"name":[5],"type":["chr"],"align":["left"]},{"label":["customer_name"],"name":[6],"type":["chr"],"align":["left"]},{"label":["sales_manager"],"name":[7],"type":["chr"],"align":["left"]},{"label":["sales_rep"],"name":[8],"type":["chr"],"align":["left"]},{"label":["device_type"],"name":[9],"type":["chr"],"align":["left"]},{"label":["order_id"],"name":[10],"type":["chr"],"align":["left"]},{"label":["year"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"Sweden","2":"17524.02","3":"14122.61","4":"2020-02-12","5":"Books","6":"Goldner-Dibbert","7":"Maxie Marrow","8":"Madelon Bront","9":"Mobile","10":"70-0511466","11":"2020"},{"1":"Finland","2":"116563.40","3":"92807.78","4":"2019-09-26","5":"Games","6":"Hilll-Vandervort","7":"Hube Corey","8":"Wat Bowkley","9":"Mobile","10":"28-6585323","11":"2019"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div id="the-r-studio-interface" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> The R Studio interface<a href="getting-started-with-r.html#the-r-studio-interface" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The following video gives you an introduction to the R Studio interface.</p>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qUxWc23r4EM" frameborder="0" allowfullscreen>
-</iframe>
+<div id="q1" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Q1<a href="assignments-solutions.html#q1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To solve the first task of Question 1, ypu could simply use the <code>table()</code> and <code>arrange()</code> functions. By storing the table as data frame, you allow for using it in the bar plot as well:</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="assignments-solutions.html#cb446-1" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(sales_data<span class="sc">$</span>country))</span>
+<span id="cb446-2"><a href="assignments-solutions.html#cb446-2" tabindex="-1"></a>prop <span class="ot">&lt;-</span> prop <span class="sc">%&gt;%</span></span>
+<span id="cb446-3"><a href="assignments-solutions.html#cb446-3" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(Freq))</span>
+<span id="cb446-4"><a href="assignments-solutions.html#cb446-4" tabindex="-1"></a>prop</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Var1"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Freq"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Portugal","2":"239"},{"1":"France","2":"232"},{"1":"Sweden","2":"182"},{"1":"UK","2":"101"},{"1":"Finland","2":"44"},{"1":"Ireland","2":"43"},{"1":"Bulgaria","2":"30"},{"1":"Netherlands","2":"28"},{"1":"Spain","2":"26"},{"1":"Germany","2":"24"},{"1":"Luxembourg","2":"22"},{"1":"Denmark","2":"11"},{"1":"Italy","2":"10"},{"1":"Belgium","2":"6"},{"1":"Austria","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="assignments-solutions.html#cb447-1" tabindex="-1"></a><span class="fu">ggplot</span>(prop, <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Freq)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Var1,</span>
+<span id="cb447-2"><a href="assignments-solutions.html#cb447-2" tabindex="-1"></a>    <span class="sc">-</span>Freq), <span class="at">fill =</span> Freq)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Number of transactions&quot;</span>) <span class="sc">+</span></span>
+<span id="cb447-3"><a href="assignments-solutions.html#cb447-3" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Market&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,</span>
+<span id="cb447-4"><a href="assignments-solutions.html#cb447-4" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="09-rmdIntro_files/figure-html/question_1-1.png" width="672" /></p>
+<p>For the next task, it was enough to use conditional frequencies <em>by year</em> (because this way, the audience sees the dynamics of transactions shares between markets in Y1 and Y2), or you could show the percentage changes for each market from Y1 to Y2.</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="assignments-solutions.html#cb448-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(<span class="fu">select</span>(sales_data, country,</span>
+<span id="cb448-2"><a href="assignments-solutions.html#cb448-2" tabindex="-1"></a>    year)), <span class="dv">2</span>), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>##              year
+## country       2019 2020
+##   Austria      0.0  0.4
+##   Belgium      0.4  0.8
+##   Bulgaria     3.1  2.9
+##   Denmark      0.8  1.4
+##   Finland      4.5  4.3
+##   France      26.1 20.4
+##   Germany      2.2  2.5
+##   Ireland      3.1  5.5
+##   Italy        0.8  1.2
+##   Luxembourg   2.7  1.8
+##   Netherlands  2.2  3.3
+##   Portugal    21.0 26.7
+##   Spain        3.1  2.2
+##   Sweden      19.2 17.3
+##   UK          10.8  9.4</code></pre>
+</div>
+<div id="q2" class="section level3 hasAnchor" number="9.1.3">
+<h3><span class="header-section-number">9.1.3</span> Q2<a href="assignments-solutions.html#q2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this task, you should simply perform grouping and summarizing. The only difference is, in task 1, you only needed one grouping variable (year), while in task 2, you had to use country as well.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="assignments-solutions.html#cb450-1" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">annual_revenue =</span> <span class="fu">sum</span>(order_value_EUR), <span class="at">avg_revenue =</span> <span class="fu">mean</span>(order_value_EUR))</span>
+<span id="cb450-2"><a href="assignments-solutions.html#cb450-2" tabindex="-1"></a>s1</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["annual_revenue"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["avg_revenue"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019","2":"56617524","3":"115546.0"},{"1":"2020","2":"56744214","3":"111263.2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="assignments-solutions.html#cb451-1" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">annual_revenue =</span> <span class="fu">sum</span>(order_value_EUR), <span class="at">avg_revenue =</span> <span class="fu">mean</span>(order_value_EUR)) </span>
+<span id="cb451-2"><a href="assignments-solutions.html#cb451-2" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(s2)</span>
+<span id="cb451-3"><a href="assignments-solutions.html#cb451-3" tabindex="-1"></a>s2</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["annual_revenue"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["avg_revenue"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Austria","2":"2020","3":"190166.4","4":"95083.18"},{"1":"Belgium","2":"2019","3":"228554.3","4":"114277.15"},{"1":"Belgium","2":"2020","3":"380415.6","4":"95103.91"},{"1":"Bulgaria","2":"2019","3":"1909415.2","4":"127294.35"},{"1":"Bulgaria","2":"2020","3":"1572729.4","4":"104848.63"},{"1":"Denmark","2":"2019","3":"336460.0","4":"84115.01"},{"1":"Denmark","2":"2020","3":"426743.5","4":"60963.35"},{"1":"Finland","2":"2019","3":"2538029.1","4":"115364.96"},{"1":"Finland","2":"2020","3":"3010005.9","4":"136818.45"},{"1":"France","2":"2019","3":"14723094.3","4":"115024.17"},{"1":"France","2":"2020","3":"11177584.1","4":"107476.77"},{"1":"Germany","2":"2019","3":"1409637.3","4":"128148.85"},{"1":"Germany","2":"2020","3":"1384411.2","4":"106493.17"},{"1":"Ireland","2":"2019","3":"2308991.1","4":"153932.74"},{"1":"Ireland","2":"2020","3":"2643293.6","4":"94403.34"},{"1":"Italy","2":"2019","3":"459532.1","4":"114883.02"},{"1":"Italy","2":"2020","3":"476037.2","4":"79339.54"},{"1":"Luxembourg","2":"2019","3":"1672315.1","4":"128639.62"},{"1":"Luxembourg","2":"2020","3":"1241235.3","4":"137915.04"},{"1":"Netherlands","2":"2019","3":"1015879.3","4":"92352.66"},{"1":"Netherlands","2":"2020","3":"2208785.5","4":"129928.56"},{"1":"Portugal","2":"2019","3":"11722952.8","4":"113815.08"},{"1":"Portugal","2":"2020","3":"16073409.1","4":"118186.83"},{"1":"Spain","2":"2019","3":"1489665.7","4":"99311.04"},{"1":"Spain","2":"2020","3":"1009573.9","4":"91779.44"},{"1":"Sweden","2":"2019","3":"10403214.5","4":"110672.49"},{"1":"Sweden","2":"2020","3":"9233989.9","4":"104931.70"},{"1":"UK","2":"2019","3":"6399783.6","4":"120750.63"},{"1":"UK","2":"2020","3":"5715833.7","4":"119079.87"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="assignments-solutions.html#cb452-1" tabindex="-1"></a>sales_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb452-2"><a href="assignments-solutions.html#cb452-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(country, order_value_EUR),</span>
+<span id="cb452-3"><a href="assignments-solutions.html#cb452-3" tabindex="-1"></a>    <span class="at">y =</span> order_value_EUR<span class="sc">/</span><span class="dv">1000</span>)) <span class="sc">+</span> <span class="co"># to have nicely readable axis points</span></span>
+<span id="cb452-4"><a href="assignments-solutions.html#cb452-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">coef =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb452-5"><a href="assignments-solutions.html#cb452-5" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sales (in tsd)&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb452-6"><a href="assignments-solutions.html#cb452-6" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">1.1</span>,</span>
+<span id="cb452-7"><a href="assignments-solutions.html#cb452-7" tabindex="-1"></a>        <span class="at">hjust =</span> <span class="dv">1</span>), <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb452-8"><a href="assignments-solutions.html#cb452-8" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">&quot;#666666&quot;</span>), <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="09-rmdIntro_files/figure-html/question_2-1.png" width="672" /></p>
+</div>
+<div id="q3" class="section level3 hasAnchor" number="9.1.4">
+<h3><span class="header-section-number">9.1.4</span> Q3<a href="assignments-solutions.html#q3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here are the two ways to solve Question 3: one with <code>mutate()</code> and another with <code>summarize()</code>. You can see that the second way is slightly more parsimonious.
+Reminder: ROI is calculated as (( total revenue - total cost) / total cost ) * 100.</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="assignments-solutions.html#cb453-1" tabindex="-1"></a>roi_mut <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span></span>
+<span id="cb453-2"><a href="assignments-solutions.html#cb453-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb453-3"><a href="assignments-solutions.html#cb453-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">roi_index =</span> (<span class="fu">sum</span>(order_value_EUR) <span class="sc">-</span> <span class="fu">sum</span>(cost))<span class="sc">/</span><span class="fu">sum</span>(cost) <span class="sc">*</span></span>
+<span id="cb453-4"><a href="assignments-solutions.html#cb453-4" tabindex="-1"></a>        <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb453-5"><a href="assignments-solutions.html#cb453-5" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(roi_index)) <span class="sc">%&gt;%</span></span>
+<span id="cb453-6"><a href="assignments-solutions.html#cb453-6" tabindex="-1"></a>    <span class="fu">select</span>(country, roi_index) <span class="sc">%&gt;%</span></span>
+<span id="cb453-7"><a href="assignments-solutions.html#cb453-7" tabindex="-1"></a>    <span class="fu">unique</span>()</span>
+<span id="cb453-8"><a href="assignments-solutions.html#cb453-8" tabindex="-1"></a>roi_mut</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["roi_index"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Austria","2":"23.12648"},{"1":"Denmark","2":"21.17211"},{"1":"Bulgaria","2":"21.04475"},{"1":"UK","2":"20.39093"},{"1":"Portugal","2":"20.19396"},{"1":"Sweden","2":"20.15162"},{"1":"Ireland","2":"20.11442"},{"1":"France","2":"20.10141"},{"1":"Germany","2":"20.01462"},{"1":"Italy","2":"19.92777"},{"1":"Spain","2":"19.89351"},{"1":"Luxembourg","2":"19.85066"},{"1":"Netherlands","2":"19.47191"},{"1":"Finland","2":"19.34466"},{"1":"Belgium","2":"18.35307"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="assignments-solutions.html#cb454-1" tabindex="-1"></a>roi_sum <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span></span>
+<span id="cb454-2"><a href="assignments-solutions.html#cb454-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb454-3"><a href="assignments-solutions.html#cb454-3" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">roi_index =</span> (<span class="fu">sum</span>(order_value_EUR) <span class="sc">-</span> <span class="fu">sum</span>(cost))<span class="sc">/</span><span class="fu">sum</span>(cost) <span class="sc">*</span></span>
+<span id="cb454-4"><a href="assignments-solutions.html#cb454-4" tabindex="-1"></a>        <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb454-5"><a href="assignments-solutions.html#cb454-5" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(roi_index))</span>
+<span id="cb454-6"><a href="assignments-solutions.html#cb454-6" tabindex="-1"></a>roi_sum</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["roi_index"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Austria","2":"23.12648"},{"1":"Denmark","2":"21.17211"},{"1":"Bulgaria","2":"21.04475"},{"1":"UK","2":"20.39093"},{"1":"Portugal","2":"20.19396"},{"1":"Sweden","2":"20.15162"},{"1":"Ireland","2":"20.11442"},{"1":"France","2":"20.10141"},{"1":"Germany","2":"20.01462"},{"1":"Italy","2":"19.92777"},{"1":"Spain","2":"19.89351"},{"1":"Luxembourg","2":"19.85066"},{"1":"Netherlands","2":"19.47191"},{"1":"Finland","2":"19.34466"},{"1":"Belgium","2":"18.35307"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="assignments-solutions.html#cb455-1" tabindex="-1"></a><span class="fu">head</span>(roi_mut, <span class="dv">3</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["roi_index"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Austria","2":"23.12648"},{"1":"Denmark","2":"21.17211"},{"1":"Bulgaria","2":"21.04475"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="assignments-solutions.html#cb456-1" tabindex="-1"></a><span class="fu">tail</span>(roi_mut, <span class="dv">3</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["roi_index"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Netherlands","2":"19.47191"},{"1":"Finland","2":"19.34466"},{"1":"Belgium","2":"18.35307"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div id="functions" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Functions<a href="getting-started-with-r.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="infobox download">
-<p><a href="./Code/00-functions_packages.R">You can download the corresponding R-Code here</a></p>
+<div id="q4" class="section level3 hasAnchor" number="9.1.5">
+<h3><span class="header-section-number">9.1.5</span> Q4<a href="assignments-solutions.html#q4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This task is quite similar to the prevoius one and could be solved the same way:</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="assignments-solutions.html#cb457-1" tabindex="-1"></a>categories <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span></span>
+<span id="cb457-2"><a href="assignments-solutions.html#cb457-2" tabindex="-1"></a>    <span class="fu">group_by</span>(category) <span class="sc">%&gt;%</span></span>
+<span id="cb457-3"><a href="assignments-solutions.html#cb457-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">profit =</span> (<span class="fu">sum</span>(order_value_EUR) <span class="sc">-</span> <span class="fu">sum</span>(cost))) <span class="sc">%&gt;%</span></span>
+<span id="cb457-4"><a href="assignments-solutions.html#cb457-4" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(profit)) <span class="sc">%&gt;%</span></span>
+<span id="cb457-5"><a href="assignments-solutions.html#cb457-5" tabindex="-1"></a>    <span class="fu">select</span>(category, profit) <span class="sc">%&gt;%</span></span>
+<span id="cb457-6"><a href="assignments-solutions.html#cb457-6" tabindex="-1"></a>    <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb457-7"><a href="assignments-solutions.html#cb457-7" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">5</span>)  <span class="co"># could also be done with summarize() like in the previous task</span></span>
+<span id="cb457-8"><a href="assignments-solutions.html#cb457-8" tabindex="-1"></a>categories</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["profit"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Clothing","2":"2941938"},{"1":"Games","2":"2559796"},{"1":"Appliances","2":"2534879"},{"1":"Electronics","2":"2401133"},{"1":"Books","2":"2225914"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div align="center">
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SBkmsT0vlOY" frameborder="0" allowfullscreen>
-</iframe>
 </div>
-<p>When analyzing data in R, you will access most of the functionalities by calling functions. A <b>function</b> is a piece of code written to carry out a specified task (e.g., the <code>lm()</code>-function to run a linear regression). It may or may not accept arguments or parameters and it may or may not return one or more values. Functions are generally called like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1" tabindex="-1"></a><span class="fu">function_name</span>(<span class="at">arg1 =</span> val1, <span class="at">arg2 =</span> val2, ...)</span></code></pre></div>
-<p>To give you an example, let’s use the built-in <code>seq()</code>-function to generate a sequence of numbers. RStudio has some nice features that help you when writing code. For example, when you type “se” and hit TAB, a pop-up shows you possible completions. The more letters you type in, the more precise the suggestions will become and you will notice that after typing in the third letter, a pop-up with possible completions will appear automatically and you can select the desired function using the ↑/↓ arrows and hitting ENTER. The pop-up even reminds you of the arguments that a function takes. If you require more details, you may either press the F1 key or type in <code>?seq</code> and you will find the details for the function in the help tab in the lower right pane. When you have selected the desired function from the pop-up, RStudio will automatically add matching opening and closing parentheses (i.e., go from <code>seq</code> to <code>seq()</code>). Within the parentheses you may now type in the arguments that the function takes. Let’s use <code>seq()</code> to generate a sequence of numbers from 1 to 10. To do this, you may include the argument names (i.e., <code>from =</code>, <code>to =</code>), or just the desired values in the correct order.<br />
-An important thing to note is that R is case-sensitive, meaning that <code>Seq()</code> and <code>seq()</code> are viewed as two different functions by R.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started-with-r.html#cb2-1" tabindex="-1"></a><span class="co"># &lt;- this is a comment and is ignored by the R-interpreter</span></span>
-<span id="cb2-2"><a href="getting-started-with-r.html#cb2-2" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>) <span class="co">#creates sequence from 1 to 10</span></span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="getting-started-with-r.html#cb4-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>) <span class="co">#same result</span></span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<p>Note that if you specify the argument names, you may enter them in any order. However, if do not include the argument names you must adhere to the order that is specified for the respective function.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="getting-started-with-r.html#cb6-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">10</span>,<span class="at">from =</span> <span class="dv">1</span>) <span class="co">#produces desired results</span></span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="getting-started-with-r.html#cb8-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">1</span>) <span class="co">#produces reversed sequence</span></span></code></pre></div>
-<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<div id="q5" class="section level3 hasAnchor" number="9.1.6">
+<h3><span class="header-section-number">9.1.6</span> Q5<a href="assignments-solutions.html#q5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The tricky part in this task could be with “share of sales” - remember that share of sales is a share of revenue, gained by the device type, against the total revenue. This is <strong>not counting</strong> (i.e., <code>prop.table()</code> would not be the right way to solve this). Instead, you should use the sums of revenues per device type to obtain the shares:</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="assignments-solutions.html#cb458-1" tabindex="-1"></a>device_sales <span class="ot">&lt;-</span> sales_data <span class="sc">%&gt;%</span></span>
+<span id="cb458-2"><a href="assignments-solutions.html#cb458-2" tabindex="-1"></a>    <span class="fu">group_by</span>(device_type) <span class="sc">%&gt;%</span></span>
+<span id="cb458-3"><a href="assignments-solutions.html#cb458-3" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">sales =</span> <span class="fu">sum</span>(order_value_EUR))</span>
+<span id="cb458-4"><a href="assignments-solutions.html#cb458-4" tabindex="-1"></a>device_sales <span class="sc">%&gt;%</span></span>
+<span id="cb458-5"><a href="assignments-solutions.html#cb458-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">share_of_sales_percentage =</span> <span class="fu">round</span>(sales<span class="sc">/</span><span class="fu">sum</span>(sales),</span>
+<span id="cb458-6"><a href="assignments-solutions.html#cb458-6" tabindex="-1"></a>        <span class="dv">4</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["device_type"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sales"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["share_of_sales_percentage"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mobile","2":"15447394","3":"13.63"},{"1":"PC","2":"89647284","3":"79.08"},{"1":"Tablet","2":"8267061","3":"7.29"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="packages" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Packages<a href="getting-started-with-r.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Most of the R functionalities are contained in distinct modules called <b>packages</b>. When R is installed, a small set of packages is also installed. For example, the Base R package contains the basic functions which let R function as a language: arithmetic, input/output, basic programming support, etc.. However, a large number of packages exist that contain specialized functions that will help you to achieve specific tasks. To access the functions outside the scope of the pre-installed packages, you have to install the package first using the <code>install.packages()</code>-function. For example, to install the tidyverse package to manipulate data and create graphics, type in <code>install.packages("tidyverse")</code>. Note that you only have to install a package once. After you have installed a package, you may load it to access its functionalities using the <code>library()</code>-function. E.g., to load the tidyverse-package, type in <code>library(tidyverse)</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="getting-started-with-r.html#cb10-1" tabindex="-1"></a><span class="co"># Only run for the first time:</span></span>
-<span id="cb10-2"><a href="getting-started-with-r.html#cb10-2" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb10-3"><a href="getting-started-with-r.html#cb10-3" tabindex="-1"></a><span class="co"># Run to load package:</span></span>
-<span id="cb10-4"><a href="getting-started-with-r.html#cb10-4" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.3     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="getting-started-with-r.html#cb12-1" tabindex="-1"></a><span class="co"># Now we can use functionality provided by &quot;tidyverse&quot;</span></span>
-<span id="cb12-2"><a href="getting-started-with-r.html#cb12-2" tabindex="-1"></a><span class="co"># We will see in the coming lectures how the following code works:</span></span>
-<span id="cb12-3"><a href="getting-started-with-r.html#cb12-3" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> pop)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="getting-started-with-r.html#cb12-4" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="01-getting_started_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-The number of R packages is rapidly increasing and there are many specialized packages to perform different types of analytics.
-<p style="text-align:center;">
-<img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/Graphics/rpackages.png" alt="DSUR cover" height="300"  /> 
-</p>
-</div>
-<div id="a-typical-r-session" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> A typical R session<a href="getting-started-with-r.html#a-typical-r-session" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Open RStudio.</p></li>
-<li><p>Make sure that your <b>working directory</b> is set correctly. The working directory is the location where R will look for files you would like to load and where any files you write to disk will be saved. If you open an existing R script from a specific folder, this folder will, by default, be the working directory. You can check your working directory by using the <code>getwd()</code>-function. In case you wish to change your working directory, you can use the <code>setwd()</code>-function and specify the desired location (i.e., <code>setwd(path_to_project_folder)</code>). Notice that you have to use <code>/</code> instead of <code>\</code> to specify the path (i.e., Windows paths copied from the explorer will not work before you change the backward slashes with forward slashes). Alternatively, you can set the working directory with R-Studio by clicking on the “Sessions” tab and selecting “Set Working Directory”.</p></li>
-<li><p>Load your data that you wish to analyze (using procedures that we will cover later)</p></li>
-<li><p>Perform statistical analysis on your data (using methods that we will cover later)</p></li>
-<li><p>Save your <b>workspace</b>. The R workspace is your current working environment incl. any user-defined objects (e.g., data frames, functions). You can save an image of the current workspace to a file called ”.RData”. In fact, RStudio will ask you automatically if you would like to save the workspace when you close the program at the end of the session. In addition, you may save an image of the workspace at any time during the session using the <code>save.image()</code>-function. This saves the workspace image to the current working directory. When you re-open R from that working directory, the workspace will be loaded, and all these things will be available to you again. You may also save the image to any other location by specifying the path to the folder explicitly (i.e., <code>save.image(path_to_project_folder)</code>). If you open R from a different location, you may load the workspace manually using the <code>load("")</code>-function which points to the image file in the respective directory (e.g., <code>load("path_to_project_folder/.RData")</code>.
-<br>
-<br></p></li>
-</ol>
-<div class="infobox_orange hint">
-<p>Although it is quite common, saving your workspace is not always required. Especially when you save your work in an R script file (which is highly recommended), you will be able to restore your latest results by simply executing the code contained therein again. This also prevents you from carrying over potential mistakes from one session to the next.</p>
-</div>
-<p><br></p>
-</div>
-<div id="getting-help" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Getting help<a href="getting-started-with-r.html#getting-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p style="text-align:center;">
-<img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/Graphics/need_a_minute.JPG" alt="errors" height="250"  /><br>
-Source: <a href="https://github.com/allisonhorst/stats-illustrations" target="_blank">Allison Horst</a>
-</p>
-<ul>
-<li>Errors &amp; warnings: because R is interactive, consider errors your friends!</li>
-<li>Most importantly: the more time you spend using R, the more comfortable you become with it and it will be easier to see its advantages</li>
-<li>Built-in R tutorial: type in “help.start()” to get to the official R tutorial</li>
-<li>Questions regarding specific functions: type in “?function_name” to get to the help page of specific functions (e.g., “?lm” gives you help on the lm() function)</li>
-<li>Video tutorials: Make use of one of the many video tutorials on YouTube (e.g., <a href="http://www.r-bloggers.com/learn-r-from-the-ground-up/">http://www.r-bloggers.com/learn-r-from-the-ground-up</a><a href="https://www.youtube.com/watch?v=9ZrAYxWPN6c">/</a>)</li>
-<li>R Cheatsheets: Cheat sheets make it easy to learn about and use some popular packages (<a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">https://www.rstudio.com/resources/cheatsheets/</a>). They can also be accessed from within RStudio under the “help” menu</li>
-</ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -506,8 +559,8 @@ Source: <a href="https://github.com/allisonhorst/stats-illustrations" target="_b
           </div>
         </div>
       </div>
-<a href="preliminaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-handling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="group-project-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

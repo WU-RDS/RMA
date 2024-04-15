@@ -252,3 +252,119 @@ kable(mathy.df, escape=FALSE) %>%
 
 [Greek letters](https://en.wikipedia.org/wiki/Greek_alphabet#Letters) are preceded by a `\` followed by their name (`$\beta$` = $\beta$). In order to capitalize them simply capitalize the first letter of the name (`$\Gamma$` = $\Gamma$).
 
+
+# Assignments: Solutions
+
+## Assignment 1
+
+This is the *technical* solution for the first assignment (i.e., it does not include any interpretations while your solutions should have some for *each task*). Also, plase note that there are multiple possible ways of solving the assignment.
+
+### Load data
+
+```{r load_data, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(magrittr)
+
+sales_data <- read.csv2("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/Sales-2019-2020_A1.csv",
+                        sep = ",", header = TRUE)
+sales_data %<>% mutate(date = as.Date(date, format = "%m/%d/%Y"))
+sales_data$year <- format(sales_data$date, "%Y")
+sales_data$order_value_EUR <- str_remove(sales_data$order_value_EUR, ",")
+str(sales_data)
+#head(sales_data) 
+```
+
+First, you should check the data and make sure all variables are recorded correctly (correct variable types). From the output above you can see that ```order_value_EUR``` and ```cost```, which are measured in ratio scales, are not numeric. Hence, you need to fix this: 
+
+```{r convert_variables, message=FALSE, warning=FALSE}
+sales_data$order_value_EUR = as.numeric(sales_data$order_value_EUR)
+sales_data$cost = as.numeric(sales_data$cost)
+head(sales_data, 2)
+```
+
+
+### Q1 
+
+To solve the first task of Question 1, ypu could simply use the ```table()``` and ```arrange()``` functions. By storing the table as data frame, you allow for using it in the bar plot as well:
+
+```{r question_1, message = FALSE, warning = FALSE}
+prop <- as.data.frame(table(sales_data$country))
+prop <- prop %>% arrange(desc(Freq))
+prop
+
+ggplot(prop, aes(x = Var1, y = Freq)) + 
+  geom_col(aes(x = fct_reorder(Var1, -Freq), fill = Freq)) + 
+  ylab("Number of transactions") +
+  xlab("Market") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1.1,
+        hjust = 1))
+```
+
+For the next task, it was enough to use conditional frequencies *by year* (because this way, the audience sees the dynamics of transactions shares between markets in Y1 and Y2), or you could show the percentage changes for each market from Y1 to Y2.
+```{r question_1_1, message = FALSE, warning = FALSE}
+round(prop.table(table(select(sales_data, country, year)), 2), 3)*100
+```
+
+
+### Q2 
+
+In this task, you should simply perform grouping and summarizing. The only difference is, in task 1, you only needed one grouping variable (year), while in task 2, you had to use country as well.
+
+```{r question_2, message = FALSE, warning = FALSE}
+s1 <- sales_data %>% group_by(year) %>% summarize(annual_revenue = sum(order_value_EUR), avg_revenue = mean(order_value_EUR))
+s1
+
+s2 <- sales_data %>% group_by(country, year) %>% summarize(annual_revenue = sum(order_value_EUR), avg_revenue = mean(order_value_EUR)) 
+s2 <- as.data.frame(s2)
+s2
+
+sales_data %>% filter(year == 2020) %>% group_by(country) %>% 
+ggplot(aes(x = fct_reorder(country, order_value_EUR),
+    y = order_value_EUR/1000)) + # to have nicely readable axis points
+  geom_boxplot(coef = 3) + labs(x = "Country",
+    y = "Sales (in tsd)") + theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1.1,
+        hjust = 1), plot.title = element_text(hjust = 0.5,
+        color = "#666666"), legend.position = "none")
+```
+
+
+### Q3 
+
+Here are the two ways to solve Question 3: one with ```mutate()``` and another with ```summarize()```. You can see that the second way is slightly more parsimonious. 
+Reminder: ROI is calculated as (( total revenue - total cost) / total cost ) * 100. 
+
+```{r question_3, message = FALSE, warning = FALSE}
+roi_mut <- sales_data %>% group_by(country) %>% mutate(roi_index = (sum(order_value_EUR)-sum(cost))/sum(cost)*100) %>% arrange(desc(roi_index)) %>% select(country, roi_index) %>% unique()
+roi_mut
+
+roi_sum <- sales_data %>% group_by(country) %>% summarize(roi_index = (sum(order_value_EUR)-sum(cost))/sum(cost)*100) %>% arrange(desc(roi_index)) 
+roi_sum
+
+head(roi_mut, 3)
+tail(roi_mut, 3)
+```
+
+
+### Q4
+
+This task is quite similar to the prevoius one and could be solved the same way:
+
+```{r question_4, message = FALSE, warning = FALSE}
+categories <- sales_data %>% group_by(category) %>% mutate(profit = (sum(order_value_EUR)-sum(cost))) %>% arrange(desc(profit)) %>% select(category, profit) %>% unique() %>% head(5) # could also be done with summarize() like in the previous task
+categories
+```
+
+
+### Q5
+
+The tricky part in this task could be with "share of sales" - remember that share of sales is a share of revenue, gained by the device type, against the total revenue. This is **not counting** (i.e., ```prop.table()``` would not be the right way to solve this). Instead, you should use the sums of revenues per device type to obtain the shares:
+
+```{r question_5, message = FALSE, warning = FALSE}
+device_sales <- sales_data %>% group_by(device_type) %>%
+  summarise(sales = sum(order_value_EUR))
+device_sales %>% mutate(share_of_sales_percentage = round(sales/sum(sales), 4)*100) 
+```
+
+
