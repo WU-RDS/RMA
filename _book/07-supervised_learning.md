@@ -711,18 +711,8 @@ You can get a first impression of the fit of the model by inspecting the scatter
 <p class="caption">(\#fig:unnamed-chunk-26)Good vs. bad model fit</p>
 </div>
 
-The R<sup>2</sup> statistic is reported in the regression output, so you don't need to compute it manually - but you can do it this way:
+The R<sup>2</sup> statistic is reported in the regression output, so you don't need to compute it manually.
 
-
-```r
-r2 <- anova(sales_reg)$"Sum Sq"[1]/(anova(sales_reg)$"Sum Sq"[1] +
-    anova(sales_reg)$"Sum Sq"[2])  #compute R2
-r2
-```
-
-```
-## [1] 0.05978855
-```
 
 ###### Adjusted R-squared {-}
 
@@ -830,7 +820,7 @@ ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
     theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 The way of obtaining a more reasonable view and interpretation in this case is called "multiplicative modeling", or log-log transformation (you can find additional details about log-log transformations below with a slightly different motivation and example). 
 
@@ -864,7 +854,7 @@ ggplot(regression, mapping = aes(log(price_ounce),
     labs(x = "Price", y = "Sales") + theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 You can see how the scales changed, and how the observations got more normally distributed. Hence, we can log-transform our variables and estimate the following equation: 
 
@@ -1004,8 +994,8 @@ ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-35-1.png" alt="Confidence intervals for regression model" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-35)Confidence intervals for regression model</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-34-1.png" alt="Confidence intervals for regression model" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-34)Confidence intervals for regression model</p>
 </div>
 
 The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
@@ -1028,8 +1018,8 @@ ggplot(data = regression, aes(week, log(move_ounce))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-37-1.png" alt="Model fit" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-37)Model fit</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-36-1.png" alt="Model fit" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-36)Model fit</p>
 </div>
 
 **Partial plots**
@@ -1043,24 +1033,56 @@ avPlots(multiple_sales_reg)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-38-1.png" alt="Partial plots" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-38)Partial plots</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-37-1.png" alt="Partial plots" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-37)Partial plots</p>
 </div>
+
 
 
 ### Categorical predictors
 
-
-
 #### Two categories
 
-Suppose, you wish to investigate the effect of the variable "country" on sales, which is a categorical variable that can only take two levels (i.e., 0 = local artist, 1 = international artist). Categorical variables with two levels are also called binary predictors. It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "country" variable, we can create a new predictor variable that takes the form:
+
+```r
+categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical",
+    sep = ",", header = TRUE)
+categories$store <- as.factor(categories$store)
+categories$brand <- as.factor(categories$brand)
+str(categories)
+```
+
+```
+## 'data.frame':	3194 obs. of  19 variables:
+##  $ store           : Factor w/ 2 levels "98","100": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ brand_id        : int  2 2 2 2 2 2 2 2 2 2 ...
+##  $ brand           : Factor w/ 6 levels "Amstel","Budweiser",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ week            : int  234 235 237 238 239 240 241 242 243 245 ...
+##  $ move_ounce      : num  763.2 741.6 259.2 165.6 21.6 ...
+##  $ price_ounce     : num  0.0773 0.0773 0.0887 0.0918 0.0921 ...
+##  $ sale_B          : num  0.5 0.5 0 0 0 ...
+##  $ sale_C          : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ sale_S          : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ summove_ounce   : num  6071191 6071191 6071191 6071191 6071191 ...
+##  $ mean_marketshare: num  0.00341 0.00341 0.00341 0.00341 0.00341 ...
+##  $ sharerank       : int  24 24 24 24 24 24 24 24 24 24 ...
+##  $ priclow         : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ pricmed         : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ prichigh        : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ saledummy_B     : int  1 1 0 0 0 0 0 0 0 1 ...
+##  $ saledummy_C     : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ saledummy_S     : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ promoweek       : int  234 235 NA NA NA NA NA NA NA 245 ...
+```
+
+
+We will use a slightly different data set to explore additional opportunities for regression analysis. Suppose, you wish to investigate the effect of the variable "store" on sales, which is a categorical variable that can only take two levels (i.e., 98 = store with ID 98, and 100 = store with ID 100). Categorical variables with two levels are also called binary predictors; in our example, however, they are not decoded into typical binary view (i.e., they are not 0 and 1). It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "store" variable, we can create a new predictor variable that takes the form:
 
 \begin{equation} 
 x_4 =
   \begin{cases}
-    1       & \quad \text{if } i \text{th artist is international}\\
-    0  & \quad \text{if } i \text{th artist is local}
+    0       & \quad \text{if } i \text{th observation comes from store 98}\\
+    1  & \quad \text{if } i \text{th observation comes from store 100}
   \end{cases}
 (\#eq:dummycoding)
 \end{equation} 
@@ -1068,27 +1090,93 @@ x_4 =
 This new variable is then added to our regression equation from before, so that the equation becomes 
 
 \begin{align}
-Sales =\beta_0 &+\beta_1*adspend\\
-      &+\beta_2*airplay\\
-      &+\beta_3*starpower\\ 
-      &+\beta_4*international+\epsilon
+Sales =\beta_0 &+\beta_1*price\\
+      &+\beta_2*bonus\_buy\\
+      &+\beta_3*price\_reduction\\ 
+      &+\beta_4*store+\epsilon
 \end{align}
 
-where "international" represents the new dummy variable and  is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
+where "store" represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
+
+First, let's reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).
 
 
+```r
+multiple_regression_new <- lm(move_ounce ~ price_ounce +
+    sale_B + sale_S, data = categories)
+summary(multiple_regression_new)
+```
 
-You can see that we now have an additional coefficient in the regression output, which tells us the effect of the binary predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups (similar to a t-test), conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between international and local artists, and whether this difference is significant. Specifically, it means that international artists on average sell 45.67 units more than local artists, and this difference is significant (i.e., p < 0.05).  
+```
+## 
+## Call:
+## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S, data = categories)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -10570  -2915  -1414    407  56446 
+## 
+## Coefficients:
+##              Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept)   14706.1      458.5  32.075 <0.0000000000000002 ***
+## price_ounce -146658.5     5990.8 -24.480 <0.0000000000000002 ***
+## sale_B          600.9      456.8   1.315               0.188    
+## sale_S        -2340.4     3014.9  -0.776               0.438    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7427 on 3190 degrees of freedom
+## Multiple R-squared:   0.16,	Adjusted R-squared:  0.1592 
+## F-statistic: 202.5 on 3 and 3190 DF,  p-value: < 0.00000000000000022
+```
+
+Now, let's add the store variable:
+
+
+```r
+multiple_regression_store <- lm(move_ounce ~ price_ounce +
+    sale_B + sale_S + store, data = categories)
+summary(multiple_regression_store)
+```
+
+```
+## 
+## Call:
+## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store, 
+##     data = categories)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -10710  -3135  -1317    678  55579 
+## 
+## Coefficients:
+##              Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)   13844.2      473.8  29.219 < 0.0000000000000002 ***
+## price_ounce -147160.4     5951.7 -24.726 < 0.0000000000000002 ***
+## sale_B          666.3      453.9   1.468                0.142    
+## sale_S        -2428.0     2995.0  -0.811                0.418    
+## store100       1724.9      261.3   6.602      0.0000000000475 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7378 on 3189 degrees of freedom
+## Multiple R-squared:  0.1713,	Adjusted R-squared:  0.1703 
+## F-statistic: 164.8 on 4 and 3189 DF,  p-value: < 0.00000000000000022
+```
+
+
+You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100 artists, and whether this difference is significant. Specifically, it means that sales in store 100 are on average 1,724.92 oz higher than in store 98, and this difference is significant (i.e., p < 0.05).  
+
 
 #### More than two categories
 
-Predictors with more than two categories, like our "genre"" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are three genres (i.e., 1 = Rock, 2 = Pop, 3 = Electronic). Thus, we need to create additional dummy variables. For example, for our "genre" variable, we create two dummy variables as follows:
+Predictors with more than two categories, like our "brand"" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are many brands (i.e., 1 = Amstel, 2 = Budweiser, 3 = Corona, 4 = Fosters, 5 = Heineken, 6 = Old Milwaukee). Thus, we need to create additional dummy variables. For example, for our "brand" variable, we create five dummy variables as follows:
 
 \begin{equation} 
 x_5 =
   \begin{cases}
-    1       & \quad \text{if } i \text{th  product is from Pop genre}\\
-    0  & \quad \text{if } i \text{th product is from Rock genre}
+    1       & \quad \text{if } i \text{th  product is Budweiser}\\
+    0  & \quad \text{if } i \text{th product is Amstel}
   \end{cases}
 (\#eq:dummycoding1)
 \end{equation} 
@@ -1096,37 +1184,124 @@ x_5 =
 \begin{equation} 
 x_6 =
   \begin{cases}
-    1       & \quad \text{if } i \text{th  product is from Electronic genre}\\
-    0  & \quad \text{if } i \text{th product is from Rock genre}
+    1       & \quad \text{if } i \text{th  product is Corona}\\
+    0  & \quad \text{if } i \text{th product is Amstel}
   \end{cases}
 (\#eq:dummycoding2)
 \end{equation} 
 
+and so on. 
+
+
 We would then add these variables as additional predictors in the regression equation and obtain the following model
 
 \begin{align}
-Sales =\beta_0 &+\beta_1*adspend\\
-      &+\beta_2*airplay\\
-      &+\beta_3*starpower\\ 
-      &+\beta_4*international\\
-      &+\beta_5*Pop\\
-      &+\beta_6*Electronic+\epsilon
+Sales =\beta_0 &+\beta_1*price\\
+      &+\beta_2*bonus\_buy\\
+      &+\beta_3*price\_reduction\\ 
+      &+\beta_4*Pop\\
+      &+\beta_5*store\\
+      &+\beta_6*Budweiser\\
+      &+\beta_7*Corona\\
+      &+\beta_8*Fosters\\
+      &+\beta_9*Heineken\\
+      &+\beta_10*Old\_Milwaukee+\epsilon
 \end{align}
 
-where "Pop" and "Rock" represent our new dummy variables, and  and  represent the associated regression coefficients. 
+where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
 
-The interpretation of the coefficients is as follows:  is the difference in average sales between the genres "Rock" and "Pop", while  is the difference in average sales between the genres "Rock" and "Electro". Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Rock" would be the baseline genre. This means that there will always be one fewer dummy variable than the number of levels.
-
-You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation: 
+The interpretation of the coefficients is as follows: $\beta_6$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_7$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand This means that there will always be one fewer dummy variable than the number of levels.
 
 
+```r
+multiple_regression_ext <- lm(move_ounce ~ price_ounce +
+    sale_B + sale_S + store + brand, data = categories)
+summary(multiple_regression_ext)
+```
 
-How can we interpret the coefficients? It is estimated based on our model that products from the "Pop" genre will on average sell 47.69 units more than products from the "Rock" genre, and that products from the "Electronic" genre will sell on average 27.62 units more than the products from the "Rock" genre. The p-value of both variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the genres.
+```
+## 
+## Call:
+## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
+##     brand, data = categories)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -13305  -1179   -381   1091  40849 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)        -1614.2     1372.1  -1.176              0.23949    
+## price_ounce         7220.0    15158.8   0.476              0.63390    
+## sale_B              1235.2      306.9   4.025 0.000058197671655294 ***
+## sale_S              1661.0     1495.7   1.111              0.26686    
+## store100            1858.1      128.7  14.442 < 0.0000000000000002 ***
+## brandBudweiser     22298.6      618.6  36.049 < 0.0000000000000002 ***
+## brandCorona         2288.9      236.8   9.665 < 0.0000000000000002 ***
+## brandFosters        -110.1      240.5  -0.458              0.64716    
+## brandHeinekenBeer   1815.0      219.9   8.253 0.000000000000000223 ***
+## brandOldMilwaukee   2584.1      838.2   3.083              0.00207 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3622 on 3184 degrees of freedom
+## Multiple R-squared:  0.8006,	Adjusted R-squared:  0.8001 
+## F-statistic:  1421 on 9 and 3184 DF,  p-value: < 0.00000000000000022
+```
+
+How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 22,298.63 oz more than products from the "Amstel" brand, and that products from the "Corona" brand will sell on average 2,288.88 oz more than the products from the "Amstel" brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
 
 The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the ```relevel()``` function and set the reference category using the ```ref``` argument. The following would estimate the same model using the second category as the baseline:
 
 
+```r
+multiple_regression_ext <- lm(move_ounce ~ price_ounce +
+    sale_B + sale_S + store + relevel(brand, ref = 2),
+    data = categories)
+summary(multiple_regression_ext)
+```
 
+```
+## 
+## Call:
+## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
+##     relevel(brand, ref = 2), data = categories)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -13305  -1179   -381   1091  40849 
+## 
+## Coefficients:
+##                                     Estimate Std. Error t value
+## (Intercept)                          20684.4      810.8  25.512
+## price_ounce                           7220.0    15158.8   0.476
+## sale_B                                1235.2      306.9   4.025
+## sale_S                                1661.0     1495.7   1.111
+## store100                              1858.1      128.7  14.442
+## relevel(brand, ref = 2)Amstel       -22298.6      618.6 -36.049
+## relevel(brand, ref = 2)Corona       -20009.8      533.7 -37.496
+## relevel(brand, ref = 2)Fosters      -22408.7      616.3 -36.360
+## relevel(brand, ref = 2)HeinekenBeer -20483.6      625.1 -32.769
+## relevel(brand, ref = 2)OldMilwaukee -19714.5      329.2 -59.885
+##                                                 Pr(>|t|)    
+## (Intercept)                         < 0.0000000000000002 ***
+## price_ounce                                        0.634    
+## sale_B                                         0.0000582 ***
+## sale_S                                             0.267    
+## store100                            < 0.0000000000000002 ***
+## relevel(brand, ref = 2)Amstel       < 0.0000000000000002 ***
+## relevel(brand, ref = 2)Corona       < 0.0000000000000002 ***
+## relevel(brand, ref = 2)Fosters      < 0.0000000000000002 ***
+## relevel(brand, ref = 2)HeinekenBeer < 0.0000000000000002 ***
+## relevel(brand, ref = 2)OldMilwaukee < 0.0000000000000002 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3622 on 3184 degrees of freedom
+## Multiple R-squared:  0.8006,	Adjusted R-squared:  0.8001 
+## F-statistic:  1421 on 9 and 3184 DF,  p-value: < 0.00000000000000022
+```
+  
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
 
 
@@ -1166,8 +1341,8 @@ ggplot(data = non_linear_reg, aes(x = advertising,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-40-1.png" alt="Non-linear relationship" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-40)Non-linear relationship</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-44-1.png" alt="Non-linear relationship" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-44)Non-linear relationship</p>
 </div>
 
 It appears that a linear model might **not** represent the data well. It rather appears that the effect of an additional Euro spend on advertising is decreasing with increasing levels of advertising expenditures. Thus, we have decreasing marginal returns. We could put this to a test and estimate a linear model:
@@ -1209,8 +1384,8 @@ plot(linear_reg, 1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-42-1.png" alt="Residuals vs. Fitted" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-42)Residuals vs. Fitted</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Residuals vs. Fitted" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-46)Residuals vs. Fitted</p>
 </div>
 
 The plot suggests that the assumption of homoscedasticity is violated (i.e., the spread of values on the y-axis is different for different levels of the fitted values). In addition, the red line deviates from the dashed grey line, suggesting that the relationship might not be linear. Finally, the Q-Q plot of the residuals suggests that the residuals are not normally distributed. 
@@ -1221,8 +1396,8 @@ plot(linear_reg, 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-43-1.png" alt="Q-Q plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-43)Q-Q plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Q-Q plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-47)Q-Q plot</p>
 </div>
 
 To sum up, a linear specification might not be the best model for this data set. 
@@ -1256,8 +1431,8 @@ ggplot(data = non_linear_reg, aes(x = log(advertising),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-44-1.png" alt="Linearized effect" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-44)Linearized effect</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-48-1.png" alt="Linearized effect" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-48)Linearized effect</p>
 </div>
 
 It appears that now, with the log-transformed variables, a linear specification is a much better representation of the data. Hence, we can log-transform our variables and estimate the following equation: 
@@ -1304,8 +1479,8 @@ plot(log_reg, 1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Residuals plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-46-1)Residuals plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" alt="Residuals plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-50-1)Residuals plot</p>
 </div>
 
 ```r
@@ -1313,8 +1488,8 @@ plot(log_reg, 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-2.png" alt="Q-Q plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-46-2)Q-Q plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-2.png" alt="Q-Q plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-50-2)Q-Q plot</p>
 </div>
 
 Finally, we can plot the predicted values against the observed values to see that the results from the log-log model (red) provide a better prediction than the results from the linear model (blue). 
@@ -1332,241 +1507,83 @@ ggplot(data = non_linear_reg) + geom_point(aes(x = advertising,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Comparison if model fit" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-47)Comparison if model fit</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-51-1.png" alt="Comparison if model fit" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-51)Comparison if model fit</p>
 </div>
 
 
-#### Quadratic model 
-
-
-Another way of modeling non-linearities is including a squared term if there are decreasing or increasing effects. In fact, we can model non-constant slopes as long as the form is a linear combination of exponentials (i.e. squared, cubed, ...) of the explanatory variables. Usually we do not expect *many* inflection points so squared or third power terms suffice. Note that the degree of the polynomial has to be equal to the number of inflection points.  
-
-When using squared terms we can model diminishing and eventually negative returns. Think about advertisement spending. If a brand is not well known, spending on ads will increase brand awareness and have a large effect on sales. In a regression model this translates to a steep slope for spending at the origin (i.e. for lower spending). However, as more and more people will already know the brand we expect that an additional Euro spent on advertisement will have less and less of an effect the more the company spends. We say that the returns are diminishing. Eventually, if they keep putting more and more ads out, people get annoyed and some will stop buying from the company. In that case the return might even get negative. To model such a situation we need a linear as well as a squared term in the regression.
-
-```lm(...)``` can take squared (or any power) terms as input by adding ```I(X^2)``` as explanatory variable. In the example below we see a clear quadratic relationship with an inflection point at around 70. If we try to model this using the level of the covariates without the quadratic term we do not get a very good fit. 
-
-
-```r
-set.seed(1234)
-X <- as.integer(runif(1000, 0, 12000))
-Y <- 80000 + 140 * X - 0.01 * (X^2) + rnorm(1000, 0,
-    35000)
-modLinear <- lm(Y/100000 ~ X)
-sales_quad <- data.frame(sales = Y/100000, advertising = X *
-    0.01, Prediction = fitted(modLinear))
-ggplot(sales_quad) + geom_point(aes(x = advertising,
-    y = sales, color = "Data")) + geom_line(aes(x = advertising,
-    y = Prediction, color = "Prediction")) + theme_bw() +
-    ggtitle("Linear Predictor") + theme(legend.title = element_blank())
-```
-
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-48-1.png" width="672" />
-
-The graph above clearly shows that advertising spending of between 0 and 50 increases sales. However, the marginal increase (i.e. the slope of the data curve) is decreasing. Around 70 there is an inflection point. After that point additional ad-spending actually decreases sales (e.g. people get annoyed). 
-Notice that the prediction line is straight, that is, the marginal increase of sales due to additional spending on advertising is the same for any amount of spending. This shows the danger of basing business decisions on wrongly specified models. But even in the area in which the sign of the prediction is correct, we are quite far off. Lets take a look at the top 5 sales values and the corresponding predictions:
-
-
-```r
-top5 <- which(sales_quad$sales %in% head(sort(sales_quad$sales,
-    decreasing = TRUE), 5))
-dplyr::arrange(sales_quad[top5, ], desc(sales_quad[top5,
-    1]))
-```
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Prediction"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"6.531041","2":"71.83","3":"4.590612"},{"1":"6.334179","2":"80.98","3":"4.755908"},{"1":"6.325756","2":"62.82","3":"4.427845"},{"1":"6.322232","2":"61.73","3":"4.408154"},{"1":"6.310205","2":"67.95","3":"4.520519"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-
-By including a quadratic term we can fit the data very well. This is still a linear model since the outcome variable is still explained by a linear combination of regressors even though one of the regressors is now just a non-linear function of the same variable (i.e. the squared value).
-
-
-```r
-quad_mod <- lm(sales ~ advertising + I(advertising^2),
-    data = sales_quad)
-summary(quad_mod)
-```
-
-```
-## 
-## Call:
-## lm(formula = sales ~ advertising + I(advertising^2), data = sales_quad)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.02161 -0.22014  0.00364  0.22357  0.95618 
-## 
-## Coefficients:
-##                      Estimate   Std. Error t value            Pr(>|t|)    
-## (Intercept)       0.816271901  0.031701116   25.75 <0.0000000000000002 ***
-## advertising       0.139642575  0.001199450  116.42 <0.0000000000000002 ***
-## I(advertising^2) -0.000999716  0.000009548 -104.71 <0.0000000000000002 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.3322 on 997 degrees of freedom
-## Multiple R-squared:  0.936,	Adjusted R-squared:  0.9358 
-## F-statistic:  7286 on 2 and 997 DF,  p-value: < 0.00000000000000022
-```
-
-```r
-confint(quad_mod)
-```
-
-```
-##                         2.5 %        97.5 %
-## (Intercept)       0.754063337  0.8784804661
-## advertising       0.137288839  0.1419963124
-## I(advertising^2) -0.001018453 -0.0009809802
-```
-
-```r
-sales_quad$Prediction <- predict(quad_mod)
-ggplot(data = sales_quad, aes(x = Prediction, y = sales)) +
-    geom_point(shape = 1) + geom_smooth(method = "lm",
-    fill = "blue", alpha = 0.1) + theme_bw()
-```
-
-```
-## `geom_smooth()` using formula = 'y ~ x'
-```
-
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" width="672" />
-
-```r
-plot(quad_mod, 1)
-```
-
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-2.png" width="672" />
-
-```r
-plot(quad_mod, 2)
-```
-
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-3.png" width="672" />
-
-```r
-shapiro.test(resid(quad_mod))
-```
-
-```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  resid(quad_mod)
-## W = 0.99765, p-value = 0.1656
-```
-
-```r
-sales_quad$pred_lin_reg <- predict(modLinear)
-ggplot(data = sales_quad) + geom_point(aes(x = advertising,
-    y = sales), shape = 1) + geom_line(data = sales_quad,
-    aes(x = advertising, y = pred_lin_reg), color = "blue",
-    size = 1.05) + geom_line(data = sales_quad, aes(x = advertising,
-    y = Prediction), color = "red", size = 1.05) +
-    theme_bw() + xlab("Advertising (thsd. Euro)") +
-    ylab("Sales (million units)")
-```
-
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-4.png" width="672" />
-
-Now the prediction of the model is very close to the actual data and we could base our production decisions on that model.
-
-
-```r
-top5 <- which(sales_quad$sales %in% head(sort(sales_quad$sales,
-    decreasing = TRUE), 5))
-dplyr::arrange(sales_quad[top5, ], desc(sales_quad[top5,
-    1]))
-```
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Prediction"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pred_lin_reg"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"6.531041","2":"71.83","3":"5.688713","4":"4.590612"},{"1":"6.334179","2":"80.98","3":"5.568627","4":"4.755908"},{"1":"6.325756","2":"62.82","3":"5.643385","4":"4.427845"},{"1":"6.322232","2":"61.73","3":"5.626896","4":"4.408154"},{"1":"6.310205","2":"67.95","3":"5.689092","4":"4.520519"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-
-When interpreting the coefficients of the predictor in this model we have to be careful. Since we included the squared term, the slope is now different at each level of production (this can be seen in the graph above). That is, we do not have a single coefficient to interpret as the slope anymore. This can easily be shown by calculating the derivative of the model with respect to production. 
-
-$$
-\text{Sales} = \alpha + \beta_1 \text{ Advertising} + \beta_2 \text{ Advertising}^2 + \varepsilon\\
-{\delta \text{ Sales} \over \delta \text{ Advertising}} = \beta_1 + 2 \beta_2 \text{ Advertising} \equiv \text{Slope}
-$$
 
 ## Logistic regression
 
 
 ### Motivation and intuition
 
-In the last section we saw how to predict continuous outcomes (sales, height, etc.) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the probability of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a song will be a top-10 hit on a popular music streaming platform. In a first step we are going to use only the danceability index as a predictor. Later we are going to add more independent variables. 
+In the last section we saw how to predict continuous outcomes (e.g., sales) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the *probability* of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a customer will churn (i.e., stop being our customer) any time soon. In the first step we are going to use only the "cash-back amount" index as a predictor. Later we are going to add more independent variables. 
 
 
 ```r
 library(ggplot2)
 library(gridExtra)
 
-chart_data <- read.delim2("https://raw.githubusercontent.com/IMSMWU/MRDA2018/master/data/chart_data_logistic.dat",
-    header = T, sep = "\t", stringsAsFactors = F, dec = ".")
-# Create a new dummy variable 'top10', which is 1
-# if a song made it to the top10 and 0 else:
-chart_data$top10 <- ifelse(chart_data$rank < 11, 1,
-    0)
-
-# Inspect data
-head(chart_data)
+churn_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/e_com_data.csv",
+    sep = ",", header = T)
+head(churn_data)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["artistName"],"name":[1],"type":["chr"],"align":["left"]},{"label":["trackID"],"name":[2],"type":["chr"],"align":["left"]},{"label":["trackName"],"name":[3],"type":["chr"],"align":["left"]},{"label":["rank"],"name":[4],"type":["int"],"align":["right"]},{"label":["streams"],"name":[5],"type":["int"],"align":["right"]},{"label":["frequency"],"name":[6],"type":["int"],"align":["right"]},{"label":["danceability"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["energy"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["key"],"name":[9],"type":["int"],"align":["right"]},{"label":["loudness"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["speechiness"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["acousticness"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["instrumentalness"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["liveness"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["valence"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["tempo"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["duration_ms"],"name":[17],"type":["int"],"align":["right"]},{"label":["time_signature"],"name":[18],"type":["int"],"align":["right"]},{"label":["isrc"],"name":[19],"type":["chr"],"align":["left"]},{"label":["spotifyArtistID"],"name":[20],"type":["chr"],"align":["left"]},{"label":["releaseDate"],"name":[21],"type":["chr"],"align":["left"]},{"label":["daysSinceRelease"],"name":[22],"type":["int"],"align":["right"]},{"label":["spotifyFollowers"],"name":[23],"type":["int"],"align":["right"]},{"label":["mbid"],"name":[24],"type":["chr"],"align":["left"]},{"label":["artistCountry"],"name":[25],"type":["chr"],"align":["left"]},{"label":["indicator"],"name":[26],"type":["int"],"align":["right"]},{"label":["top10"],"name":[27],"type":["dbl"],"align":["right"]}],"data":[{"1":"dj mustard","2":"01gNiOqg8u7vT90uVgOVmz","3":"Whole Lotta Lovin'","4":"120","5":"917710","6":"3","7":"0.438","8":"0.399","9":"4","10":"-8.752","11":"0.0623","12":"0.1540","13":"0.00000845","14":"0.0646","15":"0.382","16":"160.159","17":"299160","18":"5","19":"QMJMT1500808","20":"0YinUQ50QDB7ZxSCLyQ40k","21":"08.01.2016","22":"450","23":"139718","24":"0612bcce-e351-40be-b3d7-2bb5e1c23479","25":"US","26":"1","27":"0"},{"1":"bing crosby","2":"01h424WG38dgY34vkI3Yd0","3":"White Christmas","4":"70","5":"1865526","6":"9","7":"0.225","8":"0.248","9":"9","10":"-15.871","11":"0.0337","12":"0.9120","13":"0.00014300","14":"0.4040","15":"0.185","16":"96.013","17":"183613","18":"4","19":"USMC14750470","20":"6ZjFtWeHP9XN7FeKSUe80S","21":"27.08.2007","22":"1000","23":"123135","24":"2437980f-513a-44fc-80f1-b90d9d7fcf8f","25":"US","26":"1","27":"0"},{"1":"post malone","2":"02opp1cycqiFNDpLd2o1J3","3":"Big Lie","4":"129","5":"1480436","6":"1","7":"0.325","8":"0.689","9":"6","10":"-4.951","11":"0.2430","12":"0.1970","13":"0.00000000","14":"0.0722","15":"0.225","16":"77.917","17":"207680","18":"4","19":"USUM71614468","20":"246dkjvS1zLTtiykXe5h60","21":"09.12.2016","22":"114","23":"629600","24":"b1e26560-60e5-4236-bbdb-9aa5a8d5ee19","25":"0","26":"1","27":"0"},{"1":"chris brown","2":"02yRHV9Cgk8CUS2fx9lKVC","3":"Anyway","4":"130","5":"894216","6":"1","7":"0.469","8":"0.664","9":"7","10":"-7.160","11":"0.1210","12":"0.0566","13":"0.00000158","14":"0.4820","15":"0.267","16":"124.746","17":"211413","18":"4","19":"USRC11502943","20":"7bXgB6jMjp9ATFy66eO08Z","21":"11.12.2015","22":"478","23":"4077185","24":"c234fa42-e6a6-443e-937e-2f4b073538a3","25":"US","26":"1","27":"0"},{"1":"5 seconds of summer","2":"0375PEO6HIwCHx5Y2sowQm","3":"Waste The Night","4":"182","5":"642784","6":"1","7":"0.286","8":"0.907","9":"8","10":"-4.741","11":"0.1130","12":"0.0144","13":"0.00000000","14":"0.2680","15":"0.271","16":"75.640","17":"266640","18":"4","19":"GBUM71505159","20":"5Rl15oVamLq7FbSb0NNBNy","21":"23.10.2015","22":"527","23":"2221348","24":"830e5c4e-6b7d-431d-86ab-00c751281dc5","25":"AU","26":"1","27":"0"},{"1":"rihanna","2":"046irIGshCqu24AjmEWZtr","3":"Same Ol’ Mistakes","4":"163","5":"809256","6":"2","7":"0.447","8":"0.795","9":"8","10":"-5.435","11":"0.0443","12":"0.2110","13":"0.00169000","14":"0.0725","15":"0.504","16":"151.277","17":"397093","18":"4","19":"QM5FT1600108","20":"5pKCCKE2ajJHZ9KAiaK11H","21":"29.01.2016","22":"429","23":"9687258","24":"73e5e69d-3554-40d8-8516-00cb38737a1c","25":"0","26":"1","27":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["CustomerID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Churn"],"name":[2],"type":["int"],"align":["right"]},{"label":["Tenure"],"name":[3],"type":["int"],"align":["right"]},{"label":["PreferredLoginDevice"],"name":[4],"type":["chr"],"align":["left"]},{"label":["CityTier"],"name":[5],"type":["int"],"align":["right"]},{"label":["WarehouseToHome"],"name":[6],"type":["int"],"align":["right"]},{"label":["PreferredPaymentMode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HourSpendOnApp"],"name":[9],"type":["int"],"align":["right"]},{"label":["NumberOfDeviceRegistered"],"name":[10],"type":["int"],"align":["right"]},{"label":["PreferedOrderCat"],"name":[11],"type":["chr"],"align":["left"]},{"label":["SatisfactionScore"],"name":[12],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[13],"type":["chr"],"align":["left"]},{"label":["NumberOfAddress"],"name":[14],"type":["int"],"align":["right"]},{"label":["Complain"],"name":[15],"type":["int"],"align":["right"]},{"label":["OrderAmountHikeFromlastYear"],"name":[16],"type":["int"],"align":["right"]},{"label":["CouponUsed"],"name":[17],"type":["int"],"align":["right"]},{"label":["OrderCount"],"name":[18],"type":["int"],"align":["right"]},{"label":["DaySinceLastOrder"],"name":[19],"type":["int"],"align":["right"]},{"label":["CashbackAmount"],"name":[20],"type":["int"],"align":["right"]}],"data":[{"1":"50001","2":"1","3":"4","4":"Mobile Phone","5":"3","6":"6","7":"Debit Card","8":"Female","9":"3","10":"3","11":"Laptop & Accessory","12":"2","13":"Single","14":"9","15":"1","16":"11","17":"1","18":"1","19":"5","20":"160"},{"1":"50002","2":"1","3":"NA","4":"Phone","5":"1","6":"8","7":"UPI","8":"Male","9":"3","10":"4","11":"Mobile","12":"3","13":"Single","14":"7","15":"1","16":"15","17":"0","18":"1","19":"0","20":"121"},{"1":"50003","2":"1","3":"NA","4":"Phone","5":"1","6":"30","7":"Debit Card","8":"Male","9":"2","10":"4","11":"Mobile","12":"3","13":"Single","14":"6","15":"1","16":"14","17":"0","18":"1","19":"3","20":"120"},{"1":"50004","2":"1","3":"0","4":"Phone","5":"3","6":"15","7":"Debit Card","8":"Male","9":"2","10":"4","11":"Laptop & Accessory","12":"5","13":"Single","14":"8","15":"0","16":"23","17":"0","18":"1","19":"3","20":"134"},{"1":"50005","2":"1","3":"0","4":"Phone","5":"1","6":"12","7":"CC","8":"Male","9":"NA","10":"3","11":"Mobile","12":"5","13":"Single","14":"3","15":"0","16":"11","17":"1","18":"1","19":"3","20":"130"},{"1":"50006","2":"1","3":"0","4":"Computer","5":"1","6":"22","7":"Debit Card","8":"Female","9":"3","10":"5","11":"Mobile Phone","12":"5","13":"Single","14":"2","15":"1","16":"22","17":"4","18":"6","19":"7","20":"139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 ```r
-str(chart_data)
+str(churn_data)
 ```
 
 ```
-## 'data.frame':	422 obs. of  27 variables:
-##  $ artistName      : chr  "dj mustard" "bing crosby" "post malone" "chris brown" ...
-##  $ trackID         : chr  "01gNiOqg8u7vT90uVgOVmz" "01h424WG38dgY34vkI3Yd0" "02opp1cycqiFNDpLd2o1J3" "02yRHV9Cgk8CUS2fx9lKVC" ...
-##  $ trackName       : chr  "Whole Lotta Lovin'" "White Christmas" "Big Lie" "Anyway" ...
-##  $ rank            : int  120 70 129 130 182 163 12 86 67 77 ...
-##  $ streams         : int  917710 1865526 1480436 894216 642784 809256 3490456 1737890 1914768 1056689 ...
-##  $ frequency       : int  3 9 1 1 1 2 2 12 17 11 ...
-##  $ danceability    : num  0.438 0.225 0.325 0.469 0.286 0.447 0.337 0.595 0.472 0.32 ...
-##  $ energy          : num  0.399 0.248 0.689 0.664 0.907 0.795 0.615 0.662 0.746 0.752 ...
-##  $ key             : int  4 9 6 7 8 8 9 11 6 6 ...
-##  $ loudness        : num  -8.75 -15.87 -4.95 -7.16 -4.74 ...
-##  $ speechiness     : num  0.0623 0.0337 0.243 0.121 0.113 0.0443 0.0937 0.0362 0.119 0.056 ...
-##  $ acousticness    : num  0.154 0.912 0.197 0.0566 0.0144 0.211 0.0426 0.0178 0.072 0.289 ...
-##  $ instrumentalness: num  0.00000845 0.000143 0 0.00000158 0 0.00169 0.0000167 0 0 0.000101 ...
-##  $ liveness        : num  0.0646 0.404 0.0722 0.482 0.268 0.0725 0.193 0.0804 0.116 0.102 ...
-##  $ valence         : num  0.382 0.185 0.225 0.267 0.271 0.504 0.0729 0.415 0.442 0.398 ...
-##  $ tempo           : num  160.2 96 77.9 124.7 75.6 ...
-##  $ duration_ms     : int  299160 183613 207680 211413 266640 397093 199973 218447 196040 263893 ...
-##  $ time_signature  : int  5 4 4 4 4 4 4 4 4 4 ...
-##  $ isrc            : chr  "QMJMT1500808" "USMC14750470" "USUM71614468" "USRC11502943" ...
-##  $ spotifyArtistID : chr  "0YinUQ50QDB7ZxSCLyQ40k" "6ZjFtWeHP9XN7FeKSUe80S" "246dkjvS1zLTtiykXe5h60" "7bXgB6jMjp9ATFy66eO08Z" ...
-##  $ releaseDate     : chr  "08.01.2016" "27.08.2007" "09.12.2016" "11.12.2015" ...
-##  $ daysSinceRelease: int  450 1000 114 478 527 429 506 132 291 556 ...
-##  $ spotifyFollowers: int  139718 123135 629600 4077185 2221348 9687258 8713999 39723 4422933 3462797 ...
-##  $ mbid            : chr  "0612bcce-e351-40be-b3d7-2bb5e1c23479" "2437980f-513a-44fc-80f1-b90d9d7fcf8f" "b1e26560-60e5-4236-bbdb-9aa5a8d5ee19" "c234fa42-e6a6-443e-937e-2f4b073538a3" ...
-##  $ artistCountry   : chr  "US" "US" "0" "US" ...
-##  $ indicator       : int  1 1 1 1 1 1 1 1 1 1 ...
-##  $ top10           : num  0 0 0 0 0 0 0 0 0 0 ...
+## 'data.frame':	5630 obs. of  20 variables:
+##  $ CustomerID                 : int  50001 50002 50003 50004 50005 50006 50007 50008 50009 50010 ...
+##  $ Churn                      : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Tenure                     : int  4 NA NA 0 0 0 NA NA 13 NA ...
+##  $ PreferredLoginDevice       : chr  "Mobile Phone" "Phone" "Phone" "Phone" ...
+##  $ CityTier                   : int  3 1 1 3 1 1 3 1 3 1 ...
+##  $ WarehouseToHome            : int  6 8 30 15 12 22 11 6 9 31 ...
+##  $ PreferredPaymentMode       : chr  "Debit Card" "UPI" "Debit Card" "Debit Card" ...
+##  $ Gender                     : chr  "Female" "Male" "Male" "Male" ...
+##  $ HourSpendOnApp             : int  3 3 2 2 NA 3 2 3 NA 2 ...
+##  $ NumberOfDeviceRegistered   : int  3 4 4 4 3 5 3 3 4 5 ...
+##  $ PreferedOrderCat           : chr  "Laptop & Accessory" "Mobile" "Mobile" "Laptop & Accessory" ...
+##  $ SatisfactionScore          : int  2 3 3 5 5 5 2 2 3 3 ...
+##  $ MaritalStatus              : chr  "Single" "Single" "Single" "Single" ...
+##  $ NumberOfAddress            : int  9 7 6 8 3 2 4 3 2 2 ...
+##  $ Complain                   : int  1 1 1 0 0 1 0 1 1 0 ...
+##  $ OrderAmountHikeFromlastYear: int  11 15 14 23 11 22 14 16 14 12 ...
+##  $ CouponUsed                 : int  1 0 0 0 1 4 0 2 0 1 ...
+##  $ OrderCount                 : int  1 1 1 1 1 6 1 2 1 1 ...
+##  $ DaySinceLastOrder          : int  5 0 3 3 3 7 0 0 2 1 ...
+##  $ CashbackAmount             : int  160 121 120 134 130 139 121 123 127 123 ...
 ```
 
-Below are two attempts to model the data. The left assumes a linear probability model (calculated with the same methods that we used in the last chapter), while the right model is a __logistic regression model__. As you can see, the linear probability model produces probabilities that are above 1 and below 0, which are not valid probabilities, while the logistic model stays between 0 and 1. Notice that songs with a higher danceability index (on the right of the x-axis) seem to cluster more at $1$ and those with a lower more at $0$ so we expect a positive influence of danceability on the probability of a song to become a top-10 hit. 
+```r
+# Variable 'Churn' is 1 if a customer left and 0
+# else
+
+# correct the variables types
+churn_data$CustomerID <- as.factor(churn_data$CustomerID)
+churn_data$Gender <- as.factor(churn_data$Gender)
+churn_data$Tenure <- as.factor(churn_data$Tenure)
+churn_data$PreferredLoginDevice <- as.factor(churn_data$PreferredLoginDevice)
+churn_data$CityTier <- as.factor(churn_data$CityTier)
+```
+
+Below are two attempts to model the data. The left assumes a linear probability model (calculated with the same methods that we used in the last chapter), while the right model is a __logistic regression model__. As you can see, the linear probability model is able of producing probabilities that are above 1 and below 0 (see the lower right corner), which are not valid probabilities, while the logistic model stays between 0 and 1. Notice that songs with a higher cash-back value (on the right of the x-axis) seem to cluster more at $0$ and those with a lower more at $1$ so we expect a negative influence of cash-back value on the probability of churn. 
 
 <div class="figure" style="text-align: center">
 <img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" alt="The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)" width="672" />
 <p class="caption">(\#fig:unnamed-chunk-53)The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)</p>
 </div>
 
-A key insight at this point is that the connection between $\mathbf{X}$ and $Y$ is __non-linear__ in the logistic regression model. As we can see in the plot, the probability of success is most strongly affected by danceability around values of $0.5$, while higher and lower values have a smaller marginal effect. This obviously also has consequences for the interpretation of the coefficients later on.  
+A key insight at this point is that the connection between $\mathbf{X}$ and $Y$ is __non-linear__ in the logistic regression model. 
 
 ### Technical details of the model
 
@@ -1588,7 +1605,7 @@ $$
 f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \beta_2 * x_{2,i} + ... +\beta_m * x_{m,i})}}
 $$
 
-In our case we only have $\beta_0$ and $\beta_1$, the coefficient associated with danceability. 
+In our case we only have $\beta_0$ and $\beta_1$, the coefficient associated with cash-back. 
 
 In general we now have a mathematical relationship between our predictor variables $(x_1, ..., x_m)$ and the probability of $y_i$ being equal to one. The last step is to estimate the parameters of this model $(\beta_0, \beta_1, ..., \beta_m)$ to determine the magnitude of the effects.  
 
@@ -1599,8 +1616,8 @@ We are now going to show how to perform logistic regression in R. Instead of ```
 
 ```r
 # Run the glm
-logit_model <- glm(top10 ~ danceability, family = binomial(link = "logit"),
-    data = chart_data)
+logit_model <- glm(Churn ~ CashbackAmount, family = binomial(link = "logit"),
+    data = churn_data)
 # Inspect model summary
 summary(logit_model)
 ```
@@ -1608,53 +1625,56 @@ summary(logit_model)
 ```
 ## 
 ## Call:
-## glm(formula = top10 ~ danceability, family = binomial(link = "logit"), 
-##     data = chart_data)
+## glm(formula = Churn ~ CashbackAmount, family = binomial(link = "logit"), 
+##     data = churn_data)
 ## 
 ## Coefficients:
-##              Estimate Std. Error z value            Pr(>|z|)    
-## (Intercept)  -10.0414     0.8963  -11.20 <0.0000000000000002 ***
-## danceability  17.0939     1.6016   10.67 <0.0000000000000002 ***
+##                  Estimate Std. Error z value            Pr(>|z|)    
+## (Intercept)     0.1898645  0.1565706   1.213               0.225    
+## CashbackAmount -0.0105419  0.0009359 -11.264 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 539.05  on 421  degrees of freedom
-## Residual deviance: 258.49  on 420  degrees of freedom
-## AIC: 262.49
+##     Null deviance: 5104.3  on 5629  degrees of freedom
+## Residual deviance: 4950.3  on 5628  degrees of freedom
+## AIC: 4954.3
 ## 
-## Number of Fisher Scoring iterations: 6
+## Number of Fisher Scoring iterations: 5
 ```
 
-Noticeably this output does not include an $R^2$ value to asses model fit. Multiple "Pseudo $R^2$s", similar to the one used in OLS, have been developed. There are packages that return the $R^2$ given a logit model (see ```rcompanion``` or ```pscl```). The calculation by hand is also fairly simple. We define the function ```logisticPseudoR2s()``` that takes a logit model as an input and returns three popular pseudo $R^2$ values.
+Noticeably this output does not include an $R^2$ value to asses model fit. Multiple "Pseudo $R^2$s", similar to the one used in OLS, have been developed. There are packages that return the $R^2$ given a logit model:
 
 
 ```r
-logisticPseudoR2s <- function(LogModel) {
-    dev <- LogModel$deviance
-    nullDev <- LogModel$null.deviance
-    modelN <- length(LogModel$fitted.values)
-    R.l <- 1 - dev/nullDev
-    R.cs <- 1 - exp(-(nullDev - dev)/modelN)
-    R.n <- R.cs/(1 - (exp(-(nullDev/modelN))))
-    cat("Pseudo R^2 for logistic regression\n")
-    cat("Hosmer and Lemeshow R^2  ", round(R.l, 3),
-        "\n")
-    cat("Cox and Snell R^2        ", round(R.cs, 3),
-        "\n")
-    cat("Nagelkerke R^2           ", round(R.n, 3),
-        "\n")
-}
-# Inspect Pseudo R2s
-logisticPseudoR2s(logit_model)
+library(DescTools)
 ```
 
 ```
-## Pseudo R^2 for logistic regression
-## Hosmer and Lemeshow R^2   0.52 
-## Cox and Snell R^2         0.486 
-## Nagelkerke R^2            0.673
+## 
+## Attaching package: 'DescTools'
+```
+
+```
+## The following object is masked from 'package:car':
+## 
+##     Recode
+```
+
+```
+## The following objects are masked from 'package:psych':
+## 
+##     AUC, ICC, SD
+```
+
+```r
+PseudoR2(logit_model, which = "CoxSnell")  # you can also use 'McFadden', 'McFaddenAdj', 'Nagelkerke', 'AldrichNelson', 'VeallZimmermann', 'Efron', 'McKelveyZavoina', 'Tjur', 'all'
+```
+
+```
+##   CoxSnell 
+## 0.02698672
 ```
 
 The coefficients of the model give the change in the [log odds](https://en.wikipedia.org/wiki/Odds#Statistical_usage) of the dependent variable due to a unit change in the regressor. This makes the exact interpretation of the coefficients difficult, but we can still interpret the signs and the p-values which will tell us if a variable has a significant positive or negative impact on the probability of the dependent variable being $1$. In order to get the odds ratios we can simply take the exponent of the coefficients. 
@@ -1665,69 +1685,15 @@ exp(coef(logit_model))
 ```
 
 ```
-##          (Intercept)         danceability 
-##        0.00004355897 26532731.71142401919
+##    (Intercept) CashbackAmount 
+##      1.2090858      0.9895135
 ```
 
-Notice that the coefficient is extremely large. That is (partly) due to the fact that the danceability variable is constrained to values between $0$ and $1$ and the coefficients are for a unit change. We can make the "unit-change" interpretation more meaningful by multiplying the danceability index by $100$. This linear transformation does not affect the model fit or the p-values.
+This now gives the effect on the dependent variable: an additional dollar paid back as cash-back, on average, makes it $0.99$ time more likely (= by a constant factor of 0.99 = 1% less) for a customer to churn. 
 
+Note: In some cases, depending on the scales, the coefficient can be extremely large (e.g., due to the fact that the variable is constrained to values between $0$ and $1$ and the coefficients are for a unit change). We can make the "unit-change" interpretation more meaningful by multiplying the variable by $100$, thus changing its scale. This linear transformation does not affect the model fit or the p-values.
 
-```r
-# Re-scale independet variable
-chart_data$danceability_100 <- chart_data$danceability *
-    100
-# Run the regression model
-logit_model <- glm(top10 ~ danceability_100, family = binomial(link = "logit"),
-    data = chart_data)
-# Inspect model summary
-summary(logit_model)
-```
-
-```
-## 
-## Call:
-## glm(formula = top10 ~ danceability_100, family = binomial(link = "logit"), 
-##     data = chart_data)
-## 
-## Coefficients:
-##                   Estimate Std. Error z value            Pr(>|z|)    
-## (Intercept)      -10.04139    0.89629  -11.20 <0.0000000000000002 ***
-## danceability_100   0.17094    0.01602   10.67 <0.0000000000000002 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 539.05  on 421  degrees of freedom
-## Residual deviance: 258.49  on 420  degrees of freedom
-## AIC: 262.49
-## 
-## Number of Fisher Scoring iterations: 6
-```
-
-```r
-# Inspect Pseudo R2s
-logisticPseudoR2s(logit_model)
-```
-
-```
-## Pseudo R^2 for logistic regression
-## Hosmer and Lemeshow R^2   0.52 
-## Cox and Snell R^2         0.486 
-## Nagelkerke R^2            0.673
-```
-
-```r
-# Convert coefficients to odds ratios
-exp(coef(logit_model))
-```
-
-```
-##      (Intercept) danceability_100 
-##    0.00004355897    1.18641825295
-```
-
-We observe that danceability positively affects the likelihood of becoming at top-10 hit. To get the confidence intervals for the coefficients we can use the same function as with OLS
+We observe that cash-back negatively affects the likelihood of churning. To get the confidence intervals for the coefficients we can use the same function as with OLS.
 
 
 ```r
@@ -1735,135 +1701,124 @@ confint(logit_model)
 ```
 
 ```
-##                        2.5 %     97.5 %
-## (Intercept)      -11.9208213 -8.3954496
-## danceability_100   0.1415602  0.2045529
+##                      2.5 %       97.5 %
+## (Intercept)    -0.11399742  0.499958965
+## CashbackAmount -0.01240796 -0.008737915
 ```
 
-In order to get a rough idea about the magnitude of the effects we can calculate the partial effects at the mean of the data (that is the effect for the average observation). Alternatively, we can calculate the mean of the effects (that is the average of the individual effects). Both can be done with the ```logitmfx(...)``` function from the ```mfx``` package. If we set ```logitmfx(logit_model, data = my_data, atmean = FALSE)``` we calculate the latter. Setting ```atmean = TRUE``` will calculate the former. However, in general we are most interested in the sign and significance of the coefficient.
+
+To get the effect of an additional point at a specific value, we can calculate the odds ratio by predicting the probability at a value and at the value $+1$. For example, if we are interested in how much more (or, in our case, less) likely a customer with cash-back value of 201 compared to 200 is to churn, we can simply calculate the following:
 
 
 ```r
-library(mfx)
-# Average partial effect
-logitmfx(logit_model, data = chart_data, atmean = FALSE)
-```
-
-```
-## Call:
-## logitmfx(formula = logit_model, data = chart_data, atmean = FALSE)
-## 
-## Marginal Effects:
-##                      dF/dx Std. Err.      z        P>|z|    
-## danceability_100 0.0157310 0.0029761 5.2857 0.0000001252 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
-This now gives the average partial effects in percentage points. An additional point on the danceability scale (from $1$ to $100$), on average, makes it $1.57%$ more likely for a song to become at top-10 hit.
-
-To get the effect of an additional point at a specific value, we can calculate the odds ratio by predicting the probability at a value and at the value $+1$. For example if we are interested in how much more likely a song with 51 compared to 50 danceability is to become a hit we can simply calculate the following
-
-
-```r
-# Probability of a top 10 hit with a danceability
-# of 50
-prob_50 <- exp(-(-summary(logit_model)$coefficients[1,
+# Probability of churn with a cashback amount of
+# 200
+prob_200 <- exp(-(-summary(logit_model)$coefficients[1,
     1] - summary(logit_model)$coefficients[2, 1] *
-    50))
-prob_50
+    200))
+prob_200
 ```
 
 ```
-## [1] 0.224372
+## [1] 0.1468252
 ```
 
 ```r
-# Probability of a top 10 hit with a danceability
-# of 51
-prob_51 <- exp(-(-summary(logit_model)$coefficients[1,
+# Probability of churn with a cashback amount of
+# 201
+prob_201 <- exp(-(-summary(logit_model)$coefficients[1,
     1] - summary(logit_model)$coefficients[2, 1] *
-    51))
-prob_51
+    201))
+prob_201
 ```
 
 ```
-## [1] 0.266199
+## [1] 0.1452855
 ```
 
 ```r
 # Odds ratio
-prob_51/prob_50
+prob_201/prob_200
 ```
 
 ```
-## [1] 1.186418
+## [1] 0.9895135
 ```
 
-So the odds are 20% higher at 51 than at 50. 
+This is essentially what we got in the regression output earlier. So the odds are 1% lower at 201 than at 200 cash-back. 
 
 #### Logistic model with multiple predictors
 
-Of course we can also use multiple predictors in logistic regression as shown in the formula above. We might want to add spotify followers (in million) and weeks since the release of the song.
-
-```r
-chart_data$spotify_followers_m <- chart_data$spotifyFollowers/1000000
-chart_data$weeks_since_release <- chart_data$daysSinceRelease/7
-```
+Of course we can also use multiple predictors in logistic regression as shown in the formula above. We might want to add order amount from last year, days since last order, warehouse-to-home distance, and order count.
 
 Again, the familiar formula interface can be used with the ```glm()``` function. All the model summaries shown above still work with multiple predictors.
 
 
 ```r
-multiple_logit_model <- glm(top10 ~ danceability_100 +
-    spotify_followers_m + weeks_since_release, family = binomial(link = "logit"),
-    data = chart_data)
+multiple_logit_model <- glm(Churn ~ OrderAmountHikeFromlastYear +
+    DaySinceLastOrder + WarehouseToHome + OrderCount +
+    CashbackAmount, family = binomial(link = "logit"),
+    data = churn_data)
 summary(multiple_logit_model)
 ```
 
 ```
 ## 
 ## Call:
-## glm(formula = top10 ~ danceability_100 + spotify_followers_m + 
-##     weeks_since_release, family = binomial(link = "logit"), data = chart_data)
+## glm(formula = Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOrder + 
+##     WarehouseToHome + OrderCount + CashbackAmount, family = binomial(link = "logit"), 
+##     data = churn_data)
 ## 
 ## Coefficients:
-##                      Estimate Std. Error z value             Pr(>|z|)    
-## (Intercept)         -9.603762   0.990481  -9.696 < 0.0000000000000002 ***
-## danceability_100     0.166236   0.016358  10.162 < 0.0000000000000002 ***
-## spotify_followers_m  0.197717   0.060030   3.294             0.000989 ***
-## weeks_since_release -0.012976   0.004956  -2.619             0.008832 ** 
+##                              Estimate Std. Error z value             Pr(>|z|)
+## (Intercept)                 -0.169157   0.282644  -0.598                0.550
+## OrderAmountHikeFromlastYear  0.006794   0.011039   0.615                0.538
+## DaySinceLastOrder           -0.160947   0.016668  -9.656 < 0.0000000000000002
+## WarehouseToHome              0.024806   0.004585   5.410     0.00000006305629
+## OrderCount                   0.104213   0.019595   5.318     0.00000010466730
+## CashbackAmount              -0.009784   0.001405  -6.965     0.00000000000329
+##                                
+## (Intercept)                    
+## OrderAmountHikeFromlastYear    
+## DaySinceLastOrder           ***
+## WarehouseToHome             ***
+## OrderCount                  ***
+## CashbackAmount              ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 534.91  on 416  degrees of freedom
-## Residual deviance: 239.15  on 413  degrees of freedom
-##   (5 observations deleted due to missingness)
-## AIC: 247.15
+##     Null deviance: 4162.4  on 4548  degrees of freedom
+## Residual deviance: 3942.0  on 4543  degrees of freedom
+##   (1081 observations deleted due to missingness)
+## AIC: 3954
 ## 
-## Number of Fisher Scoring iterations: 6
+## Number of Fisher Scoring iterations: 5
 ```
 
 ```r
-logisticPseudoR2s(multiple_logit_model)
+PseudoR2(multiple_logit_model, which = "CoxSnell")
 ```
 
 ```
-## Pseudo R^2 for logistic regression
-## Hosmer and Lemeshow R^2   0.553 
-## Cox and Snell R^2         0.508 
-## Nagelkerke R^2            0.703
+##   CoxSnell 
+## 0.04730121
 ```
+
+Again, to properly interpret the coefficient, we extract odds ratio:
 
 ```r
 exp(coef(multiple_logit_model))
 ```
 
 ```
-##         (Intercept)    danceability_100 spotify_followers_m weeks_since_release 
-##        0.0000674744        1.1808513243        1.2186174345        0.9871076460
+##                 (Intercept) OrderAmountHikeFromlastYear 
+##                   0.8443759                   1.0068175 
+##           DaySinceLastOrder             WarehouseToHome 
+##                   0.8513374                   1.0251163 
+##                  OrderCount              CashbackAmount 
+##                   1.1098369                   0.9902637
 ```
 
 ```r
@@ -1875,65 +1830,75 @@ confint(multiple_logit_model)
 ```
 
 ```
-##                            2.5 %       97.5 %
-## (Intercept)         -11.67983072 -7.782122558
-## danceability_100      0.13625795  0.200625438
-## spotify_followers_m   0.08079476  0.317115293
-## weeks_since_release  -0.02307859 -0.003566462
+##                                   2.5 %       97.5 %
+## (Intercept)                 -0.72038551  0.387836028
+## OrderAmountHikeFromlastYear -0.01497724  0.028311162
+## DaySinceLastOrder           -0.19401059 -0.128656705
+## WarehouseToHome              0.01585891  0.033828929
+## OrderCount                   0.06543606  0.142330681
+## CashbackAmount              -0.01258533 -0.007076521
 ```
+
+We can see that such variables as warehouse-to-home distance and order count increase the probability of churn, while days since last order and cash-back value decrease it.
 
 
 #### Model selection
 
 The question remains, whether a variable *should* be added to the model. We will present two methods for model selection for logistic regression. The first is based on the _Akaike Information Criterium_ (AIC). It is reported with the summary output for logit models. The value of the AIC is __relative__, meaning that it has no interpretation by itself. However, it can be used to compare and select models. The model with the lowest AIC value is the one that should be chosen. Note that the AIC does not indicate how well the model fits the data, but is merely used to compare models. 
 
-For example, consider the following model, where we exclude the ```followers``` covariate. Seeing as it was able to contribute significantly to the explanatory power of the model, the AIC increases, indicating that the model including ```followers``` is better suited to explain the data. We always want the lowest possible AIC. 
+For example, consider the following model, where we exclude the ```order count``` predictor. Seeing as it was able to contribute significantly to the explanatory power of the model, the AIC increases, indicating that the model including ```order count``` is better suited to explain the data. We always want the *lowest* possible AIC. 
 
 
 ```r
-multiple_logit_model2 <- glm(top10 ~ danceability_100 +
-    weeks_since_release, family = binomial(link = "logit"),
-    data = chart_data)
-
+multiple_logit_model2 <- glm(Churn ~ OrderAmountHikeFromlastYear +
+    DaySinceLastOrder + WarehouseToHome + CashbackAmount,
+    family = binomial(link = "logit"), data = churn_data)
 summary(multiple_logit_model2)
 ```
 
 ```
 ## 
 ## Call:
-## glm(formula = top10 ~ danceability_100 + weeks_since_release, 
-##     family = binomial(link = "logit"), data = chart_data)
+## glm(formula = Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOrder + 
+##     WarehouseToHome + CashbackAmount, family = binomial(link = "logit"), 
+##     data = churn_data)
 ## 
 ## Coefficients:
-##                      Estimate Std. Error z value            Pr(>|z|)    
-## (Intercept)         -8.980225   0.930654  -9.649 <0.0000000000000002 ***
-## danceability_100     0.166498   0.016107  10.337 <0.0000000000000002 ***
-## weeks_since_release -0.012805   0.004836  -2.648              0.0081 ** 
+##                              Estimate Std. Error z value             Pr(>|z|)
+## (Intercept)                 -0.127976   0.265416  -0.482                0.630
+## OrderAmountHikeFromlastYear  0.002811   0.010917   0.258                0.797
+## DaySinceLastOrder           -0.113611   0.013903  -8.172 0.000000000000000304
+## WarehouseToHome              0.025559   0.004483   5.701 0.000000011924680833
+## CashbackAmount              -0.009119   0.001257  -7.254 0.000000000000403299
+##                                
+## (Intercept)                    
+## OrderAmountHikeFromlastYear    
+## DaySinceLastOrder           ***
+## WarehouseToHome             ***
+## CashbackAmount              ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 534.91  on 416  degrees of freedom
-## Residual deviance: 250.12  on 414  degrees of freedom
-##   (5 observations deleted due to missingness)
-## AIC: 256.12
+##     Null deviance: 4315.0  on 4806  degrees of freedom
+## Residual deviance: 4100.4  on 4802  degrees of freedom
+##   (823 observations deleted due to missingness)
+## AIC: 4110.4
 ## 
-## Number of Fisher Scoring iterations: 6
+## Number of Fisher Scoring iterations: 5
 ```
 
-As a second measure for variable selection, you can use the pseudo $R^2$s as shown above. The fit is distinctly worse according to all three values presented here, when excluding the Spotify followers. 
+As a second measure for variable selection, you can use the pseudo $R^2$s as shown above. The fit is worse according to all three values presented here, when excluding the order count. 
 
 
 ```r
-logisticPseudoR2s(multiple_logit_model2)
+PseudoR2(multiple_logit_model2, which = "CoxSnell")
 ```
 
 ```
-## Pseudo R^2 for logistic regression
-## Hosmer and Lemeshow R^2   0.532 
-## Cox and Snell R^2         0.495 
-## Nagelkerke R^2            0.685
+##   CoxSnell 
+## 0.04366534
 ```
 
 
@@ -1945,86 +1910,18 @@ We can predict the probability given an observation using the ```predict(my_logi
 
 ```r
 # Prediction for one observation
-predict(multiple_logit_model, newdata = data.frame(danceability_100 = 50,
-    spotify_followers_m = 10, weeks_since_release = 1),
-    type = "response")
+predict(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5,
+    DaySinceLastOrder = 30, WarehouseToHome = 10, OrderCount = 10,
+    CashbackAmount = 300), type = "response")
 ```
 
 ```
-##         1 
-## 0.6619986
+##           1 
+## 0.001346917
 ```
 
-The prediction indicates that a song with danceability of $50$ from an artist with $10M$ Spotify followers has a $66%$ chance of being in the top-10, 1 week after its release. 
+The prediction indicates that a customer who made $5$ orders last year, $10$ orders in total, last order happened $30$ days ago, warehouse-to-home distance is 10 km, and cash-back amount is 300 dollars, has a tiny ($0.2\%$ chance of churning. 
 
-#### Perfect Prediction Logit
-
-Perfect prediction occurs whenever a linear function of $X$ can perfectly separate the $1$s from the $0$s in the dependent variable. This is problematic when estimating a logit model as it will result in biased estimators (also check to p-values in the example!). R will return the following message if this occurs:
-
-```glm.fit: fitted probabilities numerically 0 or 1 occurred```
-
-Given this error, one should not use the output of the ```glm(...)``` function for the analysis. There are [various ways](https://stats.stackexchange.com/a/68917) to deal with this problem, one of which is to use Firth's bias-reduced penalized-likelihood logistic regression with the ```logistf(Y~X)``` function in the ```logistf``` package.  
-
-##### Example
-
-In this example data $Y = 0$ if $x_1 <0$ and $Y=1$ if $x_1>0$ and we thus have perfect prediction. As we can see the output of the regular logit model is not interpretable. The standard errors are huge compared to the coefficients and thus the p-values are $1$ despite $x_1$ being a predictor of $Y$. Thus, we turn to the penalized-likelihood version. This model correctly indicates that $x_1$ is in fact a predictor for $Y$ as the coefficient is significant.  
-
-
-```r
-Y <- c(0, 0, 0, 0, 1, 1, 1, 1)
-X <- cbind(c(-1, -2, -3, -3, 5, 6, 10, 11), c(3, 2,
-    -1, -1, 2, 4, 1, 0))
-
-# Perfect prediction with regular logit
-summary(glm(Y ~ X, family = binomial(link = "logit")))
-```
-
-```
-## 
-## Call:
-## glm(formula = Y ~ X, family = binomial(link = "logit"))
-## 
-## Coefficients:
-##               Estimate Std. Error z value Pr(>|z|)
-## (Intercept)     -6.943 113859.814       0        1
-## X1               7.359  15925.251       0        1
-## X2              -3.125  43853.489       0        1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 11.09035488895912  on 7  degrees of freedom
-## Residual deviance:  0.00000000027772  on 5  degrees of freedom
-## AIC: 6
-## 
-## Number of Fisher Scoring iterations: 24
-```
-
-```r
-library(logistf)
-# Perfect prediction with penalized-likelihood
-# logit
-summary(logistf(Y ~ X))
-```
-
-```
-## logistf(formula = Y ~ X)
-## 
-## Model fitted by Penalized ML
-## Coefficients:
-##                    coef  se(coef)   lower 0.95 upper 0.95      Chisq          p
-## (Intercept) -0.98871643 1.2135184 -10.21693673   1.884508 0.59231445 0.44152553
-## X1           0.33195133 0.1832767   0.04170297   1.463409 5.31583569 0.02113246
-## X2           0.08250405 0.5109798  -2.17888664   3.379327 0.01980379 0.88808646
-##             method
-## (Intercept)      2
-## X1               2
-## X2               2
-## 
-## Method: 1-Wald, 2-Profile penalized log-likelihood, 3-None
-## 
-## Likelihood ratio test=5.800986 on 2 df, p=0.05499609, n=8
-## Wald test = 3.744738 on 2 df, p = 0.153759
-```
 
 
 ## Learning check {-}

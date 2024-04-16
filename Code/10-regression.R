@@ -93,10 +93,11 @@ mean_sales <- mean(regression$move_ounce)
 scatter <- ggplot(regression, aes(price_ounce, move_ounce))
 scatter + geom_point() + labs(x = "price (ounce)", y = "sales (ounce)")
 
-scatter + geom_point() + 
-  labs(x = "price (ounce)", y = "sales (ounce)") + 
-  geom_vline(color = "red", size = 1, xintercept = mean_price) + 
-  geom_hline(color = "red", size = 1, yintercept = mean_sales)
+scatter + geom_point(shape = 1) + 
+  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
+  geom_vline(size = 1, xintercept = mean_price, linetype = "dotted") + 
+  geom_hline(size = 1, yintercept = mean_sales, linetype = "dotted") + 
+  theme_minimal()
 
 # ... using ggplot2
 ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
@@ -178,7 +179,7 @@ summary(multiple_sales_reg) #summary of results
 confint(multiple_sales_reg)
 
 # visualization
-ggcoefstats(x = multiple_sales_reg,
+ggstatsplot::ggcoefstats(x = multiple_sales_reg,
             title = "Sales prediction")
 
 # add predicted sales to the data frame
@@ -244,26 +245,33 @@ avPlots(multiple_sales_reg)
 #-------------------------------------------------------------------#
 
 # Two categories
-## ------------------------------------------------------------------------
-multiple_regression_bin <- lm(sales ~ adspend + airplay + starpower + country, data = regression) 
-summary(multiple_regression_bin)
+# Load a new data set
+categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical", 
+                         sep = ",", 
+                         header = TRUE) # read in data
+str(categories)
+categories$store <- as.factor(categories$store)
+categories$brand <- as.factor(categories$brand)
+
+multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B + sale_S, data = categories) 
+summary(multiple_regression_new)
+
+multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store, data = categories) 
+summary(multiple_regression_store)
+
 # More than two categories
-## ------------------------------------------------------------------------
-multiple_regression_ext <- lm(sales ~ adspend + airplay + starpower+ country + genre, data = regression) 
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + brand, data = categories) 
 summary(multiple_regression_ext) 
-## ------------------------------------------------------------------------
-multiple_regression_ext <- lm(sales ~ adspend + airplay + starpower+ country + relevel(genre,ref=2), data = regression) 
-summary(multiple_regression_ext) #summary of results
+
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + relevel(brand, ref = 2), data = categories) 
+summary(multiple_regression_ext) 
 
 # visualization
-## ------------------------------------------------------------------------
-ggcoefstats(x = multiple_regression_ext,
-            title = "Sales predicted by adspend, airplay, starpower, country, & genre")
-#save plot (optional)
-## ------------------------------------------------------------------------
-ggsave("lm_out_ext.jpg", height = 6, width = 8.5)
+ggstatsplot::ggcoefstats(x = multiple_regression_ext,
+            title = "Sales predicted by price, bonus buy, price reduction, store, and brand")
+
 # reporting using stargazer
-stargazer(multiple_regression, multiple_regression_ext, type = "text",ci = TRUE, ci.level = 0.95, ci.separator = "; ")
+stargazer(multiple_regression_new, multiple_regression_ext, type = "text",ci = TRUE, ci.level = 0.95, ci.separator = "; ")
 
 
 #-------------------------------------------------------------------#
@@ -271,112 +279,37 @@ stargazer(multiple_regression, multiple_regression_ext, type = "text",ci = TRUE,
 #-------------------------------------------------------------------#
 
 # Categorical x continuous
-## ------------------------------------------------------------------------
-ggplot(regression, aes(adspend, sales, colour = as.factor(country))) +
+ggplot(categories, aes(price_ounce, move_ounce, colour = brand)) +
   geom_point() + 
-  geom_smooth(method="lm", alpha=0.1) + 
-  labs(x = "Advertising expenditures (EUR)", y = "Number of sales", colour="country") + 
-  theme_bw()
-## ------------------------------------------------------------------------
-multiple_regression <- lm(sales ~ adspend + airplay + starpower + country + adspend:country, data = regression) 
-summary(multiple_regression)
+  geom_smooth(method = "lm", alpha = 0.1) + 
+  labs(x = "Price ($ per oz)", y = "Sales (oz)", colour = "brand") + 
+  theme_minimal()
+
+multiple_regression_cat_con <- lm(move_ounce ~ price_ounce + brand + price_ounce:brand, data = categories) 
+summary(multiple_regression_cat_con)
 
 # Continuous x continuous
-## ------------------------------------------------------------------------
-multiple_regression <- lm(sales ~ adspend + airplay + starpower + adspend:airplay, data = regression)
-summary(multiple_regression) 
+multiple_regression_con_con <- lm(move_ounce ~ price_ounce + sale_B + sale_S + price_ounce:sale_B, data = categories)
+summary(multiple_regression_con_con) 
 
-# Mean centering variables
-regression$c_adspend <- regression$adspend-mean(regression$adspend)
-regression$c_airplay <- regression$airplay-mean(regression$airplay)
-regression$c_starpower <- regression$starpower-mean(regression$starpower)
-multiple_regression <- lm(sales ~ c_adspend + c_airplay + c_starpower + c_adspend:c_airplay, data = regression)
-summary(multiple_regression) 
 
-#-------------------------------------------------------------------#
-#----------------------Non-linear relationships---------------------#
-#-------------------------------------------------------------------#
 
-# Note: Multiplicative model (log-log) has been covered above 
-
-# Quadratic model
-quad_reg <- read.table("https://raw.githubusercontent.com/IMSMWU/MRDA2018/master/data/sales_quad.csv", 
-                             sep = ";", 
-                             header = TRUE) #read in data
-head(quad_reg)
-ggplot(data = quad_reg, aes(x = advertising, y = sales)) +
-  geom_point(shape=1) + 
-  geom_smooth(method = "lm", fill = "blue", alpha=0.1) + 
-  theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
-
-# Linear model
-linear_reg <- lm(sales ~ advertising, data = quad_reg)
-summary(linear_reg)
-confint(linear_reg)
-
-plot(linear_reg,1)
-plot(linear_reg,2)
-shapiro.test(resid(linear_reg))
-
-# Quadratic model
-quad_mod <- lm(sales ~ advertising + I(advertising^2), data = quad_reg)
-summary(quad_mod)
-confint(quad_mod)
-quad_reg$predict <- predict(quad_mod)
-ggplot(data = quad_reg, aes(x = predict, y = sales)) + 
-  geom_point(shape=1) + 
-  geom_smooth(method = "lm", fill = "blue", alpha=0.1) +
-  theme_bw()
-
-plot(quad_mod,1)
-plot(quad_mod,2)
-shapiro.test(resid(quad_mod))
-
-# Model comparison 
-quad_reg$pred_lin_reg <- predict(linear_reg)
-ggplot(data = quad_reg) +
-  geom_point(aes(x = advertising, y = sales),shape=1) + 
-  geom_line(data = quad_reg,aes(x=advertising,y=pred_lin_reg),color="blue", size=1.05) + 
-  geom_line(data = quad_reg,aes(x=advertising,y=predict),color="red", size=1.05) + theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
-
-# Turning point
-x_turn <- -quad_mod$coefficients[2]/(2*quad_mod$coefficients[3])
-ggplot(data = quad_reg) +
-  geom_point(aes(x = advertising, y = sales),shape=1) + 
-  geom_line(data = quad_reg,aes(x=advertising,y=predict),color="red", size=1.05) +
-  geom_vline(xintercept = x_turn,color="black") +
-  geom_vline(xintercept = mean(quad_reg$advertising),color="black", linetype = "dashed", size=1.05) + theme_bw() + xlab("Advertising (thsd. Euro)") + ylab("Sales (million units)") 
-
-# Making predictions
-advertising <- 100
-pred <- quad_mod$coefficients[1] + quad_mod$coefficients[2]*advertising+quad_mod$coefficients[3]*(advertising^2)
-pred
-
-# Mean centering
-quad_reg$c_advertising <- quad_reg$advertising - mean(quad_reg$advertising)
-quad_mod_c <- lm(sales ~ c_advertising + I(c_advertising^2), data = quad_reg)
-summary(quad_mod_c)
-confint(quad_mod_c)
 
 #-------------------------------------------------------------------#
 #------------------------Logistic regression------------------------#
 #-------------------------------------------------------------------#
 
 # Import data
-churn_data <- read.csv("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/e_com_data.csv", 
+churn_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/e_com_data.csv", 
                          sep = ",", header = T) 
 head(churn_data)
 str(churn_data)
 # correct the variables types
-churn_data$Customer_ID <- as.factor(churn_data$Customer_ID)
+churn_data$CustomerID <- as.factor(churn_data$CustomerID)
 churn_data$Gender <- as.factor(churn_data$Gender)
-churn_data$Annual_Income <- as.numeric(churn_data$Annual_Income)
-churn_data$Total_Spend <- as.numeric(churn_data$Total_Spend)
-churn_data$Average_Transaction_Amount <- as.numeric(churn_data$Average_Transaction_Amount)
-churn_data$Email_Opt_In <- as.factor(churn_data$Email_Opt_In)
-churn_data$Promotion_Response <- as.factor(churn_data$Promotion_Response)
-#change the variable "Target_Churn" to binary type, which is 1 if a customer churned and 0 else:
-churn_data$Target_Churn <- ifelse(churn_data$Target_Churn == "True", 1, 0)
+churn_data$Tenure <- as.factor(churn_data$Tenure)
+churn_data$PreferredLoginDevice <- as.factor(churn_data$PreferredLoginDevice)
+churn_data$CityTier <- as.factor(churn_data$CityTier)
 
 
 #Scatterplot showing the association between two variables using a linear model
@@ -399,7 +332,7 @@ logit_model <- glm(Churn ~ CashbackAmount, family = binomial(link = 'logit'), da
 summary(logit_model)
 #Inspect R2
 library(DescTools)
-PseudoR2(logit_model, which = "CoxSnell")
+PseudoR2(logit_model, which = "all")
 #Convert coefficients to odds ratios
 exp(coef(logit_model))
 #Confidence interval
@@ -431,3 +364,7 @@ PseudoR2(multiple_logit_model, which = "CoxSnell")
 exp(coef(multiple_logit_model))
 confint(multiple_logit_model)
 
+
+predict(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5, DaySinceLastOrder = 30,
+                                                   WarehouseToHome = 10, OrderCount = 10, CashbackAmount = 300), 
+        type = "response")

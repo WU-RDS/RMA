@@ -58,13 +58,17 @@ eq:adjustedR2
 eq:multiplicative
 eq:multiplicativetransformed
 eq:multiplicativetransformed1
+fig:unnamed-chunk-36
 fig:unnamed-chunk-37
 eq:dummycoding
 eq:dummycoding1
 eq:dummycoding2
 fig:unnamed-chunk-44
-fig:unnamed-chunk-46-1
-fig:unnamed-chunk-46-2
+fig:unnamed-chunk-46
+fig:unnamed-chunk-48
+fig:unnamed-chunk-50-1
+fig:unnamed-chunk-50-2
+fig:unnamed-chunk-51
 eq:factor1
 eq:factor2
 eq:factor3
@@ -172,7 +176,6 @@ two-categories
 more-than-two-categories
 non-linear-relationships
 multiplicative-model
-quadratic-model
 logistic-regression
 motivation-and-intuition
 technical-details-of-the-model
@@ -180,8 +183,6 @@ estimation-in-r
 logistic-model-with-multiple-predictors
 model-selection
 predictions
-perfect-prediction-logit
-example
 unsupervised-learning
 principal-component-analysis
 introduction-1
