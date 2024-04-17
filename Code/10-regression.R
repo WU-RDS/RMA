@@ -28,9 +28,9 @@ psych::describe(att_data[, c("attitude", "duration")])
 # Scatterplot
 library(ggplot2)
 ggplot(att_data, aes(duration, attitude)) + 
-  geom_point(size = 3) + 
+  geom_point(size = 2, shape = 1) + 
   labs(x = "Duration",y = "Attitude", size = 12) +
-  theme_bw()
+  theme_minimal()
 
 # Compute covariance
 # ... manually 
@@ -57,7 +57,7 @@ cor(att_data[, c("attitude", "duration")], method = "pearson")
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "pearson", conf.level = 0.95)
 
 # Non-parametric test
-cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "spearman", conf.level = 0.95, exact = FALSE)
+#cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "spearman", conf.level = 0.95, exact = FALSE)
 
 # Spurious correlation
 drownings <- c(109,102,102,98,85,95,96,98,123,94,102)
@@ -74,48 +74,17 @@ cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", 
 regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv", 
                           sep = ",", 
                           header = TRUE) # read in data
-
+regression <- regression %>% select(store, brand_id, brand, week, move_ounce, price_ounce, sale_B, sale_C, sale_S)
 str(regression)
 regression$store <- as.factor(regression$store) #convert grouping variable to factor
 regression$brand_id <- as.factor(regression$brand_id) #convert grouping variable to factor
-regression$saledummy_B <- as.factor(regression$saledummy_B) #convert grouping variable to factor
-regression$saledummy_C <- as.factor(regression$saledummy_C) #convert grouping variable to factor
-regression$saledummy_S <- as.factor(regression$saledummy_S) #convert grouping variable to factor
-head(regression)
+regression$brand <- as.factor(regression$brand) #convert grouping variable to factor
+str(regression)
 
 # Descriptive statistics
 psych::describe(regression)
 
 # Plot the data 
-mean_price <- mean(regression$price_ounce)
-mean_sales <- mean(regression$move_ounce)
-
-scatter <- ggplot(regression, aes(price_ounce, move_ounce))
-scatter + geom_point() + labs(x = "price (ounce)", y = "sales (ounce)")
-
-scatter + geom_point(shape = 1) + 
-  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
-  geom_vline(size = 1, xintercept = mean_price, linetype = "dotted") + 
-  geom_hline(size = 1, yintercept = mean_sales, linetype = "dotted") + 
-  theme_minimal()
-
-# ... using ggplot2
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
-  geom_point(shape = 1) +
-  geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
-  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + #mean of price
-  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
-  theme_minimal()
-
-# add regression line:
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
-  geom_point(shape = 1) +
-  geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
-  geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
-  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + # mean of price
-  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
-  theme_minimal()
-
 ### Line Plots ###
 # Sales per week 
 ggplot(data = regression, aes(week, move_ounce)) + 
@@ -128,6 +97,47 @@ ggplot(data = regression, aes(week, price_ounce)) +
   theme_minimal()
 
 
+mean_price <- mean(regression$price_ounce)
+mean_price
+mean_sales <- mean(regression$move_ounce)
+mean_sales
+
+ggplot(regression, aes(price_ounce, move_ounce)) + 
+  geom_point(size = 2, shape = 1) + labs(x = "Price ($/ounce)", y = "Sales (ounce)") + theme_minimal()
+
+# add lines
+ggplot(regression, aes(price_ounce, move_ounce)) + 
+  geom_point(size = 2, shape = 1) + 
+  labs(x = "Price ($/ounce)", y = "Sales (ounce)") + 
+  geom_vline(size = 1, xintercept = mean_price, linetype = "dotted") + 
+  geom_hline(size = 1, yintercept = mean_sales, linetype = "dotted") + 
+  theme_minimal()
+
+# add regression line
+ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
+  geom_point(shape = 1) +
+  geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
+  geom_hline(yintercept = mean(regression$move_ounce), linetype = "dotted") + # mean of sales
+  geom_vline(xintercept = mean(regression$price_ounce), linetype = "dotted") + # mean of price
+  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
+  theme_minimal()
+
+
+#-------------------------------------------------------------------#
+#----------------------Simple linear regression---------------------#
+#-------------------------------------------------------------------#
+
+# syntax: lm(DV ~ IV, data)
+# create an object that stores the results of regression estimation
+sales_reg <- lm(move_ounce ~ price_ounce, data = regression) # estimate linear model
+summary(sales_reg) #summary of results
+
+# Using the model for making predictions: sales if price is set to 2 EUR
+prediction <- summary(sales_reg)$coefficients[1,1] + 
+  summary(sales_reg)$coefficients[2,1]*2 # the slope * 2 EUR
+prediction
+
+# Non-linear specification: Multiplicative (a.k.a log-log) model
 # log-log transformation
 ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) + 
   geom_point(shape = 1) +
@@ -135,7 +145,6 @@ ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) +
   labs(x = "Price", y = "Sales") + 
   theme_minimal()
 
-### More Line Plots 
 # Sales per week 
 ggplot(data = regression, aes(week, log(move_ounce))) + 
   geom_line(color = "forestgreen") + labs(x = "Week", y = "Log-sales") +
@@ -146,23 +155,9 @@ ggplot(data = regression, aes(week, log(price_ounce))) +
   geom_line(color = "darkorange") + labs(x = "Week", y = "Log-price") +
   theme_minimal()
 
-
-#-------------------------------------------------------------------#
-#----------------------Simple linear regression---------------------#
-#-------------------------------------------------------------------#
-
-# syntax: lm(DV ~ IV, data)
-# create an object that stores the results of regression estimation
-sales_reg <- lm(move_ounce ~ price_ounce, data = regression) #estimate linear model
-summary(sales_reg) #summary of results
-
-# Using the model for making predictions: sales if price is set to 2 EUR
-prediction <- summary(sales_reg)$coefficients[1,1] + 
-  summary(sales_reg)$coefficients[2,1]*2 # the slope * 2 EUR
-prediction
-
+# new regression
 sales_reg2 <- lm(log(move_ounce) ~ log(price_ounce), data = regression)
-summary(sales_reg2) #remember that now the interpretation changed
+summary(sales_reg2) # remember that now the interpretation changes to %!
 
 # Confidence intervals
 confint(sales_reg2)
@@ -249,9 +244,13 @@ avPlots(multiple_sales_reg)
 categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical", 
                          sep = ",", 
                          header = TRUE) # read in data
+categories <- categories %>% select(store, brand_id, brand, week, move_ounce, price_ounce, sale_B, sale_C, sale_S)
 str(categories)
-categories$store <- as.factor(categories$store)
-categories$brand <- as.factor(categories$brand)
+categories$store <- as.factor(categories$store) #convert grouping variable to factor
+categories$brand_id <- as.factor(categories$brand_id) #convert grouping variable to factor
+categories$brand <- as.factor(categories$brand) #convert grouping variable to factor
+categories$week <- as.factor(categories$week) #convert grouping variable to factor
+str(categories)
 
 multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B + sale_S, data = categories) 
 summary(multiple_regression_new)
