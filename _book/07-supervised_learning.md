@@ -80,8 +80,8 @@ att_data
 Let's look at the data first. The following graph shows the individual data points for the "duration" variable, where the y-axis shows the duration of residency in years and the x-axis shows the respondent ID. The blue horizontal line represents the mean of the variable (9.33) and the vertical lines show the distance of the individual data points from the mean.
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-4-1.png" alt="Scores for duration of residency variable" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-4)Scores for duration of residency variable</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-4-1.png" alt="Scores for duration variable" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-4)Scores for duration variable</p>
 </div>
 
 You can see that there are some respondents that have been the store's customers longer than average and some - shorter than average. Let's do the same for the second variable ("Attitude"). Again, the y-axis shows the observed scores for this variable and the x-axis shows the respondent ID.  
@@ -94,8 +94,8 @@ You can see that there are some respondents that have been the store's customers
 Again, we can see that some respondents have an above average attitude towards the store (more favorable) and some respondents have a below average attitude. Let's combine both variables in one graph now to see if there is some co-movement: 
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-6-1.png" alt="Scores for attitude and duration of residency variables" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-6)Scores for attitude and duration of residency variables</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-6-1.png" alt="Scores for attitude and duration variables" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-6)Scores for attitude and duration variables</p>
 </div>
 
 We can see that there is indeed some co-movement here. The variables <b>covary</b> because respondents who have an above (below) average attitude towards the store also appear to have been its customers for an above (below) average amount of time and vice versa. Correlation helps us to quantify this relationship. Before you proceed to compute the correlation coefficient, you should first look at the data. We usually use a scatterplot to visualize the relationship between two metric variables:
@@ -225,37 +225,7 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 (\#eq:cortest)
 \end{equation} 
 
-It has a t distribution with n - 2 degrees of freedom. Then, we follow the usual procedure of calculating the test statistic and comparing the test statistic to the critical value of the underlying probability distribution. If the calculated test statistic is larger than the critical value, the null hypothesis of no relationship between X and Y is rejected. 
-
-
-```r
-t_calc <- r * sqrt(N - 2)/sqrt(1 - r^2)  #calculated test statistic
-t_calc
-```
-
-```
-## [1] 8.4144314
-```
-
-```r
-df <- (N - 2)  #degrees of freedom
-t_crit <- qt(0.975, df)  #critical value
-t_crit
-```
-
-```
-## [1] 2.2281389
-```
-
-```r
-pt(q = t_calc, df = df, lower.tail = F) * 2  #p-value 
-```
-
-```
-## [1] 0.0000075451612
-```
-
-Or you can simply use the ```cor.test()``` function, which also produces the 95% confidence interval:
+It has a t distribution with n - 2 degrees of freedom. You can simply use the ```cor.test()``` function, which also produces the 95% confidence interval:
 
 
 ```r
@@ -268,13 +238,13 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  att_data$attitude and att_data$duration
-## t = 8.41443, df = 10, p-value = 0.0000075452
+## t = 8.4144, df = 10, p-value = 0.000007545
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.78260411 0.98228152
+##  0.7826041 0.9822815
 ## sample estimates:
-##        cor 
-## 0.93607782
+##       cor 
+## 0.9360778
 ```
 
 To determine the linear relationship between variables, the data only needs to be measured using interval scales. If you want to test the significance of the association, the sampling distribution needs to be normally distributed (we usually assume this when our data are normally distributed or when N is large). If parametric assumptions are violated, you should use non-parametric tests:
@@ -293,11 +263,11 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Spearman's rank correlation rho
 ## 
 ## data:  att_data$attitude and att_data$duration
-## S = 14.1969, p-value = 0.0000021833
+## S = 14.197, p-value = 0.000002183
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
-##        rho 
-## 0.95036059
+##       rho 
+## 0.9503606
 ```
 
 ```r
@@ -310,11 +280,11 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Kendall's rank correlation tau
 ## 
 ## data:  att_data$attitude and att_data$duration
-## z = 3.90948, p-value = 0.000092496
+## z = 3.9095, p-value = 0.0000925
 ## alternative hypothesis: true tau is not equal to 0
 ## sample estimates:
-##        tau 
-## 0.89602867
+##       tau 
+## 0.8960287
 ```
 
 Report the results:
@@ -404,20 +374,75 @@ psych::describe(regression)  #descriptive statistics using psych
 ```
 
 ```
-##           vars   n   mean     sd median trimmed    mad  min     max   range
-## sales        1 200 193.20  80.70 200.00  192.69  88.96 10.0  360.00  350.00
-## adspend      2 200 614.41 485.66 531.92  560.81 489.09  9.1 2271.86 2262.76
-## airplay      3 200  27.50  12.27  28.00   27.46  11.86  0.0   63.00   63.00
-## starpower    4 200   6.77   1.40   7.00    6.88   1.48  1.0   10.00    9.00
-## genre*       5 200   2.40   0.79   3.00    2.50   0.00  1.0    3.00    2.00
-## country*     6 200   1.17   0.38   1.00    1.09   0.00  1.0    2.00    1.00
-##            skew kurtosis    se
-## sales      0.04    -0.72  5.71
-## adspend    0.84     0.17 34.34
-## airplay    0.06    -0.09  0.87
-## starpower -1.27     3.56  0.10
-## genre*    -0.83    -0.91  0.06
-## country*   1.74     1.05  0.03
+##                  vars   n         mean      sd       median      trimmed
+## store*              1 220         1.00    0.00         1.00         1.00
+## brand_id*           2 220         1.00    0.00         1.00         1.00
+## brand*              3 220         1.00    0.00         1.00         1.00
+## week                4 220       202.12   65.75       200.50       201.65
+## move_ounce          5 220     19713.01 7837.08     17868.00     18580.18
+## price_ounce         6 220         4.88    0.21         4.90         4.88
+## sale_B              7 220         0.20    0.15         0.19         0.19
+## sale_C              8 220         0.00    0.00         0.00         0.00
+## sale_S              9 220         0.00    0.02         0.00         0.00
+## summove_ounce      10 220 158871900.16    0.00 158871900.16 158871900.16
+## nweeks             11 220       220.00    0.00       220.00       220.00
+## mean_marketshare   12 220         0.09    0.00         0.09         0.09
+## sharerank          13 220         3.00    0.00         3.00         3.00
+## priclow            14 220         0.00    0.00         0.00         0.00
+## pricmed            15 220         1.00    0.00         1.00         1.00
+## prichigh           16 220         0.00    0.00         0.00         0.00
+## logprice_ounce     17 220         1.58    0.04         1.59         1.59
+## logmove_ounce      18 220         9.83    0.34         9.79         9.81
+## saledummy_B*       19 220         1.75    0.43         2.00         1.82
+## saledummy_C*       20 220         1.00    0.00         1.00         1.00
+## saledummy_S*       21 220         1.01    0.10         1.00         1.00
+## promoweek          22 167       212.28   62.15       217.00       212.78
+##                      mad          min          max    range  skew kurtosis
+## store*              0.00         1.00         1.00     0.00   NaN      NaN
+## brand_id*           0.00         1.00         1.00     0.00   NaN      NaN
+## brand*              0.00         1.00         1.00     0.00   NaN      NaN
+## week               82.28        91.00       317.00   226.00  0.06    -1.20
+## move_ounce       5538.99      7992.00     71032.00 63040.00  2.32     9.32
+## price_ounce         0.20         4.30         5.45     1.15 -0.15    -0.19
+## sale_B              0.18         0.00         0.67     0.67  0.28    -0.59
+## sale_C              0.00         0.00         0.00     0.00   NaN      NaN
+## sale_S              0.00         0.00         0.21     0.21 10.68   115.22
+## summove_ounce       0.00 158871900.16 158871900.16     0.00   Inf      NaN
+## nweeks              0.00       220.00       220.00     0.00   NaN      NaN
+## mean_marketshare    0.00         0.09         0.09     0.00  -Inf      NaN
+## sharerank           0.00         3.00         3.00     0.00   NaN      NaN
+## priclow             0.00         0.00         0.00     0.00   NaN      NaN
+## pricmed             0.00         1.00         1.00     0.00   NaN      NaN
+## prichigh            0.00         0.00         0.00     0.00   NaN      NaN
+## logprice_ounce      0.04         1.46         1.70     0.24 -0.27    -0.15
+## logmove_ounce       0.32         8.99        11.17     2.18  0.67     0.86
+## saledummy_B*        0.00         1.00         2.00     1.00 -1.17    -0.62
+## saledummy_C*        0.00         1.00         1.00     0.00   NaN      NaN
+## saledummy_S*        0.00         1.00         2.00     1.00 10.27   104.03
+## promoweek          78.58        91.00       316.00   225.00 -0.08    -1.14
+##                      se
+## store*             0.00
+## brand_id*          0.00
+## brand*             0.00
+## week               4.43
+## move_ounce       528.38
+## price_ounce        0.01
+## sale_B             0.01
+## sale_C             0.00
+## sale_S             0.00
+## summove_ounce      0.00
+## nweeks             0.00
+## mean_marketshare   0.00
+## sharerank          0.00
+## priclow            0.00
+## pricmed            0.00
+## prichigh           0.00
+## logprice_ounce     0.00
+## logmove_ounce      0.02
+## saledummy_B*       0.03
+## saledummy_C*       0.00
+## saledummy_S*       0.01
+## promoweek          4.81
 ```
 
 As stated above, regression analysis may be used to relate a quantitative response ("dependent variable") to one or more predictor variables ("independent variables"). In a simple linear regression, we have one dependent and one independent variable and we regress the dependent variable on the independent variable.  
@@ -462,8 +487,8 @@ Once we have used our training data to produce estimates for the model coefficie
 We use the hat symbol, <sup>^</sup>, to denote the estimated value for an unknown parameter or coefficient, or to denote the predicted value of the response (sales). In practice, &beta;<sub>0</sub> and &beta;<sub>1</sub> are unknown and must be estimated from the data to make predictions. In the case of our pricing example, the data set consists of the prices and product sales for 220 weeks (n = 220). Our goal is to obtain coefficient estimates such that the linear model fits the available data well. In other words, we fit a line through the scatterplot of observations and try to find the line that best describes the data. The following graph shows the scatterplot for our data, where the black line shows the regression line. The grey vertical lines shows the difference between the predicted values (the regression line) and the observed values. This difference is referred to as the residuals ("e").
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-17-1.png" alt="Ordinary least squares (OLS)" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-17)Ordinary least squares (OLS)</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-16-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-16)Ordinary least squares (OLS)</p>
 </div>
 
 The estimation of the regression function is based on the idea of the method of least squares (OLS = ordinary least squares). The first step is to calculate the residuals by subtracting the observed values from the predicted values.
@@ -557,8 +582,8 @@ ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-20-1.png" alt="Scatterplot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-20)Scatterplot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-19-1.png" alt="Scatterplot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-19)Scatterplot</p>
 </div>
 
 The slope coefficient (&beta;<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit ($).   
@@ -659,8 +684,8 @@ SS_T= \sum_{i=1}^{N} (Y_i-\overline{Y})^2
 The following graph shows the total sum of squares:
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-23-1.png" alt="Total sum of squares" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-23)Total sum of squares</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-22-1.png" alt="Total sum of squares" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-22)Total sum of squares</p>
 </div>
 
 Based on our linear model, the best guess about the sales level at a given level of prices is the predicted value $\hat{Y}_i$. The model sum of squares (SS<sub>M</sub>) therefore has the mathematical representation:
@@ -673,8 +698,8 @@ SS_M= \sum_{i=1}^{N}  (\hat{Y}_i-\overline{Y})^2
 The model sum of squares represents the improvement in prediction resulting from using the regression model rather than the mean of the data. The following graph shows the model sum of squares for our example:
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Ordinary least squares (OLS)" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-24)Ordinary least squares (OLS)</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-23-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-23)Ordinary least squares (OLS)</p>
 </div>
 
 The residual sum of squares (SS<sub>R</sub>) is the difference between the observed data points ($Y_{i}$) and the predicted values along the regression line ($\hat{Y}_{i}$), i.e., the variation *not* explained by the model.
@@ -687,8 +712,8 @@ SS_R= \sum_{i=1}^{N} ({Y}_{i}-\hat{Y}_{i})^2
 The following graph shows the residual sum of squares for our example:
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Ordinary least squares (OLS)" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-25)Ordinary least squares (OLS)</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-24)Ordinary least squares (OLS)</p>
 </div>
 
 Based on these statistics, we can determine how well the model fits the data as we will see next. 
@@ -707,8 +732,8 @@ It takes values between 0 (very bad fit) and 1 (very good fit). Note that when t
 You can get a first impression of the fit of the model by inspecting the scatter plot as can be seen in the plot below. If the observations are highly dispersed around the regression line (left plot), the fit will be lower compared to a data set where the values are less dispersed (right plot).
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-26-1.png" alt="Good vs. bad model fit" width="960" />
-<p class="caption">(\#fig:unnamed-chunk-26)Good vs. bad model fit</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Good vs. bad model fit" width="960" />
+<p class="caption">(\#fig:unnamed-chunk-25)Good vs. bad model fit</p>
 </div>
 
 The R<sup>2</sup> statistic is reported in the regression output, so you don't need to compute it manually.
@@ -759,7 +784,7 @@ f_calc
 ```
 
 ```
-## [1] 13.86274
+## [1] 14
 ```
 
 ```r
@@ -768,7 +793,7 @@ f_crit
 ```
 
 ```
-## [1] 3.936143
+## [1] 3.9
 ```
 
 ```r
@@ -797,7 +822,7 @@ prediction
 ```
 
 ```
-## [1] 45829.55
+## [1] 45830
 ```
 
 The predicted value of the dependent variable is 45,829.6 oz, i.e., the store will sell around 45,829.6 oz (~1,355 liters) of Budweiser.
@@ -820,7 +845,7 @@ ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
     theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 The way of obtaining a more reasonable view and interpretation in this case is called "multiplicative modeling", or log-log transformation (you can find additional details about log-log transformations below with a slightly different motivation and example). 
 
@@ -854,7 +879,7 @@ ggplot(regression, mapping = aes(log(price_ounce),
     labs(x = "Price", y = "Sales") + theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 You can see how the scales changed, and how the observations got more normally distributed. Hence, we can log-transform our variables and estimate the following equation: 
 
@@ -878,19 +903,19 @@ summary(sales_reg2)  #remember that now the interpretation changed
 ## lm(formula = log(move_ounce) ~ log(price_ounce), data = regression)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.82525 -0.22395 -0.02847  0.18184  1.31565 
+##     Min      1Q  Median      3Q     Max 
+## -0.8252 -0.2239 -0.0285  0.1818  1.3156 
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)       13.3539     0.7961  16.774 < 0.0000000000000002 ***
-## log(price_ounce)  -2.2252     0.5022  -4.431            0.0000148 ***
+## (Intercept)        13.354      0.796   16.77 < 0.0000000000000002 ***
+## log(price_ounce)   -2.225      0.502   -4.43             0.000015 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.3237 on 218 degrees of freedom
-## Multiple R-squared:  0.08262,	Adjusted R-squared:  0.07842 
-## F-statistic: 19.63 on 1 and 218 DF,  p-value: 0.00001485
+## Residual standard error: 0.32 on 218 degrees of freedom
+## Multiple R-squared:  0.0826,	Adjusted R-squared:  0.0784 
+## F-statistic: 19.6 on 1 and 218 DF,  p-value: 0.0000148
 ```
 
 In this example, you would interpret the coefficient as follows: **A 1% increase in price leads to a 2.23% decrease in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.08 from 0.06). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.
@@ -945,28 +970,28 @@ summary(multiple_sales_reg)  #summary of results
 ##     data = regression)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.79604 -0.21487 -0.02693  0.18710  1.29586 
+##     Min      1Q  Median      3Q     Max 
+## -0.7960 -0.2149 -0.0269  0.1871  1.2959 
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)       13.3176     0.8110  16.422 < 0.0000000000000002 ***
-## log(price_ounce)  -2.2207     0.5077  -4.374             0.000019 ***
-## sale_B             0.1227     0.1490   0.824               0.4110    
-## sale_S             3.0326     1.2225   2.481               0.0139 *  
+## (Intercept)        13.318      0.811   16.42 < 0.0000000000000002 ***
+## log(price_ounce)   -2.221      0.508   -4.37             0.000019 ***
+## sale_B              0.123      0.149    0.82                0.411    
+## sale_S              3.033      1.223    2.48                0.014 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.3203 on 216 degrees of freedom
-## Multiple R-squared:  0.1103,	Adjusted R-squared:  0.0979 
-## F-statistic: 8.922 on 3 and 216 DF,  p-value: 0.00001342
+## Residual standard error: 0.32 on 216 degrees of freedom
+## Multiple R-squared:  0.11,	Adjusted R-squared:  0.0979 
+## F-statistic: 8.92 on 3 and 216 DF,  p-value: 0.0000134
 ```
 
 The interpretation of the coefficients is as follows: 
 
-* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.221%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.123%
-* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.033%
+* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.22%
+* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.12%
+* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.03%
 
 The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
@@ -978,14 +1003,14 @@ confint(multiple_sales_reg)
 ```
 
 ```
-##                       2.5 %     97.5 %
-## (Intercept)      11.7191819 14.9160122
-## log(price_ounce) -3.2213424 -1.2200538
-## sale_B           -0.1708936  0.4163071
-## sale_S            0.6229993  5.4421432
+##                  2.5 % 97.5 %
+## (Intercept)      11.72  14.92
+## log(price_ounce) -3.22  -1.22
+## sale_B           -0.17   0.42
+## sale_S            0.62   5.44
 ```
 
-What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [0.6229993,5.4421432]. Thus, although we have computed a point estimate of 3.033 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
+What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [0.62,5.44]. Thus, although we have computed a point estimate of 3.03 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
 
 
 ```r
@@ -994,11 +1019,11 @@ ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-34-1.png" alt="Confidence intervals for regression model" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-34)Confidence intervals for regression model</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-33-1.png" alt="Confidence intervals for regression model" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-33)Confidence intervals for regression model</p>
 </div>
 
-The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
+The output also tells us that 11.03% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
 
 
 ```r
@@ -1018,8 +1043,8 @@ ggplot(data = regression, aes(week, log(move_ounce))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-36-1.png" alt="Model fit" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-36)Model fit</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-35-1.png" alt="Model fit" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-35)Model fit</p>
 </div>
 
 **Partial plots**
@@ -1033,8 +1058,8 @@ avPlots(multiple_sales_reg)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-37-1.png" alt="Partial plots" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-37)Partial plots</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-36-1.png" alt="Partial plots" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-36)Partial plots</p>
 </div>
 
 
@@ -1117,17 +1142,17 @@ summary(multiple_regression_new)
 ## -10570  -2915  -1414    407  56446 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value            Pr(>|t|)    
-## (Intercept)   14706.1      458.5  32.075 <0.0000000000000002 ***
-## price_ounce -146658.5     5990.8 -24.480 <0.0000000000000002 ***
-## sale_B          600.9      456.8   1.315               0.188    
-## sale_S        -2340.4     3014.9  -0.776               0.438    
+##             Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept)    14706        458   32.08 <0.0000000000000002 ***
+## price_ounce  -146658       5991  -24.48 <0.0000000000000002 ***
+## sale_B           601        457    1.32                0.19    
+## sale_S         -2340       3015   -0.78                0.44    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7427 on 3190 degrees of freedom
-## Multiple R-squared:   0.16,	Adjusted R-squared:  0.1592 
-## F-statistic: 202.5 on 3 and 3190 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 7430 on 3190 degrees of freedom
+## Multiple R-squared:  0.16,	Adjusted R-squared:  0.159 
+## F-statistic:  202 on 3 and 3190 DF,  p-value: <0.0000000000000002
 ```
 
 Now, let's add the store variable:
@@ -1150,18 +1175,18 @@ summary(multiple_regression_store)
 ## -10710  -3135  -1317    678  55579 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)   13844.2      473.8  29.219 < 0.0000000000000002 ***
-## price_ounce -147160.4     5951.7 -24.726 < 0.0000000000000002 ***
-## sale_B          666.3      453.9   1.468                0.142    
-## sale_S        -2428.0     2995.0  -0.811                0.418    
-## store100       1724.9      261.3   6.602      0.0000000000475 ***
+##             Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)    13844        474   29.22 < 0.0000000000000002 ***
+## price_ounce  -147160       5952  -24.73 < 0.0000000000000002 ***
+## sale_B           666        454    1.47                 0.14    
+## sale_S         -2428       2995   -0.81                 0.42    
+## store100        1725        261    6.60       0.000000000047 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7378 on 3189 degrees of freedom
-## Multiple R-squared:  0.1713,	Adjusted R-squared:  0.1703 
-## F-statistic: 164.8 on 4 and 3189 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 7380 on 3189 degrees of freedom
+## Multiple R-squared:  0.171,	Adjusted R-squared:  0.17 
+## F-statistic:  165 on 4 and 3189 DF,  p-value: <0.0000000000000002
 ```
 
 
@@ -1199,18 +1224,17 @@ We would then add these variables as additional predictors in the regression equ
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
       &+\beta_3*price\_reduction\\ 
-      &+\beta_4*Pop\\
-      &+\beta_5*store\\
-      &+\beta_6*Budweiser\\
-      &+\beta_7*Corona\\
-      &+\beta_8*Fosters\\
-      &+\beta_9*Heineken\\
-      &+\beta_10*Old\_Milwaukee+\epsilon
+      &+\beta_4*store\\
+      &+\beta_5*Budweiser\\
+      &+\beta_6*Corona\\
+      &+\beta_7*Fosters\\
+      &+\beta_8*Heineken\\
+      &+\beta_9*Old\_Milwaukee+\epsilon
 \end{align}
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
 
-The interpretation of the coefficients is as follows: $\beta_6$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_7$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand This means that there will always be one fewer dummy variable than the number of levels.
+The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 
 ```r
@@ -1231,22 +1255,22 @@ summary(multiple_regression_ext)
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)        -1614.2     1372.1  -1.176              0.23949    
-## price_ounce         7220.0    15158.8   0.476              0.63390    
-## sale_B              1235.2      306.9   4.025 0.000058197671655294 ***
-## sale_S              1661.0     1495.7   1.111              0.26686    
-## store100            1858.1      128.7  14.442 < 0.0000000000000002 ***
-## brandBudweiser     22298.6      618.6  36.049 < 0.0000000000000002 ***
-## brandCorona         2288.9      236.8   9.665 < 0.0000000000000002 ***
-## brandFosters        -110.1      240.5  -0.458              0.64716    
-## brandHeinekenBeer   1815.0      219.9   8.253 0.000000000000000223 ***
-## brandOldMilwaukee   2584.1      838.2   3.083              0.00207 ** 
+## (Intercept)          -1614       1372   -1.18               0.2395    
+## price_ounce           7220      15159    0.48               0.6339    
+## sale_B                1235        307    4.03  0.00005819767165529 ***
+## sale_S                1661       1496    1.11               0.2669    
+## store100              1858        129   14.44 < 0.0000000000000002 ***
+## brandBudweiser       22299        619   36.05 < 0.0000000000000002 ***
+## brandCorona           2289        237    9.66 < 0.0000000000000002 ***
+## brandFosters          -110        240   -0.46               0.6472    
+## brandHeinekenBeer     1815        220    8.25  0.00000000000000022 ***
+## brandOldMilwaukee     2584        838    3.08               0.0021 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3622 on 3184 degrees of freedom
-## Multiple R-squared:  0.8006,	Adjusted R-squared:  0.8001 
-## F-statistic:  1421 on 9 and 3184 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 3620 on 3184 degrees of freedom
+## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
+## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: <0.0000000000000002
 ```
 
 How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 22,298.63 oz more than products from the "Amstel" brand, and that products from the "Corona" brand will sell on average 2,288.88 oz more than the products from the "Amstel" brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
@@ -1273,21 +1297,21 @@ summary(multiple_regression_ext)
 ## 
 ## Coefficients:
 ##                                     Estimate Std. Error t value
-## (Intercept)                          20684.4      810.8  25.512
-## price_ounce                           7220.0    15158.8   0.476
-## sale_B                                1235.2      306.9   4.025
-## sale_S                                1661.0     1495.7   1.111
-## store100                              1858.1      128.7  14.442
-## relevel(brand, ref = 2)Amstel       -22298.6      618.6 -36.049
-## relevel(brand, ref = 2)Corona       -20009.8      533.7 -37.496
-## relevel(brand, ref = 2)Fosters      -22408.7      616.3 -36.360
-## relevel(brand, ref = 2)HeinekenBeer -20483.6      625.1 -32.769
-## relevel(brand, ref = 2)OldMilwaukee -19714.5      329.2 -59.885
+## (Intercept)                            20684        811   25.51
+## price_ounce                             7220      15159    0.48
+## sale_B                                  1235        307    4.03
+## sale_S                                  1661       1496    1.11
+## store100                                1858        129   14.44
+## relevel(brand, ref = 2)Amstel         -22299        619  -36.05
+## relevel(brand, ref = 2)Corona         -20010        534  -37.50
+## relevel(brand, ref = 2)Fosters        -22409        616  -36.36
+## relevel(brand, ref = 2)HeinekenBeer   -20484        625  -32.77
+## relevel(brand, ref = 2)OldMilwaukee   -19714        329  -59.88
 ##                                                 Pr(>|t|)    
 ## (Intercept)                         < 0.0000000000000002 ***
-## price_ounce                                        0.634    
-## sale_B                                         0.0000582 ***
-## sale_S                                             0.267    
+## price_ounce                                         0.63    
+## sale_B                                          0.000058 ***
+## sale_S                                              0.27    
 ## store100                            < 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Amstel       < 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Corona       < 0.0000000000000002 ***
@@ -1297,9 +1321,9 @@ summary(multiple_regression_ext)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3622 on 3184 degrees of freedom
-## Multiple R-squared:  0.8006,	Adjusted R-squared:  0.8001 
-## F-statistic:  1421 on 9 and 3184 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 3620 on 3184 degrees of freedom
+## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
+## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: <0.0000000000000002
 ```
   
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
@@ -1327,7 +1351,7 @@ head(non_linear_reg)
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"16.2","2":"13817.4"},{"1":"17.1","2":"5074.6"},{"1":"15.3","2":"3501.3"},{"1":"27.3","2":"23662.2"},{"1":"13.6","2":"9977.2"},{"1":"18.8","2":"11972.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"16","2":"13817"},{"1":"17","2":"5075"},{"1":"15","2":"3501"},{"1":"27","2":"23662"},{"1":"14","2":"9977"},{"1":"19","2":"11972"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -1341,8 +1365,8 @@ ggplot(data = non_linear_reg, aes(x = advertising,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-44-1.png" alt="Non-linear relationship" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-44)Non-linear relationship</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-43-1.png" alt="Non-linear relationship" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-43)Non-linear relationship</p>
 </div>
 
 It appears that a linear model might **not** represent the data well. It rather appears that the effect of an additional Euro spend on advertising is decreasing with increasing levels of advertising expenditures. Thus, we have decreasing marginal returns. We could put this to a test and estimate a linear model:
@@ -1359,19 +1383,19 @@ summary(linear_reg)
 ## lm(formula = sales ~ advertising, data = non_linear_reg)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -10.4773  -2.3886  -0.3558   2.1884  16.7453 
+##     Min      1Q  Median      3Q     Max 
+## -10.477  -2.389  -0.356   2.188  16.745 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value            Pr(>|t|)    
-## (Intercept) 9.95752155 0.22511508   44.23 <0.0000000000000002 ***
-## advertising 0.00050245 0.00001561   32.19 <0.0000000000000002 ***
+##              Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept) 9.9575216  0.2251151    44.2 <0.0000000000000002 ***
+## advertising 0.0005024  0.0000156    32.2 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3.593 on 998 degrees of freedom
-## Multiple R-squared:  0.5093,	Adjusted R-squared:  0.5088 
-## F-statistic:  1036 on 1 and 998 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 3.6 on 998 degrees of freedom
+## Multiple R-squared:  0.509,	Adjusted R-squared:  0.509 
+## F-statistic: 1.04e+03 on 1 and 998 DF,  p-value: <0.0000000000000002
 ```
 
 Advertising appears to be positively related to sales with an additional Euro that is spent on advertising resulting in 0.0005 additional sales. The R<sup>2</sup> statistic suggests that approximately 51% of the total variation can be explained by the model
@@ -1384,8 +1408,8 @@ plot(linear_reg, 1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Residuals vs. Fitted" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-46)Residuals vs. Fitted</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-45-1.png" alt="Residuals vs. Fitted" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-45)Residuals vs. Fitted</p>
 </div>
 
 The plot suggests that the assumption of homoscedasticity is violated (i.e., the spread of values on the y-axis is different for different levels of the fitted values). In addition, the red line deviates from the dashed grey line, suggesting that the relationship might not be linear. Finally, the Q-Q plot of the residuals suggests that the residuals are not normally distributed. 
@@ -1396,8 +1420,8 @@ plot(linear_reg, 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Q-Q plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-47)Q-Q plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Q-Q plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-46)Q-Q plot</p>
 </div>
 
 To sum up, a linear specification might not be the best model for this data set. 
@@ -1431,8 +1455,8 @@ ggplot(data = non_linear_reg, aes(x = log(advertising),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-48-1.png" alt="Linearized effect" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-48)Linearized effect</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Linearized effect" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-47)Linearized effect</p>
 </div>
 
 It appears that now, with the log-transformed variables, a linear specification is a much better representation of the data. Hence, we can log-transform our variables and estimate the following equation: 
@@ -1456,19 +1480,19 @@ summary(log_reg)
 ## lm(formula = log(sales) ~ log(advertising), data = non_linear_reg)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.66594 -0.12723  0.00299  0.13437  0.63964 
+##    Min     1Q Median     3Q    Max 
+## -0.666 -0.127  0.003  0.134  0.640 
 ## 
 ## Coefficients:
-##                   Estimate Std. Error t value            Pr(>|t|)    
-## (Intercept)      -0.014927   0.059714   -0.25               0.803    
-## log(advertising)  0.300769   0.006509   46.20 <0.0000000000000002 ***
+##                  Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept)      -0.01493    0.05971   -0.25                 0.8    
+## log(advertising)  0.30077    0.00651   46.20 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.2018 on 998 degrees of freedom
-## Multiple R-squared:  0.6814,	Adjusted R-squared:  0.6811 
-## F-statistic:  2135 on 1 and 998 DF,  p-value: < 0.00000000000000022
+## Residual standard error: 0.2 on 998 degrees of freedom
+## Multiple R-squared:  0.681,	Adjusted R-squared:  0.681 
+## F-statistic: 2.13e+03 on 1 and 998 DF,  p-value: <0.0000000000000002
 ```
 
 Note that this specification implies decreasing marginal returns (i.e., the returns of advertising are decreasing with the level of advertising), which appear to be more consistent with the data. The specification is also consistent with proportional changes in advertising being associated with proportional changes in sales (i.e., advertising does not become more effective with increasing levels). This has important implications on the interpretation of the coefficients. In our example, you would interpret the coefficient as follows: **A 1% increase in advertising leads to a 0.3% increase in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.681 from 0.509). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable. Also, we could use the residuals plot to confirm that the revised specification is more appropriate:
@@ -1479,8 +1503,8 @@ plot(log_reg, 1)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" alt="Residuals plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-50-1)Residuals plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-49-1.png" alt="Residuals plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-49-1)Residuals plot</p>
 </div>
 
 ```r
@@ -1488,8 +1512,8 @@ plot(log_reg, 2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-2.png" alt="Q-Q plot" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-50-2)Q-Q plot</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-49-2.png" alt="Q-Q plot" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-49-2)Q-Q plot</p>
 </div>
 
 Finally, we can plot the predicted values against the observed values to see that the results from the log-log model (red) provide a better prediction than the results from the linear model (blue). 
@@ -1507,8 +1531,8 @@ ggplot(data = non_linear_reg) + geom_point(aes(x = advertising,
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-51-1.png" alt="Comparison if model fit" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-51)Comparison if model fit</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" alt="Comparison if model fit" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-50)Comparison if model fit</p>
 </div>
 
 
@@ -1579,8 +1603,8 @@ churn_data$CityTier <- as.factor(churn_data$CityTier)
 Below are two attempts to model the data. The left assumes a linear probability model (calculated with the same methods that we used in the last chapter), while the right model is a __logistic regression model__. As you can see, the linear probability model is able of producing probabilities that are above 1 and below 0 (see the lower right corner), which are not valid probabilities, while the logistic model stays between 0 and 1. Notice that songs with a higher cash-back value (on the right of the x-axis) seem to cluster more at $0$ and those with a lower more at $1$ so we expect a negative influence of cash-back value on the probability of churn. 
 
 <div class="figure" style="text-align: center">
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" alt="The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-53)The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)</p>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-52-1.png" alt="The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-52)The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)</p>
 </div>
 
 A key insight at this point is that the connection between $\mathbf{X}$ and $Y$ is __non-linear__ in the logistic regression model. 
@@ -1594,7 +1618,7 @@ f(\mathbf{X}) = \frac{1}{1 + e^{-\mathbf{X}}}
 $$
 This function transforms all real numbers into the range between 0 and 1. We need this to model probabilities, as probabilities can only be between 0 and 1. 
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" width="672" />
 
 
 
@@ -1629,9 +1653,9 @@ summary(logit_model)
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                  Estimate Std. Error z value            Pr(>|z|)    
-## (Intercept)     0.1898645  0.1565706   1.213               0.225    
-## CashbackAmount -0.0105419  0.0009359 -11.264 <0.0000000000000002 ***
+##                 Estimate Std. Error z value            Pr(>|z|)    
+## (Intercept)     0.189865   0.156571    1.21                0.23    
+## CashbackAmount -0.010542   0.000936  -11.26 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -1639,7 +1663,7 @@ summary(logit_model)
 ## 
 ##     Null deviance: 5104.3  on 5629  degrees of freedom
 ## Residual deviance: 4950.3  on 5628  degrees of freedom
-## AIC: 4954.3
+## AIC: 4954
 ## 
 ## Number of Fisher Scoring iterations: 5
 ```
@@ -1649,32 +1673,12 @@ Noticeably this output does not include an $R^2$ value to asses model fit. Multi
 
 ```r
 library(DescTools)
-```
-
-```
-## 
-## Attaching package: 'DescTools'
-```
-
-```
-## The following object is masked from 'package:car':
-## 
-##     Recode
-```
-
-```
-## The following objects are masked from 'package:psych':
-## 
-##     AUC, ICC, SD
-```
-
-```r
 PseudoR2(logit_model, which = "CoxSnell")  # you can also use 'McFadden', 'McFaddenAdj', 'Nagelkerke', 'AldrichNelson', 'VeallZimmermann', 'Efron', 'McKelveyZavoina', 'Tjur', 'all'
 ```
 
 ```
-##   CoxSnell 
-## 0.02698672
+## CoxSnell 
+##    0.027
 ```
 
 The coefficients of the model give the change in the [log odds](https://en.wikipedia.org/wiki/Odds#Statistical_usage) of the dependent variable due to a unit change in the regressor. This makes the exact interpretation of the coefficients difficult, but we can still interpret the signs and the p-values which will tell us if a variable has a significant positive or negative impact on the probability of the dependent variable being $1$. In order to get the odds ratios we can simply take the exponent of the coefficients. 
@@ -1686,7 +1690,7 @@ exp(coef(logit_model))
 
 ```
 ##    (Intercept) CashbackAmount 
-##      1.2090858      0.9895135
+##           1.21           0.99
 ```
 
 This now gives the effect on the dependent variable: an additional dollar paid back as cash-back, on average, makes it $0.99$ time more likely (= by a constant factor of 0.99 = 1% less) for a customer to churn. 
@@ -1701,9 +1705,9 @@ confint(logit_model)
 ```
 
 ```
-##                      2.5 %       97.5 %
-## (Intercept)    -0.11399742  0.499958965
-## CashbackAmount -0.01240796 -0.008737915
+##                 2.5 %  97.5 %
+## (Intercept)    -0.114  0.5000
+## CashbackAmount -0.012 -0.0087
 ```
 
 
@@ -1720,7 +1724,7 @@ prob_200
 ```
 
 ```
-## [1] 0.1468252
+## [1] 0.15
 ```
 
 ```r
@@ -1733,7 +1737,7 @@ prob_201
 ```
 
 ```
-## [1] 0.1452855
+## [1] 0.15
 ```
 
 ```r
@@ -1742,7 +1746,7 @@ prob_201/prob_200
 ```
 
 ```
-## [1] 0.9895135
+## [1] 0.99
 ```
 
 This is essentially what we got in the regression output earlier. So the odds are 1% lower at 201 than at 200 cash-back. 
@@ -1770,13 +1774,13 @@ summary(multiple_logit_model)
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                              Estimate Std. Error z value             Pr(>|z|)
-## (Intercept)                 -0.169157   0.282644  -0.598                0.550
-## OrderAmountHikeFromlastYear  0.006794   0.011039   0.615                0.538
-## DaySinceLastOrder           -0.160947   0.016668  -9.656 < 0.0000000000000002
-## WarehouseToHome              0.024806   0.004585   5.410     0.00000006305629
-## OrderCount                   0.104213   0.019595   5.318     0.00000010466730
-## CashbackAmount              -0.009784   0.001405  -6.965     0.00000000000329
+##                             Estimate Std. Error z value             Pr(>|z|)
+## (Intercept)                 -0.16916    0.28264   -0.60                 0.55
+## OrderAmountHikeFromlastYear  0.00679    0.01104    0.62                 0.54
+## DaySinceLastOrder           -0.16095    0.01667   -9.66 < 0.0000000000000002
+## WarehouseToHome              0.02481    0.00459    5.41      0.0000000630563
+## OrderCount                   0.10421    0.01959    5.32      0.0000001046673
+## CashbackAmount              -0.00978    0.00140   -6.96      0.0000000000033
 ##                                
 ## (Intercept)                    
 ## OrderAmountHikeFromlastYear    
@@ -1802,8 +1806,8 @@ PseudoR2(multiple_logit_model, which = "CoxSnell")
 ```
 
 ```
-##   CoxSnell 
-## 0.04730121
+## CoxSnell 
+##    0.047
 ```
 
 Again, to properly interpret the coefficient, we extract odds ratio:
@@ -1814,11 +1818,11 @@ exp(coef(multiple_logit_model))
 
 ```
 ##                 (Intercept) OrderAmountHikeFromlastYear 
-##                   0.8443759                   1.0068175 
+##                        0.84                        1.01 
 ##           DaySinceLastOrder             WarehouseToHome 
-##                   0.8513374                   1.0251163 
+##                        0.85                        1.03 
 ##                  OrderCount              CashbackAmount 
-##                   1.1098369                   0.9902637
+##                        1.11                        0.99
 ```
 
 ```r
@@ -1830,13 +1834,13 @@ confint(multiple_logit_model)
 ```
 
 ```
-##                                   2.5 %       97.5 %
-## (Intercept)                 -0.72038551  0.387836028
-## OrderAmountHikeFromlastYear -0.01497724  0.028311162
-## DaySinceLastOrder           -0.19401059 -0.128656705
-## WarehouseToHome              0.01585891  0.033828929
-## OrderCount                   0.06543606  0.142330681
-## CashbackAmount              -0.01258533 -0.007076521
+##                              2.5 %  97.5 %
+## (Intercept)                 -0.720  0.3878
+## OrderAmountHikeFromlastYear -0.015  0.0283
+## DaySinceLastOrder           -0.194 -0.1287
+## WarehouseToHome              0.016  0.0338
+## OrderCount                   0.065  0.1423
+## CashbackAmount              -0.013 -0.0071
 ```
 
 We can see that such variables as warehouse-to-home distance and order count increase the probability of churn, while days since last order and cash-back value decrease it.
@@ -1864,18 +1868,12 @@ summary(multiple_logit_model2)
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                              Estimate Std. Error z value             Pr(>|z|)
-## (Intercept)                 -0.127976   0.265416  -0.482                0.630
-## OrderAmountHikeFromlastYear  0.002811   0.010917   0.258                0.797
-## DaySinceLastOrder           -0.113611   0.013903  -8.172 0.000000000000000304
-## WarehouseToHome              0.025559   0.004483   5.701 0.000000011924680833
-## CashbackAmount              -0.009119   0.001257  -7.254 0.000000000000403299
-##                                
-## (Intercept)                    
-## OrderAmountHikeFromlastYear    
-## DaySinceLastOrder           ***
-## WarehouseToHome             ***
-## CashbackAmount              ***
+##                             Estimate Std. Error z value           Pr(>|z|)    
+## (Intercept)                 -0.12798    0.26542   -0.48               0.63    
+## OrderAmountHikeFromlastYear  0.00281    0.01092    0.26               0.80    
+## DaySinceLastOrder           -0.11361    0.01390   -8.17 0.0000000000000003 ***
+## WarehouseToHome              0.02556    0.00448    5.70 0.0000000119246808 ***
+## CashbackAmount              -0.00912    0.00126   -7.25 0.0000000000004033 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -1884,7 +1882,7 @@ summary(multiple_logit_model2)
 ##     Null deviance: 4315.0  on 4806  degrees of freedom
 ## Residual deviance: 4100.4  on 4802  degrees of freedom
 ##   (823 observations deleted due to missingness)
-## AIC: 4110.4
+## AIC: 4110
 ## 
 ## Number of Fisher Scoring iterations: 5
 ```
@@ -1897,8 +1895,8 @@ PseudoR2(multiple_logit_model2, which = "CoxSnell")
 ```
 
 ```
-##   CoxSnell 
-## 0.04366534
+## CoxSnell 
+##    0.044
 ```
 
 
@@ -1916,8 +1914,8 @@ predict(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear =
 ```
 
 ```
-##           1 
-## 0.001346917
+##      1 
+## 0.0013
 ```
 
 The prediction indicates that a customer who made $5$ orders last year, $10$ orders in total, last order happened $30$ days ago, warehouse-to-home distance is 10 km, and cash-back amount is 300 dollars, has a tiny ($0.2\%$ chance of churning. 

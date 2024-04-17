@@ -45,6 +45,7 @@ eq:cortest
 eq:regequ
 eq:regequadv
 eq:predreg
+fig:unnamed-chunk-16
 eq:rss
 eq:slope
 eq:intercept
@@ -59,16 +60,13 @@ eq:multiplicative
 eq:multiplicativetransformed
 eq:multiplicativetransformed1
 fig:unnamed-chunk-36
-fig:unnamed-chunk-37
 eq:dummycoding
 eq:dummycoding1
 eq:dummycoding2
-fig:unnamed-chunk-44
+fig:unnamed-chunk-45
 fig:unnamed-chunk-46
-fig:unnamed-chunk-48
-fig:unnamed-chunk-50-1
-fig:unnamed-chunk-50-2
-fig:unnamed-chunk-51
+fig:unnamed-chunk-49-1
+fig:unnamed-chunk-49-2
 eq:factor1
 eq:factor2
 eq:factor3

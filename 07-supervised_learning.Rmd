@@ -47,14 +47,14 @@ att_data
 
 Let's look at the data first. The following graph shows the individual data points for the "duration" variable, where the y-axis shows the duration of residency in years and the x-axis shows the respondent ID. The blue horizontal line represents the mean of the variable (`r round(mean(att_data$duration),2)`) and the vertical lines show the distance of the individual data points from the mean.
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Scores for duration of residency variable"}
+```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Scores for duration variable"}
 library(ggplot2)
 h <- round(mean(att_data$duration), 2)
 ggplot(att_data, aes(x = respodentID, y = duration)) + 
   geom_point(size = 3, color = "deepskyblue4") + 
   scale_x_continuous(breaks = 1:12) + 
   geom_hline(data = att_data, aes(yintercept = mean(duration)), color ="deepskyblue4") +
-  labs(x = "Observations",y = "Duration of residency", size = 11) +
+  labs(x = "Observations",y = "Duration", size = 11) +
   coord_cartesian(ylim = c(0, 18)) +
   geom_segment(aes(x = respodentID,y = duration, xend = respodentID, 
                    yend = mean(duration)), color = "deepskyblue4", size = 1) + 
@@ -81,7 +81,7 @@ ggplot(att_data, aes(x = respodentID, y = attitude)) +
 
 Again, we can see that some respondents have an above average attitude towards the store (more favorable) and some respondents have a below average attitude. Let's combine both variables in one graph now to see if there is some co-movement: 
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE,fig.align="center", fig.cap = "Scores for attitude and duration of residency variables"}
+```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE,fig.align="center", fig.cap = "Scores for attitude and duration variables"}
 ggplot(att_data) + 
   geom_point(size = 3, aes(respodentID, attitude), color = "#f9756d") +
   geom_point(size = 3, aes(respodentID, duration), color = "deepskyblue4")  + 
@@ -99,7 +99,7 @@ We can see that there is indeed some co-movement here. The variables <b>covary</
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Scatterplot for durationand attitute variables"}
 ggplot(att_data) + 
   geom_point(size = 3, aes(duration, attitude)) + 
-  labs(x = "Duration",y = "Attitude", size = 11) +
+  labs(x = "Duration", y = "Attitude", size = 11) +
   theme_bw()
 ```
 
@@ -200,18 +200,7 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 (\#eq:cortest)
 \end{equation} 
 
-It has a t distribution with n - 2 degrees of freedom. Then, we follow the usual procedure of calculating the test statistic and comparing the test statistic to the critical value of the underlying probability distribution. If the calculated test statistic is larger than the critical value, the null hypothesis of no relationship between X and Y is rejected. 
-
-```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-t_calc <- r*sqrt(N - 2)/sqrt(1 - r^2) #calculated test statistic
-t_calc
-df <- (N - 2) #degrees of freedom
-t_crit <- qt(0.975, df) #critical value
-t_crit
-pt(q = t_calc, df = df, lower.tail = F) * 2 #p-value 
-```
-
-Or you can simply use the ```cor.test()``` function, which also produces the 95% confidence interval:
+It has a t distribution with n - 2 degrees of freedom. You can simply use the ```cor.test()``` function, which also produces the 95% confidence interval:
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided", method = "pearson", conf.level = 0.95)
@@ -925,18 +914,17 @@ We would then add these variables as additional predictors in the regression equ
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
       &+\beta_3*price\_reduction\\ 
-      &+\beta_4*Pop\\
-      &+\beta_5*store\\
-      &+\beta_6*Budweiser\\
-      &+\beta_7*Corona\\
-      &+\beta_8*Fosters\\
-      &+\beta_9*Heineken\\
-      &+\beta_10*Old\_Milwaukee+\epsilon
+      &+\beta_4*store\\
+      &+\beta_5*Budweiser\\
+      &+\beta_6*Corona\\
+      &+\beta_7*Fosters\\
+      &+\beta_8*Heineken\\
+      &+\beta_9*Old\_Milwaukee+\epsilon
 \end{align}
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
 
-The interpretation of the coefficients is as follows: $\beta_6$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_7$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand This means that there will always be one fewer dummy variable than the number of levels.
+The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 ```{r}
 multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + brand, data = categories) 

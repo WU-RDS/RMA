@@ -416,9 +416,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 12        2        2          12</code></pre>
 <p>Let’s look at the data first. The following graph shows the individual data points for the “duration” variable, where the y-axis shows the duration of residency in years and the x-axis shows the respondent ID. The blue horizontal line represents the mean of the variable (9.33) and the vertical lines show the distance of the individual data points from the mean.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-4-1.png" alt="Scores for duration of residency variable" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-4-1.png" alt="Scores for duration variable" width="672" />
 <p class="caption">
-Figure 1.3: Scores for duration of residency variable
+Figure 1.3: Scores for duration variable
 </p>
 </div>
 <p>You can see that there are some respondents that have been the store’s customers longer than average and some - shorter than average. Let’s do the same for the second variable (“Attitude”). Again, the y-axis shows the observed scores for this variable and the x-axis shows the respondent ID.</p>
@@ -430,9 +430,9 @@ Figure 1.4: Scores for attitude variable
 </div>
 <p>Again, we can see that some respondents have an above average attitude towards the store (more favorable) and some respondents have a below average attitude. Let’s combine both variables in one graph now to see if there is some co-movement:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-6-1.png" alt="Scores for attitude and duration of residency variables" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-6-1.png" alt="Scores for attitude and duration variables" width="672" />
 <p class="caption">
-Figure 5.1: Scores for attitude and duration of residency variables
+Figure 5.1: Scores for attitude and duration variables
 </p>
 </div>
 <p>We can see that there is indeed some co-movement here. The variables <b>covary</b> because respondents who have an above (below) average attitude towards the store also appear to have been its customers for an above (below) average amount of time and vice versa. Correlation helps us to quantify this relationship. Before you proceed to compute the correlation coefficient, you should first look at the data. We usually use a scatterplot to visualize the relationship between two metric variables:</p>
@@ -515,57 +515,47 @@ r=\frac{Cov_{xy}}{s_x*s_y}
 t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 \tag{6.4}
 \end{equation}\]</span></p>
-<p>It has a t distribution with n - 2 degrees of freedom. Then, we follow the usual procedure of calculating the test statistic and comparing the test statistic to the critical value of the underlying probability distribution. If the calculated test statistic is larger than the critical value, the null hypothesis of no relationship between X and Y is rejected.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="supervised-learning.html#cb221-1" tabindex="-1"></a>t_calc <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(N <span class="sc">-</span> <span class="dv">2</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>)  <span class="co">#calculated test statistic</span></span>
-<span id="cb221-2"><a href="supervised-learning.html#cb221-2" tabindex="-1"></a>t_calc</span></code></pre></div>
-<pre><code>## [1] 8.4144314</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="supervised-learning.html#cb223-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> (N <span class="sc">-</span> <span class="dv">2</span>)  <span class="co">#degrees of freedom</span></span>
-<span id="cb223-2"><a href="supervised-learning.html#cb223-2" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)  <span class="co">#critical value</span></span>
-<span id="cb223-3"><a href="supervised-learning.html#cb223-3" tabindex="-1"></a>t_crit</span></code></pre></div>
-<pre><code>## [1] 2.2281389</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="supervised-learning.html#cb225-1" tabindex="-1"></a><span class="fu">pt</span>(<span class="at">q =</span> t_calc, <span class="at">df =</span> df, <span class="at">lower.tail =</span> F) <span class="sc">*</span> <span class="dv">2</span>  <span class="co">#p-value </span></span></code></pre></div>
-<pre><code>## [1] 0.0000075451612</code></pre>
-<p>Or you can simply use the <code>cor.test()</code> function, which also produces the 95% confidence interval:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="supervised-learning.html#cb227-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb227-2"><a href="supervised-learning.html#cb227-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<p>It has a t distribution with n - 2 degrees of freedom. You can simply use the <code>cor.test()</code> function, which also produces the 95% confidence interval:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="supervised-learning.html#cb221-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb221-2"><a href="supervised-learning.html#cb221-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  att_data$attitude and att_data$duration
-## t = 8.41443, df = 10, p-value = 0.0000075452
+## t = 8.4144, df = 10, p-value = 0.000007545
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.78260411 0.98228152
+##  0.7826041 0.9822815
 ## sample estimates:
-##        cor 
-## 0.93607782</code></pre>
+##       cor 
+## 0.9360778</code></pre>
 <p>To determine the linear relationship between variables, the data only needs to be measured using interval scales. If you want to test the significance of the association, the sampling distribution needs to be normally distributed (we usually assume this when our data are normally distributed or when N is large). If parametric assumptions are violated, you should use non-parametric tests:</p>
 <ul>
 <li>Spearman’s correlation coefficient: requires ordinal data and ranks the data before applying Pearson’s equation.</li>
 <li>Kendall’s tau: use when N is small or the number of tied ranks is large.</li>
 </ul>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="supervised-learning.html#cb229-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb229-2"><a href="supervised-learning.html#cb229-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="supervised-learning.html#cb223-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb223-2"><a href="supervised-learning.html#cb223-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
 ## data:  att_data$attitude and att_data$duration
-## S = 14.1969, p-value = 0.0000021833
+## S = 14.197, p-value = 0.000002183
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
-##        rho 
-## 0.95036059</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="supervised-learning.html#cb231-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb231-2"><a href="supervised-learning.html#cb231-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+##       rho 
+## 0.9503606</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="supervised-learning.html#cb225-1" tabindex="-1"></a><span class="fu">cor.test</span>(att_data<span class="sc">$</span>attitude, att_data<span class="sc">$</span>duration, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb225-2"><a href="supervised-learning.html#cb225-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Kendall&#39;s rank correlation tau
 ## 
 ## data:  att_data$attitude and att_data$duration
-## z = 3.90948, p-value = 0.000092496
+## z = 3.9095, p-value = 0.0000925
 ## alternative hypothesis: true tau is not equal to 0
 ## sample estimates:
-##        tau 
-## 0.89602867</code></pre>
+##       tau 
+## 0.8960287</code></pre>
 <p>Report the results:</p>
 <p>A Pearson product-moment correlation coefficient was computed to assess the relationship between the duration of being a customer of a store and the attitude toward this store. There was a positive correlation between the two variables, r = 0.936, n = 12, p &lt; 0.05. A scatterplot summarizes the results (Figure XY).</p>
 <p><strong>A note on the interpretation of correlation coefficients:</strong></p>
@@ -616,9 +606,9 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 <h4><span class="header-section-number">6.1.2.1</span> Simple linear regression<a href="supervised-learning.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In simple linear regression, we assess the relationship between one dependent (regressand) and one independent (regressor) variable. The goal is to fit a line through a scatterplot of observations in order to find the line that best describes the data (scatterplot).</p>
 <p>Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser <em>move_ounce</em> (in ounces, FYI: 1 oz = 29,57 ml), prices <em>price_ounce</em> (in dollars per ounce), and several other variables: bonus buy - a price reduction if customers buy a certain quantity of a product (<em>sale_B</em>), price reduction in % (<em>sale_S</em>), and others. Let’s load and inspect the data first:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="supervised-learning.html#cb233-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv&quot;</span>,</span>
-<span id="cb233-2"><a href="supervised-learning.html#cb233-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co"># read in data</span></span>
-<span id="cb233-3"><a href="supervised-learning.html#cb233-3" tabindex="-1"></a><span class="fu">str</span>(regression)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="supervised-learning.html#cb227-1" tabindex="-1"></a>regression <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv&quot;</span>,</span>
+<span id="cb227-2"><a href="supervised-learning.html#cb227-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co"># read in data</span></span>
+<span id="cb227-3"><a href="supervised-learning.html#cb227-3" tabindex="-1"></a><span class="fu">str</span>(regression)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    220 obs. of  22 variables:
 ##  $ store           : int  102 102 102 102 102 102 102 102 102 102 ...
 ##  $ brand_id        : int  26 26 26 26 26 26 26 26 26 26 ...
@@ -642,32 +632,87 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 ##  $ saledummy_C     : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ saledummy_S     : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ promoweek       : int  91 92 93 NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="supervised-learning.html#cb235-1" tabindex="-1"></a>regression<span class="sc">$</span>store <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>store)  <span class="co">#convert grouping variable to factor</span></span>
-<span id="cb235-2"><a href="supervised-learning.html#cb235-2" tabindex="-1"></a>regression<span class="sc">$</span>brand_id <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>brand_id)  <span class="co">#convert grouping variable to factor</span></span>
-<span id="cb235-3"><a href="supervised-learning.html#cb235-3" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_B <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_B)  <span class="co">#convert grouping variable to factor</span></span>
-<span id="cb235-4"><a href="supervised-learning.html#cb235-4" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_C <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_C)  <span class="co">#convert grouping variable to factor</span></span>
-<span id="cb235-5"><a href="supervised-learning.html#cb235-5" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_S <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_S)  <span class="co">#convert grouping variable to factor</span></span>
-<span id="cb235-6"><a href="supervised-learning.html#cb235-6" tabindex="-1"></a><span class="fu">head</span>(regression)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="supervised-learning.html#cb229-1" tabindex="-1"></a>regression<span class="sc">$</span>store <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>store)  <span class="co">#convert grouping variable to factor</span></span>
+<span id="cb229-2"><a href="supervised-learning.html#cb229-2" tabindex="-1"></a>regression<span class="sc">$</span>brand_id <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>brand_id)  <span class="co">#convert grouping variable to factor</span></span>
+<span id="cb229-3"><a href="supervised-learning.html#cb229-3" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_B <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_B)  <span class="co">#convert grouping variable to factor</span></span>
+<span id="cb229-4"><a href="supervised-learning.html#cb229-4" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_C <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_C)  <span class="co">#convert grouping variable to factor</span></span>
+<span id="cb229-5"><a href="supervised-learning.html#cb229-5" tabindex="-1"></a>regression<span class="sc">$</span>saledummy_S <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(regression<span class="sc">$</span>saledummy_S)  <span class="co">#convert grouping variable to factor</span></span>
+<span id="cb229-6"><a href="supervised-learning.html#cb229-6" tabindex="-1"></a><span class="fu">head</span>(regression)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["store"],"name":[1],"type":["fct"],"align":["left"]},{"label":["brand_id"],"name":[2],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[3],"type":["chr"],"align":["left"]},{"label":["week"],"name":[4],"type":["int"],"align":["right"]},{"label":["move_ounce"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["price_ounce"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sale_B"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sale_C"],"name":[8],"type":["int"],"align":["right"]},{"label":["sale_S"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["summove_ounce"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nweeks"],"name":[11],"type":["int"],"align":["right"]},{"label":["mean_marketshare"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["sharerank"],"name":[13],"type":["int"],"align":["right"]},{"label":["priclow"],"name":[14],"type":["int"],"align":["right"]},{"label":["pricmed"],"name":[15],"type":["int"],"align":["right"]},{"label":["prichigh"],"name":[16],"type":["int"],"align":["right"]},{"label":["logprice_ounce"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["logmove_ounce"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["saledummy_B"],"name":[19],"type":["fct"],"align":["left"]},{"label":["saledummy_C"],"name":[20],"type":["fct"],"align":["left"]},{"label":["saledummy_S"],"name":[21],"type":["fct"],"align":["left"]},{"label":["promoweek"],"name":[22],"type":["int"],"align":["right"]}],"data":[{"1":"102","2":"26","3":"Budweiser","4":"91","5":"41704.00","6":"4.665278","7":"0.1333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.540147","18":"10.63835","19":"1","20":"0","21":"0","22":"91"},{"1":"102","2":"26","3":"Budweiser","4":"92","5":"44212.48","6":"4.575852","7":"0.1333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.520793","18":"10.69676","19":"1","20":"0","21":"0","22":"92"},{"1":"102","2":"26","3":"Budweiser","4":"93","5":"28748.48","6":"4.575668","7":"0.1250000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.520753","18":"10.26634","19":"1","20":"0","21":"0","22":"93"},{"1":"102","2":"26","3":"Budweiser","4":"94","5":"26168.96","6":"4.530460","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.510824","18":"10.17233","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"95","5":"35581.44","6":"4.539798","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.512883","18":"10.47958","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"96","5":"34128.00","6":"4.650231","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.536917","18":"10.43787","19":"0","20":"0","21":"0","22":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="supervised-learning.html#cb236-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(regression)  <span class="co">#descriptive statistics using psych</span></span></code></pre></div>
-<pre><code>##           vars   n   mean     sd median trimmed    mad  min     max   range
-## sales        1 200 193.20  80.70 200.00  192.69  88.96 10.0  360.00  350.00
-## adspend      2 200 614.41 485.66 531.92  560.81 489.09  9.1 2271.86 2262.76
-## airplay      3 200  27.50  12.27  28.00   27.46  11.86  0.0   63.00   63.00
-## starpower    4 200   6.77   1.40   7.00    6.88   1.48  1.0   10.00    9.00
-## genre*       5 200   2.40   0.79   3.00    2.50   0.00  1.0    3.00    2.00
-## country*     6 200   1.17   0.38   1.00    1.09   0.00  1.0    2.00    1.00
-##            skew kurtosis    se
-## sales      0.04    -0.72  5.71
-## adspend    0.84     0.17 34.34
-## airplay    0.06    -0.09  0.87
-## starpower -1.27     3.56  0.10
-## genre*    -0.83    -0.91  0.06
-## country*   1.74     1.05  0.03</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="supervised-learning.html#cb230-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(regression)  <span class="co">#descriptive statistics using psych</span></span></code></pre></div>
+<pre><code>##                  vars   n         mean      sd       median      trimmed
+## store*              1 220         1.00    0.00         1.00         1.00
+## brand_id*           2 220         1.00    0.00         1.00         1.00
+## brand*              3 220         1.00    0.00         1.00         1.00
+## week                4 220       202.12   65.75       200.50       201.65
+## move_ounce          5 220     19713.01 7837.08     17868.00     18580.18
+## price_ounce         6 220         4.88    0.21         4.90         4.88
+## sale_B              7 220         0.20    0.15         0.19         0.19
+## sale_C              8 220         0.00    0.00         0.00         0.00
+## sale_S              9 220         0.00    0.02         0.00         0.00
+## summove_ounce      10 220 158871900.16    0.00 158871900.16 158871900.16
+## nweeks             11 220       220.00    0.00       220.00       220.00
+## mean_marketshare   12 220         0.09    0.00         0.09         0.09
+## sharerank          13 220         3.00    0.00         3.00         3.00
+## priclow            14 220         0.00    0.00         0.00         0.00
+## pricmed            15 220         1.00    0.00         1.00         1.00
+## prichigh           16 220         0.00    0.00         0.00         0.00
+## logprice_ounce     17 220         1.58    0.04         1.59         1.59
+## logmove_ounce      18 220         9.83    0.34         9.79         9.81
+## saledummy_B*       19 220         1.75    0.43         2.00         1.82
+## saledummy_C*       20 220         1.00    0.00         1.00         1.00
+## saledummy_S*       21 220         1.01    0.10         1.00         1.00
+## promoweek          22 167       212.28   62.15       217.00       212.78
+##                      mad          min          max    range  skew kurtosis
+## store*              0.00         1.00         1.00     0.00   NaN      NaN
+## brand_id*           0.00         1.00         1.00     0.00   NaN      NaN
+## brand*              0.00         1.00         1.00     0.00   NaN      NaN
+## week               82.28        91.00       317.00   226.00  0.06    -1.20
+## move_ounce       5538.99      7992.00     71032.00 63040.00  2.32     9.32
+## price_ounce         0.20         4.30         5.45     1.15 -0.15    -0.19
+## sale_B              0.18         0.00         0.67     0.67  0.28    -0.59
+## sale_C              0.00         0.00         0.00     0.00   NaN      NaN
+## sale_S              0.00         0.00         0.21     0.21 10.68   115.22
+## summove_ounce       0.00 158871900.16 158871900.16     0.00   Inf      NaN
+## nweeks              0.00       220.00       220.00     0.00   NaN      NaN
+## mean_marketshare    0.00         0.09         0.09     0.00  -Inf      NaN
+## sharerank           0.00         3.00         3.00     0.00   NaN      NaN
+## priclow             0.00         0.00         0.00     0.00   NaN      NaN
+## pricmed             0.00         1.00         1.00     0.00   NaN      NaN
+## prichigh            0.00         0.00         0.00     0.00   NaN      NaN
+## logprice_ounce      0.04         1.46         1.70     0.24 -0.27    -0.15
+## logmove_ounce       0.32         8.99        11.17     2.18  0.67     0.86
+## saledummy_B*        0.00         1.00         2.00     1.00 -1.17    -0.62
+## saledummy_C*        0.00         1.00         1.00     0.00   NaN      NaN
+## saledummy_S*        0.00         1.00         2.00     1.00 10.27   104.03
+## promoweek          78.58        91.00       316.00   225.00 -0.08    -1.14
+##                      se
+## store*             0.00
+## brand_id*          0.00
+## brand*             0.00
+## week               4.43
+## move_ounce       528.38
+## price_ounce        0.01
+## sale_B             0.01
+## sale_C             0.00
+## sale_S             0.00
+## summove_ounce      0.00
+## nweeks             0.00
+## mean_marketshare   0.00
+## sharerank          0.00
+## priclow            0.00
+## pricmed            0.00
+## prichigh           0.00
+## logprice_ounce     0.00
+## logmove_ounce      0.02
+## saledummy_B*       0.03
+## saledummy_C*       0.00
+## saledummy_S*       0.01
+## promoweek          4.81</code></pre>
 <p>As stated above, regression analysis may be used to relate a quantitative response (“dependent variable”) to one or more predictor variables (“independent variables”). In a simple linear regression, we have one dependent and one independent variable and we regress the dependent variable on the independent variable.</p>
 <p>Here are a few important questions that we might seek to address based on the data:</p>
 <ul>
@@ -699,10 +744,10 @@ Sales=\beta_0+\beta_1*price+\epsilon
 \tag{6.7}
 \end{equation}\]</span></p>
 <p>We use the hat symbol, <sup>^</sup>, to denote the estimated value for an unknown parameter or coefficient, or to denote the predicted value of the response (sales). In practice, β<sub>0</sub> and β<sub>1</sub> are unknown and must be estimated from the data to make predictions. In the case of our pricing example, the data set consists of the prices and product sales for 220 weeks (n = 220). Our goal is to obtain coefficient estimates such that the linear model fits the available data well. In other words, we fit a line through the scatterplot of observations and try to find the line that best describes the data. The following graph shows the scatterplot for our data, where the black line shows the regression line. The grey vertical lines shows the difference between the predicted values (the regression line) and the observed values. This difference is referred to as the residuals (“e”).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-17-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-16-1.png" alt="Ordinary least squares (OLS)" width="672" />
 <p class="caption">
-Figure 1.14: Ordinary least squares (OLS)
+Figure 6.1: Ordinary least squares (OLS)
 </p>
 </div>
 <p>The estimation of the regression function is based on the idea of the method of least squares (OLS = ordinary least squares). The first step is to calculate the residuals by subtracting the observed values from the predicted values.</p>
@@ -726,14 +771,14 @@ N: Number of observations<br></p>
 \tag{6.9}
 \end{equation}\]</span></p>
 <p>The exact mathematical derivation of this formula is beyond the scope of this script, but the intuition is to calculate the first derivative of the squared residuals with respect to β<sub>1</sub> and set it to zero, thereby finding the β<sub>1</sub> that minimizes the term. Using the above formula, you can easily compute β<sub>1</sub> using the following code:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="supervised-learning.html#cb238-1" tabindex="-1"></a>cov_y_x <span class="ot">&lt;-</span> <span class="fu">cov</span>(regression<span class="sc">$</span>price_ounce, regression<span class="sc">$</span>move_ounce)</span>
-<span id="cb238-2"><a href="supervised-learning.html#cb238-2" tabindex="-1"></a>cov_y_x</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="supervised-learning.html#cb232-1" tabindex="-1"></a>cov_y_x <span class="ot">&lt;-</span> <span class="fu">cov</span>(regression<span class="sc">$</span>price_ounce, regression<span class="sc">$</span>move_ounce)</span>
+<span id="cb232-2"><a href="supervised-learning.html#cb232-2" tabindex="-1"></a>cov_y_x</span></code></pre></div>
 <pre><code>## [1] -405.2959</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="supervised-learning.html#cb240-1" tabindex="-1"></a>var_x <span class="ot">&lt;-</span> <span class="fu">var</span>(regression<span class="sc">$</span>price_ounce)</span>
-<span id="cb240-2"><a href="supervised-learning.html#cb240-2" tabindex="-1"></a>var_x</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="supervised-learning.html#cb234-1" tabindex="-1"></a>var_x <span class="ot">&lt;-</span> <span class="fu">var</span>(regression<span class="sc">$</span>price_ounce)</span>
+<span id="cb234-2"><a href="supervised-learning.html#cb234-2" tabindex="-1"></a>var_x</span></code></pre></div>
 <pre><code>## [1] 0.04473198</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="supervised-learning.html#cb242-1" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> cov_y_x<span class="sc">/</span>var_x</span>
-<span id="cb242-2"><a href="supervised-learning.html#cb242-2" tabindex="-1"></a>beta_1</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="supervised-learning.html#cb236-1" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> cov_y_x<span class="sc">/</span>var_x</span>
+<span id="cb236-2"><a href="supervised-learning.html#cb236-2" tabindex="-1"></a>beta_1</span></code></pre></div>
 <pre><code>## [1] -9060.539</code></pre>
 <p>The interpretation of β<sub>1</sub> is as follows:</p>
 <p>For every extra dollar increase of the price, sales can be expected to decrease by -9060.539 oz, which is around 270 liters.</p>
@@ -743,18 +788,18 @@ N: Number of observations<br></p>
 \tag{6.10}
 \end{equation}\]</span></p>
 <p>The R code for this is:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="supervised-learning.html#cb244-1" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(regression<span class="sc">$</span>move_ounce) <span class="sc">-</span> beta_1 <span class="sc">*</span> <span class="fu">mean</span>(regression<span class="sc">$</span>price_ounce)</span>
-<span id="cb244-2"><a href="supervised-learning.html#cb244-2" tabindex="-1"></a>beta_0</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="supervised-learning.html#cb238-1" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(regression<span class="sc">$</span>move_ounce) <span class="sc">-</span> beta_1 <span class="sc">*</span> <span class="fu">mean</span>(regression<span class="sc">$</span>price_ounce)</span>
+<span id="cb238-2"><a href="supervised-learning.html#cb238-2" tabindex="-1"></a>beta_0</span></code></pre></div>
 <pre><code>## [1] 63950.63</code></pre>
 <p>You may also verify this based on a scatterplot of the data. The following plot shows the scatterplot including the regression line, which is estimated using OLS.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="supervised-learning.html#cb246-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(price_ounce, move_ounce)) <span class="sc">+</span></span>
-<span id="cb246-2"><a href="supervised-learning.html#cb246-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb246-3"><a href="supervised-learning.html#cb246-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price ($ per oz)&quot;</span>,</span>
-<span id="cb246-4"><a href="supervised-learning.html#cb246-4" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sales (oz)&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-20-1.png" alt="Scatterplot" width="672" />
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="supervised-learning.html#cb240-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(price_ounce, move_ounce)) <span class="sc">+</span></span>
+<span id="cb240-2"><a href="supervised-learning.html#cb240-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb240-3"><a href="supervised-learning.html#cb240-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price ($ per oz)&quot;</span>,</span>
+<span id="cb240-4"><a href="supervised-learning.html#cb240-4" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sales (oz)&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-19-1.png" alt="Scatterplot" width="672" />
 <p class="caption">
-Figure 1.17: Scatterplot
+Figure 1.16: Scatterplot
 </p>
 </div>
 <p>The slope coefficient (β<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit ($).</p>
@@ -776,8 +821,8 @@ t = \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}
 \end{equation}\]</span></p>
 <p>After calculating the test statistic, we compare its value to the values that we would expect to find if there was no effect based on the t-distribution. In a regression context, the degrees of freedom are given by <code>N - p - 1</code> where N is the sample size and p is the number of predictors. In our case, we have 220 observations and one predictor. Thus, the degrees of freedom is 220 - 1 - 1 = 218. In the regression output below, R provides the exact probability of observing a t value of this magnitude (or larger) if the null hypothesis was true. This probability is the p-value. A small p-value indicates that it is unlikely to observe such a substantial association between the predictor and the outcome variable due to chance in the absence of any real association between the predictor and the outcome.</p>
 <p>To estimate the regression model in R, you can use the <code>lm()</code> function. Within the function, you first specify the dependent variable (“move_ounce”) and independent variable (“price_ounce”) separated by a <code>~</code> (tilde). As mentioned previously, this is known as <em>formula notation</em> in R. The <code>data = regression</code> argument specifies that the variables come from the data frame named “regression”. Strictly speaking, you use the <code>lm()</code> function to create an object called “sales_reg,” which holds the regression output. You can then view the results using the <code>summary()</code> function:</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="supervised-learning.html#cb247-1" tabindex="-1"></a>sales_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce, <span class="at">data =</span> regression)  <span class="co">#estimate linear model</span></span>
-<span id="cb247-2"><a href="supervised-learning.html#cb247-2" tabindex="-1"></a><span class="fu">summary</span>(sales_reg)  <span class="co">#summary of results</span></span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="supervised-learning.html#cb241-1" tabindex="-1"></a>sales_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce, <span class="at">data =</span> regression)  <span class="co">#estimate linear model</span></span>
+<span id="cb241-2"><a href="supervised-learning.html#cb241-2" tabindex="-1"></a><span class="fu">summary</span>(sales_reg)  <span class="co">#summary of results</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = move_ounce ~ price_ounce, data = regression)
@@ -803,7 +848,7 @@ CI = \hat{\beta_1}\pm(t_{1-\frac{\alpha}{2}}*SE(\beta_1))
 \tag{6.13}
 \end{equation}\]</span></p>
 <p>It is easy to compute confidence intervals in R using the <code>confint()</code> function. You just have to provide the name of you estimated model as an argument:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="supervised-learning.html#cb249-1" tabindex="-1"></a><span class="fu">confint</span>(sales_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="supervised-learning.html#cb243-1" tabindex="-1"></a><span class="fu">confint</span>(sales_reg)</span></code></pre></div>
 <pre><code>##                 2.5 %   97.5 %
 ## (Intercept)  40511.67 87389.58
 ## price_ounce -13856.72 -4264.36</code></pre>
@@ -825,10 +870,10 @@ SS_T= \sum_{i=1}^{N} (Y_i-\overline{Y})^2
 \tag{6.14}
 \end{equation}\]</span></p>
 <p>The following graph shows the total sum of squares:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-23-1.png" alt="Total sum of squares" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-22-1.png" alt="Total sum of squares" width="672" />
 <p class="caption">
-Figure 1.20: Total sum of squares
+Figure 1.19: Total sum of squares
 </p>
 </div>
 <p>Based on our linear model, the best guess about the sales level at a given level of prices is the predicted value <span class="math inline">\(\hat{Y}_i\)</span>. The model sum of squares (SS<sub>M</sub>) therefore has the mathematical representation:</p>
@@ -837,10 +882,10 @@ SS_M= \sum_{i=1}^{N}  (\hat{Y}_i-\overline{Y})^2
 \tag{6.15}
 \end{equation}\]</span></p>
 <p>The model sum of squares represents the improvement in prediction resulting from using the regression model rather than the mean of the data. The following graph shows the model sum of squares for our example:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-23-1.png" alt="Ordinary least squares (OLS)" width="672" />
 <p class="caption">
-Figure 1.21: Ordinary least squares (OLS)
+Figure 1.20: Ordinary least squares (OLS)
 </p>
 </div>
 <p>The residual sum of squares (SS<sub>R</sub>) is the difference between the observed data points (<span class="math inline">\(Y_{i}\)</span>) and the predicted values along the regression line (<span class="math inline">\(\hat{Y}_{i}\)</span>), i.e., the variation <em>not</em> explained by the model.</p>
@@ -849,10 +894,10 @@ SS_R= \sum_{i=1}^{N} ({Y}_{i}-\hat{Y}_{i})^2
 \tag{6.16}
 \end{equation}\]</span></p>
 <p>The following graph shows the residual sum of squares for our example:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Ordinary least squares (OLS)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-24-1.png" alt="Ordinary least squares (OLS)" width="672" />
 <p class="caption">
-Figure 1.22: Ordinary least squares (OLS)
+Figure 1.21: Ordinary least squares (OLS)
 </p>
 </div>
 <p>Based on these statistics, we can determine how well the model fits the data as we will see next.</p>
@@ -865,10 +910,10 @@ R^2= \frac{SS_M}{SS_T}
 \end{equation}\]</span></p>
 <p>It takes values between 0 (very bad fit) and 1 (very good fit). Note that when the goal of your model is to <em>predict</em> future outcomes, a “too good” model fit can pose severe challenges. The reason is that the model might fit your specific sample so well, that it will only predict well within the sample but not generalize to other samples. This is called <strong>overfitting</strong> and it shows that there is a trade-off between model fit and out-of-sample predictive ability of the model, if the goal is to predict beyond the sample. We will come back to this point later in this chapter.</p>
 <p>You can get a first impression of the fit of the model by inspecting the scatter plot as can be seen in the plot below. If the observations are highly dispersed around the regression line (left plot), the fit will be lower compared to a data set where the values are less dispersed (right plot).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-26-1.png" alt="Good vs. bad model fit" width="960" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-25-1.png" alt="Good vs. bad model fit" width="960" />
 <p class="caption">
-Figure 1.23: Good vs. bad model fit
+Figure 1.22: Good vs. bad model fit
 </p>
 </div>
 <p>The R<sup>2</sup> statistic is reported in the regression output, so you don’t need to compute it manually.</p>
@@ -899,13 +944,13 @@ F=\frac{\frac{SS_M}{k}}{\frac{SS_R}{(n-k-1)}}=\frac{MS_M}{MS_R}
 \end{equation}\]</span></p>
 <p>which has a F distribution with k number of predictors and n degrees of freedom. In other words, you divide the systematic (“explained”) variation due to the predictor variables by the unsystematic (“unexplained”) variation.</p>
 <p>The result of the F-test is provided in the regression output as well. However, you might manually compute the F-test using the ANOVA results from the model:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="supervised-learning.html#cb251-1" tabindex="-1"></a>f_calc <span class="ot">&lt;-</span> <span class="fu">anova</span>(sales_reg)<span class="sc">$</span><span class="st">&quot;Mean Sq&quot;</span>[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">anova</span>(sales_reg)<span class="sc">$</span><span class="st">&quot;Mean Sq&quot;</span>[<span class="dv">2</span>]  <span class="co">#compute F</span></span>
-<span id="cb251-2"><a href="supervised-learning.html#cb251-2" tabindex="-1"></a>f_calc</span></code></pre></div>
-<pre><code>## [1] 13.86274</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="supervised-learning.html#cb253-1" tabindex="-1"></a>f_crit <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">100</span>)  <span class="co">#critical value</span></span>
-<span id="cb253-2"><a href="supervised-learning.html#cb253-2" tabindex="-1"></a>f_crit</span></code></pre></div>
-<pre><code>## [1] 3.936143</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="supervised-learning.html#cb255-1" tabindex="-1"></a>f_calc <span class="sc">&gt;</span> f_crit  <span class="co">#test if calculated test statistic is larger than critical value</span></span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="supervised-learning.html#cb245-1" tabindex="-1"></a>f_calc <span class="ot">&lt;-</span> <span class="fu">anova</span>(sales_reg)<span class="sc">$</span><span class="st">&quot;Mean Sq&quot;</span>[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">anova</span>(sales_reg)<span class="sc">$</span><span class="st">&quot;Mean Sq&quot;</span>[<span class="dv">2</span>]  <span class="co">#compute F</span></span>
+<span id="cb245-2"><a href="supervised-learning.html#cb245-2" tabindex="-1"></a>f_calc</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="supervised-learning.html#cb247-1" tabindex="-1"></a>f_crit <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">100</span>)  <span class="co">#critical value</span></span>
+<span id="cb247-2"><a href="supervised-learning.html#cb247-2" tabindex="-1"></a>f_crit</span></code></pre></div>
+<pre><code>## [1] 3.9</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="supervised-learning.html#cb249-1" tabindex="-1"></a>f_calc <span class="sc">&gt;</span> f_crit  <span class="co">#test if calculated test statistic is larger than critical value</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -915,10 +960,10 @@ F=\frac{\frac{SS_M}{k}}{\frac{SS_R}{(n-k-1)}}=\frac{MS_M}{MS_R}
 <p><span class="math display">\[\hat{sales}=63950.6 + (-9060.5)*2=45,829.6\]</span></p>
 <p><br></p>
 <p>… or by extracting the estimated coefficients from the model summary:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="supervised-learning.html#cb257-1" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> <span class="fu">summary</span>(sales_reg)<span class="sc">$</span>coefficients[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span></span>
-<span id="cb257-2"><a href="supervised-learning.html#cb257-2" tabindex="-1"></a>    <span class="fu">summary</span>(sales_reg)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span> <span class="dv">2</span>  <span class="co"># the slope * 2 EUR</span></span>
-<span id="cb257-3"><a href="supervised-learning.html#cb257-3" tabindex="-1"></a>prediction</span></code></pre></div>
-<pre><code>## [1] 45829.55</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="supervised-learning.html#cb251-1" tabindex="-1"></a>prediction <span class="ot">&lt;-</span> <span class="fu">summary</span>(sales_reg)<span class="sc">$</span>coefficients[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">+</span></span>
+<span id="cb251-2"><a href="supervised-learning.html#cb251-2" tabindex="-1"></a>    <span class="fu">summary</span>(sales_reg)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span> <span class="dv">2</span>  <span class="co"># the slope * 2 EUR</span></span>
+<span id="cb251-3"><a href="supervised-learning.html#cb251-3" tabindex="-1"></a>prediction</span></code></pre></div>
+<pre><code>## [1] 45830</code></pre>
 <p>The predicted value of the dependent variable is 45,829.6 oz, i.e., the store will sell around 45,829.6 oz (~1,355 liters) of Budweiser.</p>
 </div>
 </div>
@@ -927,12 +972,12 @@ F=\frac{\frac{SS_M}{k}}{\frac{SS_R}{(n-k-1)}}=\frac{MS_M}{MS_R}
 <p>Have a look at the plots above again. You might notice some data specific pattern, making the data points look odd: they are pulled to lower edge of the scatterplot. In this particular case, we’re dealing with different measurement scales of our independent and dependent variables. Moreover, you could also notice how odd the interpretation of the regression coefficients sounds.</p>
 <p>It is very rare that in the retailing context, the predictions are made as we did before. The concept that is used instead is familiar to you from the microeconomics course - elasticity is a measure that is used by retail managers and researchers much more often than mere unit changes.</p>
 <p>Let’s have a look at the plot again:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="supervised-learning.html#cb259-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(price_ounce, move_ounce)) <span class="sc">+</span></span>
-<span id="cb259-2"><a href="supervised-learning.html#cb259-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb259-3"><a href="supervised-learning.html#cb259-3" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;lavenderblush4&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb259-4"><a href="supervised-learning.html#cb259-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price (ounce)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sales (ounce)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb259-5"><a href="supervised-learning.html#cb259-5" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="supervised-learning.html#cb253-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(price_ounce, move_ounce)) <span class="sc">+</span></span>
+<span id="cb253-2"><a href="supervised-learning.html#cb253-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb253-3"><a href="supervised-learning.html#cb253-3" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;lavenderblush4&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb253-4"><a href="supervised-learning.html#cb253-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price (ounce)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sales (ounce)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="supervised-learning.html#cb253-5" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>The way of obtaining a more reasonable view and interpretation in this case is called “multiplicative modeling”, or log-log transformation (you can find additional details about log-log transformations below with a slightly different motivation and example).</p>
 <p>The multiplicative model has the following formal representation:</p>
 <p><span class="math display" id="eq:multiplicative">\[\begin{equation}
@@ -950,38 +995,38 @@ log(Y) =log(\beta_0) + \beta_1*log(X_1) + \beta_2*log(X_2) + ...+ \beta_J*log(X_
 <li>the power rule states that <span class="math inline">\(log(x^y) = ylog(x)\)</span>; thus, we can write <span class="math inline">\(\beta*log(X)\)</span> instead of <span class="math inline">\(X^{\beta}\)</span></li>
 </ol>
 <p>Let’s test how the scatterplot would look like if we use the logarithm of our variables using the <code>log()</code> function instead of the original values.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="supervised-learning.html#cb260-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="fu">log</span>(price_ounce),</span>
-<span id="cb260-2"><a href="supervised-learning.html#cb260-2" tabindex="-1"></a>    <span class="fu">log</span>(move_ounce))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb260-3"><a href="supervised-learning.html#cb260-3" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;lavenderblush4&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb260-4"><a href="supervised-learning.html#cb260-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sales&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="supervised-learning.html#cb254-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="fu">log</span>(price_ounce),</span>
+<span id="cb254-2"><a href="supervised-learning.html#cb254-2" tabindex="-1"></a>    <span class="fu">log</span>(move_ounce))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb254-3"><a href="supervised-learning.html#cb254-3" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;lavenderblush4&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb254-4"><a href="supervised-learning.html#cb254-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Price&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sales&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>You can see how the scales changed, and how the observations got more normally distributed. Hence, we can log-transform our variables and estimate the following equation:</p>
 <p><span class="math display" id="eq:multiplicativetransformed1">\[\begin{equation}
 log(sales) = log(\beta_0) + \beta_1*log(price) + log(\epsilon)
 \tag{6.20}
 \end{equation}\]</span></p>
 <p>Now, let’s estimate a new regression by applying <code>log()</code> function to both sales and prices:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="supervised-learning.html#cb261-1" tabindex="-1"></a>sales_reg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(move_ounce) <span class="sc">~</span> <span class="fu">log</span>(price_ounce),</span>
-<span id="cb261-2"><a href="supervised-learning.html#cb261-2" tabindex="-1"></a>    <span class="at">data =</span> regression)</span>
-<span id="cb261-3"><a href="supervised-learning.html#cb261-3" tabindex="-1"></a><span class="fu">summary</span>(sales_reg2)  <span class="co">#remember that now the interpretation changed</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="supervised-learning.html#cb255-1" tabindex="-1"></a>sales_reg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(move_ounce) <span class="sc">~</span> <span class="fu">log</span>(price_ounce),</span>
+<span id="cb255-2"><a href="supervised-learning.html#cb255-2" tabindex="-1"></a>    <span class="at">data =</span> regression)</span>
+<span id="cb255-3"><a href="supervised-learning.html#cb255-3" tabindex="-1"></a><span class="fu">summary</span>(sales_reg2)  <span class="co">#remember that now the interpretation changed</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(move_ounce) ~ log(price_ounce), data = regression)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.82525 -0.22395 -0.02847  0.18184  1.31565 
+##     Min      1Q  Median      3Q     Max 
+## -0.8252 -0.2239 -0.0285  0.1818  1.3156 
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value             Pr(&gt;|t|)    
-## (Intercept)       13.3539     0.7961  16.774 &lt; 0.0000000000000002 ***
-## log(price_ounce)  -2.2252     0.5022  -4.431            0.0000148 ***
+## (Intercept)        13.354      0.796   16.77 &lt; 0.0000000000000002 ***
+## log(price_ounce)   -2.225      0.502   -4.43             0.000015 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3237 on 218 degrees of freedom
-## Multiple R-squared:  0.08262,    Adjusted R-squared:  0.07842 
-## F-statistic: 19.63 on 1 and 218 DF,  p-value: 0.00001485</code></pre>
+## Residual standard error: 0.32 on 218 degrees of freedom
+## Multiple R-squared:  0.0826, Adjusted R-squared:  0.0784 
+## F-statistic: 19.6 on 1 and 218 DF,  p-value: 0.0000148</code></pre>
 <p>In this example, you would interpret the coefficient as follows: <strong>A 1% increase in price leads to a 2.23% decrease in sales</strong>. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.08 from 0.06). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.</p>
 </div>
 <div id="multiple-linear-regression" class="section level4 hasAnchor" number="6.1.2.3">
@@ -1006,74 +1051,74 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 <p>Estimating multiple regression models is straightforward using the <code>lm()</code> function. You just need to separate the individual predictors on the right hand side of the equation using the <code>+</code> symbol. In addition, as discussed before, we would need to use log-log transformation for our use case, which can be done in multiple regression context as well. Hence, we would specify the model as follows (note that bonus buy and price reduction are already percentages in our data set, i.e., 0.2 value of price reduction is translated as 20% price decrease - hence, we don’t need to take an additional logarithm of it):</p>
 <p><span class="math display">\[ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy+\beta_3*price\_reduction+ log(\epsilon) \]</span></p>
 <p>This regression could be estimated as follows:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="supervised-learning.html#cb263-1" tabindex="-1"></a>multiple_sales_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(move_ounce) <span class="sc">~</span> <span class="fu">log</span>(price_ounce) <span class="sc">+</span></span>
-<span id="cb263-2"><a href="supervised-learning.html#cb263-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S, <span class="at">data =</span> regression)  <span class="co"># estimate the model</span></span>
-<span id="cb263-3"><a href="supervised-learning.html#cb263-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_sales_reg)  <span class="co">#summary of results</span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="supervised-learning.html#cb257-1" tabindex="-1"></a>multiple_sales_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(move_ounce) <span class="sc">~</span> <span class="fu">log</span>(price_ounce) <span class="sc">+</span></span>
+<span id="cb257-2"><a href="supervised-learning.html#cb257-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S, <span class="at">data =</span> regression)  <span class="co"># estimate the model</span></span>
+<span id="cb257-3"><a href="supervised-learning.html#cb257-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_sales_reg)  <span class="co">#summary of results</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, 
 ##     data = regression)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.79604 -0.21487 -0.02693  0.18710  1.29586 
+##     Min      1Q  Median      3Q     Max 
+## -0.7960 -0.2149 -0.0269  0.1871  1.2959 
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value             Pr(&gt;|t|)    
-## (Intercept)       13.3176     0.8110  16.422 &lt; 0.0000000000000002 ***
-## log(price_ounce)  -2.2207     0.5077  -4.374             0.000019 ***
-## sale_B             0.1227     0.1490   0.824               0.4110    
-## sale_S             3.0326     1.2225   2.481               0.0139 *  
+## (Intercept)        13.318      0.811   16.42 &lt; 0.0000000000000002 ***
+## log(price_ounce)   -2.221      0.508   -4.37             0.000019 ***
+## sale_B              0.123      0.149    0.82                0.411    
+## sale_S              3.033      1.223    2.48                0.014 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.3203 on 216 degrees of freedom
-## Multiple R-squared:  0.1103, Adjusted R-squared:  0.0979 
-## F-statistic: 8.922 on 3 and 216 DF,  p-value: 0.00001342</code></pre>
+## Residual standard error: 0.32 on 216 degrees of freedom
+## Multiple R-squared:  0.11,   Adjusted R-squared:  0.0979 
+## F-statistic: 8.92 on 3 and 216 DF,  p-value: 0.0000134</code></pre>
 <p>The interpretation of the coefficients is as follows:</p>
 <ul>
-<li>price (β<sub>1</sub>): when price increases by 1%, sales will change by -2.221%</li>
-<li>bonus buy (β<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.123%</li>
-<li>price reduction (β<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.033%</li>
+<li>price (β<sub>1</sub>): when price increases by 1%, sales will change by -2.22%</li>
+<li>bonus buy (β<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.12%</li>
+<li>price reduction (β<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.03%</li>
 </ul>
 <p>The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).</p>
 <p>Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="supervised-learning.html#cb265-1" tabindex="-1"></a><span class="fu">confint</span>(multiple_sales_reg)</span></code></pre></div>
-<pre><code>##                       2.5 %     97.5 %
-## (Intercept)      11.7191819 14.9160122
-## log(price_ounce) -3.2213424 -1.2200538
-## sale_B           -0.1708936  0.4163071
-## sale_S            0.6229993  5.4421432</code></pre>
-<p>What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for β<sub>3</sub>, the confidence interval is [0.6229993,5.4421432]. Thus, although we have computed a point estimate of 3.033 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the <code>ggstatsplot</code> package as follows:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="supervised-learning.html#cb267-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb267-2"><a href="supervised-learning.html#cb267-2" tabindex="-1"></a><span class="fu">ggcoefstats</span>(<span class="at">x =</span> multiple_sales_reg, <span class="at">title =</span> <span class="st">&quot;Sales predicted by price, bonus buy, and price reduction&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-34-1.png" alt="Confidence intervals for regression model" width="672" />
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="supervised-learning.html#cb259-1" tabindex="-1"></a><span class="fu">confint</span>(multiple_sales_reg)</span></code></pre></div>
+<pre><code>##                  2.5 % 97.5 %
+## (Intercept)      11.72  14.92
+## log(price_ounce) -3.22  -1.22
+## sale_B           -0.17   0.42
+## sale_S            0.62   5.44</code></pre>
+<p>What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for β<sub>3</sub>, the confidence interval is [0.62,5.44]. Thus, although we have computed a point estimate of 3.03 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the <code>ggstatsplot</code> package as follows:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="supervised-learning.html#cb261-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb261-2"><a href="supervised-learning.html#cb261-2" tabindex="-1"></a><span class="fu">ggcoefstats</span>(<span class="at">x =</span> multiple_sales_reg, <span class="at">title =</span> <span class="st">&quot;Sales predicted by price, bonus buy, and price reduction&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-33-1.png" alt="Confidence intervals for regression model" width="672" />
 <p class="caption">
-Figure 4.3: Confidence intervals for regression model
+Figure 4.2: Confidence intervals for regression model
 </p>
 </div>
-<p>The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the <code>predict()</code> function. So let’s create a new variable <code>yhat</code>, which contains those predicted values.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="supervised-learning.html#cb268-1" tabindex="-1"></a>regression<span class="sc">$</span>logmove_ounce_hat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(multiple_sales_reg)</span></code></pre></div>
+<p>The output also tells us that 11.03% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the <code>predict()</code> function. So let’s create a new variable <code>yhat</code>, which contains those predicted values.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="supervised-learning.html#cb262-1" tabindex="-1"></a>regression<span class="sc">$</span>logmove_ounce_hat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(multiple_sales_reg)</span></code></pre></div>
 <p>We can now use this variable to plot the predicted values against the observed values. In the following plot, the model fit would be perfect if all points would fall on the diagonal line. The larger the distance between the points and the line, the worse the model fit. In other words, if all points would fall exactly on the diagonal line, the model would perfectly predict the observed values.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="supervised-learning.html#cb269-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> regression, <span class="fu">aes</span>(week, <span class="fu">log</span>(move_ounce))) <span class="sc">+</span></span>
-<span id="cb269-2"><a href="supervised-learning.html#cb269-2" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> regression<span class="sc">$</span>promoweek, <span class="at">colour =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb269-3"><a href="supervised-learning.html#cb269-3" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(move_ounce), <span class="at">colour =</span> <span class="st">&quot;logsales&quot;</span>),</span>
-<span id="cb269-4"><a href="supervised-learning.html#cb269-4" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> (logmove_ounce_hat),</span>
-<span id="cb269-5"><a href="supervised-learning.html#cb269-5" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;logsales (predicted)&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,</span>
-<span id="cb269-6"><a href="supervised-learning.html#cb269-6" tabindex="-1"></a>    <span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-36-1.png" alt="Model fit" width="672" />
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="supervised-learning.html#cb263-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> regression, <span class="fu">aes</span>(week, <span class="fu">log</span>(move_ounce))) <span class="sc">+</span></span>
+<span id="cb263-2"><a href="supervised-learning.html#cb263-2" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> regression<span class="sc">$</span>promoweek, <span class="at">colour =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb263-3"><a href="supervised-learning.html#cb263-3" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">log</span>(move_ounce), <span class="at">colour =</span> <span class="st">&quot;logsales&quot;</span>),</span>
+<span id="cb263-4"><a href="supervised-learning.html#cb263-4" tabindex="-1"></a>        <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> (logmove_ounce_hat),</span>
+<span id="cb263-5"><a href="supervised-learning.html#cb263-5" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;logsales (predicted)&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,</span>
+<span id="cb263-6"><a href="supervised-learning.html#cb263-6" tabindex="-1"></a>    <span class="st">&quot;gold&quot;</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-35-1.png" alt="Model fit" width="672" />
 <p class="caption">
-Figure 6.1: Model fit
+Figure 4.4: Model fit
 </p>
 </div>
 <p><strong>Partial plots</strong></p>
 <p>In the context of a simple linear regression (i.e., with a single independent variable), a scatter plot of the dependent variable against the independent variable provides a good indication of the nature of the relationship. If there is more than one independent variable, however, things become more complicated. The reason is that although the scatter plot still show the relationship between the two variables, it does not take into account the effect of the other independent variables in the model. Partial regression plot show the effect of adding another variable to a model that already controls for the remaining variables in the model. In other words, it is a scatterplot of the residuals of the outcome variable and each predictor when both variables are regressed separately on the remaining predictors. In our example, the partial plot would show the effect of adding price as an explanatory variables while controlling for the variation that is explained by sales promotions in both variables (sales and price). Think of it as the purified relationship between price and sales that remains after controlling for other factors. The partial plots can easily be created using the <code>avPlots()</code> function from the <code>car</code> package:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="supervised-learning.html#cb270-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb270-2"><a href="supervised-learning.html#cb270-2" tabindex="-1"></a><span class="fu">avPlots</span>(multiple_sales_reg)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-37-1.png" alt="Partial plots" width="672" />
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="supervised-learning.html#cb264-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb264-2"><a href="supervised-learning.html#cb264-2" tabindex="-1"></a><span class="fu">avPlots</span>(multiple_sales_reg)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-36-1.png" alt="Partial plots" width="672" />
 <p class="caption">
 Figure 6.2: Partial plots
 </p>
@@ -1084,11 +1129,11 @@ Figure 6.2: Partial plots
 <h3><span class="header-section-number">6.1.3</span> Categorical predictors<a href="supervised-learning.html#categorical-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="two-categories" class="section level4 hasAnchor" number="6.1.3.1">
 <h4><span class="header-section-number">6.1.3.1</span> Two categories<a href="supervised-learning.html#two-categories" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="supervised-learning.html#cb271-1" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical&quot;</span>,</span>
-<span id="cb271-2"><a href="supervised-learning.html#cb271-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb271-3"><a href="supervised-learning.html#cb271-3" tabindex="-1"></a>categories<span class="sc">$</span>store <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(categories<span class="sc">$</span>store)</span>
-<span id="cb271-4"><a href="supervised-learning.html#cb271-4" tabindex="-1"></a>categories<span class="sc">$</span>brand <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(categories<span class="sc">$</span>brand)</span>
-<span id="cb271-5"><a href="supervised-learning.html#cb271-5" tabindex="-1"></a><span class="fu">str</span>(categories)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="supervised-learning.html#cb265-1" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical&quot;</span>,</span>
+<span id="cb265-2"><a href="supervised-learning.html#cb265-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb265-3"><a href="supervised-learning.html#cb265-3" tabindex="-1"></a>categories<span class="sc">$</span>store <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(categories<span class="sc">$</span>store)</span>
+<span id="cb265-4"><a href="supervised-learning.html#cb265-4" tabindex="-1"></a>categories<span class="sc">$</span>brand <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(categories<span class="sc">$</span>brand)</span>
+<span id="cb265-5"><a href="supervised-learning.html#cb265-5" tabindex="-1"></a><span class="fu">str</span>(categories)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    3194 obs. of  19 variables:
 ##  $ store           : Factor w/ 2 levels &quot;98&quot;,&quot;100&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ brand_id        : int  2 2 2 2 2 2 2 2 2 2 ...
@@ -1127,9 +1172,9 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 \end{align}\]</span></p>
 <p>where “store” represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven’t converted it to a factor variable before, you could also use the wrapper function <code>as.factor()</code> within the equation.</p>
 <p>First, let’s reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="supervised-learning.html#cb273-1" tabindex="-1"></a>multiple_regression_new <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
-<span id="cb273-2"><a href="supervised-learning.html#cb273-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S, <span class="at">data =</span> categories)</span>
-<span id="cb273-3"><a href="supervised-learning.html#cb273-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_new)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="supervised-learning.html#cb267-1" tabindex="-1"></a>multiple_regression_new <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
+<span id="cb267-2"><a href="supervised-learning.html#cb267-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S, <span class="at">data =</span> categories)</span>
+<span id="cb267-3"><a href="supervised-learning.html#cb267-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_new)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S, data = categories)
@@ -1139,21 +1184,21 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## -10570  -2915  -1414    407  56446 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value            Pr(&gt;|t|)    
-## (Intercept)   14706.1      458.5  32.075 &lt;0.0000000000000002 ***
-## price_ounce -146658.5     5990.8 -24.480 &lt;0.0000000000000002 ***
-## sale_B          600.9      456.8   1.315               0.188    
-## sale_S        -2340.4     3014.9  -0.776               0.438    
+##             Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)    14706        458   32.08 &lt;0.0000000000000002 ***
+## price_ounce  -146658       5991  -24.48 &lt;0.0000000000000002 ***
+## sale_B           601        457    1.32                0.19    
+## sale_S         -2340       3015   -0.78                0.44    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 7427 on 3190 degrees of freedom
-## Multiple R-squared:   0.16,  Adjusted R-squared:  0.1592 
-## F-statistic: 202.5 on 3 and 3190 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 7430 on 3190 degrees of freedom
+## Multiple R-squared:  0.16,   Adjusted R-squared:  0.159 
+## F-statistic:  202 on 3 and 3190 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>Now, let’s add the store variable:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="supervised-learning.html#cb275-1" tabindex="-1"></a>multiple_regression_store <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
-<span id="cb275-2"><a href="supervised-learning.html#cb275-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store, <span class="at">data =</span> categories)</span>
-<span id="cb275-3"><a href="supervised-learning.html#cb275-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_store)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="supervised-learning.html#cb269-1" tabindex="-1"></a>multiple_regression_store <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
+<span id="cb269-2"><a href="supervised-learning.html#cb269-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store, <span class="at">data =</span> categories)</span>
+<span id="cb269-3"><a href="supervised-learning.html#cb269-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_store)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store, 
@@ -1164,18 +1209,18 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## -10710  -3135  -1317    678  55579 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value             Pr(&gt;|t|)    
-## (Intercept)   13844.2      473.8  29.219 &lt; 0.0000000000000002 ***
-## price_ounce -147160.4     5951.7 -24.726 &lt; 0.0000000000000002 ***
-## sale_B          666.3      453.9   1.468                0.142    
-## sale_S        -2428.0     2995.0  -0.811                0.418    
-## store100       1724.9      261.3   6.602      0.0000000000475 ***
+##             Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)    13844        474   29.22 &lt; 0.0000000000000002 ***
+## price_ounce  -147160       5952  -24.73 &lt; 0.0000000000000002 ***
+## sale_B           666        454    1.47                 0.14    
+## sale_S         -2428       2995   -0.81                 0.42    
+## store100        1725        261    6.60       0.000000000047 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 7378 on 3189 degrees of freedom
-## Multiple R-squared:  0.1713, Adjusted R-squared:  0.1703 
-## F-statistic: 164.8 on 4 and 3189 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 7380 on 3189 degrees of freedom
+## Multiple R-squared:  0.171,  Adjusted R-squared:  0.17 
+## F-statistic:  165 on 4 and 3189 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100 artists, and whether this difference is significant. Specifically, it means that sales in store 100 are on average 1,724.92 oz higher than in store 98, and this difference is significant (i.e., p &lt; 0.05).</p>
 </div>
 <div id="more-than-two-categories" class="section level4 hasAnchor" number="6.1.3.2">
@@ -1203,19 +1248,18 @@ x_6 =
 Sales =\beta_0 &amp;+\beta_1*price\\
       &amp;+\beta_2*bonus\_buy\\
       &amp;+\beta_3*price\_reduction\\
-      &amp;+\beta_4*Pop\\
-      &amp;+\beta_5*store\\
-      &amp;+\beta_6*Budweiser\\
-      &amp;+\beta_7*Corona\\
-      &amp;+\beta_8*Fosters\\
-      &amp;+\beta_9*Heineken\\
-      &amp;+\beta_10*Old\_Milwaukee+\epsilon
+      &amp;+\beta_4*store\\
+      &amp;+\beta_5*Budweiser\\
+      &amp;+\beta_6*Corona\\
+      &amp;+\beta_7*Fosters\\
+      &amp;+\beta_8*Heineken\\
+      &amp;+\beta_9*Old\_Milwaukee+\epsilon
 \end{align}\]</span></p>
 <p>where “Budweiser”, “Corona”, “Fosters”, “Heineken”, and “Old Milwaukee” represent our new dummy variables, and refer to the associated regression coefficients. You don’t have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.</p>
-<p>The interpretation of the coefficients is as follows: <span class="math inline">\(\beta_6\)</span> is the difference in average sales between the brands “Amstel” and “Budweiser”, <span class="math inline">\(\beta_7\)</span> is the difference in average sales between the brands “Amstel” and “Corona”, and so on. Note that the level for which no dummy variable is created is also referred to as the <em>baseline</em>. In our case, “Amstel” would be the baseline brand This means that there will always be one fewer dummy variable than the number of levels.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="supervised-learning.html#cb277-1" tabindex="-1"></a>multiple_regression_ext <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
-<span id="cb277-2"><a href="supervised-learning.html#cb277-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store <span class="sc">+</span> brand, <span class="at">data =</span> categories)</span>
-<span id="cb277-3"><a href="supervised-learning.html#cb277-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_ext)</span></code></pre></div>
+<p>The interpretation of the coefficients is as follows: <span class="math inline">\(\beta_5\)</span> is the difference in average sales between the brands “Amstel” and “Budweiser”, <span class="math inline">\(\beta_6\)</span> is the difference in average sales between the brands “Amstel” and “Corona”, and so on. Note that the level for which no dummy variable is created is also referred to as the <em>baseline</em>. In our case, “Amstel” would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="supervised-learning.html#cb271-1" tabindex="-1"></a>multiple_regression_ext <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
+<span id="cb271-2"><a href="supervised-learning.html#cb271-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store <span class="sc">+</span> brand, <span class="at">data =</span> categories)</span>
+<span id="cb271-3"><a href="supervised-learning.html#cb271-3" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_ext)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
@@ -1227,28 +1271,28 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value             Pr(&gt;|t|)    
-## (Intercept)        -1614.2     1372.1  -1.176              0.23949    
-## price_ounce         7220.0    15158.8   0.476              0.63390    
-## sale_B              1235.2      306.9   4.025 0.000058197671655294 ***
-## sale_S              1661.0     1495.7   1.111              0.26686    
-## store100            1858.1      128.7  14.442 &lt; 0.0000000000000002 ***
-## brandBudweiser     22298.6      618.6  36.049 &lt; 0.0000000000000002 ***
-## brandCorona         2288.9      236.8   9.665 &lt; 0.0000000000000002 ***
-## brandFosters        -110.1      240.5  -0.458              0.64716    
-## brandHeinekenBeer   1815.0      219.9   8.253 0.000000000000000223 ***
-## brandOldMilwaukee   2584.1      838.2   3.083              0.00207 ** 
+## (Intercept)          -1614       1372   -1.18               0.2395    
+## price_ounce           7220      15159    0.48               0.6339    
+## sale_B                1235        307    4.03  0.00005819767165529 ***
+## sale_S                1661       1496    1.11               0.2669    
+## store100              1858        129   14.44 &lt; 0.0000000000000002 ***
+## brandBudweiser       22299        619   36.05 &lt; 0.0000000000000002 ***
+## brandCorona           2289        237    9.66 &lt; 0.0000000000000002 ***
+## brandFosters          -110        240   -0.46               0.6472    
+## brandHeinekenBeer     1815        220    8.25  0.00000000000000022 ***
+## brandOldMilwaukee     2584        838    3.08               0.0021 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3622 on 3184 degrees of freedom
-## Multiple R-squared:  0.8006, Adjusted R-squared:  0.8001 
-## F-statistic:  1421 on 9 and 3184 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 3620 on 3184 degrees of freedom
+## Multiple R-squared:  0.801,  Adjusted R-squared:   0.8 
+## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>How can we interpret the coefficients? It is estimated based on our model that products from the “Budweiser” brand will on average sell 22,298.63 oz more than products from the “Amstel” brand, and that products from the “Corona” brand will sell on average 2,288.88 oz more than the products from the “Amstel” brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands</p>
 <p>The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the <code>relevel()</code> function and set the reference category using the <code>ref</code> argument. The following would estimate the same model using the second category as the baseline:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="supervised-learning.html#cb279-1" tabindex="-1"></a>multiple_regression_ext <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
-<span id="cb279-2"><a href="supervised-learning.html#cb279-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store <span class="sc">+</span> <span class="fu">relevel</span>(brand, <span class="at">ref =</span> <span class="dv">2</span>),</span>
-<span id="cb279-3"><a href="supervised-learning.html#cb279-3" tabindex="-1"></a>    <span class="at">data =</span> categories)</span>
-<span id="cb279-4"><a href="supervised-learning.html#cb279-4" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="supervised-learning.html#cb273-1" tabindex="-1"></a>multiple_regression_ext <span class="ot">&lt;-</span> <span class="fu">lm</span>(move_ounce <span class="sc">~</span> price_ounce <span class="sc">+</span></span>
+<span id="cb273-2"><a href="supervised-learning.html#cb273-2" tabindex="-1"></a>    sale_B <span class="sc">+</span> sale_S <span class="sc">+</span> store <span class="sc">+</span> <span class="fu">relevel</span>(brand, <span class="at">ref =</span> <span class="dv">2</span>),</span>
+<span id="cb273-3"><a href="supervised-learning.html#cb273-3" tabindex="-1"></a>    <span class="at">data =</span> categories)</span>
+<span id="cb273-4"><a href="supervised-learning.html#cb273-4" tabindex="-1"></a><span class="fu">summary</span>(multiple_regression_ext)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
@@ -1260,21 +1304,21 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## 
 ## Coefficients:
 ##                                     Estimate Std. Error t value
-## (Intercept)                          20684.4      810.8  25.512
-## price_ounce                           7220.0    15158.8   0.476
-## sale_B                                1235.2      306.9   4.025
-## sale_S                                1661.0     1495.7   1.111
-## store100                              1858.1      128.7  14.442
-## relevel(brand, ref = 2)Amstel       -22298.6      618.6 -36.049
-## relevel(brand, ref = 2)Corona       -20009.8      533.7 -37.496
-## relevel(brand, ref = 2)Fosters      -22408.7      616.3 -36.360
-## relevel(brand, ref = 2)HeinekenBeer -20483.6      625.1 -32.769
-## relevel(brand, ref = 2)OldMilwaukee -19714.5      329.2 -59.885
+## (Intercept)                            20684        811   25.51
+## price_ounce                             7220      15159    0.48
+## sale_B                                  1235        307    4.03
+## sale_S                                  1661       1496    1.11
+## store100                                1858        129   14.44
+## relevel(brand, ref = 2)Amstel         -22299        619  -36.05
+## relevel(brand, ref = 2)Corona         -20010        534  -37.50
+## relevel(brand, ref = 2)Fosters        -22409        616  -36.36
+## relevel(brand, ref = 2)HeinekenBeer   -20484        625  -32.77
+## relevel(brand, ref = 2)OldMilwaukee   -19714        329  -59.88
 ##                                                 Pr(&gt;|t|)    
 ## (Intercept)                         &lt; 0.0000000000000002 ***
-## price_ounce                                        0.634    
-## sale_B                                         0.0000582 ***
-## sale_S                                             0.267    
+## price_ounce                                         0.63    
+## sale_B                                          0.000058 ***
+## sale_S                                              0.27    
 ## store100                            &lt; 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Amstel       &lt; 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Corona       &lt; 0.0000000000000002 ***
@@ -1284,9 +1328,9 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3622 on 3184 degrees of freedom
-## Multiple R-squared:  0.8006, Adjusted R-squared:  0.8001 
-## F-statistic:  1421 on 9 and 3184 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 3620 on 3184 degrees of freedom
+## Multiple R-squared:  0.801,  Adjusted R-squared:   0.8 
+## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.</p>
 </div>
 <div id="non-linear-relationships" class="section level4 hasAnchor" number="6.1.3.3">
@@ -1300,60 +1344,60 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 </ul>
 <p>In many marketing contexts, these might not be reasonable assumptions. Consider the case of advertising. It is unlikely that the return on advertising will not depend on the level of advertising expenditures. It is rather likely that saturation occurs at some level, meaning that the return from an additional Euro spend on advertising is decreasing with the level of advertising expenditures (i.e., decreasing marginal returns). In other words, at some point the advertising campaign has achieved a certain level of penetration and an additional Euro spend on advertising won’t yield the same return as in the beginning.</p>
 <p>Let’s use an example data set, containing the advertising expenditures of a company and the sales (in thousand units).</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="supervised-learning.html#cb281-1" tabindex="-1"></a>non_linear_reg <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/non_linear.dat&quot;</span>,</span>
-<span id="cb281-2"><a href="supervised-learning.html#cb281-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span>
-<span id="cb281-3"><a href="supervised-learning.html#cb281-3" tabindex="-1"></a><span class="fu">head</span>(non_linear_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="supervised-learning.html#cb275-1" tabindex="-1"></a>non_linear_reg <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/non_linear.dat&quot;</span>,</span>
+<span id="cb275-2"><a href="supervised-learning.html#cb275-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)  <span class="co">#read in data</span></span>
+<span id="cb275-3"><a href="supervised-learning.html#cb275-3" tabindex="-1"></a><span class="fu">head</span>(non_linear_reg)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"16.2","2":"13817.4"},{"1":"17.1","2":"5074.6"},{"1":"15.3","2":"3501.3"},{"1":"27.3","2":"23662.2"},{"1":"13.6","2":"9977.2"},{"1":"18.8","2":"11972.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sales"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["advertising"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"16","2":"13817"},{"1":"17","2":"5075"},{"1":"15","2":"3501"},{"1":"27","2":"23662"},{"1":"14","2":"9977"},{"1":"19","2":"11972"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Now we inspect if a linear specification is appropriate by looking at the scatterplot:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="supervised-learning.html#cb282-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg, <span class="fu">aes</span>(<span class="at">x =</span> advertising,</span>
-<span id="cb282-2"><a href="supervised-learning.html#cb282-2" tabindex="-1"></a>    <span class="at">y =</span> sales)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb282-3"><a href="supervised-learning.html#cb282-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-44"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-44-1.png" alt="Non-linear relationship" width="672" />
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="supervised-learning.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg, <span class="fu">aes</span>(<span class="at">x =</span> advertising,</span>
+<span id="cb276-2"><a href="supervised-learning.html#cb276-2" tabindex="-1"></a>    <span class="at">y =</span> sales)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb276-3"><a href="supervised-learning.html#cb276-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-43"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-43-1.png" alt="Non-linear relationship" width="672" />
 <p class="caption">
-Figure 6.3: Non-linear relationship
+Figure 4.9: Non-linear relationship
 </p>
 </div>
 <p>It appears that a linear model might <strong>not</strong> represent the data well. It rather appears that the effect of an additional Euro spend on advertising is decreasing with increasing levels of advertising expenditures. Thus, we have decreasing marginal returns. We could put this to a test and estimate a linear model:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="supervised-learning.html#cb283-1" tabindex="-1"></a>linear_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> advertising, <span class="at">data =</span> non_linear_reg)</span>
-<span id="cb283-2"><a href="supervised-learning.html#cb283-2" tabindex="-1"></a><span class="fu">summary</span>(linear_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="supervised-learning.html#cb277-1" tabindex="-1"></a>linear_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> advertising, <span class="at">data =</span> non_linear_reg)</span>
+<span id="cb277-2"><a href="supervised-learning.html#cb277-2" tabindex="-1"></a><span class="fu">summary</span>(linear_reg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sales ~ advertising, data = non_linear_reg)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -10.4773  -2.3886  -0.3558   2.1884  16.7453 
+##     Min      1Q  Median      3Q     Max 
+## -10.477  -2.389  -0.356   2.188  16.745 
 ## 
 ## Coefficients:
-##               Estimate Std. Error t value            Pr(&gt;|t|)    
-## (Intercept) 9.95752155 0.22511508   44.23 &lt;0.0000000000000002 ***
-## advertising 0.00050245 0.00001561   32.19 &lt;0.0000000000000002 ***
+##              Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept) 9.9575216  0.2251151    44.2 &lt;0.0000000000000002 ***
+## advertising 0.0005024  0.0000156    32.2 &lt;0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3.593 on 998 degrees of freedom
-## Multiple R-squared:  0.5093, Adjusted R-squared:  0.5088 
-## F-statistic:  1036 on 1 and 998 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 3.6 on 998 degrees of freedom
+## Multiple R-squared:  0.509,  Adjusted R-squared:  0.509 
+## F-statistic: 1.04e+03 on 1 and 998 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>Advertising appears to be positively related to sales with an additional Euro that is spent on advertising resulting in 0.0005 additional sales. The R<sup>2</sup> statistic suggests that approximately 51% of the total variation can be explained by the model</p>
 <p>To test if the linear specification is appropriate, let’s inspect some of the plots that are generated by R. We start by inspecting the residuals plot.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="supervised-learning.html#cb285-1" tabindex="-1"></a><span class="fu">plot</span>(linear_reg, <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Residuals vs. Fitted" width="672" />
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="supervised-learning.html#cb279-1" tabindex="-1"></a><span class="fu">plot</span>(linear_reg, <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-45"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-45-1.png" alt="Residuals vs. Fitted" width="672" />
 <p class="caption">
-Figure 6.4: Residuals vs. Fitted
+Figure 6.3: Residuals vs. Fitted
 </p>
 </div>
 <p>The plot suggests that the assumption of homoscedasticity is violated (i.e., the spread of values on the y-axis is different for different levels of the fitted values). In addition, the red line deviates from the dashed grey line, suggesting that the relationship might not be linear. Finally, the Q-Q plot of the residuals suggests that the residuals are not normally distributed.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="supervised-learning.html#cb286-1" tabindex="-1"></a><span class="fu">plot</span>(linear_reg, <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-47"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Q-Q plot" width="672" />
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="supervised-learning.html#cb280-1" tabindex="-1"></a><span class="fu">plot</span>(linear_reg, <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-46-1.png" alt="Q-Q plot" width="672" />
 <p class="caption">
-Figure 4.10: Q-Q plot
+Figure 6.4: Q-Q plot
 </p>
 </div>
 <p>To sum up, a linear specification might not be the best model for this data set.</p>
@@ -1373,13 +1417,13 @@ log(Y) =log(\beta_0) + \beta_1*log(X_1) + \beta_2*log(X_2) + ...+ \beta_J*log(X_
 <li>the power rule states that <span class="math inline">\(log(x^y) = ylog(x)\)</span>; thus, we can write <span class="math inline">\(\beta*log(X)\)</span> instead of <span class="math inline">\(X^{\beta}\)</span></li>
 </ol>
 <p>Let’s test how the scatterplot would look like if we use the logarithm of our variables using the <code>log()</code> function instead of the original values.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="supervised-learning.html#cb287-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(advertising),</span>
-<span id="cb287-2"><a href="supervised-learning.html#cb287-2" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">log</span>(sales))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb287-3"><a href="supervised-learning.html#cb287-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-48"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-48-1.png" alt="Linearized effect" width="672" />
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="supervised-learning.html#cb281-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(advertising),</span>
+<span id="cb281-2"><a href="supervised-learning.html#cb281-2" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">log</span>(sales))) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb281-3"><a href="supervised-learning.html#cb281-3" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-47"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-47-1.png" alt="Linearized effect" width="672" />
 <p class="caption">
-Figure 6.5: Linearized effect
+Figure 4.10: Linearized effect
 </p>
 </div>
 <p>It appears that now, with the log-transformed variables, a linear specification is a much better representation of the data. Hence, we can log-transform our variables and estimate the following equation:</p>
@@ -1388,54 +1432,54 @@ log(sales) = log(\beta_0) + \beta_1*log(advertising) + log(\epsilon)
 \tag{6.20}
 \end{equation}\]</span></p>
 <p>This can be easily implemented in R by transforming the variables using the <code>log()</code> function:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="supervised-learning.html#cb288-1" tabindex="-1"></a>log_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(sales) <span class="sc">~</span> <span class="fu">log</span>(advertising), <span class="at">data =</span> non_linear_reg)</span>
-<span id="cb288-2"><a href="supervised-learning.html#cb288-2" tabindex="-1"></a><span class="fu">summary</span>(log_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="supervised-learning.html#cb282-1" tabindex="-1"></a>log_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(sales) <span class="sc">~</span> <span class="fu">log</span>(advertising), <span class="at">data =</span> non_linear_reg)</span>
+<span id="cb282-2"><a href="supervised-learning.html#cb282-2" tabindex="-1"></a><span class="fu">summary</span>(log_reg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(sales) ~ log(advertising), data = non_linear_reg)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.66594 -0.12723  0.00299  0.13437  0.63964 
+##    Min     1Q Median     3Q    Max 
+## -0.666 -0.127  0.003  0.134  0.640 
 ## 
 ## Coefficients:
-##                   Estimate Std. Error t value            Pr(&gt;|t|)    
-## (Intercept)      -0.014927   0.059714   -0.25               0.803    
-## log(advertising)  0.300769   0.006509   46.20 &lt;0.0000000000000002 ***
+##                  Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      -0.01493    0.05971   -0.25                 0.8    
+## log(advertising)  0.30077    0.00651   46.20 &lt;0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.2018 on 998 degrees of freedom
-## Multiple R-squared:  0.6814, Adjusted R-squared:  0.6811 
-## F-statistic:  2135 on 1 and 998 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 0.2 on 998 degrees of freedom
+## Multiple R-squared:  0.681,  Adjusted R-squared:  0.681 
+## F-statistic: 2.13e+03 on 1 and 998 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>Note that this specification implies decreasing marginal returns (i.e., the returns of advertising are decreasing with the level of advertising), which appear to be more consistent with the data. The specification is also consistent with proportional changes in advertising being associated with proportional changes in sales (i.e., advertising does not become more effective with increasing levels). This has important implications on the interpretation of the coefficients. In our example, you would interpret the coefficient as follows: <strong>A 1% increase in advertising leads to a 0.3% increase in sales</strong>. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.681 from 0.509). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable. Also, we could use the residuals plot to confirm that the revised specification is more appropriate:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="supervised-learning.html#cb290-1" tabindex="-1"></a><span class="fu">plot</span>(log_reg, <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-50-1"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" alt="Residuals plot" width="672" />
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="supervised-learning.html#cb284-1" tabindex="-1"></a><span class="fu">plot</span>(log_reg, <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-49-1"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-49-1.png" alt="Residuals plot" width="672" />
 <p class="caption">
-Figure 6.6: Residuals plot
+Figure 6.5: Residuals plot
 </p>
 </div>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="supervised-learning.html#cb291-1" tabindex="-1"></a><span class="fu">plot</span>(log_reg, <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-50-2"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-2.png" alt="Q-Q plot" width="672" />
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="supervised-learning.html#cb285-1" tabindex="-1"></a><span class="fu">plot</span>(log_reg, <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-49-2"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-49-2.png" alt="Q-Q plot" width="672" />
 <p class="caption">
-Figure 6.7: Q-Q plot
+Figure 6.6: Q-Q plot
 </p>
 </div>
 <p>Finally, we can plot the predicted values against the observed values to see that the results from the log-log model (red) provide a better prediction than the results from the linear model (blue).</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="supervised-learning.html#cb292-1" tabindex="-1"></a>non_linear_reg<span class="sc">$</span>pred_lin_reg <span class="ot">&lt;-</span> <span class="fu">predict</span>(linear_reg)</span>
-<span id="cb292-2"><a href="supervised-learning.html#cb292-2" tabindex="-1"></a>non_linear_reg<span class="sc">$</span>pred_log_reg <span class="ot">&lt;-</span> <span class="fu">predict</span>(log_reg)</span>
-<span id="cb292-3"><a href="supervised-learning.html#cb292-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> advertising,</span>
-<span id="cb292-4"><a href="supervised-learning.html#cb292-4" tabindex="-1"></a>    <span class="at">y =</span> sales), <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> non_linear_reg,</span>
-<span id="cb292-5"><a href="supervised-learning.html#cb292-5" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> advertising, <span class="at">y =</span> pred_lin_reg), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb292-6"><a href="supervised-learning.html#cb292-6" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.05</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> non_linear_reg,</span>
-<span id="cb292-7"><a href="supervised-learning.html#cb292-7" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> advertising, <span class="at">y =</span> <span class="fu">exp</span>(pred_log_reg)), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb292-8"><a href="supervised-learning.html#cb292-8" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.05</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-51"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-51-1.png" alt="Comparison if model fit" width="672" />
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="supervised-learning.html#cb286-1" tabindex="-1"></a>non_linear_reg<span class="sc">$</span>pred_lin_reg <span class="ot">&lt;-</span> <span class="fu">predict</span>(linear_reg)</span>
+<span id="cb286-2"><a href="supervised-learning.html#cb286-2" tabindex="-1"></a>non_linear_reg<span class="sc">$</span>pred_log_reg <span class="ot">&lt;-</span> <span class="fu">predict</span>(log_reg)</span>
+<span id="cb286-3"><a href="supervised-learning.html#cb286-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> non_linear_reg) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> advertising,</span>
+<span id="cb286-4"><a href="supervised-learning.html#cb286-4" tabindex="-1"></a>    <span class="at">y =</span> sales), <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> non_linear_reg,</span>
+<span id="cb286-5"><a href="supervised-learning.html#cb286-5" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> advertising, <span class="at">y =</span> pred_lin_reg), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb286-6"><a href="supervised-learning.html#cb286-6" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.05</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> non_linear_reg,</span>
+<span id="cb286-7"><a href="supervised-learning.html#cb286-7" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> advertising, <span class="at">y =</span> <span class="fu">exp</span>(pred_log_reg)), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb286-8"><a href="supervised-learning.html#cb286-8" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.05</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-50"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-50-1.png" alt="Comparison if model fit" width="672" />
 <p class="caption">
-Figure 6.8: Comparison if model fit
+Figure 4.12: Comparison if model fit
 </p>
 </div>
 </div>
@@ -1447,18 +1491,18 @@ Figure 6.8: Comparison if model fit
 <div id="motivation-and-intuition" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Motivation and intuition<a href="supervised-learning.html#motivation-and-intuition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the last section we saw how to predict continuous outcomes (e.g., sales) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the <em>probability</em> of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a customer will churn (i.e., stop being our customer) any time soon. In the first step we are going to use only the “cash-back amount” index as a predictor. Later we are going to add more independent variables.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="supervised-learning.html#cb293-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb293-2"><a href="supervised-learning.html#cb293-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb293-3"><a href="supervised-learning.html#cb293-3" tabindex="-1"></a></span>
-<span id="cb293-4"><a href="supervised-learning.html#cb293-4" tabindex="-1"></a>churn_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/e_com_data.csv&quot;</span>,</span>
-<span id="cb293-5"><a href="supervised-learning.html#cb293-5" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> T)</span>
-<span id="cb293-6"><a href="supervised-learning.html#cb293-6" tabindex="-1"></a><span class="fu">head</span>(churn_data)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="supervised-learning.html#cb287-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb287-2"><a href="supervised-learning.html#cb287-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb287-3"><a href="supervised-learning.html#cb287-3" tabindex="-1"></a></span>
+<span id="cb287-4"><a href="supervised-learning.html#cb287-4" tabindex="-1"></a>churn_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/e_com_data.csv&quot;</span>,</span>
+<span id="cb287-5"><a href="supervised-learning.html#cb287-5" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb287-6"><a href="supervised-learning.html#cb287-6" tabindex="-1"></a><span class="fu">head</span>(churn_data)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["CustomerID"],"name":[1],"type":["int"],"align":["right"]},{"label":["Churn"],"name":[2],"type":["int"],"align":["right"]},{"label":["Tenure"],"name":[3],"type":["int"],"align":["right"]},{"label":["PreferredLoginDevice"],"name":[4],"type":["chr"],"align":["left"]},{"label":["CityTier"],"name":[5],"type":["int"],"align":["right"]},{"label":["WarehouseToHome"],"name":[6],"type":["int"],"align":["right"]},{"label":["PreferredPaymentMode"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[8],"type":["chr"],"align":["left"]},{"label":["HourSpendOnApp"],"name":[9],"type":["int"],"align":["right"]},{"label":["NumberOfDeviceRegistered"],"name":[10],"type":["int"],"align":["right"]},{"label":["PreferedOrderCat"],"name":[11],"type":["chr"],"align":["left"]},{"label":["SatisfactionScore"],"name":[12],"type":["int"],"align":["right"]},{"label":["MaritalStatus"],"name":[13],"type":["chr"],"align":["left"]},{"label":["NumberOfAddress"],"name":[14],"type":["int"],"align":["right"]},{"label":["Complain"],"name":[15],"type":["int"],"align":["right"]},{"label":["OrderAmountHikeFromlastYear"],"name":[16],"type":["int"],"align":["right"]},{"label":["CouponUsed"],"name":[17],"type":["int"],"align":["right"]},{"label":["OrderCount"],"name":[18],"type":["int"],"align":["right"]},{"label":["DaySinceLastOrder"],"name":[19],"type":["int"],"align":["right"]},{"label":["CashbackAmount"],"name":[20],"type":["int"],"align":["right"]}],"data":[{"1":"50001","2":"1","3":"4","4":"Mobile Phone","5":"3","6":"6","7":"Debit Card","8":"Female","9":"3","10":"3","11":"Laptop & Accessory","12":"2","13":"Single","14":"9","15":"1","16":"11","17":"1","18":"1","19":"5","20":"160"},{"1":"50002","2":"1","3":"NA","4":"Phone","5":"1","6":"8","7":"UPI","8":"Male","9":"3","10":"4","11":"Mobile","12":"3","13":"Single","14":"7","15":"1","16":"15","17":"0","18":"1","19":"0","20":"121"},{"1":"50003","2":"1","3":"NA","4":"Phone","5":"1","6":"30","7":"Debit Card","8":"Male","9":"2","10":"4","11":"Mobile","12":"3","13":"Single","14":"6","15":"1","16":"14","17":"0","18":"1","19":"3","20":"120"},{"1":"50004","2":"1","3":"0","4":"Phone","5":"3","6":"15","7":"Debit Card","8":"Male","9":"2","10":"4","11":"Laptop & Accessory","12":"5","13":"Single","14":"8","15":"0","16":"23","17":"0","18":"1","19":"3","20":"134"},{"1":"50005","2":"1","3":"0","4":"Phone","5":"1","6":"12","7":"CC","8":"Male","9":"NA","10":"3","11":"Mobile","12":"5","13":"Single","14":"3","15":"0","16":"11","17":"1","18":"1","19":"3","20":"130"},{"1":"50006","2":"1","3":"0","4":"Computer","5":"1","6":"22","7":"Debit Card","8":"Female","9":"3","10":"5","11":"Mobile Phone","12":"5","13":"Single","14":"2","15":"1","16":"22","17":"4","18":"6","19":"7","20":"139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="supervised-learning.html#cb294-1" tabindex="-1"></a><span class="fu">str</span>(churn_data)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="supervised-learning.html#cb288-1" tabindex="-1"></a><span class="fu">str</span>(churn_data)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    5630 obs. of  20 variables:
 ##  $ CustomerID                 : int  50001 50002 50003 50004 50005 50006 50007 50008 50009 50010 ...
 ##  $ Churn                      : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -1480,20 +1524,20 @@ Figure 6.8: Comparison if model fit
 ##  $ OrderCount                 : int  1 1 1 1 1 6 1 2 1 1 ...
 ##  $ DaySinceLastOrder          : int  5 0 3 3 3 7 0 0 2 1 ...
 ##  $ CashbackAmount             : int  160 121 120 134 130 139 121 123 127 123 ...</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="supervised-learning.html#cb296-1" tabindex="-1"></a><span class="co"># Variable &#39;Churn&#39; is 1 if a customer left and 0</span></span>
-<span id="cb296-2"><a href="supervised-learning.html#cb296-2" tabindex="-1"></a><span class="co"># else</span></span>
-<span id="cb296-3"><a href="supervised-learning.html#cb296-3" tabindex="-1"></a></span>
-<span id="cb296-4"><a href="supervised-learning.html#cb296-4" tabindex="-1"></a><span class="co"># correct the variables types</span></span>
-<span id="cb296-5"><a href="supervised-learning.html#cb296-5" tabindex="-1"></a>churn_data<span class="sc">$</span>CustomerID <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>CustomerID)</span>
-<span id="cb296-6"><a href="supervised-learning.html#cb296-6" tabindex="-1"></a>churn_data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>Gender)</span>
-<span id="cb296-7"><a href="supervised-learning.html#cb296-7" tabindex="-1"></a>churn_data<span class="sc">$</span>Tenure <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>Tenure)</span>
-<span id="cb296-8"><a href="supervised-learning.html#cb296-8" tabindex="-1"></a>churn_data<span class="sc">$</span>PreferredLoginDevice <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>PreferredLoginDevice)</span>
-<span id="cb296-9"><a href="supervised-learning.html#cb296-9" tabindex="-1"></a>churn_data<span class="sc">$</span>CityTier <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>CityTier)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="supervised-learning.html#cb290-1" tabindex="-1"></a><span class="co"># Variable &#39;Churn&#39; is 1 if a customer left and 0</span></span>
+<span id="cb290-2"><a href="supervised-learning.html#cb290-2" tabindex="-1"></a><span class="co"># else</span></span>
+<span id="cb290-3"><a href="supervised-learning.html#cb290-3" tabindex="-1"></a></span>
+<span id="cb290-4"><a href="supervised-learning.html#cb290-4" tabindex="-1"></a><span class="co"># correct the variables types</span></span>
+<span id="cb290-5"><a href="supervised-learning.html#cb290-5" tabindex="-1"></a>churn_data<span class="sc">$</span>CustomerID <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>CustomerID)</span>
+<span id="cb290-6"><a href="supervised-learning.html#cb290-6" tabindex="-1"></a>churn_data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>Gender)</span>
+<span id="cb290-7"><a href="supervised-learning.html#cb290-7" tabindex="-1"></a>churn_data<span class="sc">$</span>Tenure <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>Tenure)</span>
+<span id="cb290-8"><a href="supervised-learning.html#cb290-8" tabindex="-1"></a>churn_data<span class="sc">$</span>PreferredLoginDevice <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>PreferredLoginDevice)</span>
+<span id="cb290-9"><a href="supervised-learning.html#cb290-9" tabindex="-1"></a>churn_data<span class="sc">$</span>CityTier <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(churn_data<span class="sc">$</span>CityTier)</span></code></pre></div>
 <p>Below are two attempts to model the data. The left assumes a linear probability model (calculated with the same methods that we used in the last chapter), while the right model is a <strong>logistic regression model</strong>. As you can see, the linear probability model is able of producing probabilities that are above 1 and below 0 (see the lower right corner), which are not valid probabilities, while the logistic model stays between 0 and 1. Notice that songs with a higher cash-back value (on the right of the x-axis) seem to cluster more at <span class="math inline">\(0\)</span> and those with a lower more at <span class="math inline">\(1\)</span> so we expect a negative influence of cash-back value on the probability of churn.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-53"></span>
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" alt="The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-52"></span>
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-52-1.png" alt="The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)" width="672" />
 <p class="caption">
-Figure 4.14: The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)
+Figure 4.13: The same binary data explained by two models; A linear probability model (on the left) and a logistic regression model (on the right)
 </p>
 </div>
 <p>A key insight at this point is that the connection between <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(Y\)</span> is <strong>non-linear</strong> in the logistic regression model.</p>
@@ -1505,7 +1549,7 @@ Figure 4.14: The same binary data explained by two models; A linear probability 
 f(\mathbf{X}) = \frac{1}{1 + e^{-\mathbf{X}}}
 \]</span>
 This function transforms all real numbers into the range between 0 and 1. We need this to model probabilities, as probabilities can only be between 0 and 1.</p>
-<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p><img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>The logistic function on its own is not very useful yet, as we want to be able to determine how predictors influence the probability of a value to be equal to 1. To this end we replace the <span class="math inline">\(\mathbf{X}\)</span> in the function above with our familiar linear specification, i.e.</p>
 <p><span class="math display">\[
 \mathbf{X} = \beta_0 + \beta_1 * x_{1,i} + \beta_2 * x_{2,i} + ... +\beta_m * x_{m,i}\\
@@ -1517,20 +1561,20 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 <div id="estimation-in-r" class="section level3 hasAnchor" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Estimation in R<a href="supervised-learning.html#estimation-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are now going to show how to perform logistic regression in R. Instead of <code>lm()</code> we now use <code>glm(Y~X, family=binomial(link = 'logit'))</code> to use the logit model. We can still use the <code>summary()</code> command to inspect the output of the model.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="supervised-learning.html#cb297-1" tabindex="-1"></a><span class="co"># Run the glm</span></span>
-<span id="cb297-2"><a href="supervised-learning.html#cb297-2" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> CashbackAmount, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>),</span>
-<span id="cb297-3"><a href="supervised-learning.html#cb297-3" tabindex="-1"></a>    <span class="at">data =</span> churn_data)</span>
-<span id="cb297-4"><a href="supervised-learning.html#cb297-4" tabindex="-1"></a><span class="co"># Inspect model summary</span></span>
-<span id="cb297-5"><a href="supervised-learning.html#cb297-5" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="supervised-learning.html#cb291-1" tabindex="-1"></a><span class="co"># Run the glm</span></span>
+<span id="cb291-2"><a href="supervised-learning.html#cb291-2" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> CashbackAmount, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>),</span>
+<span id="cb291-3"><a href="supervised-learning.html#cb291-3" tabindex="-1"></a>    <span class="at">data =</span> churn_data)</span>
+<span id="cb291-4"><a href="supervised-learning.html#cb291-4" tabindex="-1"></a><span class="co"># Inspect model summary</span></span>
+<span id="cb291-5"><a href="supervised-learning.html#cb291-5" tabindex="-1"></a><span class="fu">summary</span>(logit_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Churn ~ CashbackAmount, family = binomial(link = &quot;logit&quot;), 
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                  Estimate Std. Error z value            Pr(&gt;|z|)    
-## (Intercept)     0.1898645  0.1565706   1.213               0.225    
-## CashbackAmount -0.0105419  0.0009359 -11.264 &lt;0.0000000000000002 ***
+##                 Estimate Std. Error z value            Pr(&gt;|z|)    
+## (Intercept)     0.189865   0.156571    1.21                0.23    
+## CashbackAmount -0.010542   0.000936  -11.26 &lt;0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1538,61 +1582,53 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 ## 
 ##     Null deviance: 5104.3  on 5629  degrees of freedom
 ## Residual deviance: 4950.3  on 5628  degrees of freedom
-## AIC: 4954.3
+## AIC: 4954
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Noticeably this output does not include an <span class="math inline">\(R^2\)</span> value to asses model fit. Multiple “Pseudo <span class="math inline">\(R^2\)</span>s”, similar to the one used in OLS, have been developed. There are packages that return the <span class="math inline">\(R^2\)</span> given a logit model:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="supervised-learning.html#cb299-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;DescTools&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:car&#39;:
-## 
-##     Recode</code></pre>
-<pre><code>## The following objects are masked from &#39;package:psych&#39;:
-## 
-##     AUC, ICC, SD</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="supervised-learning.html#cb303-1" tabindex="-1"></a><span class="fu">PseudoR2</span>(logit_model, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)  <span class="co"># you can also use &#39;McFadden&#39;, &#39;McFaddenAdj&#39;, &#39;Nagelkerke&#39;, &#39;AldrichNelson&#39;, &#39;VeallZimmermann&#39;, &#39;Efron&#39;, &#39;McKelveyZavoina&#39;, &#39;Tjur&#39;, &#39;all&#39;</span></span></code></pre></div>
-<pre><code>##   CoxSnell 
-## 0.02698672</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="supervised-learning.html#cb293-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb293-2"><a href="supervised-learning.html#cb293-2" tabindex="-1"></a><span class="fu">PseudoR2</span>(logit_model, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)  <span class="co"># you can also use &#39;McFadden&#39;, &#39;McFaddenAdj&#39;, &#39;Nagelkerke&#39;, &#39;AldrichNelson&#39;, &#39;VeallZimmermann&#39;, &#39;Efron&#39;, &#39;McKelveyZavoina&#39;, &#39;Tjur&#39;, &#39;all&#39;</span></span></code></pre></div>
+<pre><code>## CoxSnell 
+##    0.027</code></pre>
 <p>The coefficients of the model give the change in the <a href="https://en.wikipedia.org/wiki/Odds#Statistical_usage">log odds</a> of the dependent variable due to a unit change in the regressor. This makes the exact interpretation of the coefficients difficult, but we can still interpret the signs and the p-values which will tell us if a variable has a significant positive or negative impact on the probability of the dependent variable being <span class="math inline">\(1\)</span>. In order to get the odds ratios we can simply take the exponent of the coefficients.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="supervised-learning.html#cb305-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(logit_model))</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="supervised-learning.html#cb295-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(logit_model))</span></code></pre></div>
 <pre><code>##    (Intercept) CashbackAmount 
-##      1.2090858      0.9895135</code></pre>
+##           1.21           0.99</code></pre>
 <p>This now gives the effect on the dependent variable: an additional dollar paid back as cash-back, on average, makes it <span class="math inline">\(0.99\)</span> time more likely (= by a constant factor of 0.99 = 1% less) for a customer to churn.</p>
 <p>Note: In some cases, depending on the scales, the coefficient can be extremely large (e.g., due to the fact that the variable is constrained to values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and the coefficients are for a unit change). We can make the “unit-change” interpretation more meaningful by multiplying the variable by <span class="math inline">\(100\)</span>, thus changing its scale. This linear transformation does not affect the model fit or the p-values.</p>
 <p>We observe that cash-back negatively affects the likelihood of churning. To get the confidence intervals for the coefficients we can use the same function as with OLS.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="supervised-learning.html#cb307-1" tabindex="-1"></a><span class="fu">confint</span>(logit_model)</span></code></pre></div>
-<pre><code>##                      2.5 %       97.5 %
-## (Intercept)    -0.11399742  0.499958965
-## CashbackAmount -0.01240796 -0.008737915</code></pre>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="supervised-learning.html#cb297-1" tabindex="-1"></a><span class="fu">confint</span>(logit_model)</span></code></pre></div>
+<pre><code>##                 2.5 %  97.5 %
+## (Intercept)    -0.114  0.5000
+## CashbackAmount -0.012 -0.0087</code></pre>
 <p>To get the effect of an additional point at a specific value, we can calculate the odds ratio by predicting the probability at a value and at the value <span class="math inline">\(+1\)</span>. For example, if we are interested in how much more (or, in our case, less) likely a customer with cash-back value of 201 compared to 200 is to churn, we can simply calculate the following:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="supervised-learning.html#cb309-1" tabindex="-1"></a><span class="co"># Probability of churn with a cashback amount of</span></span>
-<span id="cb309-2"><a href="supervised-learning.html#cb309-2" tabindex="-1"></a><span class="co"># 200</span></span>
-<span id="cb309-3"><a href="supervised-learning.html#cb309-3" tabindex="-1"></a>prob_200 <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="sc">-</span><span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">1</span>,</span>
-<span id="cb309-4"><a href="supervised-learning.html#cb309-4" tabindex="-1"></a>    <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span></span>
-<span id="cb309-5"><a href="supervised-learning.html#cb309-5" tabindex="-1"></a>    <span class="dv">200</span>))</span>
-<span id="cb309-6"><a href="supervised-learning.html#cb309-6" tabindex="-1"></a>prob_200</span></code></pre></div>
-<pre><code>## [1] 0.1468252</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="supervised-learning.html#cb311-1" tabindex="-1"></a><span class="co"># Probability of churn with a cashback amount of</span></span>
-<span id="cb311-2"><a href="supervised-learning.html#cb311-2" tabindex="-1"></a><span class="co"># 201</span></span>
-<span id="cb311-3"><a href="supervised-learning.html#cb311-3" tabindex="-1"></a>prob_201 <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="sc">-</span><span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">1</span>,</span>
-<span id="cb311-4"><a href="supervised-learning.html#cb311-4" tabindex="-1"></a>    <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span></span>
-<span id="cb311-5"><a href="supervised-learning.html#cb311-5" tabindex="-1"></a>    <span class="dv">201</span>))</span>
-<span id="cb311-6"><a href="supervised-learning.html#cb311-6" tabindex="-1"></a>prob_201</span></code></pre></div>
-<pre><code>## [1] 0.1452855</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="supervised-learning.html#cb313-1" tabindex="-1"></a><span class="co"># Odds ratio</span></span>
-<span id="cb313-2"><a href="supervised-learning.html#cb313-2" tabindex="-1"></a>prob_201<span class="sc">/</span>prob_200</span></code></pre></div>
-<pre><code>## [1] 0.9895135</code></pre>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="supervised-learning.html#cb299-1" tabindex="-1"></a><span class="co"># Probability of churn with a cashback amount of</span></span>
+<span id="cb299-2"><a href="supervised-learning.html#cb299-2" tabindex="-1"></a><span class="co"># 200</span></span>
+<span id="cb299-3"><a href="supervised-learning.html#cb299-3" tabindex="-1"></a>prob_200 <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="sc">-</span><span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">1</span>,</span>
+<span id="cb299-4"><a href="supervised-learning.html#cb299-4" tabindex="-1"></a>    <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span></span>
+<span id="cb299-5"><a href="supervised-learning.html#cb299-5" tabindex="-1"></a>    <span class="dv">200</span>))</span>
+<span id="cb299-6"><a href="supervised-learning.html#cb299-6" tabindex="-1"></a>prob_200</span></code></pre></div>
+<pre><code>## [1] 0.15</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="supervised-learning.html#cb301-1" tabindex="-1"></a><span class="co"># Probability of churn with a cashback amount of</span></span>
+<span id="cb301-2"><a href="supervised-learning.html#cb301-2" tabindex="-1"></a><span class="co"># 201</span></span>
+<span id="cb301-3"><a href="supervised-learning.html#cb301-3" tabindex="-1"></a>prob_201 <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="sc">-</span><span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">1</span>,</span>
+<span id="cb301-4"><a href="supervised-learning.html#cb301-4" tabindex="-1"></a>    <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">summary</span>(logit_model)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">*</span></span>
+<span id="cb301-5"><a href="supervised-learning.html#cb301-5" tabindex="-1"></a>    <span class="dv">201</span>))</span>
+<span id="cb301-6"><a href="supervised-learning.html#cb301-6" tabindex="-1"></a>prob_201</span></code></pre></div>
+<pre><code>## [1] 0.15</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="supervised-learning.html#cb303-1" tabindex="-1"></a><span class="co"># Odds ratio</span></span>
+<span id="cb303-2"><a href="supervised-learning.html#cb303-2" tabindex="-1"></a>prob_201<span class="sc">/</span>prob_200</span></code></pre></div>
+<pre><code>## [1] 0.99</code></pre>
 <p>This is essentially what we got in the regression output earlier. So the odds are 1% lower at 201 than at 200 cash-back.</p>
 <div id="logistic-model-with-multiple-predictors" class="section level4 hasAnchor" number="6.2.3.1">
 <h4><span class="header-section-number">6.2.3.1</span> Logistic model with multiple predictors<a href="supervised-learning.html#logistic-model-with-multiple-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Of course we can also use multiple predictors in logistic regression as shown in the formula above. We might want to add order amount from last year, days since last order, warehouse-to-home distance, and order count.</p>
 <p>Again, the familiar formula interface can be used with the <code>glm()</code> function. All the model summaries shown above still work with multiple predictors.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="supervised-learning.html#cb315-1" tabindex="-1"></a>multiple_logit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> OrderAmountHikeFromlastYear <span class="sc">+</span></span>
-<span id="cb315-2"><a href="supervised-learning.html#cb315-2" tabindex="-1"></a>    DaySinceLastOrder <span class="sc">+</span> WarehouseToHome <span class="sc">+</span> OrderCount <span class="sc">+</span></span>
-<span id="cb315-3"><a href="supervised-learning.html#cb315-3" tabindex="-1"></a>    CashbackAmount, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>),</span>
-<span id="cb315-4"><a href="supervised-learning.html#cb315-4" tabindex="-1"></a>    <span class="at">data =</span> churn_data)</span>
-<span id="cb315-5"><a href="supervised-learning.html#cb315-5" tabindex="-1"></a><span class="fu">summary</span>(multiple_logit_model)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="supervised-learning.html#cb305-1" tabindex="-1"></a>multiple_logit_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> OrderAmountHikeFromlastYear <span class="sc">+</span></span>
+<span id="cb305-2"><a href="supervised-learning.html#cb305-2" tabindex="-1"></a>    DaySinceLastOrder <span class="sc">+</span> WarehouseToHome <span class="sc">+</span> OrderCount <span class="sc">+</span></span>
+<span id="cb305-3"><a href="supervised-learning.html#cb305-3" tabindex="-1"></a>    CashbackAmount, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>),</span>
+<span id="cb305-4"><a href="supervised-learning.html#cb305-4" tabindex="-1"></a>    <span class="at">data =</span> churn_data)</span>
+<span id="cb305-5"><a href="supervised-learning.html#cb305-5" tabindex="-1"></a><span class="fu">summary</span>(multiple_logit_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOrder + 
@@ -1600,13 +1636,13 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                              Estimate Std. Error z value             Pr(&gt;|z|)
-## (Intercept)                 -0.169157   0.282644  -0.598                0.550
-## OrderAmountHikeFromlastYear  0.006794   0.011039   0.615                0.538
-## DaySinceLastOrder           -0.160947   0.016668  -9.656 &lt; 0.0000000000000002
-## WarehouseToHome              0.024806   0.004585   5.410     0.00000006305629
-## OrderCount                   0.104213   0.019595   5.318     0.00000010466730
-## CashbackAmount              -0.009784   0.001405  -6.965     0.00000000000329
+##                             Estimate Std. Error z value             Pr(&gt;|z|)
+## (Intercept)                 -0.16916    0.28264   -0.60                 0.55
+## OrderAmountHikeFromlastYear  0.00679    0.01104    0.62                 0.54
+## DaySinceLastOrder           -0.16095    0.01667   -9.66 &lt; 0.0000000000000002
+## WarehouseToHome              0.02481    0.00459    5.41      0.0000000630563
+## OrderCount                   0.10421    0.01959    5.32      0.0000001046673
+## CashbackAmount              -0.00978    0.00140   -6.96      0.0000000000033
 ##                                
 ## (Intercept)                    
 ## OrderAmountHikeFromlastYear    
@@ -1625,36 +1661,36 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 ## AIC: 3954
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="supervised-learning.html#cb317-1" tabindex="-1"></a><span class="fu">PseudoR2</span>(multiple_logit_model, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)</span></code></pre></div>
-<pre><code>##   CoxSnell 
-## 0.04730121</code></pre>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="supervised-learning.html#cb307-1" tabindex="-1"></a><span class="fu">PseudoR2</span>(multiple_logit_model, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)</span></code></pre></div>
+<pre><code>## CoxSnell 
+##    0.047</code></pre>
 <p>Again, to properly interpret the coefficient, we extract odds ratio:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="supervised-learning.html#cb319-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(multiple_logit_model))</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="supervised-learning.html#cb309-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(multiple_logit_model))</span></code></pre></div>
 <pre><code>##                 (Intercept) OrderAmountHikeFromlastYear 
-##                   0.8443759                   1.0068175 
+##                        0.84                        1.01 
 ##           DaySinceLastOrder             WarehouseToHome 
-##                   0.8513374                   1.0251163 
+##                        0.85                        1.03 
 ##                  OrderCount              CashbackAmount 
-##                   1.1098369                   0.9902637</code></pre>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="supervised-learning.html#cb321-1" tabindex="-1"></a><span class="fu">confint</span>(multiple_logit_model)</span></code></pre></div>
+##                        1.11                        0.99</code></pre>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="supervised-learning.html#cb311-1" tabindex="-1"></a><span class="fu">confint</span>(multiple_logit_model)</span></code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
-<pre><code>##                                   2.5 %       97.5 %
-## (Intercept)                 -0.72038551  0.387836028
-## OrderAmountHikeFromlastYear -0.01497724  0.028311162
-## DaySinceLastOrder           -0.19401059 -0.128656705
-## WarehouseToHome              0.01585891  0.033828929
-## OrderCount                   0.06543606  0.142330681
-## CashbackAmount              -0.01258533 -0.007076521</code></pre>
+<pre><code>##                              2.5 %  97.5 %
+## (Intercept)                 -0.720  0.3878
+## OrderAmountHikeFromlastYear -0.015  0.0283
+## DaySinceLastOrder           -0.194 -0.1287
+## WarehouseToHome              0.016  0.0338
+## OrderCount                   0.065  0.1423
+## CashbackAmount              -0.013 -0.0071</code></pre>
 <p>We can see that such variables as warehouse-to-home distance and order count increase the probability of churn, while days since last order and cash-back value decrease it.</p>
 </div>
 <div id="model-selection" class="section level4 hasAnchor" number="6.2.3.2">
 <h4><span class="header-section-number">6.2.3.2</span> Model selection<a href="supervised-learning.html#model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The question remains, whether a variable <em>should</em> be added to the model. We will present two methods for model selection for logistic regression. The first is based on the <em>Akaike Information Criterium</em> (AIC). It is reported with the summary output for logit models. The value of the AIC is <strong>relative</strong>, meaning that it has no interpretation by itself. However, it can be used to compare and select models. The model with the lowest AIC value is the one that should be chosen. Note that the AIC does not indicate how well the model fits the data, but is merely used to compare models.</p>
 <p>For example, consider the following model, where we exclude the <code>order count</code> predictor. Seeing as it was able to contribute significantly to the explanatory power of the model, the AIC increases, indicating that the model including <code>order count</code> is better suited to explain the data. We always want the <em>lowest</em> possible AIC.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="supervised-learning.html#cb324-1" tabindex="-1"></a>multiple_logit_model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> OrderAmountHikeFromlastYear <span class="sc">+</span></span>
-<span id="cb324-2"><a href="supervised-learning.html#cb324-2" tabindex="-1"></a>    DaySinceLastOrder <span class="sc">+</span> WarehouseToHome <span class="sc">+</span> CashbackAmount,</span>
-<span id="cb324-3"><a href="supervised-learning.html#cb324-3" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="at">data =</span> churn_data)</span>
-<span id="cb324-4"><a href="supervised-learning.html#cb324-4" tabindex="-1"></a><span class="fu">summary</span>(multiple_logit_model2)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="supervised-learning.html#cb314-1" tabindex="-1"></a>multiple_logit_model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Churn <span class="sc">~</span> OrderAmountHikeFromlastYear <span class="sc">+</span></span>
+<span id="cb314-2"><a href="supervised-learning.html#cb314-2" tabindex="-1"></a>    DaySinceLastOrder <span class="sc">+</span> WarehouseToHome <span class="sc">+</span> CashbackAmount,</span>
+<span id="cb314-3"><a href="supervised-learning.html#cb314-3" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>), <span class="at">data =</span> churn_data)</span>
+<span id="cb314-4"><a href="supervised-learning.html#cb314-4" tabindex="-1"></a><span class="fu">summary</span>(multiple_logit_model2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOrder + 
@@ -1662,18 +1698,12 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 ##     data = churn_data)
 ## 
 ## Coefficients:
-##                              Estimate Std. Error z value             Pr(&gt;|z|)
-## (Intercept)                 -0.127976   0.265416  -0.482                0.630
-## OrderAmountHikeFromlastYear  0.002811   0.010917   0.258                0.797
-## DaySinceLastOrder           -0.113611   0.013903  -8.172 0.000000000000000304
-## WarehouseToHome              0.025559   0.004483   5.701 0.000000011924680833
-## CashbackAmount              -0.009119   0.001257  -7.254 0.000000000000403299
-##                                
-## (Intercept)                    
-## OrderAmountHikeFromlastYear    
-## DaySinceLastOrder           ***
-## WarehouseToHome             ***
-## CashbackAmount              ***
+##                             Estimate Std. Error z value           Pr(&gt;|z|)    
+## (Intercept)                 -0.12798    0.26542   -0.48               0.63    
+## OrderAmountHikeFromlastYear  0.00281    0.01092    0.26               0.80    
+## DaySinceLastOrder           -0.11361    0.01390   -8.17 0.0000000000000003 ***
+## WarehouseToHome              0.02556    0.00448    5.70 0.0000000119246808 ***
+## CashbackAmount              -0.00912    0.00126   -7.25 0.0000000000004033 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1682,23 +1712,23 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 ##     Null deviance: 4315.0  on 4806  degrees of freedom
 ## Residual deviance: 4100.4  on 4802  degrees of freedom
 ##   (823 observations deleted due to missingness)
-## AIC: 4110.4
+## AIC: 4110
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>As a second measure for variable selection, you can use the pseudo <span class="math inline">\(R^2\)</span>s as shown above. The fit is worse according to all three values presented here, when excluding the order count.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="supervised-learning.html#cb326-1" tabindex="-1"></a><span class="fu">PseudoR2</span>(multiple_logit_model2, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)</span></code></pre></div>
-<pre><code>##   CoxSnell 
-## 0.04366534</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="supervised-learning.html#cb316-1" tabindex="-1"></a><span class="fu">PseudoR2</span>(multiple_logit_model2, <span class="at">which =</span> <span class="st">&quot;CoxSnell&quot;</span>)</span></code></pre></div>
+<pre><code>## CoxSnell 
+##    0.044</code></pre>
 </div>
 <div id="predictions" class="section level4 hasAnchor" number="6.2.3.3">
 <h4><span class="header-section-number">6.2.3.3</span> Predictions<a href="supervised-learning.html#predictions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can predict the probability given an observation using the <code>predict(my_logit, newdata = ..., type = "response")</code> function. Replace <code>...</code> with the observed values for which you would like to predict the outcome variable.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="supervised-learning.html#cb328-1" tabindex="-1"></a><span class="co"># Prediction for one observation</span></span>
-<span id="cb328-2"><a href="supervised-learning.html#cb328-2" tabindex="-1"></a><span class="fu">predict</span>(multiple_logit_model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">OrderAmountHikeFromlastYear =</span> <span class="dv">5</span>,</span>
-<span id="cb328-3"><a href="supervised-learning.html#cb328-3" tabindex="-1"></a>    <span class="at">DaySinceLastOrder =</span> <span class="dv">30</span>, <span class="at">WarehouseToHome =</span> <span class="dv">10</span>, <span class="at">OrderCount =</span> <span class="dv">10</span>,</span>
-<span id="cb328-4"><a href="supervised-learning.html#cb328-4" tabindex="-1"></a>    <span class="at">CashbackAmount =</span> <span class="dv">300</span>), <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
-<pre><code>##           1 
-## 0.001346917</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="supervised-learning.html#cb318-1" tabindex="-1"></a><span class="co"># Prediction for one observation</span></span>
+<span id="cb318-2"><a href="supervised-learning.html#cb318-2" tabindex="-1"></a><span class="fu">predict</span>(multiple_logit_model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">OrderAmountHikeFromlastYear =</span> <span class="dv">5</span>,</span>
+<span id="cb318-3"><a href="supervised-learning.html#cb318-3" tabindex="-1"></a>    <span class="at">DaySinceLastOrder =</span> <span class="dv">30</span>, <span class="at">WarehouseToHome =</span> <span class="dv">10</span>, <span class="at">OrderCount =</span> <span class="dv">10</span>,</span>
+<span id="cb318-4"><a href="supervised-learning.html#cb318-4" tabindex="-1"></a>    <span class="at">CashbackAmount =</span> <span class="dv">300</span>), <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>##      1 
+## 0.0013</code></pre>
 <p>The prediction indicates that a customer who made <span class="math inline">\(5\)</span> orders last year, <span class="math inline">\(10\)</span> orders in total, last order happened <span class="math inline">\(30\)</span> days ago, warehouse-to-home distance is 10 km, and cash-back amount is 300 dollars, has a tiny (<span class="math inline">\(0.2\%\)</span> chance of churning.</p>
 </div>
 </div>
