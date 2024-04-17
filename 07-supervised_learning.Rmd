@@ -332,20 +332,20 @@ ggplot(regression1, aes(x = price_ounce,y = move_ounce)) +
 The estimation of the regression function is based on the idea of the method of least squares (OLS = ordinary least squares). The first step is to calculate the residuals by subtracting the observed values from the predicted values.
 
 <p style="text-align:center;">
-$e_i = Y_i-(\beta_0+\beta_1X_i)$
+$e_i = Y_i-(\hat{\beta_0}+\hat{\beta_1}X_i)$
 </p>
 
 This difference is then minimized by minimizing the sum of the squared residuals:
 
 \begin{equation} 
-\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\beta_0+\beta_1X_i)]^2\rightarrow min!
+\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\hat{\beta_0}+\hat{\beta_1X_i)}]^2\rightarrow min!
 (\#eq:rss)
 \end{equation} 
 
 e<sub>i</sub>: Residuals (i = 1,2,...,N)<br>
 Y<sub>i</sub>: Values of the dependent variable (i = 1,2,...,N) <br>
-&beta;<sub>0</sub>: Intercept<br>
-&beta;<sub>1</sub>: Regression coefficient / slope parameters<br>
+&\hat{beta;<sub>0</sub>}: Intercept<br>
+&\hat{beta;<sub>1</sub>}: Regression coefficient / slope parameters<br>
 X<sub>ni</sub>: Values of the nth independent variables and the i*th* observation<br>
 N: Number of observations<br>
 

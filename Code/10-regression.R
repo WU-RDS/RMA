@@ -145,6 +145,8 @@ ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) +
   labs(x = "Price", y = "Sales") + 
   theme_minimal()
 
+plot(sales_reg, 1) # residuals plot of the original regression. note the deviation from the dotted line
+
 # Sales per week 
 ggplot(data = regression, aes(week, log(move_ounce))) + 
   geom_line(color = "forestgreen") + labs(x = "Week", y = "Log-sales") +

@@ -752,17 +752,17 @@ Figure 6.1: Ordinary least squares (OLS)
 </div>
 <p>The estimation of the regression function is based on the idea of the method of least squares (OLS = ordinary least squares). The first step is to calculate the residuals by subtracting the observed values from the predicted values.</p>
 <p style="text-align:center;">
-<span class="math inline">\(e_i = Y_i-(\beta_0+\beta_1X_i)\)</span>
+<span class="math inline">\(e_i = Y_i-(\hat{\beta_0}+\hat{\beta_1}X_i)\)</span>
 </p>
 <p>This difference is then minimized by minimizing the sum of the squared residuals:</p>
 <p><span class="math display" id="eq:rss">\[\begin{equation}
-\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\beta_0+\beta_1X_i)]^2\rightarrow min!
+\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\hat{\beta_0}+\hat{\beta_1X_i)}]^2\rightarrow min!
 \tag{6.8}
 \end{equation}\]</span></p>
 <p>e<sub>i</sub>: Residuals (i = 1,2,…,N)<br>
 Y<sub>i</sub>: Values of the dependent variable (i = 1,2,…,N) <br>
-β<sub>0</sub>: Intercept<br>
-β<sub>1</sub>: Regression coefficient / slope parameters<br>
+&amp;: Intercept<br>
+&amp;: Regression coefficient / slope parameters<br>
 X<sub>ni</sub>: Values of the nth independent variables and the i<em>th</em> observation<br>
 N: Number of observations<br></p>
 <p>This is also referred to as the <b>residual sum of squares (RSS)</b>. Now we need to choose the values for β<sub>0</sub> and β<sub>1</sub> that minimize RSS. So how can we derive these values for the regression coefficient? The equation for β<sub>1</sub> is given by:</p>
@@ -1077,9 +1077,9 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 ## F-statistic: 8.92 on 3 and 216 DF,  p-value: 0.0000134</code></pre>
 <p>The interpretation of the coefficients is as follows:</p>
 <ul>
-<li>price (β<sub>1</sub>): when price increases by 1%, sales will change by -2.22%</li>
-<li>bonus buy (β<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.12%</li>
-<li>price reduction (β<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.03%</li>
+<li>price (β<sub>1</sub>): when price increases by 1%, sales will change by -2.221%</li>
+<li>bonus buy (β<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.123%</li>
+<li>price reduction (β<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.033%</li>
 </ul>
 <p>The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).</p>
 <p>Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>.</p>
@@ -1089,7 +1089,7 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 ## log(price_ounce) -3.22  -1.22
 ## sale_B           -0.17   0.42
 ## sale_S            0.62   5.44</code></pre>
-<p>What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for β<sub>3</sub>, the confidence interval is [0.62,5.44]. Thus, although we have computed a point estimate of 3.03 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the <code>ggstatsplot</code> package as follows:</p>
+<p>What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for β<sub>3</sub>, the confidence interval is [0.6229993,5.4421432]. Thus, although we have computed a point estimate of 3.033 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the <code>ggstatsplot</code> package as follows:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="supervised-learning.html#cb261-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
 <span id="cb261-2"><a href="supervised-learning.html#cb261-2" tabindex="-1"></a><span class="fu">ggcoefstats</span>(<span class="at">x =</span> multiple_sales_reg, <span class="at">title =</span> <span class="st">&quot;Sales predicted by price, bonus buy, and price reduction&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
@@ -1098,7 +1098,7 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 Figure 4.2: Confidence intervals for regression model
 </p>
 </div>
-<p>The output also tells us that 11.03% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the <code>predict()</code> function. So let’s create a new variable <code>yhat</code>, which contains those predicted values.</p>
+<p>The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the <code>predict()</code> function. So let’s create a new variable <code>yhat</code>, which contains those predicted values.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="supervised-learning.html#cb262-1" tabindex="-1"></a>regression<span class="sc">$</span>logmove_ounce_hat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(multiple_sales_reg)</span></code></pre></div>
 <p>We can now use this variable to plot the predicted values against the observed values. In the following plot, the model fit would be perfect if all points would fall on the diagonal line. The larger the distance between the points and the line, the worse the model fit. In other words, if all points would fall exactly on the diagonal line, the model would perfectly predict the observed values.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="supervised-learning.html#cb263-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> regression, <span class="fu">aes</span>(week, <span class="fu">log</span>(move_ounce))) <span class="sc">+</span></span>

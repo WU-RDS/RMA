@@ -494,20 +494,20 @@ We use the hat symbol, <sup>^</sup>, to denote the estimated value for an unknow
 The estimation of the regression function is based on the idea of the method of least squares (OLS = ordinary least squares). The first step is to calculate the residuals by subtracting the observed values from the predicted values.
 
 <p style="text-align:center;">
-$e_i = Y_i-(\beta_0+\beta_1X_i)$
+$e_i = Y_i-(\hat{\beta_0}+\hat{\beta_1}X_i)$
 </p>
 
 This difference is then minimized by minimizing the sum of the squared residuals:
 
 \begin{equation} 
-\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\beta_0+\beta_1X_i)]^2\rightarrow min!
+\sum_{i=1}^{N} e_i^2= \sum_{i=1}^{N} [Y_i-(\hat{\beta_0}+\hat{\beta_1X_i)}]^2\rightarrow min!
 (\#eq:rss)
 \end{equation} 
 
 e<sub>i</sub>: Residuals (i = 1,2,...,N)<br>
 Y<sub>i</sub>: Values of the dependent variable (i = 1,2,...,N) <br>
-&beta;<sub>0</sub>: Intercept<br>
-&beta;<sub>1</sub>: Regression coefficient / slope parameters<br>
+&\hat{beta;<sub>0</sub>}: Intercept<br>
+&\hat{beta;<sub>1</sub>}: Regression coefficient / slope parameters<br>
 X<sub>ni</sub>: Values of the nth independent variables and the i*th* observation<br>
 N: Number of observations<br>
 
@@ -989,9 +989,9 @@ summary(multiple_sales_reg)  #summary of results
 
 The interpretation of the coefficients is as follows: 
 
-* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.22%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.12%
-* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.03%
+* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.221%
+* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.123%
+* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.033%
 
 The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
@@ -1010,7 +1010,7 @@ confint(multiple_sales_reg)
 ## sale_S            0.62   5.44
 ```
 
-What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [0.62,5.44]. Thus, although we have computed a point estimate of 3.03 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
+What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [0.6229993,5.4421432]. Thus, although we have computed a point estimate of 3.033 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
 
 
 ```r
@@ -1023,7 +1023,7 @@ ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy
 <p class="caption">(\#fig:unnamed-chunk-33)Confidence intervals for regression model</p>
 </div>
 
-The output also tells us that 11.03% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
+The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
 
 
 ```r
