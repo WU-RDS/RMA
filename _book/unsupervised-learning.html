@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Unsupervised learning | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Unsupervised learning | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
@@ -54,8 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -1573,9 +1571,9 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <h2>Learning check<a href="unsupervised-learning.html#learning-check-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>(LC7.1) The goals of PCA are…</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />…to identify underlying dimensions that explain correlations among variables.</label></li>
+<li><label><input type="checkbox" checked="" />…to identify underlying dimensions that explain correlations among variables.</label></li>
 <li><label><input type="checkbox" />…to identify multiplicative effects in a linear regression.</label></li>
-<li><label><input type="checkbox" />…to identify a smaller set of uncorrelated variables.</label></li>
+<li><label><input type="checkbox" checked="" />…to identify a smaller set of uncorrelated variables.</label></li>
 <li><label><input type="checkbox" />…to identify interaction terms in a linear regression.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
@@ -1584,13 +1582,13 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <li><label><input type="checkbox" />A reduction greater than 50% of the input variables</label></li>
 <li><label><input type="checkbox" />Between a third and a fourth of the input variables</label></li>
 <li><label><input type="checkbox" />A reduction smaller than 50% of the input variables</label></li>
-<li><label><input type="checkbox" />None of the above</label></li>
+<li><label><input type="checkbox" checked="" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.3) What assumptions have to be fulfilled for using PCA?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />Variables must be in interval or ratio scale</label></li>
-<li><label><input type="checkbox" />Existence of some underlying factor structure</label></li>
-<li><label><input type="checkbox" />The correlation matrix must have sufficient number of correlations</label></li>
+<li><label><input type="checkbox" checked="" />Variables must be in interval or ratio scale</label></li>
+<li><label><input type="checkbox" checked="" />Existence of some underlying factor structure</label></li>
+<li><label><input type="checkbox" checked="" />The correlation matrix must have sufficient number of correlations</label></li>
 <li><label><input type="checkbox" />Variables must be measured using ordinal scales</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
@@ -1598,8 +1596,8 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <ul class="task-list">
 <li><label><input type="checkbox" />Regression coefficients</label></li>
 <li><label><input type="checkbox" />Correlations between the variables</label></li>
-<li><label><input type="checkbox" />Weights of a variable on a factor</label></li>
-<li><label><input type="checkbox" />Factor loadings</label></li>
+<li><label><input type="checkbox" checked="" />Weights of a variable on a factor</label></li>
+<li><label><input type="checkbox" checked="" />Factor loadings</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.5) What is the null hypothesis of the Bartlett’s test of sphericity?</strong></p>
@@ -1607,20 +1605,20 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <li><label><input type="checkbox" />All variables are correlated in the population</label></li>
 <li><label><input type="checkbox" />The correlation matrix is singular</label></li>
 <li><label><input type="checkbox" />All variables are uncorrelated in the population</label></li>
-<li><label><input type="checkbox" />The correlation matrix is an identity matrix</label></li>
+<li><label><input type="checkbox" checked="" />The correlation matrix is an identity matrix</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.6) Before conducting PCA, how can you test the sampling adequacy of your data (i.e., how suited your data is for Factor Analysis)?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />Kaiser-Meyer-Olkin (KMO) test with scores &lt;0.5</label></li>
-<li><label><input type="checkbox" />Kaiser-Meyer-Olkin (KMO) test with scores &gt;0.5</label></li>
+<li><label><input type="checkbox" checked="" />Kaiser-Meyer-Olkin (KMO) test with scores &gt;0.5</label></li>
 <li><label><input type="checkbox" />By inspecting the scree plot</label></li>
 <li><label><input type="checkbox" />Cronbach’s alpha test with scores &gt;0.7</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.7) What is communality?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />Proportion of common variance in a variable</label></li>
+<li><label><input type="checkbox" checked="" />Proportion of common variance in a variable</label></li>
 <li><label><input type="checkbox" />Variance that is unique to a particular variable</label></li>
 <li><label><input type="checkbox" />Proportion of unique variance in a variable</label></li>
 <li><label><input type="checkbox" />Covariance between two factors</label></li>
@@ -1629,13 +1627,13 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <p><strong>(LC7.8) Orthogonal factor rotation assumes:</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />Inter-correlated factors</label></li>
-<li><label><input type="checkbox" />Uncorrelated factors</label></li>
+<li><label><input type="checkbox" checked="" />Uncorrelated factors</label></li>
 <li><label><input type="checkbox" />Outer-correlated factors</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.9) Imagine you want to conduct a PCA on 10 variables without factor rotation and in a first step, you wish to find out how many components you should extract. How would the corresponding R Code look?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" /><code>principal(data, nfactors = 10, rotate = "none")</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>principal(data, nfactors = 10, rotate = "none")</code></label></li>
 <li><label><input type="checkbox" /><code>principal(data, nfactors = “varimax”, rotate = 10)</code></label></li>
 <li><label><input type="checkbox" /><code>principal(data, nfactors = 10, rotate = "oblimin")</code></label></li>
 <li><label><input type="checkbox" /><code>principal(data, nfactors = 10, rotate = "varimax")</code></label></li>
@@ -1646,7 +1644,7 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <li><label><input type="checkbox" />1</label></li>
 <li><label><input type="checkbox" />2</label></li>
 <li><label><input type="checkbox" />3</label></li>
-<li><label><input type="checkbox" />4</label></li>
+<li><label><input type="checkbox" checked="" />4</label></li>
 <li><label><input type="checkbox" />5</label></li>
 <li><label><input type="checkbox" />15</label></li>
 <li><label><input type="checkbox" />23</label></li>
@@ -1655,24 +1653,24 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <p><strong>(LC7.11) Which of the following statements regarding cluster analysis are TRUE?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />The goal is to reduce the number of columns in a data set</label></li>
-<li><label><input type="checkbox" />The goal is to reduce the number of rows in a data set</label></li>
+<li><label><input type="checkbox" checked="" />The goal is to reduce the number of rows in a data set</label></li>
 <li><label><input type="checkbox" />H-Means is a popular clustering method</label></li>
 <li><label><input type="checkbox" />The goal is to establish a relationship between a dependent variable and an independent variable</label></li>
-<li><label><input type="checkbox" />The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters</label></li>
-<li><label><input type="checkbox" />It is an unsupervised learning method</label></li>
+<li><label><input type="checkbox" checked="" />The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters</label></li>
+<li><label><input type="checkbox" checked="" />It is an unsupervised learning method</label></li>
 </ul>
 <p><strong>(LC7.12) What is the main objective of k-means clustering in data analysis?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />To find the best-fitting linear regression model.</label></li>
 <li><label><input type="checkbox" />To identify underlying factors that explain correlations among variables.</label></li>
-<li><label><input type="checkbox" />To partition data into clusters based on similarity.</label></li>
+<li><label><input type="checkbox" checked="" />To partition data into clusters based on similarity.</label></li>
 <li><label><input type="checkbox" />To calculate the correlation between variables.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC7.13) In the k-means algorithm, what does “k” represent?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />The number of variables in the dataset.</label></li>
-<li><label><input type="checkbox" />The number of clusters to be formed.</label></li>
+<li><label><input type="checkbox" checked="" />The number of clusters to be formed.</label></li>
 <li><label><input type="checkbox" />The number of iterations to converge.</label></li>
 <li><label><input type="checkbox" />The number of outliers in the data.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
@@ -1680,7 +1678,7 @@ Let’s try it out on customer data. In order to perform clustering we first hav
 <p><strong>(LC7.14) What is the primary limitation of the k-means clustering algorithm?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />It is computationally expensive.</label></li>
-<li><label><input type="checkbox" />It requires specifying the number of clusters in advance.</label></li>
+<li><label><input type="checkbox" checked="" />It requires specifying the number of clusters in advance.</label></li>
 <li><label><input type="checkbox" />It cannot handle categorical data.</label></li>
 <li><label><input type="checkbox" />It always produces spherical clusters.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>

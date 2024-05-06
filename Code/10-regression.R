@@ -14,6 +14,7 @@ lapply(req_packages, install.packages)
 
 #set options
 options(scipen = 999, digits = 8) 
+library(tidyverse)
 
 # Create data set
 library(psych)
@@ -208,6 +209,11 @@ ggplot(regression, aes(x = yhat, y = log(move_ounce))) +
   geom_abline(intercept = 0, slope = 1) +
   theme_bw()
 
+# Added variable plots
+library(car) 
+avPlots(multiple_sales_reg, layout = c(1,3))
+
+
 # Plot model fit for bivariate model (predicted vs. observed values)
 regression$yhat_1 <- predict(sales_reg)
 ggplot(regression, aes(x = yhat_1, y = log(move_ounce))) +  
@@ -217,24 +223,19 @@ ggplot(regression, aes(x = yhat_1, y = log(move_ounce))) +
   geom_abline(intercept = 0, slope = 1) +
   theme_bw()
 
-# Model comparison 
-## ------------------------------------------------------------------------
-non_linear_reg$pred_lin_reg <- predict(linear_reg)
-non_linear_reg$pred_log_reg <- predict(log_reg)
-ggplot(data = non_linear_reg) +
-  geom_point(aes(x = advertising, y = sales),shape=1) + 
-  geom_line(data = non_linear_reg,aes(x=advertising,y=pred_lin_reg),color="blue", size=1.05) + 
-  geom_line(data = non_linear_reg,aes(x=advertising,y=exp(pred_log_reg)),color="red", size=1.05) + theme_bw()
 
-# Making predictions
-advertising <- 1000
-pred <- exp(log_reg$coefficients[1] + log_reg$coefficients[2]*log(advertising))
-pred
+## Making predictions: log-log edition
+prediction_mult <- exp(summary(multiple_sales_reg)$coefficients[1,1] + # intercept
+  summary(multiple_sales_reg)$coefficients[2,1]*log(2) + 
+  summary(multiple_sales_reg)$coefficients[3,1]*0.05 +
+  summary(multiple_sales_reg)$coefficients[4,1]*0.10)
+prediction_mult # sales volume
 
-# Added variable plots
-library(car) 
-avPlots(multiple_sales_reg)
-
+prediction_percentage <- summary(multiple_sales_reg)$coefficients[1,1] + # intercept
+                         summary(multiple_sales_reg)$coefficients[2,1]*log(1) + 
+                         summary(multiple_sales_reg)$coefficients[3,1]*0.01 +
+                         summary(multiple_sales_reg)$coefficients[4,1]*0.01
+prediction_percentage # percentage increase of sales volume (1% increase in each variable)
 
 
 #-------------------------------------------------------------------#
@@ -279,19 +280,35 @@ stargazer(multiple_regression_new, multiple_regression_ext, type = "text",ci = T
 #------------------------Interaction Effects------------------------#
 #-------------------------------------------------------------------#
 
-# Categorical x continuous
 ggplot(categories, aes(price_ounce, move_ounce, colour = brand)) +
   geom_point() + 
   geom_smooth(method = "lm", alpha = 0.1) + 
   labs(x = "Price ($ per oz)", y = "Sales (oz)", colour = "brand") + 
   theme_minimal()
 
-multiple_regression_cat_con <- lm(move_ounce ~ price_ounce + brand + price_ounce:brand, data = categories) 
-summary(multiple_regression_cat_con)
 
-# Continuous x continuous
-multiple_regression_con_con <- lm(move_ounce ~ price_ounce + sale_B + sale_S + price_ounce:sale_B, data = categories)
+# Categorical x continuous: store x price
+multiple_regression_cat_con <- lm(move_ounce ~ price_ounce + price_ounce:store, data = categories) 
+summary(multiple_regression_cat_con)
+# price_ounce MAIN effect tells you the effect of price for the reference group (here: ref. store - 98) that has the factor level zero. 
+# In our example, it is the advertising effect for local artist. 
+# This means that for store 98, increasing the price by $1 will result in -155,707.58 oz sales. 
+# The interaction effect tells you by how much the effect differs for the other group (i.e., store 100) + significance. 
+# Here it means that the effect for store 100 can be computed as: (-155,707.58) + (16,278.71) = -139,428.87
+# This means that for store 100, increasing the price by $1 will result in -139,428.87 oz sales. 
+# Since the interaction effect is significant (p < 0.05) we can conclude that price is slightly less important in store 100.
+
+# Note that you can essentially do quasi interaction analysis by subsetting data frame (filter by brand, store, etc.). 
+# Remember that the coefficient will be different in comparison to the previous one due to the change in sample (= new data)!
+data_subset <- categories %>% filter(store == 100)
+regression_cat_con_subset <- lm(move_ounce ~ price_ounce, data = data_subset) 
+summary(regression_cat_con_subset)
+
+# Continuous x continuous: price x discount
+multiple_regression_con_con <- lm(move_ounce ~ price_ounce + sale_S + price_ounce:sale_S, data = categories)
 summary(multiple_regression_con_con) 
+# we can interpret the beta for price:discount as the increase in the importance (~effectiveness) 
+# of pricing for a one unit increase in discount (or vice versa).
 
 
 
@@ -341,7 +358,7 @@ confint(logit_model)
 
 #Overall model test
 llh_ratio <- logit_model$null.deviance-logit_model$deviance
-llh_ratio
+llh_ratio # Chi Squared test statistic
 library(lmtest)
 lrtest(logit_model)
 
@@ -361,11 +378,12 @@ multiple_logit_model <- glm(Churn ~ OrderAmountHikeFromlastYear + DaySinceLastOr
                               WarehouseToHome + OrderCount + CashbackAmount, 
                             family = binomial(link = 'logit'), data = churn_data)
 summary(multiple_logit_model)
+lrtest(multiple_logit_model)
 PseudoR2(multiple_logit_model, which = "CoxSnell")
 exp(coef(multiple_logit_model))
 confint(multiple_logit_model)
 
 
-predict(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5, DaySinceLastOrder = 30,
+predict.glm(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5, DaySinceLastOrder = 30,
                                                    WarehouseToHome = 10, OrderCount = 10, CashbackAmount = 300), 
-        type = "response")
+        type = "response") # exact interpretation

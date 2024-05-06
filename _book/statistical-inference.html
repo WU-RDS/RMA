@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Statistical inference | Retail Marketing Analytics 2024</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Statistical inference | Retail Marketing Analytics 2024" />
   <meta property="og:type" content="book" />
@@ -54,8 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -699,7 +697,7 @@ CI_{upper} = {\bar x} + t_{1-{\alpha \over 2}} * SE_{\bar x}
 <h2>Learning check<a href="statistical-inference.html#learning-check-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>(LC5.1) What is the correct interpretation of a confidence interval for a significance level of <span class="math inline">\(\alpha\)</span>=0.05?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.</label></li>
+<li><label><input type="checkbox" checked="" />If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.</label></li>
 <li><label><input type="checkbox" />If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 5% of these intervals.</label></li>
 <li><label><input type="checkbox" />If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 100% of these intervals.</label></li>
 <li><label><input type="checkbox" />For a given sample, there is a 95% chance that the true population mean lies within the confidence interval.</label></li>
@@ -707,25 +705,25 @@ CI_{upper} = {\bar x} + t_{1-{\alpha \over 2}} * SE_{\bar x}
 <p><strong>(LC5.2) Which statements regarding standard error are TRUE?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />There is no connection between the standard deviation and the standard error.</label></li>
-<li><label><input type="checkbox" />The standard error is a function of the sample size and the standard deviation.</label></li>
-<li><label><input type="checkbox" />The standard error of the mean decreases as the sample size increases.</label></li>
-<li><label><input type="checkbox" />The standard error of the mean increases as the standard deviation increases.</label></li>
+<li><label><input type="checkbox" checked="" />The standard error is a function of the sample size and the standard deviation.</label></li>
+<li><label><input type="checkbox" checked="" />The standard error of the mean decreases as the sample size increases.</label></li>
+<li><label><input type="checkbox" checked="" />The standard error of the mean increases as the standard deviation increases.</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC5.3) What is the correct definition for the standard error (<span class="math inline">\(SE_{\bar x}\)</span>)?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" /><span class="math inline">\({s \over \sqrt{n}}\)</span></label></li>
+<li><label><input type="checkbox" checked="" /><span class="math inline">\({s \over \sqrt{n}}\)</span></label></li>
 <li><label><input type="checkbox" /><span class="math inline">\({s * \sqrt{n}}\)</span></label></li>
-<li><label><input type="checkbox" /><span class="math inline">\({\sqrt{s^2} \over \sqrt{n}}\)</span></label></li>
+<li><label><input type="checkbox" checked="" /><span class="math inline">\({\sqrt{s^2} \over \sqrt{n}}\)</span></label></li>
 <li><label><input type="checkbox" /><span class="math inline">\({\sqrt{s} \over n}\)</span></label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC5.4) Which of the following do you need to compute a confidence interval around a sample mean?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />The critical value of the test statistic given a certain level of confidence</label></li>
-<li><label><input type="checkbox" />A continuous variable (i.e., at least measured at the interval level)</label></li>
-<li><label><input type="checkbox" />The sample the mean</label></li>
-<li><label><input type="checkbox" />The standard error</label></li>
+<li><label><input type="checkbox" checked="" />The critical value of the test statistic given a certain level of confidence</label></li>
+<li><label><input type="checkbox" checked="" />A continuous variable (i.e., at least measured at the interval level)</label></li>
+<li><label><input type="checkbox" checked="" />The sample the mean</label></li>
+<li><label><input type="checkbox" checked="" />The standard error</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC5.5) What is the correct definition for the confidence interval?</strong></p>
@@ -733,13 +731,13 @@ CI_{upper} = {\bar x} + t_{1-{\alpha \over 2}} * SE_{\bar x}
 <li><label><input type="checkbox" /><span class="math inline">\(CI=\bar{x} \pm \frac{z_{1-\frac{a}{n}}}{\sigma_{\bar{x}}}\)</span></label></li>
 <li><label><input type="checkbox" /><span class="math inline">\(CI=\bar{x} * z_{1-\frac{a}{n}}*\sigma_{\bar{x}}\)</span></label></li>
 <li><label><input type="checkbox" /><span class="math inline">\(CI= z_{1-\frac{a}{n}}*\sigma_{\bar{x}}-\bar{x}\)</span></label></li>
-<li><label><input type="checkbox" /><span class="math inline">\(CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}\)</span></label></li>
+<li><label><input type="checkbox" checked="" /><span class="math inline">\(CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}\)</span></label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><em>As a marketing manager at Spotify you wish to find the average listening time of your users. Based on a random sample of 180 users you found that the mean listening time for the sample is 7.34 hours per week and the standard deviation is 6.87 hours.</em></p>
 <p><strong>(LC5.6) What is the 95% confidence interval for the mean listening time (the corresponding z-value for the 95% CI is 1.96)?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />[6.34;8.34]</label></li>
+<li><label><input type="checkbox" checked="" />[6.34;8.34]</label></li>
 <li><label><input type="checkbox" />[7.15;7.55]</label></li>
 <li><label><input type="checkbox" />[6.25;8.15]</label></li>
 <li><label><input type="checkbox" />[6.54;8.54]</label></li>
@@ -748,20 +746,20 @@ CI_{upper} = {\bar x} + t_{1-{\alpha \over 2}} * SE_{\bar x}
 <p><strong>(LC5.7) How can you compute the standardized variate of a variable X?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" /><span class="math inline">\(z = {s \over \sqrt{n}}\)</span></label></li>
-<li><label><input type="checkbox" /><span class="math inline">\(z = {X_i - \bar{X} \over s}\)</span></label></li>
+<li><label><input type="checkbox" checked="" /><span class="math inline">\(z = {X_i - \bar{X} \over s}\)</span></label></li>
 <li><label><input type="checkbox" /><span class="math inline">\(z = {s \over X_i-\bar{X}}\)</span></label></li>
 <li><label><input type="checkbox" />$z = s * (X_i-{X}) $</label></li>
 </ul>
 <p><strong>(LC5.8) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />1.960</label></li>
+<li><label><input type="checkbox" checked="" />1.960</label></li>
 <li><label><input type="checkbox" />1.645</label></li>
 <li><label><input type="checkbox" />2.580</label></li>
 <li><label><input type="checkbox" />3.210</label></li>
 </ul>
 <p><strong>(LC5.9) The Null Hypothesis (<span class="math inline">\(H_0\)</span>) is a statement of:</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />The status-quo/no effect</label></li>
+<li><label><input type="checkbox" checked="" />The status-quo/no effect</label></li>
 <li><label><input type="checkbox" />The desired status</label></li>
 <li><label><input type="checkbox" />The expected status</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
@@ -769,24 +767,24 @@ CI_{upper} = {\bar x} + t_{1-{\alpha \over 2}} * SE_{\bar x}
 <p><strong>(LC5.10) Which statements about the Null Hypothesis (<span class="math inline">\(H_0\)</span>) are TRUE?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />In scientific research, the goal is usually to confirm it</label></li>
-<li><label><input type="checkbox" />In scientific research, the goal is usually to reject it</label></li>
+<li><label><input type="checkbox" checked="" />In scientific research, the goal is usually to reject it</label></li>
 <li><label><input type="checkbox" />It can be confirmed with one test</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
 <p><strong>(LC5.11) In which setting would you reject the null hypothesis when conducting a statistical test?</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox" />When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
-<li><label><input type="checkbox" />When the p-value is smaller than your specified significance level (e.g., 0.05)</label></li>
-<li><label><input type="checkbox" />When the confidence interval associated with the test does not contain zero</label></li>
+<li><label><input type="checkbox" checked="" />When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
+<li><label><input type="checkbox" checked="" />When the p-value is smaller than your specified significance level (e.g., 0.05)</label></li>
+<li><label><input type="checkbox" checked="" />When the confidence interval associated with the test does not contain the value suggested by the null hypothesis</label></li>
 <li><label><input type="checkbox" />When the test-statistic (e.g., t-value) is lower than the critical value of the test statistic at your specified significance level (e.g., 0.05)</label></li>
 <li><label><input type="checkbox" />None of the above</label></li>
 </ul>
-<p><strong>(LC5.12) What does a significant test result tell you?</strong></p>
+<p><strong>(LC6.8) What does a significant test result tell you?</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox" />The importance of an effect</label></li>
 <li><label><input type="checkbox" />That the null hypothesis is false</label></li>
 <li><label><input type="checkbox" />That the null hypothesis is true</label></li>
-<li><label><input type="checkbox" />None of the above</label></li>
+<li><label><input type="checkbox" checked="" />None of the above</label></li>
 </ul>
 </div>
 <div id="references-2" class="section level2 unnumbered hasAnchor">

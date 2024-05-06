@@ -44,7 +44,7 @@ You will surely have come across various definitions of the term *Marketing* dur
 The corresponding marketing process can be depicted by as follows: 
 
 <div class="figure" style="text-align: center">
-<img src="./images/mr_process.JPG" alt="The marketing process Kotler & Armstrong (2009)" width="90%" />
+<img src="./images/mr_process.JPG" alt="The marketing process Kotler &amp; Armstrong (2009)" width="90%" />
 <p class="caption">(\#fig:unnamed-chunk-2)The marketing process Kotler & Armstrong (2009)</p>
 </div>
 
@@ -118,23 +118,23 @@ One of the most important aspects you need to reflect on when choosing an approp
    <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Will behavioral targeting in online advertising increase, on average, the probability of purchasing from our store within the next month? </td>
   </tr>
   <tr>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: #E0E0E0 !important;"> Data </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: #E0E0E0 !important;"> <b>Features</b>: user characteristics (age, gender, location, ...), product characteristics of visited pages, ...; </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: #E0E0E0 !important;"> <b>Output</b>: making a purchases within the next month<br>
-              <b>Inputs</b>: age, gender, frequency of past purchases, recency of last purchases, monetary value of past purchases, past ad exposures, ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: #E0E0E0 !important;"> <b>Outcome</b>: making a purchases within the next month<br>
-              <b>Treatment</b>: initiation of targeting campaign<br>
-              <b>Confounders</b>: for non-experimental settings (interest in product category, eligibility criteria used for targeting ...) </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> Data </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> &lt;b&gt;Features&lt;/b&gt;: user characteristics (age, gender, location, ...), product characteristics of visited pages, ...; </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> &lt;b&gt;Output&lt;/b&gt;: making a purchases within the next month&lt;br&gt;
+              &lt;b&gt;Inputs&lt;/b&gt;: age, gender, frequency of past purchases, recency of last purchases, monetary value of past purchases, past ad exposures, ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> |&lt;b&gt;Outcome&lt;/b&gt;: making a purchases within the next month&lt;br&gt;
+              &lt;b&gt;Treatment&lt;/b&gt;: initiation of targeting campaign&lt;br&gt;
+              &lt;b&gt;Confounders&lt;/b&gt;: for non-experimental settings (interest in product category, eligibility criteria used for targeting .. </td>
   </tr>
   <tr>
    <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Example of analytics </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Cluster Anaylsis <br> ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Regression<br>Decision trees<br>Random forests<br>Support vector machines<br>Neural networks<br> ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Experiments with random assignment<br>
-              Regression<br>
-              Instrumental variables<br>
-              Regression discontinuity<br>
-              Difference-in-differences<br>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Cluster Anaylsis &lt;br&gt; ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Regression&lt;br&gt;Decision trees&lt;br&gt;Random forests&lt;br&gt;Support vector machines&lt;br&gt;Neural networks&lt;br&gt; ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Experiments with random assignment&lt;br&gt;
+              Regression&lt;br&gt;
+              Instrumental variables&lt;br&gt;
+              Regression discontinuity&lt;br&gt;
+              Difference-in-differences&lt;br&gt;
               ... </td>
   </tr>
 </tbody>
@@ -327,7 +327,7 @@ Wlömert & Papies (2016) study a panel of music consumers by tracking their musi
 The main advantage of a longitudinal design is that it allows researcher to observe changes over time, which is particularly helpful for the identification of causal effects. Although the observational units self-select into the test and control conditions, it is often possible to account for unobserved individual-level differences by focusing on the change over time. A method that lends itself very well for this purpose is the difference-in-differences (DiD) estimator. Continuing with the example from above, imagine we would have only conducted one cross-sectional study at T2 (after the streaming service had been introduced to the market). As can be seen from the figure below, Spotify users spend, on average, more money on music products from other channels (CDs & downloads). However, you cannot conclude from this observation that Spotify *causes* them to spend more money on music from other channels. Rather, in the absence of random assignment, the users self-selected into the test and control conditions and it is likely that music enthusiasts (i.e., consumers with a high interest in music) started using the streaming service. The unobserved factor in this case is the 'interest in music products'.
 
 <div class="figure" style="text-align: center">
-<img src="./images/spotify_study.JPG" alt="Example of DID study design (Wlömert & Papies 2016)" width="70%" />
+<img src="./images/spotify_study.JPG" alt="Example of DID study design (Wlömert &amp; Papies 2016)" width="70%" />
 <p class="caption">(\#fig:unnamed-chunk-14)Example of DID study design (Wlömert & Papies 2016)</p>
 </div>
 The DiD estimator exploits the longitudinal dimension of the data and focuses on the change over time. This is shown in the following figure:  
@@ -533,29 +533,29 @@ After discussing all the steps in the research process up to the data collection
 
 **(LC1.1) Indicate the level of measurement of the following variables:**
 
-* Occupation of survey participants 
-* Willingness-to-pay for a product 
-* Your grade in the marketing research course (1, 2, 3, 4, 5)
-* Rank order of most important product attributes
-* Student registration number 
-* Gender of survey participants 
-* Consumer preferences measured on a 5-point Likert scale 
-* Mileage (kilometers per liter) a car gets 
-* Age of survey participants 
-* Temperature in °C 
-* Number of products sold 
+* Occupation of survey participants - nominal
+* Willingness-to-pay for a product - ratio
+* Your grade in the marketing research course (1, 2, 3, 4, 5) - ordinal
+* Rank order of most important product attributes - ordinal
+* Student registration number - nominal
+* Gender of survey participants - nominal
+* Consumer preferences measured on a 5-point Likert scale - ordinal (arguably interval)
+* Mileage (kilometers per liter) a car gets - ratio
+* Age of survey participants - ratio
+* Temperature in °C - interval
+* Number of products sold - ratio
 
 **(LC1.2) Which of the answers is correct? A nominal scale …**
 
 - [ ] …has an absolute zero point
 - [ ] …possesses all properties of an ordinal scale
-- [ ] …can have numerical values
-- [ ] …serves as a label to classify/categorize objects
+- [x] …can have numerical values
+- [x] …serves as a label to classify/categorize objects
 - [ ] None of the above 	
 
 **(LC1.3) Which of these statements regarding formative constructs are true?**
 
-- [ ] Indicators (items) measure the cause for the change of the not directly observable construct
+- [x] Indicators (items) measure the cause for the change of the not directly observable construct
 - [ ] Indicators (items) measure the effect of the change in a not directly observable construct
 - [ ] The indicators (items) of the scale should be highly correlated
 - [ ] Multi-item measurement is particularly important for the increase in the reliability of the measurement
@@ -566,17 +566,17 @@ After discussing all the steps in the research process up to the data collection
 - [ ] …the main concern is to generate predictions of future outcomes 
 - [ ] …the main concern is to maximize the explained variance
 - [ ] …observational research is the 'gold standard'
-- [ ] …randomization minimizes unsystematic variation
+- [x] …randomization minimizes unsystematic variation
 - [ ] None of the above 	
 
 **(LC1.5) True or false? Reliability refers to the consistency of a measurement.**
 
-- [ ] True 
+- [x] True 
 - [ ] False
 
 **(LC1.5) Using a between-subjects design, we ... **
 
-- [ ] ... manipulate the independent variable (treatment) using different persons for each group
+- [x] ... manipulate the independent variable (treatment) using different persons for each group
 - [ ] ... manipulate independent variable using the same participants for each group 
 - [ ] ... manipulate the dependent variable (treatment) using different persons for each group
 - [ ] ... manipulate dependent variable using the same participants for each group 
@@ -584,23 +584,23 @@ After discussing all the steps in the research process up to the data collection
 
 **(LC1.6) When conducting field experiments, the term crossover effect means ...**
 
-- [ ] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
+- [x] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
 - [ ] ... that a treated individual affects the outcomes for other untreated individuals  
 - [ ] ... that individuals can be part of both the test and the control condition
 - [ ] None of the above
 
 **(LC1.7) Conditions for causality are ...**
 
-- [ ] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
+- [x] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
 - [ ] ... random assignment of test units
-- [ ] ... the causing event must occur before the effect
-- [ ] ... absence of other possible causal factors
+- [x] ... the causing event must occur before the effect
+- [x] ... absence of other possible causal factors
 - [ ] None of the above
 
 **(LC1.8) The effect of the treatment on the treated in DID models can be written as ...**
 
 - [ ] $(Yt,pre - Yt,post) − (Yc,post - Yc,pre)$  
-- [ ] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
+- [x] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
 - [ ] $(Yt,pre - Yt,post) − (Yc,pre - Yc,post)$  
 - [ ] $(Yt,post - Yt,pre) − (Yc,pre - Yc,post)$  
 - [ ] None of the above
@@ -608,28 +608,28 @@ After discussing all the steps in the research process up to the data collection
 **(LC1.9) In predictive modeling tasks ...**
 
 - [ ] ... once major concern are unobserved confounders
-- [ ] ... one major concern is overfitting 
-- [ ] ... we primarily care about the predictive ability of the model  
+- [x] ... one major concern is overfitting 
+- [x] ... we primarily care about the predictive ability of the model  
 - [ ] ... we primarily care about causal effects 
 - [ ] None of the above
 
 **(LC1.10) True or false? For ordinal scales, the magnitude of difference between scale points is known**
 
 - [ ] True 
-- [ ] False
+- [x] False
 
 **(LC1.11) For which scale types is it meaningful to compute the mean?**
 
-- [ ] Ratio
+- [x] Ratio
 - [ ] Nominal
-- [ ] Interval  
+- [x] Interval  
 - [ ] Ordinal
 - [ ] None of the above
 
 **(LC1.12) In predictive modeling tasks …**
 
-- [ ] … we primarily care about the predictive ability of the model
-- [ ] … one major concern is overfitting
+- [x] … we primarily care about the predictive ability of the model
+- [x] … one major concern is overfitting
 - [ ] … we primarily care about causal effects 
 - [ ] … one major concern are unobserved confounders
 
