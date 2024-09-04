@@ -41,14 +41,14 @@ Daria Yudaeva
 
 ## Course structure {-}
 
-This course combines asynchronous teaching elements (e.g., texts and pre-recorded videos on this website) with synchronous elements (e.g., weekly in-person interactive sessions in the PC Lab). The syllabus consists of three main parts, as reflected by the structure of this website: 
+This course combines asynchronous teaching elements (e.g., lecture notes on this website) with synchronous elements (e.g., weekly in-person interactive sessions on campus). The syllabus consists of three main parts, as reflected by the structure of this website: 
 
 1. **Lecture notes**: the lecture part will explain the theory behind the concepts and methods and provide you with example applications using the statistical software R.
 2. **Individual assignments**: the individual assignments require you to apply the acquired knowledge to new data sets.
 3. **Group project**: in the group you will design and conduct your own market research project and transfer the knowledge to a real business setting.
 
 
-### Schedule {-}
+### Contents {-}
 
 #### In-person lecture {-}
 
@@ -144,7 +144,7 @@ The self-study format might pose challenges to the learning process because we c
 
 #### Individual assignments {-}
 
-There will be 3 individual assignments. These assignments need to be submitted in the [R Markdown format](https://rmarkdown.rstudio.com/) (see chapter 8) via Canvas. There will be an in-class session dedicated to the R Markdown reporting format, when the first homework is assigned. 
+There will be 2 individual assignments. These assignments need to be submitted in the [R Markdown format](https://rmarkdown.rstudio.com/) (see chapter 8) via Canvas. There will be an in-class session dedicated to the R Markdown reporting format, when the first homework is assigned. 
 
 <br>
 **Assignment schedule**
@@ -168,11 +168,6 @@ There will be 3 individual assignments. These assignments need to be submitted i
    <td style="text-align:left;"> TBA / see Canvas </td>
    <td style="text-align:left;"> TBA / see Canvas </td>
   </tr>
-  <tr>
-   <td style="text-align:left;"> Assignment 3: Unsupervised learning </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
-  </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
 <sup></sup> </td></tr></tfoot>
@@ -191,15 +186,15 @@ Again, please make sure that you have exhausted all other resources to solve a p
 
 Grading is based on the following components:
 
-* **Market research group project** (data analysis & reporting): **30%**
-* **Individual take-home computer exercises** (statistical analysis of data sets; 3 assignments accounting for 10% each: **30%**
+* **Market research group project** (data analysis & reporting): **40%**
+* **Individual take-home computer exercises** (statistical analysis of data sets; 2 assignments accounting for 10% each: **20%**
 * **Final online exam** (concepts & methods): **30%**
 * **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
 
-The **final exam** will take place online on **May 16, 2024 from 09:00 AM - 11:00 AM**. Details about the setup of the exam will be provided in the course. The exam covers questions about the concepts and methods (no coding) and I will provide example exams from the previous years to give you an idea about what type of questions you can expect.   
+The **final exam** will take place online on **December 12, 2024 from 08:00 AM - 09:20 AM**. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods (no coding) that we learn in this course; some sample questions from the previous years will be provided to you.   
 
-To ensure an equal contribution of group members for the group assignment, a **peer assessment** will be conducted among group members, which enters into the computation of the individual grades for the project. This means that the members of a group are required to assess other students regarding their relative contribution. 
+In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
 
 **To successfully pass this course, your weighted final grade needs to exceed 60%.**
 

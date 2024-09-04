@@ -67,7 +67,7 @@ The following video gives you an introduction to the R Studio interface.
 When analyzing data in R, you will access most of the functionalities by calling functions. A <b>function</b> is a piece of code written to carry out a specified task (e.g., the ```lm()```-function to run a linear regression). It may or may not accept arguments or parameters and it may or may not return one or more values. Functions are generally called like this:
 
 
-```r
+``` r
 function_name(arg1 = val1, arg2 = val2, ...)
 ```
 
@@ -75,7 +75,7 @@ To give you an example, let's use the built-in ```seq()```-function to generate 
 An important thing to note is that R is case-sensitive, meaning that ```Seq()``` and ```seq()``` are viewed as two different functions by R.
 
 
-```r
+``` r
 # <- this is a comment and is ignored by the R-interpreter
 seq(from = 1, to = 10) #creates sequence from 1 to 10
 ```
@@ -84,7 +84,7 @@ seq(from = 1, to = 10) #creates sequence from 1 to 10
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 seq(1,10) #same result
 ```
 
@@ -95,7 +95,7 @@ seq(1,10) #same result
 Note that if you specify the argument names, you may enter them in any order. However, if do not include the argument names you must adhere to the order that is specified for the respective function. 
 
 
-```r
+``` r
 seq(to = 10,from = 1) #produces desired results
 ```
 
@@ -103,7 +103,7 @@ seq(to = 10,from = 1) #produces desired results
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 seq(10,1) #produces reversed sequence
 ```
 
@@ -116,7 +116,7 @@ seq(10,1) #produces reversed sequence
 Most of the R functionalities are contained in distinct modules called <b>packages</b>. When R is installed, a small set of packages is also installed. For example, the Base R package contains the basic functions which let R function as a language: arithmetic, input/output, basic programming support, etc.. However, a large number of packages exist that contain specialized functions that will help you to achieve specific tasks. To access the functions outside the scope of the pre-installed packages, you have to install the package first using the ```install.packages()```-function. For example, to install the tidyverse package to manipulate data and create graphics, type in ```install.packages("tidyverse")```. Note that you only have to install a package once. After you have installed a package, you may load it to access its functionalities using the ```library()```-function. E.g., to load the tidyverse-package, type in ```library(tidyverse)```. 
 
 
-```r
+``` r
 # Only run for the first time:
 # install.packages("tidyverse")
 # Run to load package:
@@ -136,7 +136,7 @@ library("tidyverse")
 ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
-```r
+``` r
 # Now we can use functionality provided by "tidyverse"
 # We will see in the coming lectures how the following code works:
 ggplot(economics, aes(x = date, y = pop)) +

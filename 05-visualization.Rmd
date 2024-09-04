@@ -679,16 +679,16 @@ ggmap(de_map_g_str, extent = "device") +
 
 ## Learning check {-}
 
-**(LC4.1) For which data types is it meaningful to compute the mean?**
+**(LC2.1) For which data types is it meaningful to compute the mean?**
 
 - [ ] Nominal
 - [ ] Ordinal
-- [x] Interval
-- [x] Ratio
+- [ ] Interval
+- [ ] Ratio
 
-**(LC4.2) How can you compute the standardized variate of a variable X?**
+**(LC2.2) How can you compute the standardized variate of a variable X?**
 
-- [x] $Z=\frac{X_i-\bar{X}}{s}$
+- [ ] $Z=\frac{X_i-\bar{X}}{s}$
 - [ ] $Z=\frac{\bar{X}+X_i}{s}$
 - [ ] $Z=\frac{s}{\bar{X}+X_i}$
 - [ ] $Z=s*({\bar{X}+X_i)}$
@@ -700,82 +700,82 @@ ggmap(de_map_g_str, extent = "device") +
 head(mtcars,6)
 ```
 
-**(LC4.3) How could you add a new variable containing the z-scores of the variable 'mpg' in R?**
+**(LC2.3) How could you add a new variable containing the z-scores of the variable 'mpg' in R?**
 
 - [ ] `df$mpg_std <- zscore(df$mpg)`
 - [ ] `df$mpg_std <- stdv(df$mpg)`
 - [ ] `df$mpg_std <- std.scale(df$mpg)`
-- [x] `df$mpg_std <- scale(df$mpg)`
+- [ ] `df$mpg_std <- scale(df$mpg)`
 - [ ] None of the above 	
 
-**(LC4.4) How could you produce the below output?**
+**(LC2.4) How could you produce the below output?**
 
 ```{r,echo=FALSE,message=FALSE, warning=FALSE, error=FALSE}
 library(psych)
 as.data.frame(psych::describe(select(mtcars, hp, mpg, qsec)))
 ```
 
-- [x] `describe(select(mtcars, hp, mpg, qsec))`
+- [ ] `describe(select(mtcars, hp, mpg, qsec))`
 - [ ] `summary(select(mtcars, hp, mpg, qsec))`
 - [ ] `table(select(mtcars, hp, mpg, qsec))`
 - [ ] `str(select(mtcars, hp, mpg, qsec))`
 - [ ] None of the above 	
 
-**(LC4.5) The last column "carb" indicates the number of carburetors each model has. By using a function we got to know the number of car models that have a certain number carburetors. Which function helped us to obtain this information?** 
+**(LC2.5) The last column "carb" indicates the number of carburetors each model has. By using a function we got to know the number of car models that have a certain number carburetors. Which function helped us to obtain this information?** 
 
 ```{r,echo=FALSE}
 table(mtcars$carb)
 ```
 
 - [ ] `describe(mtcars$carb)`
-- [x] `table(mtcars$carb)`
+- [ ] `table(mtcars$carb)`
 - [ ] `str(mtcars$carb)`
 - [ ] `prop.table(mtcars$carb)`
 - [ ] None of the above 	
 
-**(LC4.6) What type of data can be meaningfully depicted in a scatter plot?**
+**(LC2.6) What type of data can be meaningfully depicted in a scatter plot?**
 
 - [ ] Two categorical variables
 - [ ] One categorical and one continuous variable
-- [x] Two continuous variables
+- [ ] Two continuous variables
 - [ ] One continuous variable
 - [ ] None of the above 	
 
-**(LC4.7) Which statement about the graph below is true?** 
+**(LC2.7) Which statement about the graph below is true?** 
 
 ```{r,echo=FALSE}
 hist(mtcars$mpg,xlab="miles per gallon", main="miles per gallon")
 ```
 
 - [ ] This is a bar chart
-- [x] This is a histogram
-- [x] It shows the frequency distribution of a continuous variable
+- [ ] This is a histogram
+- [ ] It shows the frequency distribution of a continuous variable
 - [ ] It shows the frequency distribution of a categorical variable
 - [ ] None of the above 	
 
-**(LC4.8) Which statement about the graph below is true?** 
+**(LC2.8) Which statement about the graph below is true?** 
 
 ```{r, echo=FALSE,strip.white=TRUE, out.width="50%"}
 boxplot(mtcars$mpg, outline = T, notch = F)
 ```
 
 - [ ] This is a bar chart
-- [x] 50% of observations are contained in the gray area
+- [ ] 50% of observations are contained in the gray area
 - [ ] The horizontal black line indicates the mean
-- [x] This is a boxplot
+- [ ] This is a boxplot
 - [ ] None of the above 	
 
-**(LC4.9) Which function can help you to save a graph made with `ggplot()`?** 
+**(LC2.9) Which function can help you to save a graph made with `ggplot()`?** 
 
-- [x] `ggsave()`
+- [ ] `ggsave()`
 - [ ] `write.plot()`
 - [ ] `save.plot()`
 - [ ] `export.plot()`
 
-**(LC4.10) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
+**(LC2.10) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
 
 - [ ] 1.645
-- [x] 1.960
+- [ ] 1.960
 - [ ] 2.580
 - [ ] 3.210
 - [ ] None of the above 	

@@ -1531,7 +1531,7 @@ table(cluster$Gender, cluster$cluster_num)
 We can use the `fviz_cluster` function from the `factoextra` library to get a partial picture. If there are more than 2 variables used for clustering, the package performs a PCA and uses the first two principal components for the visualization.
 
 
-```r
+``` r
 library(factoextra)
 fviz_cluster(kmeans_clusters, data = cluster_scale,
     palette = hcl.colors(2, palette = "Dynamic"), geom = "point",
@@ -1590,7 +1590,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 
 ## Learning check {-}
 
-**(LC7.1) The goals of PCA are...**
+**(LC6.1) The goals of PCA are...**
 
 - [x] ...to identify underlying dimensions that explain correlations among variables.
 - [ ] ...to identify multiplicative effects in a linear regression.
@@ -1598,14 +1598,14 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] ...to identify interaction terms in a linear regression.
 - [ ] None of the above 
 
-**(LC7.2) What are typical hypotheses in PCA concerning how many factors will emerge?**
+**(LC6.2) What are typical hypotheses in PCA concerning how many factors will emerge?**
 
 - [ ] A reduction greater than 50% of the input variables
 - [ ] Between a third and a fourth of the input variables
 - [ ] A reduction smaller than 50% of the input variables
 - [x] None of the above 
 
-**(LC7.3) What assumptions have to be fulfilled for using PCA?**
+**(LC6.3) What assumptions have to be fulfilled for using PCA?**
 
 - [x] Variables must be in interval or ratio scale
 - [x] Existence of some underlying factor structure
@@ -1613,7 +1613,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] Variables must be measured using ordinal scales
 - [ ] None of the above
 
-**(LC7.4) What is the correct interpretation of the b-values in the following mathematical representation concerning exploratory factor analysis (EFA)?** $Factor_i=b_1*Variable_1 + b_2*Variable_2+…+b_nVariable_n$
+**(LC6.4) What is the correct interpretation of the b-values in the following mathematical representation concerning exploratory factor analysis (EFA)?** $Factor_i=b_1*Variable_1 + b_2*Variable_2+…+b_nVariable_n$
 
 - [ ] Regression coefficients
 - [ ] Correlations between the variables
@@ -1621,7 +1621,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [x] Factor loadings
 - [ ] None of the above 
 
-**(LC7.5) What is the null hypothesis of the Bartlett’s test of sphericity?**
+**(LC6.5) What is the null hypothesis of the Bartlett’s test of sphericity?**
 
 - [ ] All variables are correlated in the population
 - [ ] The correlation matrix is singular
@@ -1629,7 +1629,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [x] The correlation matrix is an identity matrix
 - [ ] None of the above 
 
-**(LC7.6) Before conducting PCA, how can you test the sampling adequacy of your data (i.e., how suited your data is for Factor Analysis)?**
+**(LC6.6) Before conducting PCA, how can you test the sampling adequacy of your data (i.e., how suited your data is for Factor Analysis)?**
 
 - [ ] Kaiser-Meyer-Olkin (KMO) test with scores <0.5
 - [x] Kaiser-Meyer-Olkin (KMO) test with scores >0.5
@@ -1637,7 +1637,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] Cronbach's alpha test with scores >0.7
 - [ ] None of the above 
 
-**(LC7.7) What is communality?**
+**(LC6.7) What is communality?**
 
 - [x] Proportion of common variance in a variable
 - [ ] Variance that is unique to a particular variable
@@ -1645,14 +1645,14 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] Covariance between two factors
 - [ ] None of the above 
 
-**(LC7.8) Orthogonal factor rotation assumes:**
+**(LC6.8) Orthogonal factor rotation assumes:**
 
 - [ ] Inter-correlated factors
 - [x] Uncorrelated factors
 - [ ] Outer-correlated factors
 - [ ] None of the above 
 
-**(LC7.9) Imagine you want to conduct a PCA on 10 variables without factor rotation and in a first step, you wish to find out how many components you should extract. How would the corresponding R Code look?**
+**(LC6.9) Imagine you want to conduct a PCA on 10 variables without factor rotation and in a first step, you wish to find out how many components you should extract. How would the corresponding R Code look?**
 
 - [x] `principal(data, nfactors = 10, rotate = "none")`
 - [ ] `principal(data, nfactors = “varimax”, rotate = 10)`
@@ -1661,7 +1661,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] None of the above 
 
 
-**(LC7.10) How many factors should be extracted based on the Scree Plot and the Eigenvalues below?**
+**(LC6.10) How many factors should be extracted based on the Scree Plot and the Eigenvalues below?**
 
 - [ ] 1
 - [ ] 2
@@ -1673,7 +1673,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 
 <img src="./images/eigenvalues11.png" width="75%" style="display: block; margin: auto;" />
 
-**(LC7.11) Which of the following statements regarding cluster analysis are TRUE?**
+**(LC6.11) Which of the following statements regarding cluster analysis are TRUE?**
 
 - [ ] The goal is to reduce the number of columns in a data set
 - [x] The goal is to reduce the number of rows in a data set
@@ -1682,7 +1682,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [x] The goal is to group observations into clusters such that those in the same cluster are more “similar” than those of other clusters
 - [x] It is an unsupervised learning method
 
-**(LC7.12) What is the main objective of k-means clustering in data analysis?**
+**(LC6.12) What is the main objective of k-means clustering in data analysis?**
 
 - [ ] To find the best-fitting linear regression model.
 - [ ] To identify underlying factors that explain correlations among variables.
@@ -1690,7 +1690,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] To calculate the correlation between variables.
 - [ ] None of the above 
 
-**(LC7.13) In the k-means algorithm, what does "k" represent?**
+**(LC6.13) In the k-means algorithm, what does "k" represent?**
 
 - [ ] The number of variables in the dataset.
 - [x] The number of clusters to be formed.
@@ -1698,7 +1698,7 @@ ggplot(random_customers, aes(Annual_Income, Spending_Score,
 - [ ] The number of outliers in the data.
 - [ ] None of the above 
 
-**(LC7.14) What is the primary limitation of the k-means clustering algorithm?**
+**(LC6.14) What is the primary limitation of the k-means clustering algorithm?**
 
 - [ ] It is computationally expensive.
 - [x] It requires specifying the number of clusters in advance.

@@ -29,7 +29,6 @@ This quote underlines the high level of uncertainty marketing managers face rega
 * What type of research design is appropriate in which situation
 * The difference between correlation and causality
 * Which scales of measurement to use in which situation
-* The difference between validity and reliability
 
 ## Marketing foundations (recap)
 
@@ -119,23 +118,19 @@ One of the most important aspects you need to reflect on when choosing an approp
   </tr>
   <tr>
    <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> Data </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> &lt;b&gt;Features&lt;/b&gt;: user characteristics (age, gender, location, ...), product characteristics of visited pages, ...; </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> &lt;b&gt;Output&lt;/b&gt;: making a purchases within the next month&lt;br&gt;
-              &lt;b&gt;Inputs&lt;/b&gt;: age, gender, frequency of past purchases, recency of last purchases, monetary value of past purchases, past ad exposures, ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> |&lt;b&gt;Outcome&lt;/b&gt;: making a purchases within the next month&lt;br&gt;
-              &lt;b&gt;Treatment&lt;/b&gt;: initiation of targeting campaign&lt;br&gt;
-              &lt;b&gt;Confounders&lt;/b&gt;: for non-experimental settings (interest in product category, eligibility criteria used for targeting .. </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> Features: user characteristics (age, gender, location, ...), product characteristics of visited pages, ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> Output: making a purchases within the next month
+              Inputs: age, gender, frequency of past purchases, recency of last purchases, monetary value of past purchases, past ad exposures, ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: rgba(224, 224, 224, 255) !important;"> |Outcome: making a purchases within the next month
+              Treatment: initiation of targeting campaign
+              Confounders: for non-experimental settings (interest in product category, eligibility criteria used for targeting .. </td>
   </tr>
   <tr>
    <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Example of analytics </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Cluster Anaylsis &lt;br&gt; ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Regression&lt;br&gt;Decision trees&lt;br&gt;Random forests&lt;br&gt;Support vector machines&lt;br&gt;Neural networks&lt;br&gt; ... </td>
-   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Experiments with random assignment&lt;br&gt;
-              Regression&lt;br&gt;
-              Instrumental variables&lt;br&gt;
-              Regression discontinuity&lt;br&gt;
-              Difference-in-differences&lt;br&gt;
-              ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Cluster Anaylsis ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Regression; Decision trees; Random forests; Support vector machines; Neural networks ... </td>
+   <td style="text-align:left;width: 100; vertical-align: top !important;background-color: white !important;"> Experiments with random assignment
+              Regression; Instrumental variables; Regression discontinuity; Difference-in-differences </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -187,6 +182,7 @@ Once you have decided on the research design, the next step is to choose 1) the 
 #### Methods of data collection
 
 There are some standard ways of collecting data and two of them will be discussed here: 1) experimental research and 2) observational research. 
+
 
 ##### Experimental research
 
@@ -306,7 +302,7 @@ The answer to this question is related to the fact that in many situations, expe
 
 There are different approaches available to identify causal effects with observational data. Angrist and Pischke (2009, p. 7) describe the five most common approaches as the “Furious Five methods of causal inference,” and they refer to 1) random assignment, 2) regression, 3) instrumental variables, 4) regression discontinuity, and 5) differences in differences. Varian (2016) provides a concise overview over these identification strategies. While we won't cover all of the approaches here, we will discuss quasi-experiments and their analysis using difference-in-differences analysis in more detail because of their high practical relevance.  
 
-###### Analyzing quasi-experiments {-}
+###### Analyzing quasi-experiments 
 
 As Goldfarb & Tucker (2014) note:
 
@@ -533,105 +529,107 @@ After discussing all the steps in the research process up to the data collection
 
 **(LC1.1) Indicate the level of measurement of the following variables:**
 
-* Occupation of survey participants - nominal
-* Willingness-to-pay for a product - ratio
-* Your grade in the marketing research course (1, 2, 3, 4, 5) - ordinal
-* Rank order of most important product attributes - ordinal
-* Student registration number - nominal
-* Gender of survey participants - nominal
-* Consumer preferences measured on a 5-point Likert scale - ordinal (arguably interval)
-* Mileage (kilometers per liter) a car gets - ratio
-* Age of survey participants - ratio
-* Temperature in °C - interval
-* Number of products sold - ratio
+* Occupation of survey participants 
+* Willingness-to-pay for a product
+* Your grade in the marketing research course (1, 2, 3, 4, 5)
+* Rank order of most important product attributes
+* Student registration number
+* Gender of survey participants
+* Consumer preferences measured on a 5-point Likert scale 
+* Mileage (kilometers per liter) a car gets 
+* Age of survey participants 
+* Temperature in °C 
+* Number of products sold 
 
 **(LC1.2) Which of the answers is correct? A nominal scale …**
 
 - [ ] …has an absolute zero point
 - [ ] …possesses all properties of an ordinal scale
-- [x] …can have numerical values
-- [x] …serves as a label to classify/categorize objects
+- [ ] …can have numerical values
+- [ ] …serves as a label to classify/categorize objects
 - [ ] None of the above 	
 
-**(LC1.3) Which of these statements regarding formative constructs are true?**
+**(LC1.3) In causal inference tasks, ...**
 
-- [x] Indicators (items) measure the cause for the change of the not directly observable construct
+- [ ] …the main concern is to generate predictions of future outcomes 
+- [ ] …the main concern is to maximize the explained variance
+- [ ] …observational research is the 'gold standard'
+- [ ] None of the above 	
+
+**(LC1.4) Conditions for causality are ...**
+
+- [ ] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
+- [ ] ... random assignment of test units
+- [ ] ... the causing event must occur before the effect
+- [ ] ... absence of other possible causal factors
+- [ ] None of the above
+
+**(LC1.5) In predictive modeling tasks ...**
+
+- [ ] ... once major concern are unobserved confounders
+- [ ] ... one major concern is overfitting 
+- [ ] ... we primarily care about the predictive ability of the model  
+- [ ] ... we primarily care about causal effects 
+- [ ] None of the above
+
+**(LC1.6) True or false? For ordinal scales, the magnitude of difference between scale points is known**
+
+- [ ] True 
+- [ ] False
+
+**(LC1.7) For which scale types is it meaningful to compute the mean?**
+
+- [ ] Ratio
+- [ ] Nominal
+- [ ] Interval  
+- [ ] Ordinal
+- [ ] None of the above
+
+**(LC1.8) In predictive modeling tasks …**
+
+- [ ] … we primarily care about the predictive ability of the model
+- [ ] … one major concern is overfitting
+- [ ] … we primarily care about causal effects 
+- [ ] … one major concern are unobserved confounders
+
+
+**Relevant after Experimental Design class:**
+
+**(LC5.1) Which of these statements regarding formative constructs are true?**
+
+- [ ] Indicators (items) measure the cause for the change of the not directly observable construct
 - [ ] Indicators (items) measure the effect of the change in a not directly observable construct
 - [ ] The indicators (items) of the scale should be highly correlated
 - [ ] Multi-item measurement is particularly important for the increase in the reliability of the measurement
 - [ ] None of the above
 
-**(LC1.4) In causal inference tasks, ...**
+**(LC5.2) True or false? Reliability refers to the consistency of a measurement.**
 
-- [ ] …the main concern is to generate predictions of future outcomes 
-- [ ] …the main concern is to maximize the explained variance
-- [ ] …observational research is the 'gold standard'
-- [x] …randomization minimizes unsystematic variation
-- [ ] None of the above 	
-
-**(LC1.5) True or false? Reliability refers to the consistency of a measurement.**
-
-- [x] True 
+- [ ] True 
 - [ ] False
 
-**(LC1.5) Using a between-subjects design, we ... **
+**(LC5.3) Using a between-subjects design, we ... **
 
-- [x] ... manipulate the independent variable (treatment) using different persons for each group
+- [ ] ... manipulate the independent variable (treatment) using different persons for each group
 - [ ] ... manipulate independent variable using the same participants for each group 
 - [ ] ... manipulate the dependent variable (treatment) using different persons for each group
 - [ ] ... manipulate dependent variable using the same participants for each group 
 - [ ] None of the above
 
-**(LC1.6) When conducting field experiments, the term crossover effect means ...**
+**(LC5.4) When conducting field experiments, the term crossover effect means ...**
 
-- [x] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
+- [ ] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
 - [ ] ... that a treated individual affects the outcomes for other untreated individuals  
 - [ ] ... that individuals can be part of both the test and the control condition
 - [ ] None of the above
 
-**(LC1.7) Conditions for causality are ...**
-
-- [x] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
-- [ ] ... random assignment of test units
-- [x] ... the causing event must occur before the effect
-- [x] ... absence of other possible causal factors
-- [ ] None of the above
-
-**(LC1.8) The effect of the treatment on the treated in DID models can be written as ...**
+**(LC5.5) The effect of the treatment on the treated in DID models can be written as ...**
 
 - [ ] $(Yt,pre - Yt,post) − (Yc,post - Yc,pre)$  
-- [x] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
+- [ ] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
 - [ ] $(Yt,pre - Yt,post) − (Yc,pre - Yc,post)$  
 - [ ] $(Yt,post - Yt,pre) − (Yc,pre - Yc,post)$  
 - [ ] None of the above
-
-**(LC1.9) In predictive modeling tasks ...**
-
-- [ ] ... once major concern are unobserved confounders
-- [x] ... one major concern is overfitting 
-- [x] ... we primarily care about the predictive ability of the model  
-- [ ] ... we primarily care about causal effects 
-- [ ] None of the above
-
-**(LC1.10) True or false? For ordinal scales, the magnitude of difference between scale points is known**
-
-- [ ] True 
-- [x] False
-
-**(LC1.11) For which scale types is it meaningful to compute the mean?**
-
-- [x] Ratio
-- [ ] Nominal
-- [x] Interval  
-- [ ] Ordinal
-- [ ] None of the above
-
-**(LC1.12) In predictive modeling tasks …**
-
-- [x] … we primarily care about the predictive ability of the model
-- [x] … one major concern is overfitting
-- [ ] … we primarily care about causal effects 
-- [ ] … one major concern are unobserved confounders
 
 
 ## References {-}

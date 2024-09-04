@@ -20,7 +20,7 @@ This chapter covers the basics of data handling in R.
 Anything created in R is an object. You can assign values to objects using the assignment operator ``` <-```:
 
 
-```r
+``` r
 x <- "hello world" #assigns the words "hello world" to the object x
 #this is a comment
 ```
@@ -30,7 +30,7 @@ Note that comments may be included in the code after a ```#```. The text after `
 To see the value of an object, simply type its name into the console and hit enter:
 
 
-```r
+``` r
 x #print the value of x to the console
 ```
 
@@ -41,7 +41,7 @@ x #print the value of x to the console
 You can also explicitly tell R to print the value of an object:
 
 
-```r
+``` r
 print(x) #print the value of x to the console
 ```
 
@@ -54,7 +54,7 @@ Note that because we assign characters in this case (as opposed to e.g., numeric
 To change the value of an object, you can simply overwrite the previous value. For example, you could also assign a numeric value to "x" to perform some basic operations: 
 
 
-```r
+``` r
 x <- 2 #assigns the value of 2 to the object x
 print(x)
 ```
@@ -63,7 +63,7 @@ print(x)
 ## [1] 2
 ```
 
-```r
+``` r
 x == 2  #checks whether the value of x is equal to 2
 ```
 
@@ -71,7 +71,7 @@ x == 2  #checks whether the value of x is equal to 2
 ## [1] TRUE
 ```
 
-```r
+``` r
 x != 3  #checks whether the value of x is NOT equal to 3
 ```
 
@@ -79,7 +79,7 @@ x != 3  #checks whether the value of x is NOT equal to 3
 ## [1] TRUE
 ```
 
-```r
+``` r
 x < 3   #checks whether the value of x is less than 3
 ```
 
@@ -87,7 +87,7 @@ x < 3   #checks whether the value of x is less than 3
 ## [1] TRUE
 ```
 
-```r
+``` r
 x > 3   #checks whether the value of x is greater than 3
 ```
 
@@ -98,7 +98,7 @@ x > 3   #checks whether the value of x is greater than 3
 Note that the name of the object is completely arbitrary. We could also define a second object "y", assign it a different value and use it to perform some basic mathematical operations:
 
 
-```r
+``` r
 y <- 5 #assigns the value of 2 to the object x
 x == y #checks whether the value of x to the value of y
 ```
@@ -107,7 +107,7 @@ x == y #checks whether the value of x to the value of y
 ## [1] FALSE
 ```
 
-```r
+``` r
 x*y #multiplication of x and y
 ```
 
@@ -115,7 +115,7 @@ x*y #multiplication of x and y
 ## [1] 10
 ```
 
-```r
+``` r
 x + y #adds the values of x and y together
 ```
 
@@ -123,7 +123,7 @@ x + y #adds the values of x and y together
 ## [1] 7
 ```
 
-```r
+``` r
 y^2 + 3*x #adds the value of y squared and 3x the value of x together
 ```
 
@@ -152,7 +152,7 @@ Date    | Date variables (e.g., sales dates: 21-06-2015, 06-21-15, 21-Jun-2015, 
 Variables can be converted from one type to another using the appropriate functions (e.g., ```as.numeric()```,```as.integer()```,```as.character()```, ```as.factor()```,```as.logical()```, ```as.Date()```). For example, we could convert the object ```y``` to character as follows:
 
 
-```r
+``` r
 y <- as.character(y)
 print(y)
 ```
@@ -166,7 +166,7 @@ Notice how the value is in quotation marks since it is now of type character.
 Entering a vector of data into R can be done with the ``` c(x1,x2,..,x_n)``` ("concatenate") command. In order to be able to use our vector (or any other variable) later on we want to assign it a name using the assignment operator ``` <-```. You can choose names arbitrarily (but the first character of a name cannot be a number). Just make sure they are descriptive and unique. Assigning the same name to two variables (e.g. vectors) will result in deletion of the first. Instead of converting a variable we can also create a new one and use an existing one as input. In this case we omit the ```as.``` and simply use the name of the type (e.g. ```factor()```). There is a subtle difference between the two: When converting a variable, with e.g. ```as.factor()```, we can only pass the variable we want to convert without additional arguments and R determines the factor levels by the existing unique values in the variable or just returns the variable itself if it is a factor already. When we specifically create a variable (just ```factor()```, ```matrix()```, etc.), we can and should set the options of this type explicitly. For a factor variable these could be the labels and levels, for a matrix the number of rows and columns and so on.  
 
 
-```r
+``` r
 #Numeric:
 top10_sales <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) 
 
@@ -193,7 +193,7 @@ private_label_logical <- c(TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE,TRUE,TRUE
 In order to "return" a vector we can now simply enter its name:
 
 
-```r
+``` r
 top10_sales
 ```
 
@@ -201,7 +201,7 @@ top10_sales
 ##  [1] 163608 126687 120480 110022 108630  95639  94690  89011  87869  85599
 ```
 
-```r
+``` r
 date_most_sold
 ```
 
@@ -213,7 +213,7 @@ date_most_sold
 In order to check the type of a variable the ```class()``` function is used.
 
 
-```r
+``` r
 class(date_most_sold)
 ```
 
@@ -230,7 +230,7 @@ Now let's create a table that contains the variables in columns and each observa
 Data frames are similar to matrices but are more flexible in the sense that they may contain different data types (e.g., numeric, character, etc.), where all values of vectors and matrices have to be of the same type (e.g. character). It is often more convenient to use characters instead of numbers (e.g. when indicating a persons sex: "F", "M" instead of 1 for female , 2 for male). Thus we would like to combine both numeric and character values while retaining the respective desired features. This is where "data frames" come into play. Data frames can have different types of data in each column. For example, we can combine the vectors created above in one data frame using ```data.frame()```. This creates a separate column for each vector, which is usually what we want (similar to SPSS or Excel).
 
 
-```r
+``` r
 sales_data <- data.frame(top10_sales, 
                          top10_product_names, 
                          private_label, 
@@ -244,7 +244,7 @@ sales_data <- data.frame(top10_sales,
 When entering the name of a data frame, R returns the entire data frame: 
 
 
-```r
+``` r
 sales_data # Returns the entire data frame
 ```
 
@@ -259,7 +259,7 @@ Hint: You may also use the ```View()```-function to view the data in a table for
 Sometimes it is convenient to return only specific values instead of the entire data frame. There are a variety of ways to identify the elements of a data frame. One easy way is to explicitly state, which rows and columns you wish to view. The general form of the command is ```data.frame[rows,columns]```. By leaving one of the arguments of ```data.frame[rows,columns]``` blank (e.g., ```data.frame[rows,]```) we tell R that we want to access either all rows or columns, respectively. Note that `a:b` (where `a` and `b` are numbers and `a` < `b`) is short hand notation for `seq(from = a, to = b, by = 1)`. Here are some examples:  
 
 
-```r
+``` r
 sales_data[ , 2:4] # all rows and columns 2,3,4
 ```
 
@@ -269,7 +269,7 @@ sales_data[ , 2:4] # all rows and columns 2,3,4
   </script>
 </div>
 
-```r
+``` r
 sales_data[5:7, ] # rows 5,6,7 and all columns
 ```
 
@@ -284,7 +284,7 @@ Typically we don't want to remember which row or column number is needed but use
 You may create subsets of the data frame, e.g., using mathematical expressions using the `filter` function:
 
 
-```r
+``` r
 library(tidyverse)
 filter(sales_data, private_label == "private label") # show only products that belong to private labels
 ```
@@ -295,7 +295,7 @@ filter(sales_data, private_label == "private label") # show only products that b
   </script>
 </div>
 
-```r
+``` r
 filter(sales_data, top10_sales > 100000) # show only products that sold more than 100,000 units  
 ```
 
@@ -305,7 +305,7 @@ filter(sales_data, top10_sales > 100000) # show only products that sold more tha
   </script>
 </div>
 
-```r
+``` r
 filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
 ```
 
@@ -315,7 +315,7 @@ filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all obse
   </script>
 </div>
 
-```r
+``` r
 private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
 ```
 
@@ -323,7 +323,7 @@ private_labels <- filter(sales_data, private_label == "private label") # creates
 You may also change the order of the rows in a `data.frame` by using the ```arrange()```-function
 
 
-```r
+``` r
 # Arrange by sales (descending: most - least) 
 arrange(sales_data, desc(top10_sales))
 ```
@@ -337,7 +337,7 @@ arrange(sales_data, desc(top10_sales))
 You can order observations by several characteristics. Please note that the order of variables in the ```arrange()```-function specifies the order of arranging the data set. For example, here we first arrange the observations by the brand of the product, and only then require ordering by sales amounts:
 
 
-```r
+``` r
 # Arrange by brand (ascending by default) and then sales (descending: most - least) 
 arrange(sales_data, top10_brand, desc(top10_sales))
 ```
@@ -353,7 +353,7 @@ arrange(sales_data, top10_brand, desc(top10_sales))
 The ```head()``` function displays the first X elements/rows of a vector, matrix, table, data frame or function.
 
 
-```r
+``` r
 head(sales_data, 3) # returns the first X rows (here, the first 3 rows)
 ```
 
@@ -366,7 +366,7 @@ head(sales_data, 3) # returns the first X rows (here, the first 3 rows)
 The ```tail()``` function is similar, except it displays the last elements/rows.
 
 
-```r
+``` r
 tail(sales_data, 3) # returns the last X rows (here, the last 3 rows)
 ```
 
@@ -379,7 +379,7 @@ tail(sales_data, 3) # returns the last X rows (here, the last 3 rows)
 ```names()``` returns the names of an R object. When, for example, it is called on a data frame, it returns the names of the columns. 
 
 
-```r
+``` r
 names(sales_data) # returns the names of the variables in the data frame
 ```
 
@@ -391,7 +391,7 @@ names(sales_data) # returns the names of the variables in the data frame
 ```str()``` displays the internal structure of an R object. In the case of a data frame, it returns the class (e.g., numeric, factor, etc.) of each variable, as well as the number of observations and the number of variables. 
 
 
-```r
+``` r
 str(sales_data) # returns the structure of the data frame
 ```
 
@@ -408,7 +408,7 @@ str(sales_data) # returns the structure of the data frame
 ```nrow()``` and ```ncol()``` return the rows and columns of a data frame or matrix, respectively. ```dim()``` displays the dimensions of an R object.
 
 
-```r
+``` r
 nrow(sales_data) # returns the number of rows 
 ```
 
@@ -416,7 +416,7 @@ nrow(sales_data) # returns the number of rows
 ## [1] 10
 ```
 
-```r
+``` r
 ncol(sales_data) # returns the number of columns 
 ```
 
@@ -424,7 +424,7 @@ ncol(sales_data) # returns the number of columns
 ## [1] 6
 ```
 
-```r
+``` r
 dim(sales_data) # returns the dimensions of a data frame
 ```
 
@@ -435,7 +435,7 @@ dim(sales_data) # returns the dimensions of a data frame
 ```ls()``` can be used to list all objects that are associated with an R object. 
 
 
-```r
+``` r
 ls(sales_data) # list all objects associated with an object
 ```
 
@@ -449,7 +449,7 @@ ls(sales_data) # list all objects associated with an object
 To return a single column in a data frame, use the ```$``` notation. For example, this returns all values associated with the variable "top10_track_streams":
   
 
-```r
+``` r
 sales_data$top10_sales
 ```
 
@@ -460,7 +460,7 @@ sales_data$top10_sales
 If you want to select more than one variable you can use the `select` function. It takes the `data.frame` containing the data as its first argument and  the variables that you need after it:
 
 
-```r
+``` r
 select(sales_data, top10_product_names, top10_sales, private_label)
 ```
 
@@ -473,7 +473,7 @@ select(sales_data, top10_product_names, top10_sales, private_label)
 `select` can also be used to remove columns by prepending a `-` to their name:
 
 
-```r
+``` r
 select(sales_data, -date_most_sold, -private_label_logical)
 ```
 
@@ -487,7 +487,7 @@ select(sales_data, -date_most_sold, -private_label_logical)
 Assume that you wanted to add an additional variable to the data frame. You may use the ```$``` notation to achieve this:
 
 
-```r
+``` r
 # Create new variable as the log of sales
 sales_data$log_sales <- log(sales_data$top10_sales) 
 # Create an ascending count variable which might serve as an ID
@@ -504,7 +504,7 @@ head(sales_data)
 In order to add a function (e.g., `log`) of multiple existing variables to the `data.frame` use `mutate`. Multiple commands can be chained using so called pipes - operators that can be read as "then". Since R version 4.1 there are native pipes (`|>`) as well as the ones provided by the `tidyverse` (`%>%`):
 
 
-```r
+``` r
 music_data_new <- mutate(sales_data, 
        sqrt_sales = sqrt(top10_sales),
        # "%m" extracts the month, format returns a character so we convert it to integer
@@ -516,7 +516,7 @@ music_data_new <- mutate(sales_data,
 Two other important functions of `tidyverse` help calculating important summary statistics, such as totals, averages, etc. By using `group_by` function, we can ask R to pay attention to group-specific observations (e.g., by brand, label, date, ...) to then obtain values of interest by calling `summarize`:
 
 
-```r
+``` r
 sales_total <- sales_data %>% 
   group_by(top10_brand) %>%
   summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
@@ -533,7 +533,7 @@ head(sales_total)
 You can also rename variables in a data frame, e.g., using the ```rename()```-function. In the following code "::" signifies that the function "rename" should be taken from the package "dplyr" (note: this package is part of the `tidyverse`). This can be useful if multiple packages have a function with the same name. Calling a function this way also means that you can access a function without loading the entire package via ```library()```.
 
 
-```r
+``` r
 sales_data <- dplyr::rename(sales_data, brand = top10_brand)
 head(sales_data)
 ```
@@ -547,7 +547,7 @@ head(sales_data)
 Note that the same can be achieved using:
 
 
-```r
+``` r
 names(sales_data)[names(sales_data)=="brand"] <- "top10_brand"
 head(sales_data)
 ```
@@ -561,7 +561,7 @@ head(sales_data)
 Or by referring to the index of the variable:
 
 
-```r
+``` r
 names(sales_data)[4] <- "brand"
 head(sales_data)
 ```

@@ -60,7 +60,7 @@ When you are done with your analysis, click on “Knit to HTML” button above t
 ## Load data
 
 
-```r
+``` r
 library(ggplot2)
 library(psych)
 library(dplyr)
@@ -95,7 +95,7 @@ names(playlist_data)
 Provide a description of your steps here! 
   
 
-```r
+``` r
 # provide your code here
 ```
 
@@ -106,7 +106,7 @@ Interpret the results here!
 Provide a description of your steps here!
   
 
-```r
+``` r
 # provide your code here
 ```
 
@@ -117,7 +117,7 @@ Interpret the results here!
 Provide a description of your steps here!
   
 
-```r
+``` r
 # provide your code here
 ```
 
@@ -128,7 +128,7 @@ Interpret the results here!
 Provide a description of your steps here! 
   
 
-```r
+``` r
 # provide your code here
 ```
 

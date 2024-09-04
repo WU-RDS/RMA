@@ -131,7 +131,7 @@ Let us consider one random sample of 100 students from our population above.
 From the central limit theorem we know that the sampling distribution of the sample mean is approximately normal and we know that for the normal distribution, 95% of the values lie within about 2 standard deviations from the mean. Actually, it is not exactly 2 standard deviations from the mean. To get the exact number, we can use the quantile function for the normal distribution ```qnorm()```:  
 
 
-```r
+``` r
 qnorm(0.975)
 ```
 
@@ -151,7 +151,7 @@ Here, $\alpha$ refers to the significance level. You can find a detailed discuss
 Plugging in the values from our sample, we get:
 
 
-```r
+``` r
 sample_mean <- mean(hours_s)
 se <- sd(hours_s)/sqrt(sample_size)
 ci_lower <- sample_mean - qnorm(0.975)*se
@@ -163,7 +163,7 @@ ci_lower
 ## [1] 17.67089
 ```
 
-```r
+``` r
 ci_upper
 ```
 
@@ -215,7 +215,7 @@ Accepting the alternative hypothesis in turn will often lead to changes in opini
 In order to quantify the concept of "sufficient evidence" we look at the theoretical distribution of the sample means given our null hypothesis and the sample standard error. Using the available information we can infer the sampling distribution for our null hypothesis. Recall that the standard deviation of the sampling distribution (i.e., the standard error of the mean) is given by $\sigma_{\bar x}={\sigma \over \sqrt{n}}$, and thus can be computed as follows:
 
 
-```r
+``` r
 mean_pop <- mean(hours)
 sigma <- sd(hours) #population standard deviation
 n <- 50 #sample size
@@ -259,7 +259,7 @@ $$
 This standardized value (or "z-score") is also referred to as a **test statistic**. Let's compute the test statistic for our example above:
 
 
-```r
+``` r
 z_score <- (mean_sample - H_0)/(sigma/sqrt(n))
 z_score
 ```
@@ -271,7 +271,7 @@ z_score
 To make a decision on whether the difference can be deemed statistically significant, we now need to compare this calculated test statistic to a meaningful threshold. In order to do so, we need to decide on a significance level $\alpha$, which expresses the probability of finding an effect that does not actually exist (i.e., Type I Error). You can find a detailed discussion of this point at the end of this chapter. For now, we will adopt the widely accepted significance level of 5% and set $\alpha$ to 0.05. The critical value for the normal distribution and $\alpha$ = 0.05 can be computed using the ```qnorm()``` function as follows:
 
 
-```r
+``` r
 z_crit <- qnorm(0.975)
 z_crit
 ```
@@ -283,7 +283,7 @@ z_crit
 We use ```0.975``` and not ```0.95``` since we are running a two-sided test and need to account for the rejection region at the other end of the distribution. Recall that for the normal distribution, 95% of the total probability falls within 1.96 standard deviations of the mean, so that higher (absolute) values provide evidence against the null hypothesis. Generally, we speak of a statistically significant effect if the (absolute) calculated test statistic is larger than the (absolute) critical value. We can easily check if this is the case in our example:
 
 
-```r
+``` r
 abs(z_score) > abs(z_crit)
 ```
 
@@ -308,7 +308,7 @@ Here, $\bar X$ denotes the sample mean and $s$ the sample standard deviation. Th
 Notice that as $n$ gets larger, the t-distribution gets closer and closer to the normal distribution, reflecting the fact that the uncertainty introduced by $s$ is reduced. To summarize, we now have an estimate for the standard deviation of the distribution of the sample mean (i.e., $SE_{\bar x}$) and an appropriate distribution that takes into account the necessary uncertainty (i.e., the t-distribution). Let us now compute the t-statistic according to the formula above:
 
 
-```r
+``` r
 SE <- (sd(music_listening_sample$hours)/sqrt(n))
 t_score <- (mean_sample - H_0)/SE
 t_score
@@ -321,7 +321,7 @@ t_score
 Notice that the value of the t-statistic is higher compared to the z-score (4.29). This can be attributed to the fact that by using the $s$ as and estimate of $\sigma$, we underestimate the true population standard deviation. Hence, the critical value would need to be larger to adjust for this. This is what the t-distribution does. Let us compute the critical value from the t-distribution with ```n - 1```degrees of freedom.     
 
 
-```r
+``` r
 df = n - 1
 t_crit <- qt(0.975, df = df)
 t_crit
@@ -334,7 +334,7 @@ t_crit
 Again, we use ```0.975``` and not ```0.95``` since we are running a two-sided test and need to account for the rejection region at the other end of the distribution. Notice that the new critical value based on the t-distributionis larger, to reflect the uncertainty when estimating $\sigma$ from $s$. Now we can see that the calculated test statistic is still larger than the critical value.  
 
 
-```r
+``` r
 abs(t_score) > abs(t_crit)
 ```
 
@@ -355,7 +355,7 @@ Something to keep in mind here is the fact the test statistic is a function of t
 In the previous section, we computed the test statistic, which tells us how close our sample is to the null hypothesis. The p-value corresponds to the probability that the test statistic would take a value as extreme or more extreme than the one that we actually observed, **assuming that the null hypothesis is true**. It is important to note that this is a **conditional probability**: we compute the probability of observing a sample mean (or a more extreme value) conditional on the assumption that the null hypothesis is true. The ```pnorm()```function can be used to compute this probability. It is the cumulative probability distribution function of the `normal distribution. Cumulative probability means that the function returns the probability that the test statistic will take a value **less than or equal to** the calculated test statistic given the degrees of freedom. However, we are interested in obtaining the probability of observing a test statistic **larger than or equal to** the calculated test statistic under the null hypothesis (i.e., the p-value). Thus, we need to subtract the cumulative probability from 1. In addition, since we are running a two-sided test, we need to multiply the probability by 2 to account for the rejection region at the other side of the distribution.  
 
 
-```r
+``` r
 p_value <- 2*(1-pt(abs(t_score), df = df))
 p_value
 ```
@@ -380,7 +380,7 @@ $$
 It is easy to compute this interval manually:
 
 
-```r
+``` r
 ci_lower <- (mean_sample)-qt(0.975, df = df)*SE
 ci_upper <- (mean_sample)+qt(0.975, df = df)*SE
 ci_lower
@@ -390,7 +390,7 @@ ci_lower
 ## [1] 15.02606
 ```
 
-```r
+``` r
 ci_upper
 ```
 
@@ -454,97 +454,97 @@ Thus, you should not base your research conclusion on p-values alone!
 
 ## Learning check {-}
 
-**(LC5.1) What is the correct interpretation of a confidence interval for a significance level of $\alpha$=0.05?**
+**(LC3.1) What is the correct interpretation of a confidence interval for a significance level of $\alpha$=0.05?**
 
-- [x] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.
+- [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 95% of these intervals.
 - [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 5% of these intervals.
 - [ ] If we take 100 samples and calculate mean and confidence interval for each one of them, then the true population mean would be included in 100% of these intervals.
 - [ ] For a given sample, there is a 95% chance that the true population mean lies within the confidence interval.
 
-**(LC5.2) Which statements regarding standard error are TRUE?**
+**(LC3.2) Which statements regarding standard error are TRUE?**
 
 - [ ] There is no connection between the standard deviation and the standard error.
-- [x] The standard error is a function of the sample size and the standard deviation.
-- [x] The standard error of the mean decreases as the sample size increases.
-- [x] The standard error of the mean increases as the standard deviation increases.
+- [ ] The standard error is a function of the sample size and the standard deviation.
+- [ ] The standard error of the mean decreases as the sample size increases.
+- [ ] The standard error of the mean increases as the standard deviation increases.
 - [ ] None of the above 	
 
-**(LC5.3) What is the correct definition for the standard error ($SE_{\bar x}$)?**
+**(LC3.3) What is the correct definition for the standard error ($SE_{\bar x}$)?**
 
-- [x] ${s \over \sqrt{n}}$
+- [ ] ${s \over \sqrt{n}}$
 - [ ] ${s * \sqrt{n}}$
-- [x] ${\sqrt{s^2} \over \sqrt{n}}$
+- [ ] ${\sqrt{s^2} \over \sqrt{n}}$
 - [ ] ${\sqrt{s} \over n}$
 - [ ] None of the above 	
 
-**(LC5.4) Which of the following do you need to compute a confidence interval around a sample mean?**
+**(LC3.4) Which of the following do you need to compute a confidence interval around a sample mean?**
 
-- [x] The critical value of the test statistic given a certain level of confidence 
-- [x] A continuous variable (i.e., at least measured at the interval level) 
-- [x] The sample the mean
-- [x] The standard error
+- [ ] The critical value of the test statistic given a certain level of confidence 
+- [ ] A continuous variable (i.e., at least measured at the interval level) 
+- [ ] The sample the mean
+- [ ] The standard error
 - [ ] None of the above 	
 
-**(LC5.5) What is the correct definition for the confidence interval?**
+**(LC3.5) What is the correct definition for the confidence interval?**
 
 - [ ] $CI=\bar{x} \pm \frac{z_{1-\frac{a}{n}}}{\sigma_{\bar{x}}}$
 - [ ] $CI=\bar{x} * z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
 - [ ] $CI= z_{1-\frac{a}{n}}*\sigma_{\bar{x}}-\bar{x}$
-- [x] $CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
+- [ ] $CI=\bar{x} \pm z_{1-\frac{a}{n}}*\sigma_{\bar{x}}$
 - [ ] None of the above 
 
 *As a marketing manager at Spotify you wish to find the average listening time of your users. Based on a random sample of 180 users you found that the mean listening time for the sample is 7.34 hours per week and the standard deviation is 6.87 hours.* 
 
-**(LC5.6) What is the 95% confidence interval for the mean listening time (the corresponding z-value for the 95% CI is 1.96)?**
+**(LC3.6) What is the 95% confidence interval for the mean listening time (the corresponding z-value for the 95% CI is 1.96)?**
 
-- [x] [6.34;8.34]
+- [ ] [6.34;8.34]
 - [ ] [7.15;7.55]
 - [ ] [6.25;8.15]
 - [ ] [6.54;8.54]
 - [ ] None of the above 
 
-**(LC5.7) How can you compute the standardized variate of a variable X?**
+**(LC3.7) How can you compute the standardized variate of a variable X?**
 
 - [ ] $z = {s \over \sqrt{n}}$
-- [x] $z = {X_i - \bar{X} \over s}$
+- [ ] $z = {X_i - \bar{X} \over s}$
 - [ ] $z = {s \over X_i-\bar{X}}$
 - [ ] $z = s * (X_i-\bar{X}) $
 
-**(LC5.8) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
+**(LC3.8) For a variable that follows a normal distribution, within how many standard deviations of the mean are 95% of values?**
 
-- [x] 1.960
+- [ ] 1.960
 - [ ] 1.645
 - [ ] 2.580
 - [ ] 3.210
 
-**(LC5.9) The Null Hypothesis ($H_0$) is a statement of:**
+**(LC3.9) The Null Hypothesis ($H_0$) is a statement of:**
 
-- [x] The status-quo/no effect
+- [ ] The status-quo/no effect
 - [ ] The desired status
 - [ ] The expected status
 - [ ] None of the above 
 
-**(LC5.10) Which statements about the Null Hypothesis ($H_0$) are TRUE?**
+**(LC3.10) Which statements about the Null Hypothesis ($H_0$) are TRUE?**
 
 - [ ] In scientific research, the goal is usually to confirm it
-- [x] In scientific research, the goal is usually to reject it
+- [ ] In scientific research, the goal is usually to reject it
 - [ ] It can be confirmed with one test
 - [ ] None of the above 
 
-**(LC5.11) In which setting would you reject the null hypothesis when conducting a statistical test?**
+**(LC3.11) In which setting would you reject the null hypothesis when conducting a statistical test?**
 
-- [x] When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)
-- [x] When the p-value is smaller than your specified significance level (e.g., 0.05)
-- [x] When the confidence interval associated with the test does not contain the value suggested by the null hypothesis
+- [ ] When the absolute value of the calculated test-statistic (e.g., t-value) exceeds the critical value of the test statistic at your specified significance level (e.g., 0.05)
+- [ ] When the p-value is smaller than your specified significance level (e.g., 0.05)
+- [ ] When the confidence interval associated with the test does not contain the value suggested by the null hypothesis
 - [ ] When the test-statistic (e.g., t-value) is lower than the critical value of the test statistic at your specified significance level (e.g., 0.05)
 - [ ] None of the above 
 
-**(LC6.8) What does a significant test result tell you?**
+**(LC3.8) What does a significant test result tell you?**
 
 - [ ] The importance of an effect
 - [ ] That the null hypothesis is false
 - [ ] That the null hypothesis is true
-- [x] None of the above  
+- [ ] None of the above  
 
 ## References {-}
 
