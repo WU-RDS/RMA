@@ -270,42 +270,6 @@ ggstatsplot::ggcoefstats(x = multiple_regression_ext,
 stargazer(multiple_regression_new, multiple_regression_ext, type = "text",ci = TRUE, ci.level = 0.95, ci.separator = "; ")
 
 
-#-------------------------------------------------------------------#
-#------------------------Interaction Effects------------------------#
-#-------------------------------------------------------------------#
-
-ggplot(categories, aes(price_ounce, move_ounce, colour = brand)) +
-  geom_point() + 
-  geom_smooth(method = "lm", alpha = 0.1) + 
-  labs(x = "Price ($ per oz)", y = "Sales (oz)", colour = "brand") + 
-  theme_minimal()
-
-
-# Categorical x continuous: store x price
-multiple_regression_cat_con <- lm(move_ounce ~ price_ounce + price_ounce:store, data = categories) 
-summary(multiple_regression_cat_con)
-# price_ounce MAIN effect tells you the effect of price for the reference group (here: ref. store - 98) that has the factor level zero. 
-# In our example, it is the advertising effect for local artist. 
-# This means that for store 98, increasing the price by $1 will result in -155,707.58 oz sales. 
-# The interaction effect tells you by how much the effect differs for the other group (i.e., store 100) + significance. 
-# Here it means that the effect for store 100 can be computed as: (-155,707.58) + (16,278.71) = -139,428.87
-# This means that for store 100, increasing the price by $1 will result in -139,428.87 oz sales. 
-# Since the interaction effect is significant (p < 0.05) we can conclude that price is slightly less important in store 100.
-
-# Note that you can essentially do quasi interaction analysis by subsetting data frame (filter by brand, store, etc.). 
-# Remember that the coefficient will be different in comparison to the previous one due to the change in sample (= new data)!
-data_subset <- categories %>% filter(store == 100)
-regression_cat_con_subset <- lm(move_ounce ~ price_ounce, data = data_subset) 
-summary(regression_cat_con_subset)
-
-# Continuous x continuous: price x discount
-multiple_regression_con_con <- lm(move_ounce ~ price_ounce + sale_B + sale_B:price_ounce, data = categories)
-summary(multiple_regression_con_con) 
-# we can interpret the beta for price:discount as the increase in the importance (~effectiveness) 
-# of pricing for a one unit increase in discount (or vice versa).
-
-
-
 
 #-------------------------------------------------------------------#
 #------------------------Logistic regression------------------------#
@@ -381,3 +345,4 @@ confint(multiple_logit_model)
 predict.glm(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5, DaySinceLastOrder = 30,
                                                    WarehouseToHome = 10, OrderCount = 10, CashbackAmount = 300), 
         type = "response") # exact interpretation
+

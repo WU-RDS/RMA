@@ -9,7 +9,7 @@ names(music_data)
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #read and transform data
 library(tidyverse)
-music_data <- music_data |> # pipe music data into mutate
+music_data <- music_data %>% # pipe music data into mutate
   mutate(release_date = as.Date(release_date), # convert to date
          explicit = factor(explicit, levels = 0:1, labels = c("not explicit", "explicit")), # convert to factor w. new labels
          label = as.factor(label), # convert to factor with values as labels
@@ -68,8 +68,8 @@ quantile(music_data$expert_rating,c(0.25,0.5,0.75), type = 1)
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 percentiles <- c(0.25, 0.5, 0.75)
-rating_percentiles <- music_data |>
-  group_by(explicit) |>
+rating_percentiles <- music_data %>%
+  group_by(explicit) %>%
   summarize(
     percentile = percentiles,
     value = quantile(expert_rating, percentiles, type = 1)) 

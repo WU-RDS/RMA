@@ -112,6 +112,9 @@ filter(sales_data, top10_sales > 100000) # show only products that sold more tha
 filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
 private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
 
+#another way of using dplyr functions: with a pipe
+sales_data %>% filter(private_label == "private label")
+
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Arrange by sales (descending: most - least) 
@@ -125,6 +128,11 @@ arrange(sales_data, top10_brand, desc(top10_sales))
 # Keep only several columns. Again, if you need to use the result for analysis or show it in a presentation, you need to create the object. 
 select(sales_data, top10_product_names, top10_sales, private_label)
 
+#spot the difference:
+select(sales_data, private_label)
+select(sales_data, private_label) %>% unique() # you can retrieve unique combinations for one column's value, ... 
+select(sales_data, top10_brand, private_label) %>% unique() # ... or unique combinations of different columns
+
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Another way to do the same - remove columns that you don't need
@@ -134,6 +142,7 @@ select(sales_data, -date_most_sold, -private_label_logical)
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Create new variable as the log of sales
 sales_data$log_sales <- log(sales_data$top10_sales) 
+
 # Create an ascending count variable which might serve as an ID
 sales_data$obs_number <- 1:nrow(sales_data)
 head(sales_data)
@@ -154,18 +163,12 @@ sales_data_new <- mutate(sales_data,
        most_sales_month = as.integer(format(date_most_sold, "%m")) 
        ) %>%
   select(top10_product_names, sqrt_sales, most_sales_month)
+head(sales_data_new)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # To rename a column, use rename() function from dplyr package. On the left side (before "="), give the new name, then specify what existing column should be renamed like this
 sales_data <- dplyr::rename(sales_data, brand = top10_brand)
-head(sales_data)
-
-# Other two ways:
-names(sales_data)[names(sales_data)=="brand"] <- "top10_brand"
-head(sales_data)
-
-names(sales_data)[4] <- "brand"
 head(sales_data)
 
 

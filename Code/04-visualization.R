@@ -27,7 +27,7 @@ head(table_plot_rel)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-#create a bar chart - step by step
+#create a bar chart - step by step; you don't have to create your plot step by step though - jump straight to the last step after running the first line below
 bar_chart <- ggplot(table_plot_rel, aes(x = Genre,y = Freq))
 bar_chart
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
