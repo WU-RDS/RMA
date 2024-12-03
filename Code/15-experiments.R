@@ -194,7 +194,7 @@ rel_freq_table
 ggplot(rel_freq_table, aes(x = Group, y = Freq, fill = Conversion)) + 
   geom_col(width = .7) + 
   geom_text(aes(label = paste0(round(Freq*100,0),"%")), position = position_stack(vjust = 0.5), size = 4) + 
-  ylab("Proportion of conversions") + xlab("Agent") + 
+  ylab("Proportion of conversions") + xlab("Group") + 
   theme_bw()
 
 
