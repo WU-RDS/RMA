@@ -79,8 +79,8 @@ write_sav(music_data, "musicData.sav")
 
 **(LC3.1) Which of the following are data types are recognized by R?**
 
-- [ ] Factor
-- [ ] Date
+- [X] Factor
+- [X] Date
 - [ ] Decimal
 - [ ] Vector
 - [ ] None of the above 	
@@ -89,7 +89,7 @@ write_sav(music_data, "musicData.sav")
 
 - [ ] `type()`
 - [ ] `str()`
-- [ ] `class()`
+- [X] `class()`
 - [ ] `object.type()`
 - [ ] None of the above 	
 
@@ -105,7 +105,7 @@ df <- data.frame(student, grade, date)
 
 - [ ] Error because a data frame can not have different data types
 - [ ] Error because you should use `as.data.frame()` instead of `data.frame()`
-- [ ] Error because all vectors need to have the same length
+- [X] Error because all vectors need to have the same length
 - [ ] Error because the column names are not specified
 - [ ] This code should not report an error	
 
@@ -119,31 +119,31 @@ df <- data.frame(student, grade, date)
 
 **(LC3.4) How can you obtain Christina's grade from the data frame?**
 
-- [ ] `df[4,2]`
+- [X] `df[4,2]`
 - [ ] `df[2,4]`
 - [ ] `filter(df, student = Christina) %>% select(grade)`
-- [ ] `filter(df, student == "Christina") %>% select(grade)`
+- [X] `filter(df, student == "Christina") %>% select(grade)`
 - [ ] None of the above 	
 
 **(LC3.5) How can you add a new variable 'student_id' to the data frame that assigns numbers to students in an ascending order?**
 
-- [ ] `df$student_id <- 1:nrow(df)`
+- [X] `df$student_id <- 1:nrow(df)`
 - [ ] `df&student_id <- 1:nrow(df)`
-- [ ] `mutate(df, student_id = 1:nrow(df))`
+- [X] `mutate(df, student_id = 1:nrow(df))`
 - [ ] `mutate(df, student_id = 1:length(df))`
 - [ ] None of the above 	
 
 **(LC3.6) How could you obtain all rows with students who obtained a 1?**
 
-- [ ] `filter(df, grade == 1)`
-- [ ] `filter(df, grade == min(df$grade, na.rm = TRUE))`
+- [X] `filter(df, grade == 1)`
+- [X] `filter(df, grade == min(df$grade, na.rm = TRUE))`
 - [ ] `select(df, grade == 1)`
 - [ ] `filter(df, grade == min(df$grade))`
 - [ ] None of the above 	
 
 **(LC3.7) How could you create a subset of observations where the grade is not missing (NA) **
 
-- [ ] `df_subset <- filter(df, !is.na(grade))`
+- [X] `df_subset <- filter(df, !is.na(grade))`
 - [ ] `df_subset <- filter(df, isnot.na(grade))`
 - [ ] `df_subset <- filter(df, grade != NA)`
 - [ ] `df_subset <- filter(df, grade != "NA")`
@@ -153,7 +153,7 @@ df <- data.frame(student, grade, date)
 
 - [ ] `filter(df, grade < 3)/nrow(df)`
 - [ ] `nrow(filter(df, grade < 3))/length(df)`
-- [ ] `nrow(filter(df, grade < 3))/nrow(df)`
+- [X] `nrow(filter(df, grade < 3))/nrow(df)`
 - [ ] `filter(df, grade < 3)/length(df)`
 - [ ] None of the above
 
@@ -161,7 +161,7 @@ df <- data.frame(student, grade, date)
 
 - [ ] `read.table(file_name.csv)`
 - [ ] `load.csv("file.csv")`
-- [ ] `read.table("file.csv")`
+- [X] `read.table("file.csv")`
 - [ ] `get.table(file_name.csv)`
 - [ ] None of the above
 
@@ -170,7 +170,7 @@ df <- data.frame(student, grade, date)
 - [ ] `ncol(df)`
 - [ ] `nrow(df)`
 - [ ] `dim(df)`
-- [ ] `str(df)`
+- [X] `str(df)`
 - [ ] None of the above
 
 
