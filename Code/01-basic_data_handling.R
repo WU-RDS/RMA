@@ -48,8 +48,8 @@ products <- c("Bio-Kaisersemmel", "Laktosefreie Bio-Vollmilch", "Ottakringer Hel
 
 ### Data files: 
 ## in this course, we use data files, stored on a server; these files can be read into R as follows
-sales_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/Sales_Data,csv", 
-                      sep = ";", 
+sales_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/heads/main/data/Sales_Data.csv", 
+                      sep = ",", 
                       header = TRUE)
 
 # If you ever need to read in files from your local device (your laptop, etc.), use the code below. 
@@ -67,6 +67,17 @@ tail(sales_data, 3) # returns the last N rows (here, the last 3 rows)
 
 str(sales_data) # returns the structure of the data frame
 
+# Your to-dos when inspecting the structure of the data frame:
+# 1. Check if the data is read in correctly (e.g., if the columns are split correctly)
+# 2. Check how the columns are called and what the spelling is. You must refer to columns exactly how they are called in the data frame.
+# 2. Check data types: what columns (variables) should be numeric but are currently character? Are there any dates that are not in the date format?
+# 3. If something is wrong, change the data types, targeting specific columns:
+
+sales_data$top10_sales <- as.numeric(sales_data$top10_sales) # in this case, it's basically not necessary, because integer ("int") is by definition numeric
+sales_data$date_most_sold <- as.Date(sales_data$date_most_sold)
+sales_data$private_label <- as.factor(sales_data$private_label) # for most analyses, it doesn't matter if such variables are characters or factors, as characters will be treated as unique groups (or factors)
+
+
 nrow(sales_data) # returns the number of rows 
 ncol(sales_data) # returns the number of columns 
 
@@ -76,48 +87,51 @@ sales_data$top10_sales # this is the way to "call" a specific column from a data
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-sales_data[ , 2:4] # all rows and columns 2,3,4
-sales_data[5:7, ] # rows 5,6,7 and all columns
-
-
-
-## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Operations with data
 library(tidyverse)
 
 # 1. Filtering (ROWS)
 # Filter by specific values
 filter(sales_data, private_label == "private label") # show only products that belong to private labels
-filter(sales_data, top10_sales > 100000) # show only products that sold more than 100,000 units  
-filter(sales_data, top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
-private_labels <- filter(sales_data, private_label == "private label") # creates a new data.frame by assigning only observations belonging to private labels
+# typical syntax of dplyr functions is: function(data_frame, the action with a column of interest)
 
-#another way of using dplyr functions: with a pipe
+# however, let's check another way of using dplyr functions: with a pipe
 sales_data %>% filter(private_label == "private label")
+# hence the syntax: data_frame THEN function(action with a column)
+# note that we don't put the data_frame in the function itself anymore
+
+sales_data %>% filter(top10_sales > 100000) # show only products that sold more than 100,000 units  
+sales_data %>% filter(top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
+
+# we can create an object based on our manipulations. 
+private_labels <- sales_data %>% filter(private_label == "private label")
+# ! Note that as a result of this code, there is NO output down in the console. This means that if you run this line in your report, your manager won't see any results.
+# To get the result of the code above as an output, call the created object:
+private_labels
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 2. Arranging
 # Arrange by sales (descending: most - least) 
-arrange(sales_data, desc(top10_sales))
+sales_data %>% arrange(desc(top10_sales)) 
+# function desc() is applied directly to column "top10_sales", but it is also correct to write sales_data %>% arrange(desc(sales_data$top10_sales)) 
 
-# Arrange by brand (ascending by default) and then sales (descending: most - least) 
-arrange(sales_data, top10_brand, desc(top10_sales))
+# Arrange by brand (ascending by default) and by sales (descending: most - least) by simply listng the columns in the order that you need
+sales_data %>% arrange(top10_brand, desc(top10_sales))
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 3. Selecting (COLUMNS)
 # Keep only several columns. Again, if you need to use the result for analysis or show it in a presentation, you need to create the object. 
-select(sales_data, top10_product_names, top10_sales, private_label)
+sales_data %>% select(top10_product_names, top10_sales, private_label)
 
 #spot the difference:
-select(sales_data, private_label)
-select(sales_data, private_label) %>% unique() # you can retrieve unique combinations for one column's value, ... 
-select(sales_data, top10_brand, private_label) %>% unique() # ... or unique combinations of different columns
-
+sales_data %>% select(private_label)
+sales_data %>% select(private_label) %>% unique() # you can retrieve unique combinations for one column's value, ... 
+sales_data %>% select(top10_brand, private_label) %>% unique() # ... or unique combinations of different columns
 
 # Another way to do the same - remove columns that you don't need
-select(sales_data, -date_most_sold, -private_label_logical)
+sales_data %>% select(-date_most_sold, -private_label_logical)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,44 +144,98 @@ head(sales_data)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 4. Grouping and 5. Summarizing 
+# 4. Summarizing and 5. Summarizing with Grouping
+# Get summary statistics for the data frame, e.g., total sales (overall across the whole dataset)
+sales_data %>% summarize(total_sales = sum(top10_sales))
+
+# Get the max and min sales from the dataset (i.e., observations that have the biggest and the smallest sales value)
+sales_data %>% summarize(max_sales = max(top10_sales), min_sales = min(top10_sales))
+
+
 # Get summary statistics by grouping observations by some characteristic: functions group_by() and summarize()
-sales_total <- sales_data %>% 
-  group_by(top10_brand) %>%
+# total and average sales BY GROUP (in this case, by brand)
+sales_data %>% group_by(top10_brand) %>% summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
+
+# We can split the code line by " %>% " to make it more readable:
+sales_data %>% 
+  group_by(top10_brand) %>% 
   summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
-head(sales_total)
+
+# In many cases, it makes sense to save the results of our summary as a new object (then we can reuse it in some analyses or export from R as Excel file)
+summary <- sales_data %>% 
+  group_by(top10_brand) %>% 
+  summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
+# Again, there is no "presentable" output in the console unless we call it directly:
+summary
+
+# Important: summarize() keeps only the grouping columns and the columns that you create to get the desired summary; it drops all other unused columns.
+# If you need to keep more columns, e.g., private_label, they should be also included in the group_by():
+summary_new <- sales_data %>% 
+  group_by(top10_brand, private_label) %>% 
+  summarize(total_sales = sum(top10_sales), avg_sales = mean(top10_sales))
+# The message in the console simply tells you that the main grouping variable is top10_brand; private_label was not used for any meaningful grouping.
+summary_new
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 6. Mutating
-sales_data_new <- mutate(sales_data, 
-       sqrt_sales = sqrt(top10_sales),
-       # "%m" extracts the month, format returns a character so we convert it to integer
-       most_sales_month = as.integer(format(date_most_sold, "%m")) 
-       ) %>%
-  select(top10_product_names, sqrt_sales, most_sales_month)
-head(sales_data_new)
+# Very similar to summarize(), but in this case it keeps all columns of a data frame and simply performs operations with them: 
+#   either changing the existing columns or creating new columns
+sales_data %>% mutate(sqrt_sales = sqrt(top10_sales)) %>%
+  select(top10_product_names, sqrt_sales)
+
+sales_data %>% mutate(most_sales_month = as.integer(format(date_most_sold, "%m"))) %>% 
+# "%m" extracts the month, format returns a character so we convert it to integer - JUST an example for you of what R can do
+  select(top10_product_names, most_sales_month)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-# To rename a column, use rename() function from dplyr package. On the left side (before "="), give the new name, then specify what existing column should be renamed like this
+# To rename a column, use rename() function from dplyr package. 
+# On the left side (before "="), give the new name, then specify what existing column should be renamed like this
+# By writing "dplyr::" before the function, we tell R from which package to take the needed function 
+#  (because in many packages, functions have the same names but have different syntax and outcomes; 
+#  knowing which function we need, we call it from the respective package).
 sales_data <- dplyr::rename(sales_data, brand = top10_brand)
 head(sales_data)
-
-
-## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-#load data from file on disk. You have to make sure that your working directory is set correctly, 
-# your R file is open from the working directory, and either your data file is located in the working directory 
-# or you provide a correct path to it
-test_data <- read.csv("sales_data.csv", header = TRUE, sep = ",") #assuming your R file and data file are located in one folder == working directory
-head(test_data)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 # If you need to export your data (e.g., to send it to a colleague)
 write.csv(sales_data, "Sales_Data.csv", row.names = FALSE) # writes to a comma-separated value file
 
+# To save as Excel file:
+library(xlsx)
+write.xlsx(sales_data, "Sales_Data.xlsx", # we can also split the code in lines by comma (not just by " %>% ")
+           sheetName = "Data",
+           row.names = FALSE)
 
-## Let's practice!
+
+
+## --------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Let's practice!
+
+# 1. What is the difference between these two code lines?
+sales_data %>% filter(private_label == "private label")
+private_labels <- sales_data %>% filter(private_label == "private label")
+
+
+# 2. Filter the data frame "sales_data" by sales below (less than) 100000: fill out the "filter()" function
+sales_data %>% filter()
+
+
+# 3. Filter the data frame "sales_data" by national brands (i.e., only keep observations with national brands). Write the whole code yourself.
+
+
+# 4. Select vs. filter
+
+
+# 5. Select
+
+
+# 6. Arrange
+
+
+# 7. Summarize with Grouping
+
 
 
