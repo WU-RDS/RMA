@@ -39,7 +39,7 @@ y
 ### Manual:
 # Numeric:
 sales <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) # function c() means "concatenate" (= merge) and serves for creating a row of values
-log(top10_sales) # you can take logarithm of the values in the row you created by applying the function log() to the whole object that contains the values of interest. 
+log(sales) # you can take logarithm of the values in the row you created by applying the function log() to the whole object that contains the values of interest. 
 # It also works with columns in data tables (see further)
 
 # Character:
@@ -105,7 +105,7 @@ sales_data %>% filter(top10_product_names == 'Bio-Kaisersemmel') # returns all o
 
 # we can create an object based on our manipulations. 
 private_labels <- sales_data %>% filter(private_label == "private label")
-# ! Note that as a result of this code, there is NO output down in the console. This means that if you run this line in your report, your manager won't see any results.
+# ! Note that as a result of this code, there is NO output down in the console. This means that if you run this line in your report, your manager won't see any results!
 # To get the result of the code above as an output, call the created object:
 private_labels
 
@@ -125,7 +125,7 @@ sales_data %>% arrange(top10_brand, desc(top10_sales))
 # Keep only several columns. Again, if you need to use the result for analysis or show it in a presentation, you need to create the object. 
 sales_data %>% select(top10_product_names, top10_sales, private_label)
 
-#spot the difference:
+# spot the difference:
 sales_data %>% select(private_label)
 sales_data %>% select(private_label) %>% unique() # you can retrieve unique combinations for one column's value, ... 
 sales_data %>% select(top10_brand, private_label) %>% unique() # ... or unique combinations of different columns
@@ -214,28 +214,32 @@ write.xlsx(sales_data, "Sales_Data.xlsx", # we can also split the code in lines 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Let's practice!
 
-# 1. What is the difference between these two code lines?
+# 1. What is the difference between these two code lines (their outputs)?
 sales_data %>% filter(private_label == "private label")
 private_labels <- sales_data %>% filter(private_label == "private label")
 
 
-# 2. Filter the data frame "sales_data" by sales below (less than) 100000: fill out the "filter()" function
+# 2. Filter the data frame "sales_data" by sales below (less than) 100000: fill in the "filter()" function
 sales_data %>% filter()
 
 
 # 3. Filter the data frame "sales_data" by national brands (i.e., only keep observations with national brands). Write the whole code yourself.
 
 
-# 4. Select vs. filter
+# 4. What happens when you use select() vs. filter()? Try both and observe the differences:
+sales_data %>% select(brand, top10_sales)
+sales_data %>% filter(private_label == "national brand")
 
 
-# 5. Select
+# 5. Select only the columns that contain information about the brand name and the sales: fill in the "select()" function
+sales_data %>% select()
 
 
-# 6. Arrange
+# 6. Arrange the “sales_data” in ascending order of date: fill in the "arrange()" function
+sales_data %>% arrange()
 
 
-# 7. Summarize with Grouping
+# 7. Group by “brand” and summarize total sales for each brand. Write the whole code yourself.
 
 
 
