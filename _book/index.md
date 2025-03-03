@@ -71,66 +71,66 @@ The contents on this website are divided into weekly readings. To be able to fol
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Oct 17 </td>
+   <td style="text-align:left;"> Mar 6 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.2.03 </td>
    <td style="text-align:left;"> Introduction to the course <br>Basic concepts of research design </td>
    <td style="text-align:left;"> 1, except: <br>1.2.3.1., <br>1.2.3.1.2.1, <br>1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Oct 24 </td>
+   <td style="text-align:left;"> Mar 13 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.2.03 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown I </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 7 </td>
+   <td style="text-align:left;"> Mar 20 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
-   <td style="text-align:left;"> Introduction to R &amp; R Markdown II </td>
+   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.2.03 </td>
+   <td style="text-align:left;"> Introduction to R &amp; R Markdown II<br>Descriptive analytics </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 14 </td>
+   <td style="text-align:left;"> Mar 27 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Introduction to inferential statistics </td>
    <td style="text-align:left;"> 5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 21 </td>
+   <td style="text-align:left;"> Apr 3 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 3:00 PM - 6:00 PM </td>
+   <td style="text-align:left;"> TC.2.02 </td>
    <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 28 </td>
+   <td style="text-align:left;"> Apr 10 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 3:00 PM - 6:00 PM </td>
+   <td style="text-align:left;"> TC.2.02 </td>
    <td style="text-align:left;"> Supervised learning II </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Dec 5 </td>
+   <td style="text-align:left;"> May 8 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.5.27 </td>
+   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> TC.3.03 </td>
    <td style="text-align:left;"> Experimental design <br>Group project coaching </td>
    <td style="text-align:left;"> 1: 1.2.3.1., 1.2.3.1.2.1, 1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Dec 12 </td>
+   <td style="text-align:left;"> May 15 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 08:00 AM - 10:00 AM </td>
-   <td style="text-align:left;"> D5.0.002 </td>
+   <td style="text-align:left;"> 8:30 AM - 9:30 AM </td>
+   <td style="text-align:left;"> TC.5.05 </td>
    <td style="text-align:left;"> Exam </td>
    <td style="text-align:left;"> -- </td>
   </tr>
@@ -192,7 +192,7 @@ Grading is based on the following components:
 * **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
 
-The **final exam** will take place on **December 12, 2024 from 08:00 AM - 10:00 AM** in room D5.0.002. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods (no coding) that we learn in this course; some sample questions from the previous years will be provided to you.   
+The **final exam** will take place on **May 15, 2025 from 08:30 AM - 9:30 AM** in room D5.0.002. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
 
 In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
 
