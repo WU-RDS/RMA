@@ -556,15 +556,8 @@ After discussing all the steps in the research process up to the data collection
 - [ ] …observational research is the 'gold standard'
 - [ ] None of the above 	
 
-**(LC1.4) Conditions for causality are ...**
 
-- [ ] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
-- [ ] ... random assignment of test units
-- [ ] ... the causing event must occur before the effect
-- [ ] ... absence of other possible causal factors
-- [ ] None of the above
-
-**(LC1.5) In predictive modeling tasks ...**
+**(LC1.4) In predictive modeling tasks ...**
 
 - [ ] ... one major concern are unobserved confounders
 - [ ] ... one major concern is overfitting 
@@ -572,12 +565,12 @@ After discussing all the steps in the research process up to the data collection
 - [ ] ... we primarily care about causal effects 
 - [ ] None of the above
 
-**(LC1.6) True or false? For ordinal scales, the magnitude of difference between scale points is known.**
+**(LC1.5) True or false? For ordinal scales, the magnitude of difference between scale points is known.**
 
 - [ ] True 
 - [ ] False
 
-**(LC1.7) For which scale types is it meaningful to compute the mean?**
+**(LC1.6) For which scale types is it meaningful to compute the mean?**
 
 - [ ] Ratio
 - [ ] Nominal
@@ -589,7 +582,15 @@ After discussing all the steps in the research process up to the data collection
 
 **Relevant after Experimental Design class:**
 
-**(LC5.1) Which of these statements regarding formative constructs are true?** (Not exam relevant)
+**(LC5.1) Conditions for causality are ...**
+
+- [ ] ... a cause and an effect should vary together in the way predicted by the hypothesis under consideration 
+- [ ] ... random assignment of test units
+- [ ] ... the causing event must occur before the effect
+- [ ] ... absence of other possible causal factors
+- [ ] None of the above
+
+**(LC5.2) Which of these statements regarding formative constructs are true?** (Not exam relevant)
 
 - [ ] Indicators (items) measure the cause for the change of the not directly observable construct
 - [ ] Indicators (items) measure the effect of the change in a not directly observable construct
@@ -597,12 +598,12 @@ After discussing all the steps in the research process up to the data collection
 - [ ] Multi-item measurement is particularly important for the increase in the reliability of the measurement
 - [ ] None of the above
 
-**(LC5.2) True or false? Reliability refers to the consistency of a measurement.** (Not exam relevant)
+**(LC5.3) True or false? Reliability refers to the consistency of a measurement.** (Not exam relevant)
 
 - [ ] True 
 - [ ] False
 
-**(LC5.3) Using a between-subjects design, we ... **
+**(LC5.4) Using a between-subjects design, we ... **
 
 - [ ] ... manipulate the independent variable (treatment) using different persons for each group
 - [ ] ... manipulate the independent variable using the same participants for each group 
@@ -610,14 +611,14 @@ After discussing all the steps in the research process up to the data collection
 - [ ] ... manipulate dependent variable using the same participants for each group 
 - [ ] None of the above
 
-**(LC5.4) When conducting field experiments, the term crossover effect means ...**
+**(LC5.5) When conducting field experiments, the term crossover effect means ...**
 
 - [ ] ... that an individual who was supposed to be assigned to one treatment is accidentally exposed to another treatment 
 - [ ] ... that a treated individual affects the outcomes for other untreated individuals  
 - [ ] ... that individuals can be part of both the test and the control condition
 - [ ] None of the above
 
-**(LC5.5) The effect of the treatment on the treated in DID models can be written as ...** (Not exam relevant)
+**(LC5.6) The effect of the treatment on the treated in DID models can be written as ...** (Not exam relevant)
 
 - [ ] $(Yt,pre - Yt,post) − (Yc,post - Yc,pre)$  
 - [ ] $(Yt,post - Yt,pre) − (Yc,post - Yc,pre)$ 
