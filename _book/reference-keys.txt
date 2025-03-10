@@ -107,7 +107,6 @@ creating-objects
 data-types
 data-structures
 accessing-data-in-data-frames
-inspecting-the-content-of-a-data-frame
 select-group-append-and-delete-variables-tofrom-data-frames
 data-import-and-export
 getting-data-for-this-course

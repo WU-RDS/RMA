@@ -24,7 +24,7 @@ x*y # multiplication of x and y
 x + y # adds the values of x and y together
 y^2 + 3*x # adds the value of y squared and 3x the value of x together
 
-# such operations can be performed not just with "single" values; we can do the same with values in data tables (see further)
+# such operations can be performed not just with "single" values; we can do the same with values in data tables (see below)
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #class(y) # check the class of the variable (what type of variable it is) - or hover over the "y" cell in the top right corner (Global Environment)
@@ -58,7 +58,7 @@ sales_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/he
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-#sales_data # Returns the entire data frame. NEVER DO IT. 
+#sales_data # Returns the entire data frame. NEVER DO IT AGAIN. 
 
 head(sales_data, 3) # returns the first N rows (here, the first 3 rows)
 tail(sales_data, 3) # returns the last N rows (here, the last 3 rows)
@@ -70,8 +70,8 @@ str(sales_data) # returns the structure of the data frame
 # Your to-dos when inspecting the structure of the data frame:
 # 1. Check if the data is read in correctly (e.g., if the columns are split correctly)
 # 2. Check how the columns are called and what the spelling is. You must refer to columns exactly how they are called in the data frame.
-# 2. Check data types: what columns (variables) should be numeric but are currently character? Are there any dates that are not in the date format?
-# 3. If something is wrong, change the data types, targeting specific columns:
+# 3. Check data types: what columns (variables) should be numeric but are currently character? Are there any dates that are not in the date format?
+# 4. If something is wrong, change the data types, targeting specific columns:
 
 sales_data$top10_sales <- as.numeric(sales_data$top10_sales) # in this case, it's basically not necessary, because integer ("int") is by definition numeric
 sales_data$date_most_sold <- as.Date(sales_data$date_most_sold)
@@ -88,7 +88,18 @@ sales_data$top10_sales # this is the way to "call" a specific column from a data
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Operations with data
+
+# I want you to make two mistakes:
+Sales_data
+sales_data$top1_sales
+
+#sales_data
+#sales_data$top10_sales
+
+select(sales_data, private_label)
+
 library(tidyverse)
+#select(sales_data, private_label)
 
 # 1. Filtering (ROWS)
 # Filter by specific values
@@ -98,7 +109,8 @@ filter(sales_data, private_label == "private label") # show only products that b
 # however, let's check another way of using dplyr functions: with a pipe
 sales_data %>% filter(private_label == "private label")
 # hence the syntax: data_frame THEN function(action with a column)
-# note that we don't put the data_frame in the function itself anymore
+# note that we don't put the data_frame in the function itself anymore:
+# you can read this as follows: take "sales_data", then filter [it] by "private_label"
 
 sales_data %>% filter(top10_sales > 100000) # show only products that sold more than 100,000 units  
 sales_data %>% filter(top10_product_names == 'Bio-Kaisersemmel') # returns all observations from product "Bio-Kaisersemmel"
@@ -197,6 +209,9 @@ sales_data %>% mutate(most_sales_month = as.integer(format(date_most_sold, "%m")
 #  knowing which function we need, we call it from the respective package).
 sales_data <- dplyr::rename(sales_data, brand = top10_brand)
 head(sales_data)
+
+# Let's make the mistake regarding the "dplyr::" part:
+sales_data <- rename(sales_data, brand_new = brand) 
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
