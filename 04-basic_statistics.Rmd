@@ -60,75 +60,35 @@ ratio, or coefficient of variation  | No  | No  | No  | Yes
 
 As an example data set, we will be using a data set containing music streaming data from a popular streaming service. Let's load and inspect the data first.
 
-```{r eval=FALSE, include=FALSE, purl=FALSE}
-music_data <- read.csv2("https://short.wu.ac.at/ma22_musicdata")
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 set.seed(1)
-music_data$expert_rating <- factor(sample(1:5, nrow(music_data), replace = TRUE, prob = c(0.08, 0.2, 0.35, 0.35, 0.02)), levels = 1:5, 
-                                   labels = c("poor", "fair", "good", "excellent", "masterpiece"),
-                                  )
-write.csv2(music_data, "data/music_data_fin.csv", row.names = FALSE)
+sales_data <- read.csv2("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/data_visualization.csv", sep = ";")
+
+head(sales_data)
+dim(sales_data)
 ```
 
 
-```{r, message=FALSE, warning=FALSE, eval=TRUE, cache=TRUE}
-# read.csv2 is shorthand for read.csv(file, sep = ";")
-music_data <- read.csv2("https://short.wu.ac.at/ma22_musicdata")
-dim(music_data)
-head(music_data)
-names(music_data)
-```
+The data set contains information about several purchases made in a number of stores in 2023. The `dim()`-function returns the dimensions of the data frame (i.e., the number of rows and columns). As can be seen, the data set comprises information for 5000 transactions and 7 variables (columns). The variables in the data set are:
 
-The data set contains information about all songs that appeared in the Top200 charts of a popular streaming service between 2017 and 2020. The `dim()`-function returns the dimensions of the data frame (i.e., the number of rows and columns). As can be seen, the data set comprises information for 66,796 songs and 31 variables. The variables in the data set are:
-
-* isrc: unique song id
-* artist_id: unique artist ID
-* streams: the number of streams of the song received globally between 2017-2021
-* weeks_in_charts: the number of weeks the song was in the top200 charts in this period
-* n_regions: the number of markets where the song appeared in the top200 charts
-* audio features, see: (see: https://developer.spotify.com/documentation/web-api/reference/*category-tracks) 
-    * danceability
-    * energy
-    * speechiness
-    * instrumentalness
-    * liveness
-    * valence
-    * tempo
-* song_length: the duration of the song (in minutes)
-* song_age: the age of the song (in weeks since release)
-* explicit: indicator for explicit lyrics
-* n_playlists: number of playlists a song is featured on
-* sp_popularity: the Spotify popularity index of an artist
-* youtube_views: the number of views the song received on YouTube
-* tiktok_counts: the number of Tiktok views the song received on TikTok
-* ins_followers_artist: the number of Instagram followers of the artist
-* monthly_listeners_artist: the number of monthly listeners of an artist
-* playlist_total_reach_artist: the number of playlist followers of the playlists the song is on
-* sp_fans_artist: the number of fans of the artist on Spotify
-* shazam_counts: the number of times a song is shazamed
-* artistName: name of the artist
-* trackName: name of the song
-* release_date: release date of song
-* genre: genre associated with the song
-* label: music label associated with the song
-* top10: indicator whether the song was in the top 10
-* expert_rating: 5-scale rating by a music expert (poor, fair, good, excellent, masterpiece)
+* Date: date of purchase
+* Store: Store ID/number
+* Category: product category of the purchased item
+* Brand: name of the brand of the purchased item
+* Sales_Amount: the monetary value of the purchase (i.e., store's revenue)
+* Units_Sold: number of units purchased
+* Customer_Age: the age of the customer who made the purchase
 
 In a first step, we need to make sure all variables are in the correct format, according to these variable definitions: 
 
 ```{r, message=FALSE, warning=FALSE, eval=TRUE}
 library(tidyverse)
-music_data <- music_data |> # pipe music data into mutate
-  mutate(release_date = as.Date(release_date), # convert to date
-         explicit = factor(explicit, levels = 0:1, labels = c("not explicit", "explicit")), # convert to factor w. new labels
-         label = as.factor(label), # convert to factor with values as labels
-         genre = as.factor(genre),
-         top10 = as.logical(top10),
-         # Create an ordered factor for the ratings (e.g., for arranging the data)
-         expert_rating = factor(expert_rating, 
-                                levels = c("poor", "fair", "good", "excellent", "masterpiece"), 
-                                ordered = TRUE)
-         )
-head(music_data)
+sales_data <- sales_data %>% # pipe data into mutate
+  dplyr::mutate(Date = as.Date(Date), # convert to date
+         Store = as.factor(Store), # convert to factor w. new labels
+         Category = as.factor(Category), # convert to factor with values as labels
+         Brand = as.factor(Brand)) 
+head(sales_data)
 ```
 
 In the following sections, we will inspect the data in more detail.
@@ -137,70 +97,49 @@ In the following sections, we will inspect the data in more detail.
 
 Categorical variables contain a finite number of categories or distinct groups and are also known as qualitative or non-metric variables. There are different types of categorical variables:
 
-* **Nominal variables**: variables that have two or more categories but no logical order (e.g., music genres). A dichotomous variable (also referred to as dummy variable or binary variable) is simply a nominal variable that only has two categories (e.g., indicator for explicit lyrics).
-* **Ordinal variables**: variables that have two or more categories that can also be ordered or ranked (e.g., expert ratings).
+* **Nominal variables**: variables that have two or more categories but no logical order (e.g., store ID, brand name). A dichotomous variable (also referred to as dummy variable or binary variable) is simply a nominal variable that only has two categories (absent in this data set).
+* **Ordinal variables**: variables that have two or more categories that can also be ordered or ranked (absent in this data set).
 
-Let's now start to investigate the **nominal variables** in our data set (i.e., explicit, genre, label).
+Let's now start to investigate the **nominal variables** in our data set.
 
 As the table above shows, the only permissible operation with nominal variables is counting. That is, we can inspect the frequency distribution, which tells us how many observations we have per category. The ```table()``` function creates a frequency table that counts how many observations we have in each category. 
 
 ```{r, message=FALSE, warning=FALSE, eval=TRUE}
-table(music_data$genre) #absolute frequencies
-table(music_data$label) #absolute frequencies
-table(music_data$explicit) #absolute frequencies
+table(sales_data$Category) #absolute frequencies
+table(sales_data$Store) #absolute frequencies
 ```
 
-The numbers associated with the factor level in the output tell you, how many observations there are per category. For example, there are `r nrow(music_data[music_data$genre == "HipHop/Rap", ])` songs from the HipHop & Rap genre. 
+The numbers associated with the factor level in the output tell you, how many observations there are per category. For example, there are `r nrow(sales_data[sales_data$Category == "Clothing", ])` purchases from the Clothing category; also, 532 are from Store No. 9.
 
-Often, we are interested in the relative frequencies, which can be obtained by using the ```prop.table()``` function.
+Often, we are interested in the relative frequencies (share of observations), which can be obtained by using the ```prop.table()``` function.
 
 ```{r, message=FALSE, warning=FALSE, eval=TRUE}
-prop.table(table(music_data$genre)) #relative frequencies
-prop.table(table(music_data$label)) #relative frequencies
-prop.table(table(music_data$explicit)) #relative frequencies
+prop.table(table(sales_data$Category)) #relative frequencies
+prop.table(table(sales_data$Store)) #relative frequencies
 ```
+
+
 ```{r include=FALSE}
-warner_share <- prop.table(table(music_data$label))
-warner_share <- round(100*warner_share[names(warner_share) == "Warner Music"], digits = 1)
-rock_share <- prop.table(table(music_data$genre))
-rock_share <- round(100*rock_share[names(rock_share) == "Rock"], digits = 1)
-explicit_share <- prop.table(table(music_data$explicit))
-explicit_share <- round(100*explicit_share[names(explicit_share) == "explicit"], digits = 1)
+grocery_share <- prop.table(table(sales_data$Category)) # first create the relative frequencies table
+grocery_share <- round(100*grocery_share[names(grocery_share) == "Grocery"], digits = 1) # extract the value that satisfies the condition (where the name of category is "Grocery")
+grocery_share
+
+store_2_share <- prop.table(table(sales_data$Store))
+store_2_share <- round(100*store_2_share[names(store_2_share) == "Store 2"], digits = 1)
+store_2_share
+
 ```
 
+Now the output gives you the relative frequencies. For example, the share of purchases (transactions) of groceries is ~`r grocery_share`%, ~`r store_2_share`% of purchases are from Store number 2.
 
-Now the output gives you the relative frequencies. For example, the market share of Warner Music in the Top200 charts is ~`r warner_share`%, ~`r rock_share`% of songs are from the Rock genre, and ~`r explicit_share`% of the songs have explicit lyrics. 
-
-Note that the above output shows the overall relative frequencies. In many cases, it is meaningful to consider conditional relative frequencies. This can be achieved by adding a ```,1``` to the ```prop.table()``` command, which tells R to compute the relative frequencies by row (which is in our case the genre variable). The following code can be used to show the relative frequency of songs with explicit lyrics by genre.  
+Note that the above output shows the overall relative frequencies. In many cases, it is meaningful to consider conditional relative frequencies. This can be achieved by adding a ```,1``` to the ```prop.table()``` command, which tells R to compute the relative frequencies by row (which is in our case the Store variable). The following code can be used to show the relative frequency of purchases from specific categories by store  
 
 ```{r, message=FALSE, warning=FALSE, eval=TRUE}
-prop.table(table(select(music_data, genre, explicit)),1) #conditional relative frequencies
+prop.table(table(select(sales_data, Store, Category)), 1)  #conditional relative frequencies
 ```
-As can be seen, the presence of explicit lyrics greatly varies across genres. While in the Electro/Dance genre ~`r round(100*prop.table(table(music_data[, c("genre", "explicit")]),1)["Electro/Dance", "explicit"], digits = 1)`% of songs have explicit lyrics, in the Country genre, this share is only ~`r round(100*prop.table(table(music_data[, c("genre", "explicit")]),1)["Country", "explicit"], digits = 1)`%.
 
-The 'expert_rating' variable is an example of an **ordinal variable**. Although we can now rank order the songs with respect to their rating, this variable doesn't contain information about the distance between two songs. To get a measure of central tendency, we could, for example, compute the median of this variable using the `quantile()`-function (recall that the 50th percentile is the median). For ordinal factors we also have to set the algorithm that calculates the percentiles to `type=1` (see `?quantile` for more details).
+As can be seen, the the share of transactions from the Clothing category is high in all stores, with the highest share of ~30% of transactions in Store 8.
 
-```{r, message=FALSE, warning=FALSE, eval=TRUE}
-median_rating <- quantile(music_data$expert_rating, 0.5, type = 1)
-median_rating
-```
-This means that the "middle" value when the data are arranged is expert rating "good" (median = 50th percentile). Note that you could also compute other percentiles using the `quanile()`-function. For example, to get the median and the interquartile range, we could compute the 25th, 50th, and 75th percentile.  
-
-```{r, message=FALSE, warning=FALSE, eval=TRUE}
-quantile(music_data$expert_rating,c(0.25,0.5,0.75), type = 1)
-```
-This means that the interquartile range is between "fair" and "excellent". If you wanted to compare different genres according to these statistics, you could do this using the `group_by()`-function as follows:
-
-```{r echo=TRUE, message=FALSE, warning=FALSE, eval=TRUE}
-percentiles <- c(0.25, 0.5, 0.75)
-rating_percentiles <- music_data |>
-  group_by(explicit) |>
-  summarize(
-    percentile = percentiles,
-    value = quantile(expert_rating, percentiles, type = 1)) 
-rating_percentiles
-```
-In this case, we don't observe any differences in the first, second, or third quantile of expert ratings between explicit and non-explicit songs.
 
 
 ### Continuous variables
@@ -210,24 +149,50 @@ In this case, we don't observe any differences in the first, second, or third qu
 Continuous variables (also know as metric variables) are numeric variables that can take on any value on a measurement scale (i.e., there is an infinite number of values between any two values). There are different types of continuous variables as we have seen in chapter 1:
 
 * **Interval variables**: while the zero point is arbitrary, equal intervals on the scale represent equal differences in the property being measured. E.g., on a temperature scale measured in Celsius the difference between a temperature of 15 degrees and 25 degrees is the same difference as between 25 degrees and 35 degrees but the zero point is arbitrary (there are different scales to measure temperature, such as Fahrenheit or Celsius, and zero in this case doesn't indicate the absence of temperature). 
-* **Ratio variables**: has all the properties of an interval variable, but also has an absolute zero point. When the variable equals 0.0, it means that there is none of that variable (e.g., the number of streams or duration variables in our example). 
+* **Ratio variables**: has all the properties of an interval variable, but also has an absolute zero point. When the variable equals 0.0, it means that there is none of that variable (e.g., sales amount and customer age in our example). 
 
-For interval and ratio variables we can also compute the mean as a measure of central tendency, as well as the variance and the standard deviation as measures of dispersion. Computing descriptive statistics for continuous variables is easy and there are many functions from different packages that let you calculate summary statistics (including the ```summary()``` function from the ```base``` package). In this tutorial, we will use the ```describe()``` function from the ```psych``` package. Note that you could just as well use other packages to compute the descriptive statistics (e.g., the ```stat.desc()``` function from the ```pastecs``` package). Which one you choose depends on what type of information you seek (the results provide slightly different information) and on personal preferences. 
+For interval and ratio variables we can compute the mean as a measure of central tendency, as well as the variance and the standard deviation as measures of dispersion. Computing descriptive statistics for continuous variables is easy and there are many functions. The easiest are:
 
-We could, for example, compute the summary statistics for the variables "streams", "danceability", and "valence" in our data set as follows:
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
+# average customer age
+avg_age <- mean(sales_data$Customer_Age)
+avg_age
+
+# median customer age
+median_age <- median(sales_data$Customer_Age)
+median_age
+
+# or using quantile()
+median_age <- quantile(sales_data$Customer_Age, 0.5, type = 1)
+median_age
+
+# customer age by percentiles
+quantile(sales_data$Customer_Age, c(0.25,0.5,0.75), type = 1)
+
+# mode customer age
+library(DescTools)
+mode_age <- Mode(sales_data$Customer_Age)
+mode_age
+```
+
+
+We can also use functions that return multiple statistics at once; those are available in  different packages that let you calculate summary statistics (including the ```summary()``` function from the ```base``` package). In this tutorial, we will use the ```describe()``` function from the ```psych``` package. Note that you could just as well use other packages to compute the descriptive statistics (e.g., the ```stat.desc()``` function from the ```pastecs``` package). Which one you choose depends on what type of information you seek (the results provide slightly different information) and on personal preferences. 
+
+We could, for example, compute the summary statistics for the variables "sales amount", "units sold", and "customer age" in our data set as follows:
 
 ```{r message=FALSE, warning=FALSE, paged.print = FALSE}
 library(psych)
-psych::describe(select(music_data, streams, danceability, valence))
+psych::describe(select(sales_data, Sales_Amount, Units_Sold, Customer_Age))
 ```
-You can see that the output contains measures of central tendency (e.g., the mean) and dispersion (e.g., sd) for the selected variables. It can be seen, for example, that the mean of the streams variable is 7,314,674 while the median is 333,336. This already tells us something about the distribution of the data. Because the mean is substantially higher than the median, we can conclude that there are a few songs with many streams, resulting in a right skew of the distribution. The median as a measure of central tendency is generally less susceptible to outliers.   
+
+You can see that the output contains measures of central tendency (e.g., the mean) and dispersion (e.g., standard deviation) for the selected variables. It can be seen, for example, that the mean of the sales amount variable is 279.29 while the median is 202.95. This already tells us something about the distribution of the data. Because the mean is higher (though not as substantially as it could get, in theory) than the median, we can conclude that there are a some purchases that costed somewhat more than others, potentially resulting in a right skew of the distribution. The median as a measure of central tendency is generally less susceptible to outliers.   
 
 In the above command, we used the ```psych::``` prefix to avoid confusion and to make sure that R uses the ```describe()``` function from the ```psych``` package since there are many other packages that also contain a ```desribe()``` function. Note that you could also compute these statistics separately by using the respective functions (e.g., ```mean()```, ```sd()```, ```median()```, ```min()```, ```max()```, etc.). There are many options for additional statistics for this function. For example, you could add the argument `IQR = TRUE` to add the interquartile range to the output.   
 
-The ```psych``` package also contains the ```describeBy()``` function, which lets you compute the summary statistics by sub-groups separately. For example, we could compute the summary statistics by genre as follows: 
+The ```psych``` package also contains the ```describeBy()``` function, which lets you compute the summary statistics by sub-groups separately. For example, we could compute the summary statistics by category as follows: 
 
 ```{r message=FALSE, warning=FALSE}
-describeBy(select(music_data, streams, danceability, valence), music_data$genre,skew = FALSE, range = FALSE)
+describeBy(select(sales_data, Sales_Amount, Units_Sold, Customer_Age), sales_data$Category, skew = FALSE, range = FALSE)
 ```
 
 In this example, we used the arguments `skew = FALSE` and `range = FALSE` to exclude some statistics from the output. 
@@ -241,16 +206,16 @@ st_css()
 
 ```{r, message=FALSE, error = FALSE, warning = FALSE, results='asis'}
 library(summarytools)
-print(dfSummary(select(music_data, streams, valence, genre, label, explicit), plain.ascii = FALSE, style = "grid",valid.col = FALSE, tmp.img.dir = "tmp", graph.magnif = .65),  method = 'render',headings = FALSE,footnote= NA)
+print(dfSummary(select(sales_data, Sales_Amount, Units_Sold, Customer_Age, Store, Category, Brand), plain.ascii = FALSE, style = "grid",valid.col = FALSE, tmp.img.dir = "tmp", graph.magnif = .65),  method = 'render',headings = FALSE,footnote= NA)
 ```
 
-The 'Missing' column in the output above gives us information about missing values. It this case, there are no missing values; however, in reality there are usually at least a couple of lost or not recorded values. To get more precise analysis results, we might want to exclude these observations by creating a "complete" subset of our data. Imagine that we have a missing value in the variable "valence"; we would create a subset by filtering that hypothetical observation out:
+The 'Missing' column in the output above gives us information about missing values. It this case, there are no missing values; however, in reality there are usually at least a couple of lost or not recorded values. To get more precise analysis results, we might want to exclude these observations by creating a "complete" subset of our data. Imagine that we have a missing value in the variable "Sales_Amount"; we would create a subset by filtering that hypothetical observation out:
 
 ```{r message=FALSE, warning=FALSE}
-music_data_valence <- filter(music_data, !is.na(valence))
+sales_data_full <- filter(sales_data, !is.na(Sales_Amount))
 ```
 
-In the command above, `!is.na()` is used to filter the rows for observations where the respective variable does not have missing values. The "!" in this case translates to "is not" and the function `is.na()` checks for missing values. Hence, the entire statement can be read as "select the rows from the 'music_data' data set where the values of the 'valence' and 'duration_ms' variables are not missing".
+In the command above, `!is.na()` is used to filter the rows for observations where the respective variable does not have missing values. The "!" in this case translates to "is not" and the function `is.na()` checks for missing values. Hence, the entire statement can be read as "select the rows from the 'sales_data' data set where the values of the 'Sales_Amount' variable are not missing".
 
 As you can see, the output also includes a visualization of the frequency distribution using a histogram for the continuous variables and a bar chart for the categorical variables. The frequency distribution is an important element that allows us to assign probabilities to observed values if the observations come from a known probability distribution. How to derive these probability statements will be discussed next.   
 
@@ -272,32 +237,30 @@ The second point is related to the scale of the distribution. Since the variable
 $$\begin{align}
 Z=\frac{X_i-\bar{X}}{s}
 \end{align}
-$$
+$$ 
 
 By subtracting the mean of the variable from each observation and dividing by the standard deviation, the data is converted to a scale with mean = 0 and SD = 1, so we can use the tables of probabilities for the normal distribution to see how likely it is that a particular score will occur in the data. In other words, **the z-score tells us how many standard deviations above or below the mean a particular x-value is**. 
 
 
-To see how this works in practice, let's inspect the distribution of the 'tempo' variable from the music data set, which is defined as the overall estimated tempo of a track in beats per minute (BPM). The `hist()`-function can be used to draw the corresponding histogram.
+To see how this works in practice, let's inspect the distribution of the 'customer age' variable from the sales data set. The `hist()`-function can be used to draw the corresponding histogram.
 
 ```{r message=FALSE, warning=FALSE,fig.align='center',fig.cap = "Histogram of tempo variable"}
-hist(music_data$tempo)
+hist(sales_data$Customer_Age)
 ```
-In this case, the variable is measured on the scale "beats per minute". To standardize this variable, we will subtract the mean of this variable from each observation and then divide by the standard deviation. We can compute the standardized variable by hand as follows:
+
+In this case, the variable is measured on the scale "years lived" (so it takes values from 0 to, potentially, infinity). To standardize this variable, we will subtract the mean of this variable from each observation and then divide by the standard deviation. We can compute the standardized variable by hand as follows:
 
 ```{r message=FALSE, warning=FALSE}
-music_data$tempo_std <- (music_data$tempo - mean(music_data$tempo))/sd(music_data$tempo)
+sales_data$age_std <- (sales_data$Customer_Age - mean(sales_data$Customer_Age))/sd(sales_data$Customer_Age)
+#sales_data$age_std <- scale(sales_data$Customer_Age)
 ```
 
 If we create the histogram again, we can see that the scale has changed and now we can compare the standardized values to the values we find in the probability table.  
 
 ```{r message=FALSE, warning=FALSE,fig.align='center',fig.cap = "Histogram of standardized tempo variable"}
-hist(music_data$tempo_std)
+hist(sales_data$age_std)
 ```
-Note that you could have also used the `scale()`-function instead of computing the z-scores manually, which leads to the same result: 
 
-```{r message=FALSE, warning=FALSE}
-music_data$tempo_std <- scale(music_data$tempo)
-```
 
 Instead of manually comparing the observed values to the values in the table, it is much easier to use the in-built functions to obtain the probabilities. The `pnorm()`-function gives the probability of obtaining values lower than the indicated values (i.e., the probability mass left of that value). For the value of 1.96, this probability mass is ~0.025, in line with the table above. 
 
@@ -319,18 +282,18 @@ Regarding the standard normal distribution, it is helpful to remember the follow
 Going back to our example, we could also ask: what is the probability of obtaining the minimum (or maximum) observed value in our data? The minimum value on the standardized scale is:
 
 ```{r message=FALSE, warning=FALSE}
-min(music_data$tempo_std)
+min(sales_data$age_std)
 ```
 And the associated probability is:  
 
 ```{r message=FALSE, warning=FALSE}
-pnorm(min(music_data$tempo_std))*2
+pnorm(min(sales_data$age_std))*2
 ```
-Although the probability of observing this minimum value is very low, there are very few observations in the extreme regions at each end of the histogram, so this doesn't seem too unusual. As a rule of thumb, you can remember that 68% of the observations of a normally distributed variable should be within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations. This is also shown in the following plot: 
+Although the probability of observing this minimum value is low, there are very few observations in the extreme regions at each end of the histogram, so this doesn't seem too unusual. As a rule of thumb, you can remember that 68% of the observations of a normally distributed variable should be within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations. This is also shown in the following plot: 
 
 ```{r,echo=FALSE,out.width = '70%',fig.align='center',fig.cap = "The 68, 95, 99.7 rule (source: Wikipedia)"}
 knitr::include_graphics("./images/prob_rule.JPG")
 ```
 
-In case of our 'tempo' variable, we do not observe values that are more than 3 standard deviations away from the mean. In other instances, checking the standardized values of a variable may help you to identify outliers. For example, if you conducted a survey and you would like to exclude respondents who answered the survey too fast, you may exclude cases with a low probability based on the distribution of the duration variable.   
+In case of our 'customer age' variable, we do observe values that are more than 3 standard deviations away from the mean. In this and other instances, checking the standardized values of a variable may help you to identify outliers. For example, if you conducted a survey and you would like to exclude respondents who answered the survey too fast, you may exclude cases with a low probability based on the distribution of the duration variable.   
 

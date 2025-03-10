@@ -8,9 +8,6 @@ output:
     toc: yes
 ---
 
-# Data handling
-
-This chapter covers the basics of data handling in R.
 
 ## Basic data handling
 
@@ -519,5 +516,104 @@ head(sales_data)
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["top10_sales"],"name":[1],"type":["int"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["chr"],"align":["left"]},{"label":["brand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["chr"],"align":["left"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["log_sales"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["obs_number"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE","7":"12.00523","8":"1","_rn_":"1"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE","7":"11.74947","8":"2","_rn_":"2"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE","7":"11.69924","8":"3","_rn_":"3"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE","7":"11.60844","8":"4","_rn_":"4"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE","7":"11.59570","8":"5","_rn_":"5"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE","7":"11.46834","8":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+
+
+## Learning check {-}
+
+**(LC3.1) Which of the following are data types are recognized by R?**
+
+- [X] Factor
+- [X] Date
+- [ ] Decimal
+- [ ] Vector
+- [ ] None of the above 	
+
+**(LC3.2) What function should you use to check if an object is a data frame?**
+
+- [ ] `type()`
+- [ ] `str()`
+- [X] `class()`
+- [ ] `object.type()`
+- [ ] None of the above 	
+
+**(LC3.3) You would like to combine three vectors (student, grade, date) in a data frame. What would happen when executing the following code?** 
+
+
+``` r
+student <- c('Max','Jonas','Saskia','Victoria')
+grade <- c(3,2,1,2)
+date <- as.Date(c('2020-10-06','2020-10-08','2020-10-09'))
+df <- data.frame(student,grade,date)
+```
+
+- [ ] Error because a data frame can not have different data types
+- [ ] Error because you should use `as.data.frame()` instead of `data.frame()`
+- [X] Error because all vectors need to have the same length
+- [ ] Error because the column names are not specified
+- [ ] This code should not report an error	
+
+**You would like to analyze the following data frame**
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["student"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grade"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Christian","2":"1","3":"AT"},{"1":"Matthias","2":"1","3":"AT"},{"1":"Max","2":"NA","3":"AT"},{"1":"Christina","2":"3","3":"AT"},{"1":"Ines","2":"2","3":"DE"},{"1":"Eddie","2":"1","3":"DE"},{"1":"Janine","2":"2","3":"DE"},{"1":"Victoria","2":"3","3":"SK"},{"1":"Pia","2":"1","3":"US"},{"1":"Julia","2":"2","3":"CA"},{"1":"Lena","2":"3","3":"AT"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+**(LC3.4) How can you obtain Christina's grade from the data frame?**
+
+- [X] `df[4,2]`
+- [ ] `df[2,4]`
+- [ ] `filter(df, student = Christina) %>% select(grade)`
+- [X] `filter(df, student == "Christina") %>% select(grade)`
+- [ ] None of the above 	
+
+**(LC3.5) How can you add a new variable 'student_id' to the data frame that assigns numbers to students in an ascending order?**
+
+- [X] `df$student_id <- 1:nrow(df)`
+- [ ] `df&student_id <- 1:nrow(df)`
+- [X] `mutate(df, student_id = 1:nrow(df))`
+- [ ] `mutate(df, student_id = 1:length(df))`
+- [ ] None of the above 	
+
+**(LC3.6) How could you obtain all rows with students who obtained a 1?**
+
+- [X] `filter(df, grade == 1)`
+- [X] `filter(df, grade == min(df$grade, na.rm = TRUE))`
+- [ ] `select(df, grade == 1)`
+- [ ] `filter(df, grade == min(df$grade))`
+- [ ] None of the above 	
+
+**(LC3.7) How could you create a subset of observations where the grade is not missing (NA) **
+
+- [X] `df_subset <- filter(df, !is.na(grade))`
+- [ ] `df_subset <- filter(df, isnot.na(grade))`
+- [ ] `df_subset <- filter(df, grade != NA)`
+- [ ] `df_subset <- filter(df, grade != "NA")`
+- [ ] None of the above 
+
+**(LC3.8) What is the share of students with a grade better than 3?**
+
+- [ ] `filter(df, grade < 3)/nrow(df)`
+- [ ] `nrow(filter(df, grade < 3))/length(df)`
+- [X] `nrow(filter(df, grade < 3))/nrow(df)`
+- [ ] `filter(df, grade < 3)/length(df)`
+- [ ] None of the above
+
+**(LC3.9) You would like to load a .csv file from your working directory. What function would you use do it?**
+
+- [ ] `read.table(file_name.csv)`
+- [ ] `load.csv("file.csv")`
+- [X] `read.table("file.csv")`
+- [ ] `get.table(file_name.csv)`
+- [ ] None of the above
+
+**(LC3.10) After you loaded the file, you would like to inspect the types of data contained in it. How would you do it?**
+
+- [ ] `ncol(df)`
+- [ ] `nrow(df)`
+- [ ] `dim(df)`
+- [X] `str(df)`
+- [ ] None of the above
 
 

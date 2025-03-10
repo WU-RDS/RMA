@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Data import and export | Retail Marketing Analytics 2025</title>
+  <meta name="description" content="An Introduction to Data Analytics Using R" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Data import and export | Retail Marketing Analytics 2025" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An Introduction to Data Analytics Using R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Data import and export | Retail Marketing Analytics 2025" />
+  
+  <meta name="twitter:description" content="An Introduction to Data Analytics Using R" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="data-handling.html"/>
+<link rel="next" href="summarizing-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">RMA 2025</a></strong></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Course outline</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#course-structure"><i class="fa fa-check"></i>Course structure</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#contents"><i class="fa fa-check"></i>Contents</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#grading"><i class="fa fa-check"></i>Grading</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#course-materials"><i class="fa fa-check"></i>Course materials</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#main-reference"><i class="fa fa-check"></i>Main reference</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#further-readings"><i class="fa fa-check"></i>Further readings</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#discussion-forum"><i class="fa fa-check"></i>Discussion forum</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#other-web-resources"><i class="fa fa-check"></i>Other web-resources</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#contact"><i class="fa fa-check"></i>Contact</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Lecture notes</b></span></li>
+<li class="chapter" data-level="1" data-path="preliminaries.html"><a href="preliminaries.html"><i class="fa fa-check"></i><b>1</b> Preliminaries</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="preliminaries.html"><a href="preliminaries.html#marketing-foundations-recap"><i class="fa fa-check"></i><b>1.1</b> Marketing foundations (recap)</a></li>
+<li class="chapter" data-level="1.2" data-path="preliminaries.html"><a href="preliminaries.html#the-research-process"><i class="fa fa-check"></i><b>1.2</b> The research process</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="preliminaries.html"><a href="preliminaries.html#research-question-and-hypothesis"><i class="fa fa-check"></i><b>1.2.1</b> Research question and hypothesis</a></li>
+<li class="chapter" data-level="1.2.2" data-path="preliminaries.html"><a href="preliminaries.html#choosing-a-research-design"><i class="fa fa-check"></i><b>1.2.2</b> Choosing a research design</a></li>
+<li class="chapter" data-level="1.2.3" data-path="preliminaries.html"><a href="preliminaries.html#collecting-data"><i class="fa fa-check"></i><b>1.2.3</b> Collecting data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="preliminaries.html"><a href="preliminaries.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="preliminaries.html"><a href="preliminaries.html#references"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>2</b> Getting started with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#how-to-download-and-install-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> How to download and install R and RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#the-r-studio-interface"><i class="fa fa-check"></i><b>2.2</b> The R Studio interface</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#functions"><i class="fa fa-check"></i><b>2.3</b> Functions</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#packages"><i class="fa fa-check"></i><b>2.4</b> Packages</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#a-typical-r-session"><i class="fa fa-check"></i><b>2.5</b> A typical R session</a></li>
+<li class="chapter" data-level="2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#getting-help"><i class="fa fa-check"></i><b>2.6</b> Getting help</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-handling.html"><a href="data-handling.html"><i class="fa fa-check"></i><b>3</b> Data handling</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-handling.html"><a href="data-handling.html#basic-data-handling"><i class="fa fa-check"></i><b>3.1</b> Basic data handling</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-handling.html"><a href="data-handling.html#creating-objects"><i class="fa fa-check"></i><b>3.1.1</b> Creating objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-handling.html"><a href="data-handling.html#data-types"><i class="fa fa-check"></i><b>3.1.2</b> Data types</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-handling.html"><a href="data-handling.html#data-structures"><i class="fa fa-check"></i><b>3.1.3</b> Data structures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-import-and-export.html"><a href="data-import-and-export.html"><i class="fa fa-check"></i><b>4</b> Data import and export</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="data-import-and-export.html"><a href="data-import-and-export.html#getting-data-for-this-course"><i class="fa fa-check"></i><b>4.0.1</b> Getting data for this course</a></li>
+<li class="chapter" data-level="4.0.2" data-path="data-import-and-export.html"><a href="data-import-and-export.html#export-data"><i class="fa fa-check"></i><b>4.0.2</b> Export data</a></li>
+<li class="chapter" data-level="" data-path="data-import-and-export.html"><a href="data-import-and-export.html#learning-check-1"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarizing-data.html"><a href="summarizing-data.html"><i class="fa fa-check"></i><b>5</b> Summarizing data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarizing-data.html"><a href="summarizing-data.html#summary-statistics"><i class="fa fa-check"></i><b>5.1</b> Summary statistics</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarizing-data.html"><a href="summarizing-data.html#categorical-variables"><i class="fa fa-check"></i><b>5.1.1</b> Categorical variables</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarizing-data.html"><a href="summarizing-data.html#continuous-variables"><i class="fa fa-check"></i><b>5.1.2</b> Continuous variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarizing-data.html"><a href="summarizing-data.html#data-visualization"><i class="fa fa-check"></i><b>5.2</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarizing-data.html"><a href="summarizing-data.html#categorical-variables-1"><i class="fa fa-check"></i><b>5.2.1</b> Categorical variables</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarizing-data.html"><a href="summarizing-data.html#continuous-variables-1"><i class="fa fa-check"></i><b>5.2.2</b> Continuous variables</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarizing-data.html"><a href="summarizing-data.html#saving-plots"><i class="fa fa-check"></i><b>5.2.3</b> Saving plots</a></li>
+<li class="chapter" data-level="5.2.4" data-path="summarizing-data.html"><a href="summarizing-data.html#ggplot-extensions"><i class="fa fa-check"></i><b>5.2.4</b> ggplot extensions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#learning-check-2"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="summarizing-data.html"><a href="summarizing-data.html#references-1"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical inference</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="statistical-inference.html"><a href="statistical-inference.html#if-we-knew-it-all"><i class="fa fa-check"></i><b>6.1</b> If we knew it all</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="statistical-inference.html"><a href="statistical-inference.html#sampling-from-a-known-population"><i class="fa fa-check"></i><b>6.1.1</b> Sampling from a known population</a></li>
+<li class="chapter" data-level="6.1.2" data-path="statistical-inference.html"><a href="statistical-inference.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>6.1.2</b> Standard error of the mean</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.3" data-path="statistical-inference.html"><a href="statistical-inference.html#using-what-we-actually-know"><i class="fa fa-check"></i><b>6.3</b> Using what we actually know</a></li>
+<li class="chapter" data-level="6.4" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-the-sample-mean"><i class="fa fa-check"></i><b>6.4</b> Confidence Intervals for the Sample Mean</a></li>
+<li class="chapter" data-level="6.5" data-path="statistical-inference.html"><a href="statistical-inference.html#null-hypothesis-statistical-testing-nhst"><i class="fa fa-check"></i><b>6.5</b> Null Hypothesis Statistical Testing (NHST)</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#the-null-hypothesis"><i class="fa fa-check"></i><b>6.5.1</b> The null hypothesis</a></li>
+<li class="chapter" data-level="6.5.2" data-path="statistical-inference.html"><a href="statistical-inference.html#statistical-inference-on-a-sample"><i class="fa fa-check"></i><b>6.5.2</b> Statistical inference on a sample</a></li>
+<li class="chapter" data-level="6.5.3" data-path="statistical-inference.html"><a href="statistical-inference.html#nhst-considerations"><i class="fa fa-check"></i><b>6.5.3</b> NHST considerations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-check-3"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="statistical-inference.html"><a href="statistical-inference.html#references-2"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>7</b> Supervised learning</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="supervised-learning.html"><a href="supervised-learning.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="supervised-learning.html"><a href="supervised-learning.html#correlation"><i class="fa fa-check"></i><b>7.1.1</b> Correlation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Regression analysis</a></li>
+<li class="chapter" data-level="7.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>7.1.3</b> Categorical predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>7.2</b> Logistic regression</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>7.2.1</b> Motivation and intuition</a></li>
+<li class="chapter" data-level="7.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>7.2.2</b> Technical details of the model</a></li>
+<li class="chapter" data-level="7.2.3" data-path="supervised-learning.html"><a href="supervised-learning.html#estimation-in-r"><i class="fa fa-check"></i><b>7.2.3</b> Estimation in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-3"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>8.1</b> Principal component analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>8.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Steps in factor analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>8.2</b> Cluster analysis</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>8.2.1</b> K-Means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="part"><span><b>III Assignments</b></span></li>
+<li class="chapter" data-level="9" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>9</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction-to-r-markdown"><i class="fa fa-check"></i><b>9.1</b> Introduction to R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-document"><i class="fa fa-check"></i>Creating a new R Markdown document</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#text-and-equations"><i class="fa fa-check"></i>Text and Equations</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#r-code"><i class="fa fa-check"></i>R-Code</a></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#latex-math"><i class="fa fa-check"></i>LaTeX Math</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV FAQ</b></span></li>
+<li class="chapter" data-level="10" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>10</b> FAQ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="faq.html"><a href="faq.html#common-error-messages"><i class="fa fa-check"></i><b>10.1</b> Common error messages</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#a-general-note-on-error-messages"><i class="fa fa-check"></i>A general note on error messages</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-filefile-rt-cannot-open-the-connection"><i class="fa fa-check"></i>Error in file(file, “rt”): cannot open the connection</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-unexpected-symbol-in-call"><i class="fa fa-check"></i>Error: unexpected ‘SYMBOL’ in “CALL”</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-object-of-type-closure-is-not-subsettable"><i class="fa fa-check"></i>Error in CALL : object of type ‘closure’ is not subsettable</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call_with_-operator-is-invalid-for-atomic-vectors"><i class="fa fa-check"></i>Error in CALL_WITH_$: $ operator is invalid for atomic vectors</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-object-name-not-found"><i class="fa fa-check"></i>Error in CALL: object ‘NAME’ not found</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-could-not-find-function-function"><i class="fa fa-check"></i>Error in CALL: could not find function “FUNCTION”</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-in-call-incorrect-number-of-dimension"><i class="fa fa-check"></i>Error in CALL: incorrect number of dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="faq.html"><a href="faq.html#installation-of-r-packages"><i class="fa fa-check"></i><b>10.2</b> Installation of R packages</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-are-the-different-ways-to-install-r-packages"><i class="fa fa-check"></i>What are the different ways to install R packages?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-packages-due-to-error-in-contrib.urlrepossource-or-warning-message-package-packagename-is-not-available-for-this-version-of-r"><i class="fa fa-check"></i>I cannot install packages due to “Error in contrib.url(repos,”source”)” or “Warning message: package ‘PACKAGENAME’ is not available for this version of R”</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-libraries-with-graphical-output-e.g.-summarytools-magick-fail-to-installload-properly-on-macos"><i class="fa fa-check"></i>Some libraries with graphical output (e.g., summarytools, magick) fail to install/load properly on MacOS</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-cannot-install-some-packages-on-macos"><i class="fa fa-check"></i>I cannot install some packages on MacOS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="faq.html"><a href="faq.html#issues-with-statistics-and-data"><i class="fa fa-check"></i><b>10.3</b> Issues with statistics and data</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-does-a-multi-item-scale-lead-to-increased-reliability"><i class="fa fa-check"></i>Why does a multi-item scale lead to increased reliability?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-can-demeaningstandardization-lead-to-missing-values"><i class="fa fa-check"></i>Why can demeaning/standardization lead to missing values?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#the-confidence-interval-ci-of-the-mean-seems-very-small-compared-to-the-dispersion-of-my-sample.-can-this-be-correct"><i class="fa fa-check"></i>The confidence interval (CI) of the mean seems very small compared to the dispersion of my sample. Can this be correct?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>10.4</b> Errors related to specific methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression-1"><i class="fa fa-check"></i>Logistic regression</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#when-using-logistic-regression-error-in-weights-y-non-numeric-argument-to-binary-operator"><i class="fa fa-check"></i>When using logistic regression: Error in weights * y : non-numeric argument to binary operator</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>10.5</b> General settings and options</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#numbers-are-formatted-weirdly"><i class="fa fa-check"></i>Numbers are formatted weirdly</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="faq.html"><a href="faq.html#data-visualizationoutput-issues"><i class="fa fa-check"></i><b>10.6</b> Data visualization/output issues</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-the-geom-colors-in-a-ggplot-be-changed"><i class="fa fa-check"></i>How can the <code>geom</code> colors in a <code>ggplot</code> be changed?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-are-some-histograms-displayed-differently"><i class="fa fa-check"></i>Why are some histograms displayed differently?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#some-labels-in-plots-are-cut-off.-how-can-i-extend-the-plot-margins"><i class="fa fa-check"></i>Some labels in plots are cut off. How can I extend the plot margins?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="faq.html"><a href="faq.html#issues-with-functions-and-function-arguments"><i class="fa fa-check"></i><b>10.7</b> Issues with functions and function arguments</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#problems-with-factor-and-as.factor"><i class="fa fa-check"></i>Problems with <code>factor</code> and <code>as.factor</code></a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-find-an-explanation-of-the-output-of-a-function"><i class="fa fa-check"></i>How can I find an explanation of the output of a function?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-the-margin-argument-do"><i class="fa fa-check"></i>What does the <code>MARGIN</code> argument do?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="faq.html"><a href="faq.html#issues-with-r-markdown"><i class="fa fa-check"></i><b>10.8</b> Issues with R Markdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-get-an-error-when-knitting-to-pdf-but-it-works-for-html"><i class="fa fa-check"></i>I get an error when <code>knit</code>ting to PDF but it works for HTML</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#i-am-not-sure-where-r-code-latex-math-and-text-go"><i class="fa fa-check"></i>I am not sure where R-code, LaTeX math, and text go</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="faq.html"><a href="faq.html#new-questions"><i class="fa fa-check"></i><b>10.9</b> New questions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Retail Marketing Analytics 2025</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-import-and-export" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Data import and export<a href="data-import-and-export.html#data-import-and-export" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Before you can start your analysis in R, you first need to import the data you wish to perform the analysis on. You will often be faced with different types of data formats (usually produced by some other statistical software like SPSS or Excel or a text editor). Fortunately, R is fairly flexible with respect to the sources from which data may be imported and you can import the most common data formats into R with the help of a few packages. R can, among others, handle data from the following sources:</p>
+<p><img src="https://github.com/IMSMWU/Teaching/raw/master/MRDA2017/Graphics/data_import.JPG" /></p>
+<p>In the previous chapter, we saw how we may use the keyboard to input data in R. In the following sections, we will learn how to import data from text files and other statistical software packages.</p>
+<div id="getting-data-for-this-course" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Getting data for this course<a href="data-import-and-export.html#getting-data-for-this-course" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most of the data sets we will be working with in this course will be stored in text files (i.e., .dat, .txt, .csv). All data sets we will be working with are stored in a repository on GitHub (similar to other cloud storage services such as Dropbox). You can directly import these data sets from GitHub without having to copy data sets from one place to another. If you know the location, where the files are stored, you may conveniently load the data directly from GitHub into R using the <code>read.csv()</code> function. To figure out the structure of the data you can read the first couple of lines of a file using the <code>readLines</code> function. The <code>header=TRUE</code> argument in the <code>read.csv</code> function indicates that the first line of data represents the header, i.e., it contains the names of the columns. The <code>sep=";"</code>-argument specifies the delimiter (the character used to separate the columns), which is a “;” in this case.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="data-import-and-export.html#cb69-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/heads/main/data/Sales_Data.csv&quot;</span>,</span>
+<span id="cb69-2"><a href="data-import-and-export.html#cb69-2" tabindex="-1"></a>    <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;\&quot;top10_sales\&quot;,\&quot;top10_product_names\&quot;,\&quot;private_label\&quot;,\&quot;top10_brand\&quot;,\&quot;date_most_sold\&quot;,\&quot;private_label_logical\&quot;&quot;
+## [2] &quot;163608,\&quot;Bio-Kaisersemmel\&quot;,\&quot;private label\&quot;,\&quot;Ja! Natürlich\&quot;,2023-05-24,TRUE&quot;                                       
+## [3] &quot;126687,\&quot;Laktosefreie Bio-Vollmilch\&quot;,\&quot;private label\&quot;,\&quot;Ja! Natürlich\&quot;,2023-06-23,TRUE&quot;</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="data-import-and-export.html#cb71-1" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/heads/main/data/Sales_Data.csv&quot;</span>,</span>
+<span id="cb71-2"><a href="data-import-and-export.html#cb71-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb71-3"><a href="data-import-and-export.html#cb71-3" tabindex="-1"></a><span class="fu">head</span>(test_data)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["int"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["chr"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["chr"],"align":["left"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Note that it is also possible to download the data, placing it in the working directory and importing it from there. However, this requires an additional step to download the file manually first. If you chose this option, please <strong>remember to put the data file in the working directory first</strong>. If the import is not working, check your working directory setting using <code>getwd()</code>. Once you placed the file in the working directory, you can import it using the same command as above. Note that the file must be given as a character string (i.e., in quotation marks) and has to end with the file extension (e.g., .csv, .tsv, etc.).</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="data-import-and-export.html#cb72-1" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Sales_Data.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-2"><a href="data-import-and-export.html#cb72-2" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb72-3"><a href="data-import-and-export.html#cb72-3" tabindex="-1"></a><span class="fu">head</span>(test_data)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["top10_sales"],"name":[1],"type":["int"],"align":["right"]},{"label":["top10_product_names"],"name":[2],"type":["chr"],"align":["left"]},{"label":["private_label"],"name":[3],"type":["chr"],"align":["left"]},{"label":["top10_brand"],"name":[4],"type":["chr"],"align":["left"]},{"label":["date_most_sold"],"name":[5],"type":["chr"],"align":["left"]},{"label":["private_label_logical"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"163608","2":"Bio-Kaisersemmel","3":"private label","4":"Ja! Natürlich","5":"2023-05-24","6":"TRUE"},{"1":"126687","2":"Laktosefreie Bio-Vollmilch","3":"private label","4":"Ja! Natürlich","5":"2023-06-23","6":"TRUE"},{"1":"120480","2":"Ottakringer Helles","3":"national brand","4":"Ottakringer","5":"2023-09-01","6":"FALSE"},{"1":"110022","2":"Milka Ganze Haselnüsse","3":"national brand","4":"Milka","5":"2023-06-30","6":"FALSE"},{"1":"108630","2":"Bio-Toastkäse Scheiben","3":"private label","4":"Ja! Natürlich","5":"2023-05-05","6":"TRUE"},{"1":"95639","2":"Ottakringer Bio Zwickl","3":"national brand","4":"Ottakringer","5":"2023-06-09","6":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="export-data" class="section level3 hasAnchor" number="4.0.2">
+<h3><span class="header-section-number">4.0.2</span> Export data<a href="data-import-and-export.html#export-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Exporting to different formats is also easy, as you can just replace “read” with “write” in many of the previously discussed functions (e.g. <code>write.csv(object, "file_name")</code>). This will save the data file to the working directory. To check what the current working directory is you can use <code>getwd()</code>. By default, the <code>write.csv(object, "file_name")</code>function includes the row number as the first variable. By specifying <code>row.names = FALSE</code>, you may exclude this variable since it doesn’t contain any useful information.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="data-import-and-export.html#cb73-1" tabindex="-1"></a><span class="fu">write.csv</span>(sales_data, <span class="st">&quot;Sales_Data.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)  <span class="co"># writes to a comma-separated value file</span></span>
+<span id="cb73-2"><a href="data-import-and-export.html#cb73-2" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="data-import-and-export.html#cb73-3" tabindex="-1"></a><span class="co"># To save as Excel file:</span></span>
+<span id="cb73-4"><a href="data-import-and-export.html#cb73-4" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
+<span id="cb73-5"><a href="data-import-and-export.html#cb73-5" tabindex="-1"></a><span class="fu">write.xlsx</span>(sales_data, <span class="st">&quot;Sales_Data.xlsx&quot;</span>, <span class="at">sheetName =</span> <span class="st">&quot;Data&quot;</span>,</span>
+<span id="cb73-6"><a href="data-import-and-export.html#cb73-6" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="learning-check-1" class="section level2 unnumbered hasAnchor">
+<h2>Learning check<a href="data-import-and-export.html#learning-check-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>(LC3.1) Which of the following are data types are recognized by R?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />Factor</label></li>
+<li><label><input type="checkbox" checked="" />Date</label></li>
+<li><label><input type="checkbox" />Decimal</label></li>
+<li><label><input type="checkbox" />Vector</label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.2) What function should you use to check if an object is a data frame?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>type()</code></label></li>
+<li><label><input type="checkbox" /><code>str()</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>class()</code></label></li>
+<li><label><input type="checkbox" /><code>object.type()</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.3) You would like to combine three vectors (student, grade, date) in a data frame. What would happen when executing the following code?</strong></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="data-import-and-export.html#cb74-1" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Jonas&quot;</span>, <span class="st">&quot;Saskia&quot;</span>, <span class="st">&quot;Victoria&quot;</span>)</span>
+<span id="cb74-2"><a href="data-import-and-export.html#cb74-2" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb74-3"><a href="data-import-and-export.html#cb74-3" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">&quot;2020-10-06&quot;</span>, <span class="st">&quot;2020-10-08&quot;</span>, <span class="st">&quot;2020-10-09&quot;</span>))</span>
+<span id="cb74-4"><a href="data-import-and-export.html#cb74-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student, grade, date)</span></code></pre></div>
+<ul class="task-list">
+<li><label><input type="checkbox" />Error because a data frame can not have different data types</label></li>
+<li><label><input type="checkbox" />Error because you should use <code>as.data.frame()</code> instead of <code>data.frame()</code></label></li>
+<li><label><input type="checkbox" checked="" />Error because all vectors need to have the same length</label></li>
+<li><label><input type="checkbox" />Error because the column names are not specified</label></li>
+<li><label><input type="checkbox" />This code should not report an error</label></li>
+</ul>
+<p><strong>You would like to analyze the following data frame</strong></p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["student"],"name":[1],"type":["chr"],"align":["left"]},{"label":["grade"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Christian","2":"1","3":"AT"},{"1":"Matthias","2":"1","3":"AT"},{"1":"Max","2":"NA","3":"AT"},{"1":"Christina","2":"3","3":"AT"},{"1":"Ines","2":"2","3":"DE"},{"1":"Eddie","2":"1","3":"DE"},{"1":"Janine","2":"2","3":"DE"},{"1":"Victoria","2":"3","3":"SK"},{"1":"Pia","2":"1","3":"US"},{"1":"Julia","2":"2","3":"CA"},{"1":"Lena","2":"3","3":"AT"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p><strong>(LC3.4) How can you obtain Christina’s grade from the data frame?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><code>df[4,2]</code></label></li>
+<li><label><input type="checkbox" /><code>df[2,4]</code></label></li>
+<li><label><input type="checkbox" /><code>filter(df, student = Christina) %&gt;% select(grade)</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>filter(df, student == "Christina") %&gt;% select(grade)</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.5) How can you add a new variable ‘student_id’ to the data frame that assigns numbers to students in an ascending order?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><code>df$student_id &lt;- 1:nrow(df)</code></label></li>
+<li><label><input type="checkbox" /><code>df&amp;student_id &lt;- 1:nrow(df)</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>mutate(df, student_id = 1:nrow(df))</code></label></li>
+<li><label><input type="checkbox" /><code>mutate(df, student_id = 1:length(df))</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.6) How could you obtain all rows with students who obtained a 1?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><code>filter(df, grade == 1)</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>filter(df, grade == min(df$grade, na.rm = TRUE))</code></label></li>
+<li><label><input type="checkbox" /><code>select(df, grade == 1)</code></label></li>
+<li><label><input type="checkbox" /><code>filter(df, grade == min(df$grade))</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.7) How could you create a subset of observations where the grade is not missing (NA) </strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><code>df_subset &lt;- filter(df, !is.na(grade))</code></label></li>
+<li><label><input type="checkbox" /><code>df_subset &lt;- filter(df, isnot.na(grade))</code></label></li>
+<li><label><input type="checkbox" /><code>df_subset &lt;- filter(df, grade != NA)</code></label></li>
+<li><label><input type="checkbox" /><code>df_subset &lt;- filter(df, grade != "NA")</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.8) What is the share of students with a grade better than 3?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>filter(df, grade &lt; 3)/nrow(df)</code></label></li>
+<li><label><input type="checkbox" /><code>nrow(filter(df, grade &lt; 3))/length(df)</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>nrow(filter(df, grade &lt; 3))/nrow(df)</code></label></li>
+<li><label><input type="checkbox" /><code>filter(df, grade &lt; 3)/length(df)</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.9) You would like to load a .csv file from your working directory. What function would you use do it?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>read.table(file_name.csv)</code></label></li>
+<li><label><input type="checkbox" /><code>load.csv("file.csv")</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>read.table("file.csv")</code></label></li>
+<li><label><input type="checkbox" /><code>get.table(file_name.csv)</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+<p><strong>(LC3.10) After you loaded the file, you would like to inspect the types of data contained in it. How would you do it?</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>ncol(df)</code></label></li>
+<li><label><input type="checkbox" /><code>nrow(df)</code></label></li>
+<li><label><input type="checkbox" /><code>dim(df)</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>str(df)</code></label></li>
+<li><label><input type="checkbox" />None of the above</label></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-handling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

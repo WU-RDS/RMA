@@ -8,9 +8,6 @@ output:
     toc: yes
 ---
 
-# Data handling
-
-This chapter covers the basics of data handling in R.
 
 ## Basic data handling
 

@@ -23,6 +23,7 @@ fig:unnamed-chunk-25
 fig:unnamed-chunk-26
 fig:unnamed-chunk-27
 fig:unnamed-chunk-28
+fig:unnamed-chunk-16
 fig:unnamed-chunk-31
 fig:unnamed-chunk-33
 fig:unnamed-chunk-34
@@ -45,7 +46,6 @@ eq:cortest
 eq:regequ
 eq:regequadv
 eq:predreg
-fig:unnamed-chunk-16
 eq:rss
 eq:slope
 eq:intercept
@@ -102,15 +102,15 @@ packages
 a-typical-r-session
 getting-help
 data-handling
+data-import-and-export
+getting-data-for-this-course
+export-data
 basic-data-handling
 creating-objects
 data-types
 data-structures
 accessing-data-in-data-frames
 select-group-append-and-delete-variables-tofrom-data-frames
-data-import-and-export
-getting-data-for-this-course
-export-data
 summarizing-data
 summary-statistics
 categorical-variables

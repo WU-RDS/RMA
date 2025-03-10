@@ -7,6 +7,10 @@ output:
     toc: yes
 ---
 
+# Data handling
+
+This chapter covers the basics of data handling in R.
+
 ## Data import and export 
 
 
