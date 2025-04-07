@@ -26,7 +26,7 @@ Before we start with regression analysis, we will review the basic concept of co
 The correlation coefficient summarizes the strength of the linear relationship between two metric (interval or ratio scaled) variables. Let's consider a simple example. Say you conduct a survey to investigate the relationship between the attitude towards a shop and the duration of being of its customer. The "Attitude" variable can take values between 1 (very unfavorable) and 12 (very favorable), and the "Duration" is measured in months. Let's further assume for this example that the attitude measurement represents an interval scale (although it is usually not realistic to assume that the scale points on an itemized rating scale have the same distance). To keep it simple, let's further assume that you only asked 12 people. We can create a short data set like this:    
 
 
-```r
+``` r
 library(psych)
 attitude <- c(6, 9, 8, 3, 10, 4, 5, 2, 11, 9, 10, 2)
 duration <- c(10, 12, 12, 4, 12, 6, 8, 2, 18, 9, 17,
@@ -44,7 +44,7 @@ str(att_data)
 ##  $ respodentID: int  1 2 3 4 5 6 7 8 9 10 ...
 ```
 
-```r
+``` r
 psych::describe(att_data[, c("attitude", "duration")])
 ```
 
@@ -57,7 +57,7 @@ psych::describe(att_data[, c("attitude", "duration")])
 ## duration 1.52
 ```
 
-```r
+``` r
 att_data
 ```
 
@@ -137,7 +137,7 @@ Cov(x, y) =\frac{\sum_{i=1}^{N}(X_i-\overline{X})*(Y_i-\overline{Y})}{N-1}
 You can easily compute the covariance manually as follows
 
 
-```r
+``` r
 x <- att_data$duration
 x_bar <- mean(att_data$duration)
 y <- att_data$attitude
@@ -154,7 +154,7 @@ cov
 Or you simply use the built-in ```cov()``` function:
 
 
-```r
+``` r
 cov(att_data$duration, att_data$attitude)  # apply the cov function 
 ```
 
@@ -176,7 +176,7 @@ r=\frac{Cov_{xy}}{s_x*s_y}
 This is known as the product moment correlation (r) and it is straight-forward to compute:
 
 
-```r
+``` r
 x_sd <- sd(att_data$duration)
 y_sd <- sd(att_data$attitude)
 r <- cov/(x_sd * y_sd)
@@ -190,7 +190,7 @@ r
 Or you could just use the ```cor()``` function:
 
 
-```r
+``` r
 cor(att_data[, c("attitude", "duration")], method = "pearson",
     use = "complete")
 ```
@@ -228,7 +228,7 @@ t=\frac{r*\sqrt{N-2}}{\sqrt{1-r^2}}
 It has a t distribution with n - 2 degrees of freedom. You can simply use the ```cor.test()``` function, which also produces the 95% confidence interval:
 
 
-```r
+``` r
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
     method = "pearson", conf.level = 0.95)
 ```
@@ -238,13 +238,13 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  att_data$attitude and att_data$duration
-## t = 8.4144, df = 10, p-value = 0.000007545
+## t = 8.41443, df = 10, p-value = 0.0000075452
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.7826041 0.9822815
+##  0.78260411 0.98228152
 ## sample estimates:
-##       cor 
-## 0.9360778
+##        cor 
+## 0.93607782
 ```
 
 To determine the linear relationship between variables, the data only needs to be measured using interval scales. If you want to test the significance of the association, the sampling distribution needs to be normally distributed (we usually assume this when our data are normally distributed or when N is large). If parametric assumptions are violated, you should use non-parametric tests:
@@ -253,7 +253,7 @@ To determine the linear relationship between variables, the data only needs to b
 * Kendall's tau: use when N is small or the number of tied ranks is large.
 
 
-```r
+``` r
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
     method = "spearman", conf.level = 0.95)
 ```
@@ -263,14 +263,14 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Spearman's rank correlation rho
 ## 
 ## data:  att_data$attitude and att_data$duration
-## S = 14.197, p-value = 0.000002183
+## S = 14.1969, p-value = 0.0000021833
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
-##       rho 
-## 0.9503606
+##        rho 
+## 0.95036059
 ```
 
-```r
+``` r
 cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
     method = "kendall", conf.level = 0.95)
 ```
@@ -280,11 +280,11 @@ cor.test(att_data$attitude, att_data$duration, alternative = "two.sided",
 ## 	Kendall's rank correlation tau
 ## 
 ## data:  att_data$attitude and att_data$duration
-## z = 3.9095, p-value = 0.0000925
+## z = 3.90948, p-value = 0.000092496
 ## alternative hypothesis: true tau is not equal to 0
 ## sample estimates:
-##       tau 
-## 0.8960287
+##        tau 
+## 0.89602867
 ```
 
 Report the results:
@@ -321,7 +321,7 @@ In simple linear regression, we assess the relationship between one dependent (r
 Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser *move_ounce* (in ounces, FYI: 1 oz = 29,57 ml), prices *price_ounce* (in dollars per ounce), and several other variables: bonus buy - a price reduction if customers buy a certain quantity of a product (*sale_B*), price reduction in % (*sale_S*), and others. Let's load and inspect the data first: 
 
 
-```r
+``` r
 regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv",
     sep = ",", header = TRUE)  # read in data
 str(regression)
@@ -353,23 +353,20 @@ str(regression)
 ##  $ promoweek       : int  91 92 93 NA NA NA NA NA NA NA ...
 ```
 
-```r
+``` r
 regression$store <- as.factor(regression$store)  #convert grouping variable to factor
 regression$brand_id <- as.factor(regression$brand_id)  #convert grouping variable to factor
-regression$saledummy_B <- as.factor(regression$saledummy_B)  #convert grouping variable to factor
-regression$saledummy_C <- as.factor(regression$saledummy_C)  #convert grouping variable to factor
-regression$saledummy_S <- as.factor(regression$saledummy_S)  #convert grouping variable to factor
 head(regression)
 ```
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["store"],"name":[1],"type":["fct"],"align":["left"]},{"label":["brand_id"],"name":[2],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[3],"type":["chr"],"align":["left"]},{"label":["week"],"name":[4],"type":["int"],"align":["right"]},{"label":["move_ounce"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["price_ounce"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sale_B"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sale_C"],"name":[8],"type":["int"],"align":["right"]},{"label":["sale_S"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["summove_ounce"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nweeks"],"name":[11],"type":["int"],"align":["right"]},{"label":["mean_marketshare"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["sharerank"],"name":[13],"type":["int"],"align":["right"]},{"label":["priclow"],"name":[14],"type":["int"],"align":["right"]},{"label":["pricmed"],"name":[15],"type":["int"],"align":["right"]},{"label":["prichigh"],"name":[16],"type":["int"],"align":["right"]},{"label":["logprice_ounce"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["logmove_ounce"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["saledummy_B"],"name":[19],"type":["fct"],"align":["left"]},{"label":["saledummy_C"],"name":[20],"type":["fct"],"align":["left"]},{"label":["saledummy_S"],"name":[21],"type":["fct"],"align":["left"]},{"label":["promoweek"],"name":[22],"type":["int"],"align":["right"]}],"data":[{"1":"102","2":"26","3":"Budweiser","4":"91","5":"41704.00","6":"4.665278","7":"0.1333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.540147","18":"10.63835","19":"1","20":"0","21":"0","22":"91"},{"1":"102","2":"26","3":"Budweiser","4":"92","5":"44212.48","6":"4.575852","7":"0.1333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.520793","18":"10.69676","19":"1","20":"0","21":"0","22":"92"},{"1":"102","2":"26","3":"Budweiser","4":"93","5":"28748.48","6":"4.575668","7":"0.1250000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.520753","18":"10.26634","19":"1","20":"0","21":"0","22":"93"},{"1":"102","2":"26","3":"Budweiser","4":"94","5":"26168.96","6":"4.530460","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.510824","18":"10.17233","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"95","5":"35581.44","6":"4.539798","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.512883","18":"10.47958","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"96","5":"34128.00","6":"4.650231","7":"0.0000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.08933073","13":"3","14":"0","15":"1","16":"0","17":"1.536917","18":"10.43787","19":"0","20":"0","21":"0","22":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["store"],"name":[1],"type":["fct"],"align":["left"]},{"label":["brand_id"],"name":[2],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[3],"type":["chr"],"align":["left"]},{"label":["week"],"name":[4],"type":["int"],"align":["right"]},{"label":["move_ounce"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["price_ounce"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sale_B"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sale_C"],"name":[8],"type":["int"],"align":["right"]},{"label":["sale_S"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["summove_ounce"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nweeks"],"name":[11],"type":["int"],"align":["right"]},{"label":["mean_marketshare"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["sharerank"],"name":[13],"type":["int"],"align":["right"]},{"label":["priclow"],"name":[14],"type":["int"],"align":["right"]},{"label":["pricmed"],"name":[15],"type":["int"],"align":["right"]},{"label":["prichigh"],"name":[16],"type":["int"],"align":["right"]},{"label":["logprice_ounce"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["logmove_ounce"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["saledummy_B"],"name":[19],"type":["int"],"align":["right"]},{"label":["saledummy_C"],"name":[20],"type":["int"],"align":["right"]},{"label":["saledummy_S"],"name":[21],"type":["int"],"align":["right"]},{"label":["promoweek"],"name":[22],"type":["int"],"align":["right"]}],"data":[{"1":"102","2":"26","3":"Budweiser","4":"91","5":"41704.00","6":"4.6652778","7":"0.13333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5401474","18":"10.638352","19":"1","20":"0","21":"0","22":"91"},{"1":"102","2":"26","3":"Budweiser","4":"92","5":"44212.48","6":"4.5758519","7":"0.13333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5207929","18":"10.696762","19":"1","20":"0","21":"0","22":"92"},{"1":"102","2":"26","3":"Budweiser","4":"93","5":"28748.48","6":"4.5756685","7":"0.12500000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5207528","18":"10.266340","19":"1","20":"0","21":"0","22":"93"},{"1":"102","2":"26","3":"Budweiser","4":"94","5":"26168.96","6":"4.5304602","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5108235","18":"10.172329","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"95","5":"35581.44","6":"4.5397982","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5128826","18":"10.479579","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"96","5":"34128.00","6":"4.6502315","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5369170","18":"10.437873","19":"0","20":"0","21":"0","22":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
 
-```r
+``` r
 psych::describe(regression)  #descriptive statistics using psych
 ```
 
@@ -393,9 +390,9 @@ psych::describe(regression)  #descriptive statistics using psych
 ## prichigh           16 220         0.00    0.00         0.00         0.00
 ## logprice_ounce     17 220         1.58    0.04         1.59         1.59
 ## logmove_ounce      18 220         9.83    0.34         9.79         9.81
-## saledummy_B*       19 220         1.75    0.43         2.00         1.82
-## saledummy_C*       20 220         1.00    0.00         1.00         1.00
-## saledummy_S*       21 220         1.01    0.10         1.00         1.00
+## saledummy_B        19 220         0.75    0.43         1.00         0.82
+## saledummy_C        20 220         0.00    0.00         0.00         0.00
+## saledummy_S        21 220         0.01    0.10         0.00         0.00
 ## promoweek          22 167       212.28   62.15       217.00       212.78
 ##                      mad          min          max    range  skew kurtosis
 ## store*              0.00         1.00         1.00     0.00   NaN      NaN
@@ -416,9 +413,9 @@ psych::describe(regression)  #descriptive statistics using psych
 ## prichigh            0.00         0.00         0.00     0.00   NaN      NaN
 ## logprice_ounce      0.04         1.46         1.70     0.24 -0.27    -0.15
 ## logmove_ounce       0.32         8.99        11.17     2.18  0.67     0.86
-## saledummy_B*        0.00         1.00         2.00     1.00 -1.17    -0.62
-## saledummy_C*        0.00         1.00         1.00     0.00   NaN      NaN
-## saledummy_S*        0.00         1.00         2.00     1.00 10.27   104.03
+## saledummy_B         0.00         0.00         1.00     1.00 -1.17    -0.62
+## saledummy_C         0.00         0.00         0.00     0.00   NaN      NaN
+## saledummy_S         0.00         0.00         1.00     1.00 10.27   104.03
 ## promoweek          78.58        91.00       316.00   225.00 -0.08    -1.14
 ##                      se
 ## store*             0.00
@@ -439,9 +436,9 @@ psych::describe(regression)  #descriptive statistics using psych
 ## prichigh           0.00
 ## logprice_ounce     0.00
 ## logmove_ounce      0.02
-## saledummy_B*       0.03
-## saledummy_C*       0.00
-## saledummy_S*       0.01
+## saledummy_B        0.03
+## saledummy_C        0.00
+## saledummy_S        0.01
 ## promoweek          4.81
 ```
 
@@ -521,16 +518,16 @@ This is also referred to as the <b>residual sum of squares (RSS)</b>. Now we nee
 The exact mathematical derivation of this formula is beyond the scope of this script, but the intuition is to calculate the first derivative of the squared residuals with respect to &beta;<sub>1</sub> and set it to zero, thereby finding the &beta;<sub>1</sub> that minimizes the term. Using the above formula, you can easily compute &beta;<sub>1</sub> using the following code:
 
 
-```r
+``` r
 cov_y_x <- cov(regression$price_ounce, regression$move_ounce)
 cov_y_x
 ```
 
 ```
-## [1] -405.2959
+## [1] -405.29585
 ```
 
-```r
+``` r
 var_x <- var(regression$price_ounce)
 var_x
 ```
@@ -539,13 +536,13 @@ var_x
 ## [1] 0.04473198
 ```
 
-```r
+``` r
 beta_1 <- cov_y_x/var_x
 beta_1
 ```
 
 ```
-## [1] -9060.539
+## [1] -9060.5391
 ```
 
 The interpretation of &beta;<sub>1</sub> is as follows: 
@@ -562,19 +559,19 @@ Using the estimated coefficient for &beta;<sub>1</sub>, it is easy to compute &b
 The R code for this is:
 
 
-```r
+``` r
 beta_0 <- mean(regression$move_ounce) - beta_1 * mean(regression$price_ounce)
 beta_0
 ```
 
 ```
-## [1] 63950.63
+## [1] 63950.625
 ```
 
 You may also verify this based on a scatterplot of the data. The following plot shows the scatterplot including the regression line, which is estimated using OLS.  
 
 
-```r
+``` r
 ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
     geom_point(shape = 1) + geom_smooth(method = "lm",
     fill = "blue", alpha = 0.1) + labs(x = "Price ($ per oz)",
@@ -614,7 +611,7 @@ After calculating the test statistic, we compare its value to the values that we
 To estimate the regression model in R, you can use the ```lm()``` function. Within the function, you first specify the dependent variable ("move_ounce") and independent variable ("price_ounce") separated by a ```~``` (tilde). As mentioned previously, this is known as _formula notation_ in R. The ```data = regression``` argument specifies that the variables come from the data frame named "regression". Strictly speaking, you use the ```lm()``` function to create an object called "sales_reg," which holds the regression output. You can then view the results using the ```summary()``` function: 
 
 
-```r
+``` r
 sales_reg <- lm(move_ounce ~ price_ounce, data = regression)  #estimate linear model
 summary(sales_reg)  #summary of results
 ```
@@ -625,19 +622,19 @@ summary(sales_reg)  #summary of results
 ## lm(formula = move_ounce ~ price_ounce, data = regression)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -11439  -4798  -1539   2744  50733 
+##      Min       1Q   Median       3Q      Max 
+## -11438.9  -4797.9  -1538.7   2743.9  50733.5 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value    Pr(>|t|)    
-## (Intercept)    63951      11892   5.377 0.000000194 ***
-## price_ounce    -9060       2434  -3.723     0.00025 ***
+##             Estimate Std. Error t value     Pr(>|t|)    
+## (Intercept)  63950.6    11892.5  5.3774 0.0000001941 ***
+## price_ounce  -9060.5     2433.5 -3.7233    0.0002504 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7617 on 218 degrees of freedom
-## Multiple R-squared:  0.05979,	Adjusted R-squared:  0.05548 
-## F-statistic: 13.86 on 1 and 218 DF,  p-value: 0.0002504
+## Residual standard error: 7616.6 on 218 degrees of freedom
+## Multiple R-squared:  0.059789,	Adjusted R-squared:  0.055476 
+## F-statistic: 13.863 on 1 and 218 DF,  p-value: 0.0002504
 ```
 
 Note that the estimated coefficients for &beta;<sub>0</sub> (63950.625) and &beta;<sub>1</sub> (-9060.539) correspond to the results of our manual computation above. The associated t-values and p-values are given in the output. The t-values are larger than the critical t-values for the 95% confidence level, since the associated p-values are smaller than 0.05. In case of the coefficient for &beta;<sub>1</sub>, this means that the probability of an association between the prices and sales of the observed magnitude (or larger) is smaller than 0.05, if the value of &beta;<sub>1</sub> was, in fact, 0. This finding leads us to reject the null hypothesis of no association between prices and sales. 
@@ -652,14 +649,14 @@ CI = \hat{\beta_1}\pm(t_{1-\frac{\alpha}{2}}*SE(\beta_1))
 It is easy to compute confidence intervals in R using the ```confint()``` function. You just have to provide the name of you estimated model as an argument:
 
 
-```r
+``` r
 confint(sales_reg)
 ```
 
 ```
-##                 2.5 %   97.5 %
-## (Intercept)  40511.67 87389.58
-## price_ounce -13856.72 -4264.36
+##                  2.5 %     97.5 %
+## (Intercept)  40511.669 87389.5815
+## price_ounce -13856.718 -4264.3604
 ```
 
 For our model, the 95% confidence interval for &beta;<sub>0</sub> is [40511.67,87389.58], and the 95% confidence interval for &beta;<sub>1</sub> is [-13856.72,-4264.36]. Thus, we can conclude that when we do not spend any money on advertising, sales will be somewhere between 40512 and 87390 units on average. In addition, for each increase in advertising expenditures by one Euro, there will be an average increase in sales of between -13856.72 and -4264.36. If you revisit the graphic depiction of the regression model above, the uncertainty regarding the intercept and slope parameters can be seen in the confidence bounds (blue area) around the regression line. 
@@ -778,7 +775,7 @@ which has a F distribution with k number of predictors and n degrees of freedom.
 The result of the F-test is provided in the regression output as well. However, you might manually compute the F-test using the ANOVA results from the model:  
 
 
-```r
+``` r
 f_calc <- anova(sales_reg)$"Mean Sq"[1]/anova(sales_reg)$"Mean Sq"[2]  #compute F
 f_calc
 ```
@@ -787,7 +784,7 @@ f_calc
 ## [1] 14
 ```
 
-```r
+``` r
 f_crit <- qf(0.95, df1 = 1, df2 = 100)  #critical value
 f_crit
 ```
@@ -796,7 +793,7 @@ f_crit
 ## [1] 3.9
 ```
 
-```r
+``` r
 f_calc > f_crit  #test if calculated test statistic is larger than critical value
 ```
 
@@ -815,7 +812,7 @@ $$\hat{sales}=63950.6 + (-9060.5)*2=45,829.6$$
 ... or by extracting the estimated coefficients from the model summary:
 
 
-```r
+``` r
 prediction <- summary(sales_reg)$coefficients[1, 1] +
     summary(sales_reg)$coefficients[2, 1] * 2  # the slope * 2 EUR
 prediction
@@ -837,7 +834,7 @@ It is very rare that in the retailing context, the predictions are made as we di
 Let's have a look at the plot again:  
 
 
-```r
+``` r
 ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
     geom_point(shape = 1) + geom_smooth(method = "lm",
     color = "lavenderblush4", fill = "red", alpha = 0.1) +
@@ -872,7 +869,7 @@ Let's test how the scatterplot would look like if we use the logarithm of our va
 
 
 
-```r
+``` r
 ggplot(regression, mapping = aes(log(price_ounce),
     log(move_ounce))) + geom_point(shape = 1) + geom_smooth(method = "lm",
     color = "lavenderblush4", fill = "red", alpha = 0.1) +
@@ -891,7 +888,7 @@ log(sales) = log(\beta_0) + \beta_1*log(price) + log(\epsilon)
 Now, let's estimate a new regression by applying ```log()``` function to both sales and prices:
 
 
-```r
+``` r
 sales_reg2 <- lm(log(move_ounce) ~ log(price_ounce),
     data = regression)
 summary(sales_reg2)  #remember that now the interpretation changed
@@ -934,12 +931,12 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 
 Again, we aim to find the combination of predictors that correlate maximally with the outcome variable. Note that if you change the composition of predictors, the partial regression coefficient of an independent variable will be different from that of the bivariate regression coefficient. This is because the regressors are usually correlated, and any variation in Y that was shared by X1 and X2 was attributed to X1. The interpretation of the partial regression coefficients is the expected change in Y when X is changed by one unit and all other predictors are held constant. 
 
-Let's extend the previous example. Say, in addition to the influence of price itself, you are interested in estimating the influence of two sales promotion techniques on the amount of Budweiser. The corresponding equation, including bonus buy and price reduction, would then be given by:
+Let's extend the previous example. Say, in addition to the influence of price itself, you are interested in estimating the influence of sales promotion on the amount of Budweiser. The corresponding equation, including bonus buy, would then be given by:
 
-$$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\beta_3*price\_reduction+\epsilon$$
+$$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\epsilon$$
 
 
-&beta;<sub>1</sub>, &beta;<sub>2</sub>, and &beta;<sub>3</sub> represent the unknown relationship between sales and independent variables (price, bonus buy, and price reduction, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price itself and bonus buy are held constant), etc. Thus, we can make predictions about sales using all these variables.
+&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
 
 With several predictors, the partitioning of sum of squares is the same as in the bivariate model, except that the model is no longer a 2-D straight line. With two predictors, the regression line becomes a 3-D regression plane. While multiple regression models that have more than two predictors are not as easy to visualize, you may apply the same principles when interpreting the model outcome:
 
@@ -949,71 +946,68 @@ With several predictors, the partitioning of sum of squares is the same as in th
 * R measures the multiple correlation between the predictors and the outcome
 * R<sup>2</sup> is the amount of variation in the outcome variable explained by the model
 
-Estimating multiple regression models is straightforward using the ```lm()``` function. You just need to separate the individual predictors on the right hand side of the equation using the ```+``` symbol. In addition, as discussed before, we would need to use log-log transformation for our use case, which can be done in multiple regression context as well. Hence, we would specify the model as follows (note that bonus buy and price reduction are already percentages in our data set, i.e., 0.2 value of price reduction is translated as 20% price decrease - hence, we don't need to take an additional logarithm of it):
+Estimating multiple regression models is straightforward using the ```lm()``` function. You just need to separate the individual predictors on the right hand side of the equation using the ```+``` symbol. In addition, as discussed before, we would need to use log-log transformation for our use case, which can be done in multiple regression context as well. Hence, we would specify the model as follows (note that bonus buy is already percentage in our data set, i.e., 0.2 value of price reduction is translated as 20% price decrease; we won't take a logarithm of it but rather interpret the results differently):
 
-$$ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy+\beta_3*price\_reduction+ log(\epsilon) $$
+$$ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy + log(\epsilon) $$
 
 
 This regression could be estimated as follows: 
 
 
-```r
+``` r
 multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) +
-    sale_B + sale_S, data = regression)  # estimate the model
+    sale_B, data = regression)  # estimate the model
 summary(multiple_sales_reg)  #summary of results
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, 
-##     data = regression)
+## lm(formula = log(move_ounce) ~ log(price_ounce) + sale_B, data = regression)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -0.7960 -0.2149 -0.0269  0.1871  1.2959 
+## -0.8039 -0.2212 -0.0316  0.1790  1.2940 
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)        13.318      0.811   16.42 < 0.0000000000000002 ***
-## log(price_ounce)   -2.221      0.508   -4.37             0.000019 ***
-## sale_B              0.123      0.149    0.82                0.411    
-## sale_S              3.033      1.223    2.48                0.014 *  
+## (Intercept)        13.213      0.819   16.13 < 0.0000000000000002 ***
+## log(price_ounce)   -2.150      0.513   -4.19              0.00004 ***
+## sale_B              0.111      0.151    0.74                 0.46    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.32 on 216 degrees of freedom
-## Multiple R-squared:  0.11,	Adjusted R-squared:  0.0979 
-## F-statistic: 8.92 on 3 and 216 DF,  p-value: 0.0000134
+## Residual standard error: 0.32 on 217 degrees of freedom
+## Multiple R-squared:  0.0849,	Adjusted R-squared:  0.0765 
+## F-statistic: 10.1 on 2 and 217 DF,  p-value: 0.0000659
 ```
 
 The interpretation of the coefficients is as follows: 
 
-* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.221%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by 0.123%
-* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by 3.033%
+* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.15%
+* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1% (which is one step on a scale from 0 to 100 for a discount, i.e., this is equal to 1-unit increase), sales will change by 11.1%
 
-The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
+
+The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
 Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>. 
 
 
-```r
+``` r
 confint(multiple_sales_reg)
 ```
 
 ```
 ##                  2.5 % 97.5 %
-## (Intercept)      11.72  14.92
-## log(price_ounce) -3.22  -1.22
-## sale_B           -0.17   0.42
-## sale_S            0.62   5.44
+## (Intercept)      11.60  14.83
+## log(price_ounce) -3.16  -1.14
+## sale_B           -0.19   0.41
 ```
 
-What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [0.6229993,5.4421432]. Thus, although we have computed a point estimate of 3.033 for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
+What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>1</sub>, the confidence interval is [-3.1611733,-1.1394767]. Thus, although we have computed a point estimate of -2.15 for the effect of price on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
 
 
-```r
+``` r
 library(ggstatsplot)
 ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy, and price reduction")
 ```
@@ -1023,23 +1017,24 @@ ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy
 <p class="caption">(\#fig:unnamed-chunk-33)Confidence intervals for regression model</p>
 </div>
 
-The output also tells us that 11.0258688% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
+The output also tells us that 8.491156% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
 
 
-```r
+``` r
 regression$logmove_ounce_hat <- fitted(multiple_sales_reg)
 ```
 
 We can now use this variable to plot the predicted values against the observed values. In the following plot, the model fit would be perfect if all points would fall on the diagonal line. The larger the distance between the points and the line, the worse the model fit. In other words, if all points would fall exactly on the diagonal line, the model would perfectly predict the observed values. 
 
 
-```r
+``` r
 ggplot(data = regression, aes(week, log(move_ounce))) +
     geom_vline(xintercept = regression$promoweek, colour = "lightgrey") +
     geom_line(aes(y = log(move_ounce), colour = "logsales"),
-        size = 1) + geom_line(aes(y = (logmove_ounce_hat),
-    colour = "logsales (predicted)"), size = 1) + scale_color_manual(values = c("black",
-    "gold")) + theme_minimal()
+        size = 0.5) + geom_line(aes(y = (logmove_ounce_hat),
+    colour = "logsales (predicted)"), size = 0.5) +
+    scale_color_manual(values = c("black", "gold")) +
+    theme_minimal()
 ```
 
 <div class="figure" style="text-align: center">
@@ -1052,7 +1047,7 @@ ggplot(data = regression, aes(week, log(move_ounce))) +
 In the context of a simple linear regression (i.e., with a single independent variable), a scatter plot of the dependent variable against the independent variable provides a good indication of the nature of the relationship. If there is more than one independent variable, however, things become more complicated. The reason is that although the scatter plot still show the relationship between the two variables, it does not take into account the effect of the other independent variables in the model. Partial regression plot show the effect of adding another variable to a model that already controls for the remaining variables in the model. In other words, it is a scatterplot of the residuals of the outcome variable and each predictor when both variables are regressed separately on the remaining predictors. In our example, the partial plot would show the effect of adding price as an explanatory variables while controlling for the variation that is explained by sales promotions in both variables (sales and price). Think of it as the purified relationship between price and sales that remains after controlling for other factors. The partial plots can easily be created using the ```avPlots()``` function from the ```car``` package:
 
 
-```r
+``` r
 library(car)
 avPlots(multiple_sales_reg)
 ```
@@ -1069,7 +1064,7 @@ avPlots(multiple_sales_reg)
 #### Two categories
 
 
-```r
+``` r
 categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical",
     sep = ",", header = TRUE)
 categories$store <- as.factor(categories$store)
@@ -1117,8 +1112,7 @@ This new variable is then added to our regression equation from before, so that 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
-      &+\beta_3*price\_reduction\\ 
-      &+\beta_4*store+\epsilon
+      &+\beta_3*store+\epsilon
 \end{align}
 
 where "store" represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
@@ -1126,67 +1120,64 @@ where "store" represents the new dummy variable and is the coefficient associate
 First, let's reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).
 
 
-```r
+``` r
 multiple_regression_new <- lm(move_ounce ~ price_ounce +
-    sale_B + sale_S, data = categories)
+    sale_B, data = categories)
 summary(multiple_regression_new)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S, data = categories)
+## lm(formula = move_ounce ~ price_ounce + sale_B, data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -10570  -2915  -1414    407  56446 
+## -10572  -2947  -1406    398  56451 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value            Pr(>|t|)    
-## (Intercept)    14706        458   32.08 <0.0000000000000002 ***
-## price_ounce  -146658       5991  -24.48 <0.0000000000000002 ***
-## sale_B           601        457    1.32                0.19    
-## sale_S         -2340       3015   -0.78                0.44    
+## (Intercept)    14690        458   32.07 <0.0000000000000002 ***
+## price_ounce  -146571       5989  -24.47 <0.0000000000000002 ***
+## sale_B           616        456    1.35                0.18    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7430 on 3190 degrees of freedom
+## Residual standard error: 7430 on 3191 degrees of freedom
 ## Multiple R-squared:  0.16,	Adjusted R-squared:  0.159 
-## F-statistic:  202 on 3 and 3190 DF,  p-value: <0.0000000000000002
+## F-statistic:  303 on 2 and 3191 DF,  p-value: <0.0000000000000002
 ```
 
 Now, let's add the store variable:
 
 
-```r
+``` r
 multiple_regression_store <- lm(move_ounce ~ price_ounce +
-    sale_B + sale_S + store, data = categories)
+    sale_B + store, data = categories)
 summary(multiple_regression_store)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store, 
-##     data = categories)
+## lm(formula = move_ounce ~ price_ounce + sale_B + store, data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -10710  -3135  -1317    678  55579 
+## -10704  -3149  -1317    681  55585 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)    13844        474   29.22 < 0.0000000000000002 ***
-## price_ounce  -147160       5952  -24.73 < 0.0000000000000002 ***
-## sale_B           666        454    1.47                 0.14    
-## sale_S         -2428       2995   -0.81                 0.42    
-## store100        1725        261    6.60       0.000000000047 ***
+## (Intercept)    13828        473    29.2 < 0.0000000000000002 ***
+## price_ounce  -147070       5950   -24.7 < 0.0000000000000002 ***
+## sale_B           681        454     1.5                 0.13    
+## store100        1724        261     6.6       0.000000000048 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7380 on 3189 degrees of freedom
+## Residual standard error: 7380 on 3190 degrees of freedom
 ## Multiple R-squared:  0.171,	Adjusted R-squared:  0.17 
-## F-statistic:  165 on 4 and 3189 DF,  p-value: <0.0000000000000002
+## F-statistic:  220 on 3 and 3190 DF,  p-value: <0.0000000000000002
 ```
 
 
@@ -1223,13 +1214,12 @@ We would then add these variables as additional predictors in the regression equ
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
-      &+\beta_3*price\_reduction\\ 
-      &+\beta_4*store\\
-      &+\beta_5*Budweiser\\
-      &+\beta_6*Corona\\
-      &+\beta_7*Fosters\\
-      &+\beta_8*Heineken\\
-      &+\beta_9*Old\_Milwaukee+\epsilon
+      &+\beta_3*store\\
+      &+\beta_4*Budweiser\\
+      &+\beta_5*Corona\\
+      &+\beta_6*Fosters\\
+      &+\beta_7*Heineken\\
+      &+\beta_8*Old\_Milwaukee+\epsilon
 \end{align}
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
@@ -1237,40 +1227,39 @@ where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represen
 The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 
-```r
+``` r
 multiple_regression_ext <- lm(move_ounce ~ price_ounce +
-    sale_B + sale_S + store + brand, data = categories)
+    sale_B + store + brand, data = categories)
 summary(multiple_regression_ext)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
-##     brand, data = categories)
+## lm(formula = move_ounce ~ price_ounce + sale_B + store + brand, 
+##     data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -13305  -1179   -381   1091  40849 
+## -13307  -1182   -375   1094  40857 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)          -1614       1372   -1.18               0.2395    
-## price_ounce           7220      15159    0.48               0.6339    
-## sale_B                1235        307    4.03  0.00005819767165529 ***
-## sale_S                1661       1496    1.11               0.2669    
-## store100              1858        129   14.44 < 0.0000000000000002 ***
-## brandBudweiser       22299        619   36.05 < 0.0000000000000002 ***
-## brandCorona           2289        237    9.66 < 0.0000000000000002 ***
-## brandFosters          -110        240   -0.46               0.6472    
-## brandHeinekenBeer     1815        220    8.25  0.00000000000000022 ***
-## brandOldMilwaukee     2584        838    3.08               0.0021 ** 
+## (Intercept)          -1333       1349   -0.99               0.3230    
+## price_ounce           4241      14920    0.28               0.7763    
+## sale_B                1183        303    3.90  0.00009797345704262 ***
+## store100              1859        129   14.45 < 0.0000000000000002 ***
+## brandBudweiser       22176        609   36.43 < 0.0000000000000002 ***
+## brandCorona           2265        236    9.60 < 0.0000000000000002 ***
+## brandFosters          -124        240   -0.52               0.6042    
+## brandHeinekenBeer     1810        220    8.23  0.00000000000000026 ***
+## brandOldMilwaukee     2417        825    2.93               0.0034 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3620 on 3184 degrees of freedom
+## Residual standard error: 3620 on 3185 degrees of freedom
 ## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
-## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: <0.0000000000000002
+## F-statistic: 1.6e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
 ```
 
 How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 22,298.63 oz more than products from the "Amstel" brand, and that products from the "Corona" brand will sell on average 2,288.88 oz more than the products from the "Amstel" brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
@@ -1278,40 +1267,37 @@ How can we interpret the coefficients? It is estimated based on our model that p
 The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the ```relevel()``` function and set the reference category using the ```ref``` argument. The following would estimate the same model using the second category as the baseline:
 
 
-```r
+``` r
 multiple_regression_ext <- lm(move_ounce ~ price_ounce +
-    sale_B + sale_S + store + relevel(brand, ref = 2),
-    data = categories)
+    sale_B + store + relevel(brand, ref = 2), data = categories)
 summary(multiple_regression_ext)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + sale_S + store + 
-##     relevel(brand, ref = 2), data = categories)
+## lm(formula = move_ounce ~ price_ounce + sale_B + store + relevel(brand, 
+##     ref = 2), data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -13305  -1179   -381   1091  40849 
+## -13307  -1182   -375   1094  40857 
 ## 
 ## Coefficients:
 ##                                     Estimate Std. Error t value
-## (Intercept)                            20684        811   25.51
-## price_ounce                             7220      15159    0.48
-## sale_B                                  1235        307    4.03
-## sale_S                                  1661       1496    1.11
-## store100                                1858        129   14.44
-## relevel(brand, ref = 2)Amstel         -22299        619  -36.05
-## relevel(brand, ref = 2)Corona         -20010        534  -37.50
-## relevel(brand, ref = 2)Fosters        -22409        616  -36.36
-## relevel(brand, ref = 2)HeinekenBeer   -20484        625  -32.77
-## relevel(brand, ref = 2)OldMilwaukee   -19714        329  -59.88
+## (Intercept)                            20843        798   26.12
+## price_ounce                             4241      14920    0.28
+## sale_B                                  1183        303    3.90
+## store100                                1859        129   14.45
+## relevel(brand, ref = 2)Amstel         -22176        609  -36.43
+## relevel(brand, ref = 2)Corona         -19911        526  -37.84
+## relevel(brand, ref = 2)Fosters        -22301        609  -36.64
+## relevel(brand, ref = 2)HeinekenBeer   -20366        616  -33.06
+## relevel(brand, ref = 2)OldMilwaukee   -19760        327  -60.49
 ##                                                 Pr(>|t|)    
 ## (Intercept)                         < 0.0000000000000002 ***
-## price_ounce                                         0.63    
-## sale_B                                          0.000058 ***
-## sale_S                                              0.27    
+## price_ounce                                         0.78    
+## sale_B                                          0.000098 ***
 ## store100                            < 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Amstel       < 0.0000000000000002 ***
 ## relevel(brand, ref = 2)Corona       < 0.0000000000000002 ***
@@ -1321,9 +1307,9 @@ summary(multiple_regression_ext)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3620 on 3184 degrees of freedom
+## Residual standard error: 3620 on 3185 degrees of freedom
 ## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
-## F-statistic: 1.42e+03 on 9 and 3184 DF,  p-value: <0.0000000000000002
+## F-statistic: 1.6e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
 ```
   
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
@@ -1343,7 +1329,7 @@ In many marketing contexts, these might not be reasonable assumptions. Consider 
 Let's use an example data set, containing the advertising expenditures of a company and the sales (in thousand units).
 
 
-```r
+``` r
 non_linear_reg <- read.table("https://raw.githubusercontent.com/IMSMWU/Teaching/master/MRDA2017/non_linear.dat",
     sep = "\t", header = TRUE)  #read in data
 head(non_linear_reg)
@@ -1358,7 +1344,7 @@ head(non_linear_reg)
 Now we inspect if a linear specification is appropriate by looking at the scatterplot:
 
 
-```r
+``` r
 ggplot(data = non_linear_reg, aes(x = advertising,
     y = sales)) + geom_point(shape = 1) + geom_smooth(method = "lm",
     fill = "blue", alpha = 0.1) + theme_bw()
@@ -1372,7 +1358,7 @@ ggplot(data = non_linear_reg, aes(x = advertising,
 It appears that a linear model might **not** represent the data well. It rather appears that the effect of an additional Euro spend on advertising is decreasing with increasing levels of advertising expenditures. Thus, we have decreasing marginal returns. We could put this to a test and estimate a linear model:
 
 
-```r
+``` r
 linear_reg <- lm(sales ~ advertising, data = non_linear_reg)
 summary(linear_reg)
 ```
@@ -1403,7 +1389,7 @@ Advertising appears to be positively related to sales with an additional Euro th
 To test if the linear specification is appropriate, let's inspect some of the plots that are generated by R. We start by inspecting the residuals plot. 
 
 
-```r
+``` r
 plot(linear_reg, 1)
 ```
 
@@ -1415,7 +1401,7 @@ plot(linear_reg, 1)
 The plot suggests that the assumption of homoscedasticity is violated (i.e., the spread of values on the y-axis is different for different levels of the fitted values). In addition, the red line deviates from the dashed grey line, suggesting that the relationship might not be linear. Finally, the Q-Q plot of the residuals suggests that the residuals are not normally distributed. 
 
 
-```r
+``` r
 plot(linear_reg, 2)
 ```
 
@@ -1448,7 +1434,7 @@ This means that taking logarithms of both sides of the equation makes linear est
 Let's test how the scatterplot would look like if we use the logarithm of our variables using the ```log()``` function instead of the original values.  
 
 
-```r
+``` r
 ggplot(data = non_linear_reg, aes(x = log(advertising),
     y = log(sales))) + geom_point(shape = 1) + geom_smooth(method = "lm",
     fill = "blue", alpha = 0.1) + theme_bw()
@@ -1469,7 +1455,7 @@ log(sales) = log(\beta_0) + \beta_1*log(advertising) + log(\epsilon)
 This can be easily implemented in R by transforming the variables using the ```log()``` function:
 
 
-```r
+``` r
 log_reg <- lm(log(sales) ~ log(advertising), data = non_linear_reg)
 summary(log_reg)
 ```
@@ -1498,7 +1484,7 @@ summary(log_reg)
 Note that this specification implies decreasing marginal returns (i.e., the returns of advertising are decreasing with the level of advertising), which appear to be more consistent with the data. The specification is also consistent with proportional changes in advertising being associated with proportional changes in sales (i.e., advertising does not become more effective with increasing levels). This has important implications on the interpretation of the coefficients. In our example, you would interpret the coefficient as follows: **A 1% increase in advertising leads to a 0.3% increase in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.681 from 0.509). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable. Also, we could use the residuals plot to confirm that the revised specification is more appropriate:
 
 
-```r
+``` r
 plot(log_reg, 1)
 ```
 
@@ -1507,7 +1493,7 @@ plot(log_reg, 1)
 <p class="caption">(\#fig:unnamed-chunk-49-1)Residuals plot</p>
 </div>
 
-```r
+``` r
 plot(log_reg, 2)
 ```
 
@@ -1519,7 +1505,7 @@ plot(log_reg, 2)
 Finally, we can plot the predicted values against the observed values to see that the results from the log-log model (red) provide a better prediction than the results from the linear model (blue). 
 
 
-```r
+``` r
 non_linear_reg$pred_lin_reg <- predict(linear_reg)
 non_linear_reg$pred_log_reg <- predict(log_reg)
 ggplot(data = non_linear_reg) + geom_point(aes(x = advertising,
@@ -1545,7 +1531,7 @@ ggplot(data = non_linear_reg) + geom_point(aes(x = advertising,
 In the last section we saw how to predict continuous outcomes (e.g., sales) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the *probability* of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a customer will churn (i.e., stop being our customer) any time soon. In the first step we are going to use only the "cash-back amount" index as a predictor. Later we are going to add more independent variables. 
 
 
-```r
+``` r
 library(ggplot2)
 library(gridExtra)
 
@@ -1560,7 +1546,7 @@ head(churn_data)
   </script>
 </div>
 
-```r
+``` r
 str(churn_data)
 ```
 
@@ -1588,7 +1574,7 @@ str(churn_data)
 ##  $ CashbackAmount             : int  160 121 120 134 130 139 121 123 127 123 ...
 ```
 
-```r
+``` r
 # Variable 'Churn' is 1 if a customer left and 0
 # else
 
@@ -1638,7 +1624,7 @@ In general we now have a mathematical relationship between our predictor variabl
 We are now going to show how to perform logistic regression in R. Instead of ```lm()``` we now use ```glm(Y~X, family=binomial(link = 'logit'))``` to use the logit model. We can still use the ```summary()``` command to inspect the output of the model. 
 
 
-```r
+``` r
 # Run the glm
 logit_model <- glm(Churn ~ CashbackAmount, family = binomial(link = "logit"),
     data = churn_data)
@@ -1671,8 +1657,28 @@ summary(logit_model)
 Noticeably this output does not include an $R^2$ value to asses model fit. Multiple "Pseudo $R^2$s", similar to the one used in OLS, have been developed. There are packages that return the $R^2$ given a logit model:
 
 
-```r
+``` r
 library(DescTools)
+```
+
+```
+## 
+## Attaching package: 'DescTools'
+```
+
+```
+## The following object is masked from 'package:car':
+## 
+##     Recode
+```
+
+```
+## The following objects are masked from 'package:psych':
+## 
+##     AUC, ICC, SD
+```
+
+``` r
 PseudoR2(logit_model, which = "CoxSnell")  # you can also use 'McFadden', 'McFaddenAdj', 'Nagelkerke', 'AldrichNelson', 'VeallZimmermann', 'Efron', 'McKelveyZavoina', 'Tjur', 'all'
 ```
 
@@ -1684,7 +1690,7 @@ PseudoR2(logit_model, which = "CoxSnell")  # you can also use 'McFadden', 'McFad
 The coefficients of the model give the change in the [log odds](https://en.wikipedia.org/wiki/Odds#Statistical_usage) of the dependent variable due to a unit change in the regressor. This makes the exact interpretation of the coefficients difficult, but we can still interpret the signs and the p-values which will tell us if a variable has a significant positive or negative impact on the probability of the dependent variable being $1$. In order to get the odds ratios we can simply take the exponent of the coefficients. 
 
 
-```r
+``` r
 exp(coef(logit_model))
 ```
 
@@ -1700,7 +1706,7 @@ Note: In some cases, depending on the scales, the coefficient can be extremely l
 We observe that cash-back negatively affects the likelihood of churning. To get the confidence intervals for the coefficients we can use the same function as with OLS.
 
 
-```r
+``` r
 confint(logit_model)
 ```
 
@@ -1714,7 +1720,7 @@ confint(logit_model)
 To get the effect of an additional point at a specific value, we can calculate the odds ratio by predicting the probability at a value and at the value $+1$. For example, if we are interested in how much more (or, in our case, less) likely a customer with cash-back value of 201 compared to 200 is to churn, we can simply calculate the following:
 
 
-```r
+``` r
 # Probability of churn with a cashback amount of
 # 200
 prob_200 <- exp(-(-summary(logit_model)$coefficients[1,
@@ -1727,7 +1733,7 @@ prob_200
 ## [1] 0.15
 ```
 
-```r
+``` r
 # Probability of churn with a cashback amount of
 # 201
 prob_201 <- exp(-(-summary(logit_model)$coefficients[1,
@@ -1740,7 +1746,7 @@ prob_201
 ## [1] 0.15
 ```
 
-```r
+``` r
 # Odds ratio
 prob_201/prob_200
 ```
@@ -1758,7 +1764,7 @@ Of course we can also use multiple predictors in logistic regression as shown in
 Again, the familiar formula interface can be used with the ```glm()``` function. All the model summaries shown above still work with multiple predictors.
 
 
-```r
+``` r
 multiple_logit_model <- glm(Churn ~ OrderAmountHikeFromlastYear +
     DaySinceLastOrder + WarehouseToHome + OrderCount +
     CashbackAmount, family = binomial(link = "logit"),
@@ -1801,7 +1807,7 @@ summary(multiple_logit_model)
 ## Number of Fisher Scoring iterations: 5
 ```
 
-```r
+``` r
 PseudoR2(multiple_logit_model, which = "CoxSnell")
 ```
 
@@ -1812,7 +1818,7 @@ PseudoR2(multiple_logit_model, which = "CoxSnell")
 
 Again, to properly interpret the coefficient, we extract odds ratio:
 
-```r
+``` r
 exp(coef(multiple_logit_model))
 ```
 
@@ -1825,7 +1831,7 @@ exp(coef(multiple_logit_model))
 ##                        1.11                        0.99
 ```
 
-```r
+``` r
 confint(multiple_logit_model)
 ```
 
@@ -1853,7 +1859,7 @@ The question remains, whether a variable *should* be added to the model. We will
 For example, consider the following model, where we exclude the ```order count``` predictor. Seeing as it was able to contribute significantly to the explanatory power of the model, the AIC increases, indicating that the model including ```order count``` is better suited to explain the data. We always want the *lowest* possible AIC. 
 
 
-```r
+``` r
 multiple_logit_model2 <- glm(Churn ~ OrderAmountHikeFromlastYear +
     DaySinceLastOrder + WarehouseToHome + CashbackAmount,
     family = binomial(link = "logit"), data = churn_data)
@@ -1890,7 +1896,7 @@ summary(multiple_logit_model2)
 As a second measure for variable selection, you can use the pseudo $R^2$s as shown above. The fit is worse according to all three values presented here, when excluding the order count. 
 
 
-```r
+``` r
 PseudoR2(multiple_logit_model2, which = "CoxSnell")
 ```
 
@@ -1906,7 +1912,7 @@ We can predict the probability given an observation using the ```predict(my_logi
 
 
 
-```r
+``` r
 # Prediction for one observation
 predict(multiple_logit_model, newdata = data.frame(OrderAmountHikeFromlastYear = 5,
     DaySinceLastOrder = 30, WarehouseToHome = 10, OrderCount = 10,

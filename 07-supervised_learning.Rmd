@@ -256,9 +256,6 @@ regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024
 str(regression)
 regression$store <- as.factor(regression$store) #convert grouping variable to factor
 regression$brand_id <- as.factor(regression$brand_id) #convert grouping variable to factor
-regression$saledummy_B <- as.factor(regression$saledummy_B) #convert grouping variable to factor
-regression$saledummy_C <- as.factor(regression$saledummy_C) #convert grouping variable to factor
-regression$saledummy_S <- as.factor(regression$saledummy_S) #convert grouping variable to factor
 head(regression)
 ```
 
@@ -752,12 +749,12 @@ Y=(\beta_0+\beta_1*X_1+\beta_2*X_2+\beta_n*X_n)+\epsilon
 
 Again, we aim to find the combination of predictors that correlate maximally with the outcome variable. Note that if you change the composition of predictors, the partial regression coefficient of an independent variable will be different from that of the bivariate regression coefficient. This is because the regressors are usually correlated, and any variation in Y that was shared by X1 and X2 was attributed to X1. The interpretation of the partial regression coefficients is the expected change in Y when X is changed by one unit and all other predictors are held constant. 
 
-Let's extend the previous example. Say, in addition to the influence of price itself, you are interested in estimating the influence of two sales promotion techniques on the amount of Budweiser. The corresponding equation, including bonus buy and price reduction, would then be given by:
+Let's extend the previous example. Say, in addition to the influence of price itself, you are interested in estimating the influence of sales promotion on the amount of Budweiser. The corresponding equation, including bonus buy, would then be given by:
 
-$$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\beta_3*price\_reduction+\epsilon$$
+$$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\epsilon$$
 
 
-&beta;<sub>1</sub>, &beta;<sub>2</sub>, and &beta;<sub>3</sub> represent the unknown relationship between sales and independent variables (price, bonus buy, and price reduction, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price itself and bonus buy are held constant), etc. Thus, we can make predictions about sales using all these variables.
+&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
 
 With several predictors, the partitioning of sum of squares is the same as in the bivariate model, except that the model is no longer a 2-D straight line. With two predictors, the regression line becomes a 3-D regression plane. While multiple regression models that have more than two predictors are not as easy to visualize, you may apply the same principles when interpreting the model outcome:
 
@@ -767,25 +764,25 @@ With several predictors, the partitioning of sum of squares is the same as in th
 * R measures the multiple correlation between the predictors and the outcome
 * R<sup>2</sup> is the amount of variation in the outcome variable explained by the model
 
-Estimating multiple regression models is straightforward using the ```lm()``` function. You just need to separate the individual predictors on the right hand side of the equation using the ```+``` symbol. In addition, as discussed before, we would need to use log-log transformation for our use case, which can be done in multiple regression context as well. Hence, we would specify the model as follows (note that bonus buy and price reduction are already percentages in our data set, i.e., 0.2 value of price reduction is translated as 20% price decrease - hence, we don't need to take an additional logarithm of it):
+Estimating multiple regression models is straightforward using the ```lm()``` function. You just need to separate the individual predictors on the right hand side of the equation using the ```+``` symbol. In addition, as discussed before, we would need to use log-log transformation for our use case, which can be done in multiple regression context as well. Hence, we would specify the model as follows (note that bonus buy is already percentage in our data set, i.e., 0.2 value of price reduction is translated as 20% price decrease; we won't take a logarithm of it but rather interpret the results differently):
 
-$$ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy+\beta_3*price\_reduction+ log(\epsilon) $$
+$$ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy + log(\epsilon) $$
 
 
 This regression could be estimated as follows: 
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, data = regression) # estimate the model
+multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B, data = regression) # estimate the model
 summary(multiple_sales_reg) #summary of results
 ```
 
 The interpretation of the coefficients is as follows: 
 
 * price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by `r round(summary(multiple_sales_reg)$coefficients[2],3)`%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1%, sales will change by `r round(summary(multiple_sales_reg)$coefficients[3],3)`%
-* price reduction (&beta;<sub>3</sub>): when the price reduction increases by 1%, sales will change by `r round(summary(multiple_sales_reg)$coefficients[4],3)`%
+* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1% (which is one step on a scale from 0 to 100 for a discount, i.e., this is equal to 1-unit increase), sales will change by `r round(summary(multiple_sales_reg)$coefficients[3],3)*100`%
 
-The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price and price reduction coefficients, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
+
+The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
 Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>. 
 
@@ -793,7 +790,7 @@ Again, to get a better feeling for the range of values that the coefficients cou
 confint(multiple_sales_reg)
 ```
 
-What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>3</sub>, the confidence interval is [`r confint(multiple_sales_reg)[4,1]`,`r confint(multiple_sales_reg)[4,2]`]. Thus, although we have computed a point estimate of `r round(summary(multiple_sales_reg)$coefficients[4],3)` for the effect of price reduction on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
+What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>1</sub>, the confidence interval is [`r confint(multiple_sales_reg)[2,1]`,`r confint(multiple_sales_reg)[2,2]`]. Thus, although we have computed a point estimate of `r round(summary(multiple_sales_reg)$coefficients[2],3)` for the effect of price on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE,fig.align="center", fig.cap = "Confidence intervals for regression model"}
 library(ggstatsplot)
@@ -812,8 +809,8 @@ We can now use this variable to plot the predicted values against the observed v
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE, fig.align="center", fig.cap = "Model fit"}
 ggplot(data = regression, aes(week, log(move_ounce))) +
   geom_vline(xintercept = regression$promoweek, colour = "lightgrey") +
-  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 1) +
-  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 1) +
+  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 0.5) +
+  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 0.5) +
   scale_color_manual(values = c("black", "gold")) +
   theme_minimal()
 ```
@@ -859,8 +856,7 @@ This new variable is then added to our regression equation from before, so that 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
-      &+\beta_3*price\_reduction\\ 
-      &+\beta_4*store+\epsilon
+      &+\beta_3*store+\epsilon
 \end{align}
 
 where "store" represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
@@ -868,14 +864,14 @@ where "store" represents the new dummy variable and is the coefficient associate
 First, let's reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).
 
 ```{r}
-multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B + sale_S, data = categories) 
+multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B, data = categories) 
 summary(multiple_regression_new)
 ```
 
 Now, let's add the store variable:
 
 ```{r}
-multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store, data = categories) 
+multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + store, data = categories) 
 summary(multiple_regression_store)
 ```
 
@@ -913,13 +909,12 @@ We would then add these variables as additional predictors in the regression equ
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
       &+\beta_2*bonus\_buy\\
-      &+\beta_3*price\_reduction\\ 
-      &+\beta_4*store\\
-      &+\beta_5*Budweiser\\
-      &+\beta_6*Corona\\
-      &+\beta_7*Fosters\\
-      &+\beta_8*Heineken\\
-      &+\beta_9*Old\_Milwaukee+\epsilon
+      &+\beta_3*store\\
+      &+\beta_4*Budweiser\\
+      &+\beta_5*Corona\\
+      &+\beta_6*Fosters\\
+      &+\beta_7*Heineken\\
+      &+\beta_8*Old\_Milwaukee+\epsilon
 \end{align}
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
@@ -927,7 +922,7 @@ where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represen
 The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 ```{r}
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + brand, data = categories) 
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + brand, data = categories) 
 summary(multiple_regression_ext) 
 ```
 
@@ -936,7 +931,7 @@ How can we interpret the coefficients? It is estimated based on our model that p
 The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the ```relevel()``` function and set the reference category using the ```ref``` argument. The following would estimate the same model using the second category as the baseline:
 
 ```{r}
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + relevel(brand, ref = 2), data = categories) 
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + relevel(brand, ref = 2), data = categories) 
 summary(multiple_regression_ext) 
 ```
   

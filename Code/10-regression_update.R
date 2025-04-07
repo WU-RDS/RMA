@@ -75,7 +75,7 @@ cor.test(data_cage$drownings, data_cage$cage_movies, alternative = "two.sided", 
 regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv", 
                           sep = ",", 
                           header = TRUE) # read in data
-regression <- regression %>% select(store, brand_id, brand, week, move_ounce, price_ounce, sale_B, sale_C, sale_S)
+regression <- regression %>% select(store, brand_id, brand, week, move_ounce, price_ounce, sale_B)
 str(regression)
 regression$store <- as.factor(regression$store) #convert grouping variable to factor
 regression$brand_id <- as.factor(regression$brand_id) #convert grouping variable to factor
@@ -170,7 +170,7 @@ confint(sales_reg2)
 #-------------------------------------------------------------------#
 
 # Run the model
-multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B + sale_S, data = regression) # estimate the model
+multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B, data = regression) # estimate the model
 summary(multiple_sales_reg) #summary of results
 
 # Confidence intervals
@@ -185,8 +185,8 @@ regression$logmove_ounce_hat <- fitted(multiple_sales_reg)
 # plot sales and predicted sales per week
 ggplot(data = regression, aes(week, log(move_ounce))) +
   geom_vline(xintercept = regression$promoweek, colour = "grey") +
-  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 1) +
-  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 1) +
+  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 0.5) +
+  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 0.5) +
   scale_color_manual(values = c("black", "red")) +
   theme_minimal()
 
@@ -227,8 +227,7 @@ ggplot(regression, aes(x = yhat_1, y = log(move_ounce))) +
 ## Making predictions: log-log edition
 prediction_mult <- exp(summary(multiple_sales_reg)$coefficients[1,1] + # intercept
   summary(multiple_sales_reg)$coefficients[2,1]*log(2) + 
-  summary(multiple_sales_reg)$coefficients[3,1]*0.05 +
-  summary(multiple_sales_reg)$coefficients[4,1]*0.10)
+  summary(multiple_sales_reg)$coefficients[3,1]*0.05)
 prediction_mult # sales volume
 
 
@@ -249,17 +248,17 @@ categories$brand <- as.factor(categories$brand) #convert grouping variable to fa
 categories$week <- as.factor(categories$week) #convert grouping variable to factor
 str(categories)
 
-multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B + sale_S, data = categories) 
+multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B, data = categories) 
 summary(multiple_regression_new)
 
-multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store, data = categories) 
+multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + store, data = categories) 
 summary(multiple_regression_store)
 
 # More than two categories
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + brand, data = categories) 
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + brand, data = categories) 
 summary(multiple_regression_ext) 
 
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + sale_S + store + relevel(brand, ref = 2), data = categories) 
+multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + relevel(brand, ref = 2), data = categories) 
 summary(multiple_regression_ext) 
 
 # visualization
