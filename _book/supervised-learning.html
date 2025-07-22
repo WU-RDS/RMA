@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Supervised learning | Retail Marketing Analytics 2025</title>
   <meta name="description" content="An Introduction to Data Analytics Using R" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Supervised learning | Retail Marketing Analytics 2025" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="statistical-inference.html"/>
-<link rel="next" href="unsupervised-learning.html"/>
+<link rel="next" href="unsupervised-learning-extra.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -68,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="supervised-learning.html"><a href="supervised-learning.html#regression-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Regression analysis</a></li>
 <li class="chapter" data-level="6.1.3" data-path="supervised-learning.html"><a href="supervised-learning.html#categorical-predictors"><i class="fa fa-check"></i><b>6.1.3</b> Categorical predictors</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression"><i class="fa fa-check"></i><b>6.2</b> Logistic regression</a>
+<li class="chapter" data-level="6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#logistic-regression-extra"><i class="fa fa-check"></i><b>6.2</b> <span style="color: purple;">Logistic regression (extra)</span></a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="supervised-learning.html"><a href="supervised-learning.html#motivation-and-intuition"><i class="fa fa-check"></i><b>6.2.1</b> Motivation and intuition</a></li>
 <li class="chapter" data-level="6.2.2" data-path="supervised-learning.html"><a href="supervised-learning.html#technical-details-of-the-model"><i class="fa fa-check"></i><b>6.2.2</b> Technical details of the model</a></li>
@@ -251,19 +251,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#learning-check-4"><i class="fa fa-check"></i>Learning check</a></li>
 <li class="chapter" data-level="" data-path="supervised-learning.html"><a href="supervised-learning.html#references-3"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>7</b> Unsupervised learning</a>
+<li class="chapter" data-level="7" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html"><i class="fa fa-check"></i><b>7</b> <span style="color: purple;">Unsupervised learning (extra)</span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.1</b> Principal component analysis</a>
+<li class="chapter" data-level="7.1" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.1</b> Principal component analysis</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#introduction-1"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Steps in factor analysis</a></li>
+<li class="chapter" data-level="7.1.1" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#introduction-1"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1.2" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#steps-in-factor-analysis"><i class="fa fa-check"></i><b>7.1.2</b> Steps in factor analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#cluster-analysis"><i class="fa fa-check"></i><b>7.2</b> Cluster analysis</a>
+<li class="chapter" data-level="7.2" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#cluster-analysis"><i class="fa fa-check"></i><b>7.2</b> Cluster analysis</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means"><i class="fa fa-check"></i><b>7.2.1</b> K-Means</a></li>
+<li class="chapter" data-level="7.2.1" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#k-means"><i class="fa fa-check"></i><b>7.2.1</b> K-Means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
-<li class="chapter" data-level="" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-4"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#learning-check-5"><i class="fa fa-check"></i>Learning check</a></li>
+<li class="chapter" data-level="" data-path="unsupervised-learning-extra.html"><a href="unsupervised-learning-extra.html#references-4"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
 <li class="chapter" data-level="8" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>8</b> R Markdown</a>
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="faq.html"><a href="faq.html#errors-related-to-specific-methods"><i class="fa fa-check"></i><b>9.4</b> Errors related to specific methods</a>
 <ul>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression-1"><i class="fa fa-check"></i>Logistic regression</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#when-using-logistic-regression-error-in-weights-y-non-numeric-argument-to-binary-operator"><i class="fa fa-check"></i>When using logistic regression: Error in weights * y : non-numeric argument to binary operator</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="faq.html"><a href="faq.html#general-settings-and-options"><i class="fa fa-check"></i><b>9.5</b> General settings and options</a>
@@ -943,7 +943,7 @@ F=\frac{\frac{SS_M}{k}}{\frac{SS_R}{(n-k-1)}}=\frac{MS_M}{MS_R}
 </div>
 <div id="log-log-transformation" class="section level4 hasAnchor" number="6.1.2.2">
 <h4><span class="header-section-number">6.1.2.2</span> Log-Log transformation<a href="supervised-learning.html#log-log-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Have a look at the plots above again. You might notice some data specific pattern, making the data points look odd: they are pulled to lower edge of the scatterplot. In this particular case, we’re dealing with different measurement scales of our independent and dependent variables. Moreover, you could also notice how odd the interpretation of the regression coefficients sounds.</p>
+<p><em>(For more details about log-log transformation, a.k.a. multiplicative model, see chapter 6.1.3.3).</em> Have a look at the plots above again. You might notice some data specific pattern, making the data points look odd: they are pulled to lower edge of the scatterplot. In this particular case, we’re dealing with different measurement scales of our independent and dependent variables. Moreover, you could also notice how odd the interpretation of the regression coefficients sounds.</p>
 <p>It is very rare that in the retailing context, the predictions are made as we did before. The concept that is used instead is familiar to you from the microeconomics course - elasticity is a measure that is used by retail managers and researchers much more often than mere unit changes.</p>
 <p>Let’s have a look at the plot again:</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="supervised-learning.html#cb223-1" tabindex="-1"></a><span class="fu">ggplot</span>(regression, <span class="at">mapping =</span> <span class="fu">aes</span>(price_ounce, move_ounce)) <span class="sc">+</span></span>
@@ -1295,8 +1295,8 @@ Sales =\beta_0 &amp;+\beta_1*price\\
 ## F-statistic: 1.6e+03 on 8 and 3185 DF,  p-value: &lt;0.0000000000000002</code></pre>
 <p>Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.</p>
 </div>
-<div id="non-linear-relationships" class="section level4 hasAnchor" number="6.1.3.3">
-<h4><span class="header-section-number">6.1.3.3</span> Non-linear relationships<a href="supervised-learning.html#non-linear-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="non-linear-relationships-extra" class="section level4 hasAnchor" number="6.1.3.3">
+<h4><span class="header-section-number">6.1.3.3</span> <span style="color: purple;">Non-linear relationships (extra)</span><a href="supervised-learning.html#non-linear-relationships-extra" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div id="multiplicative-model" class="section level5 hasAnchor" number="6.1.3.3.1">
 <h5><span class="header-section-number">6.1.3.3.1</span> Multiplicative model<a href="supervised-learning.html#multiplicative-model" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>In many practical applications, linear relationship might not be the case. Let’s review the implications of a linear specification again:</p>
@@ -1448,8 +1448,8 @@ Figure 6.8: Comparison if model fit
 </div>
 </div>
 </div>
-<div id="logistic-regression" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Logistic regression<a href="supervised-learning.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="logistic-regression-extra" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> <span style="color: purple;">Logistic regression (extra)</span><a href="supervised-learning.html#logistic-regression-extra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="motivation-and-intuition" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Motivation and intuition<a href="supervised-learning.html#motivation-and-intuition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the last section we saw how to predict continuous outcomes (e.g., sales) via linear regression models. Another interesting case is that of binary outcomes, i.e. when the variable we want to model can only take two values (yes or no, group 1 or group 2, dead or alive, etc.). To this end we would like to estimate how our predictor variables change the <em>probability</em> of a value being 0 or 1. In this case we can technically still use a linear model (e.g. OLS). However, its predictions will most likely not be particularly useful. A more useful method is the logistic regression. In particular we are going to have a look at the logit model. In the following dataset we are trying to predict whether a customer will churn (i.e., stop being our customer) any time soon. In the first step we are going to use only the “cash-back amount” index as a predictor. Later we are going to add more independent variables.</p>
@@ -1796,7 +1796,7 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
         </div>
       </div>
 <a href="statistical-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="unsupervised-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="unsupervised-learning-extra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1810,42 +1810,42 @@ f(\mathbf{X}) = P(y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 * x_{1,i} + \be
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>

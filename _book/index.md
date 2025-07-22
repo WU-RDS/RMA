@@ -52,7 +52,7 @@ This course combines asynchronous teaching elements (e.g., lecture notes on this
 
 #### In-person lecture {-}
 
-The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions and quizzes, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week. Learning checks will also be performed in class as means of tracking participation as well as students' understanding of the material. 
+The contents on this website are divided into weekly readings. To be able to follow the curriculum and complete the assignments, you need to read the materials assigned for the respective week. The relevant chapters are indicated in the table below. The weekly readings will be complemented with weekly interactive sessions in the PC lab, which provide you with an opportunity to ask questions about the assigned readings. **Please note that you need to go through the materials on your own in the week before the respective session.** For example, chapters 2, 3 & 4 will be discussed in the second session, and you have to go through these chapters before the respective class. The dates and times for the classroom sessions are indicated in the table below for each group separately. It is highly recommended to prepare questions or comments about the materials for these sessions that you think might be interesting and helpful to the class. As a preparation for the in-class discussions and quizzes, you should go through the **Learning check** section at the end of each chapter. By working through these questions, you may self-assess your progress and identify knowledge gaps regarding the materials that were assigned for the previous week. Learning checks will also be performed in class as means of tracking participation as well as students' understanding of the material. 
 
 
 <br>
@@ -71,66 +71,66 @@ The contents on this website are divided into weekly readings. To be able to fol
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mar 6 </td>
+   <td style="text-align:left;"> Oct 16 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.2.03 </td>
+   <td style="text-align:left;"> 13:30 - 17:00 </td>
+   <td style="text-align:left;"> TC.2.01 </td>
    <td style="text-align:left;"> Introduction to the course <br>Basic concepts of research design </td>
    <td style="text-align:left;"> 1, except: <br>1.2.3.1., <br>1.2.3.1.2.1, <br>1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mar 13 </td>
+   <td style="text-align:left;"> Oct 23 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.2.03 </td>
+   <td style="text-align:left;"> 13:30 - 16:30 </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown I </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mar 20 </td>
+   <td style="text-align:left;"> Oct 30 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.2.03 </td>
+   <td style="text-align:left;"> 13:30 - 16:30 </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown II<br>Descriptive analytics </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mar 27 </td>
+   <td style="text-align:left;"> Nov 6 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
+   <td style="text-align:left;"> 13:30 - 16:30 </td>
    <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Introduction to inferential statistics </td>
    <td style="text-align:left;"> 5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Apr 3 </td>
+   <td style="text-align:left;"> Nov 13 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 3:00 PM - 6:00 PM </td>
-   <td style="text-align:left;"> TC.2.02 </td>
+   <td style="text-align:left;"> 13:30 - 16:30 </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Apr 10 </td>
+   <td style="text-align:left;"> Nov 20 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 3:00 PM - 6:00 PM </td>
-   <td style="text-align:left;"> TC.2.02 </td>
+   <td style="text-align:left;"> 13:30 - 16:30 </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Supervised learning II </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> May 8 </td>
+   <td style="text-align:left;"> Dec 4 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:00 AM - 11:00 AM </td>
-   <td style="text-align:left;"> TC.3.03 </td>
+   <td style="text-align:left;"> 13:30 - 11:00 </td>
+   <td style="text-align:left;"> TC.4.03 </td>
    <td style="text-align:left;"> Experimental design <br>Group project coaching </td>
    <td style="text-align:left;"> 1: 1.2.3.1., 1.2.3.1.2.1, 1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> May 15 </td>
+   <td style="text-align:left;"> Dec 11 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 8:30 AM - 9:30 AM </td>
-   <td style="text-align:left;"> TC.5.05 </td>
+   <td style="text-align:left;"> 13:00 - 14:10 </td>
+   <td style="text-align:left;"> TC.5.01 </td>
    <td style="text-align:left;"> Exam </td>
    <td style="text-align:left;"> -- </td>
   </tr>
@@ -188,11 +188,11 @@ Grading is based on the following components:
 
 * **Market research group project** (data analysis & reporting): **40%**
 * **Individual take-home computer exercises** (statistical analysis of data sets; 2 assignments accounting for 10% each: **20%**
-* **Final online exam** (concepts & methods): **30%**
+* **Final exam** (concepts & methods): **30%**
 * **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
 
-The **final exam** will take place on **May 15, 2025 from 08:30 AM - 9:30 AM** in room D5.0.002. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
+The **final exam** will take place on **December 11, 2025 from 13:00 - 14:10** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
 
 In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
 

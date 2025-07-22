@@ -242,7 +242,7 @@ The mean listening time in the sample (black line) $\bar x$ is 18.59. We can alr
 
 #### Test statistic
 
-##### z-scores
+##### <span style="color: purple;">z-scores (extra)</span>
 
 Let's go back to the sampling distribution above. We know that 95% of all values will fall within 1.96 standard deviations from the mean. So if we could express the distance between our sample mean and the null hypothesis in terms of standard deviations, we could make statements about the probability of getting a sample mean of the observed magnitude (or more extreme values). Essentially, we would like to know how many standard deviations ($\sigma_{\bar x}$) our sample mean ($\bar x$) is away from the population mean if the null hypothesis was true ($\mu_0$). This can be formally expressed as follows:
 
@@ -293,7 +293,7 @@ abs(z_score) > abs(z_crit)
 
 Since the absolute value of the calculated test statistic is larger than the critical value, we would reject $H_0$ and conclude that the true population mean $\mu$ is significantly different from the hypothesized value $\mu_0 = 10$.
 
-##### t-statistic
+##### <span style="color: purple;">t-statistic (extra)</span>
 
 You may have noticed that the formula for the z-score above assumes that we know the true population standard deviation ($\sigma$) when computing the standard deviation of the sampling distribution ($\sigma_{\bar x}$) in the denominator. However, the population standard deviation is usually not known in the real world and therefore represents another unknown population parameter which we have to estimate from the sample. We saw in the previous chapter that we usually use $s$ as an estimate of $\sigma$ and $SE_{\bar x}$ as and estimate of $\sigma_{\bar x}$. Intuitively, we should be more conservative regarding the critical value that we used above to assess whether we have a significant effect to reflect this uncertainty about the true population standard deviation. That is, the threshold for a "significant" effect should be higher to safeguard against falsely claiming a significant effect when there is none. If we replace $\sigma_{\bar x}$ by it's estimate $SE_{\bar x}$ in the formula for the z-score, we get a new test statistic (i.e, the **t-statistic**) with its own distribution (the **t-distribution**): 
 

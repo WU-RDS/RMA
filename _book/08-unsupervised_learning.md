@@ -10,7 +10,7 @@ output:
 
 
 
-# Unsupervised learning
+# <span style="color: purple;">Unsupervised learning (extra)</span>
 
 ## Principal component analysis 
 

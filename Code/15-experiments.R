@@ -31,7 +31,7 @@ ggplot(between_data, aes(x = Group, y = WTP)) +
   theme_minimal() 
 
 # Conduct t-test
-t.test(WTP ~ Group, data = between_data)
+ #t.test(WTP ~ Group, data = between_data)
 
 # Alternatively you can use the "ggstatsplot" package
 library(ggstatsplot)
@@ -78,13 +78,10 @@ ggplot(anova_data, aes(x = Group, y = WTP)) +
   theme(plot.title = element_text(hjust = 0.5,color = "#666666")) 
 
 
-anova_result <- aov(WTP ~ Group, data = anova_data)
-summary(anova_result)
+#anova_result <- aov(WTP ~ Group, data = anova_data)
+#summary(anova_result)
 
-oneway.test(WTP ~ Group, data = anova_data)
-
-# Important for ANOVA: pairwise comparisons of groups
-pairwise.t.test(anova_data$WTP, anova_data$Group, p.adjust.method = "bonferroni")
+#oneway.test(WTP ~ Group, data = anova_data)
 
 
 # Alternatively you can use the "ggstatsplot" package
@@ -119,6 +116,10 @@ summary(model_anova)
 model_anova2 <- lm(WTP ~ relevel(Group, ref = 2), data = anova_data) # to compare to targeted ads
 summary(model_anova2)
 
+# Important for ANOVA: pairwise comparisons of groups
+#pairwise.t.test(anova_data$WTP, anova_data$Group, p.adjust.method = "bonferroni")
+
+
 
 #-------------------------------------------------------------------#
 #-----------------------Dependent means t-test----------------------#
@@ -144,7 +145,7 @@ ggplot(within_data_long, aes(x = Condition, y = Minutes)) +
   theme_minimal() 
 
 # Conduct t-test
-t.test(within_data$before, within_data$after, paired = TRUE)
+#t.test(within_data$before, within_data$after, paired = TRUE)
 
 
 # Alternatively you can use the "ggstatsplot" package
@@ -199,8 +200,8 @@ ggplot(rel_freq_table, aes(x = Group, y = Freq, fill = Conversion)) +
 
 
 # Chi-squared test of independence
-conversion_table <- table(categorical_data$Group, categorical_data$Conversion)
-chisq.test(conversion_table)
+#conversion_table <- table(categorical_data$Group, categorical_data$Conversion)
+#chisq.test(conversion_table)
 
 
 # ... or using LOGISTIC regression

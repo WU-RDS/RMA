@@ -673,7 +673,7 @@ The predicted value of the dependent variable is 45,829.6 oz, i.e., the store wi
 
 #### Log-Log transformation
 
-Have a look at the plots above again. You might notice some data specific pattern, making the data points look odd: they are pulled to lower edge of the scatterplot. In this particular case, we're dealing with different measurement scales of our independent and dependent variables. Moreover, you could also notice how odd the interpretation of the regression coefficients sounds. 
+*(For more details about log-log transformation, a.k.a. multiplicative model, see chapter 6.1.3.3).* Have a look at the plots above again. You might notice some data specific pattern, making the data points look odd: they are pulled to lower edge of the scatterplot. In this particular case, we're dealing with different measurement scales of our independent and dependent variables. Moreover, you could also notice how odd the interpretation of the regression coefficients sounds. 
 
 It is very rare that in the retailing context, the predictions are made as we did before. The concept that is used instead is familiar to you from the microeconomics course - elasticity is a measure that is used by retail managers and researchers much more often than mere unit changes.
 
@@ -938,7 +938,7 @@ summary(multiple_regression_ext)
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
 
 
-#### Non-linear relationships
+#### <span style="color: purple;">Non-linear relationships (extra)</span>
 
 ##### Multiplicative model 
 
@@ -1052,7 +1052,7 @@ ggplot(data = non_linear_reg) +
 
 
 
-## Logistic regression
+## <span style="color: purple;">Logistic regression (extra)</span>
 
 
 ### Motivation and intuition

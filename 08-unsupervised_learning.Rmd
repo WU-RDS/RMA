@@ -20,7 +20,7 @@ set.seed(1)
 options(digits = 8)
 ```
 
-# Unsupervised learning
+# <span style="color: purple;">Unsupervised learning (extra)</span>
 
 ## Principal component analysis 
 
