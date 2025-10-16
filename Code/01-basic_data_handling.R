@@ -2,14 +2,14 @@
 
 ## Remember to run the code line by line, without skipping any of lines, top-to-bottom (i.e., never start in the middle of the code)
 
-x <- "hello world" # assigns the words "hello world" to the object x
+x <- "hello world" # operator "<-" assigns the words "hello world" to the object x. You can read it as " x IS "hello world" "
 # this is a comment (any number of "#" denotes a comment; the number of "#" does not matter)
 
 x # print the value of x to the console
 #print(x) # - another way to print the results (in this case, the value of x)
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-x <- 2 # assigns the value of 2 to the object x
+x <- 2 # assigns the value of 2 to the object x ("x IS 5")
 x
 x == 2  # checks whether the value of x is equal to 2
 x != 3  # checks whether the value of x is NOT equal to 3
@@ -24,7 +24,7 @@ x*y # multiplication of x and y
 x + y # adds the values of x and y together
 y^2 + 3*x # adds the value of y squared and 3x the value of x together
 
-# such operations can be performed not just with "single" values; we can do the same with values in data tables (see below)
+# such operations can be performed not just with "single" values; we can do the same with values in data tables (see below): columns, rows.
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #class(y) # check the class of the variable (what type of variable it is) - or hover over the "y" cell in the top right corner (Global Environment)
@@ -39,7 +39,8 @@ y
 ### Manual:
 # Numeric:
 sales <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) # function c() means "concatenate" (= merge) and serves for creating a row of values
-log(sales) # you can take logarithm of the values in the row you created by applying the function log() to the whole object that contains the values of interest. 
+log(sales) # you can take logarithm - or apply any kind of mathematical transformation, such as square root, power, etc. - 
+# of the values in the row you created by applying the function log() to the whole object that contains the values of interest. 
 # It also works with columns in data tables (see further)
 
 # Character:
@@ -47,14 +48,14 @@ products <- c("Bio-Kaisersemmel", "Laktosefreie Bio-Vollmilch", "Ottakringer Hel
 
 
 ### Data files: 
-## in this course, we use data files, stored on a server; these files can be read into R as follows
+## in this course, we use data files, stored on a server; these files can be read into R as follows:
 sales_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/heads/main/data/Sales_Data.csv", 
                       sep = ",", 
                       header = TRUE)
 
 # If you ever need to read in files from your local device (your laptop, etc.), use the code below. 
 # You must check where the file is saved (provide the full file path), how it is named, and (in case of csv. files) what separators it uses: , or ; or tabular
-#sales_data <- read.csv("full path to your file", sep = ";", header = TRUE)
+#sales_data <- read.csv([full_path_to_your_file], sep = ";", header = TRUE)
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
