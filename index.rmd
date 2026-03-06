@@ -80,14 +80,14 @@ The contents on this website are divided into weekly readings. To be able to fol
 library(dplyr)
 library(kableExtra)
 mytable = data.frame(
-    Date = c("Oct 16", 
-             "Oct 23", 
-             "Oct 30",
-             "Nov 6",
-             "Nov 13",
-             "Nov 20",
-             "Dec 4",
-             "Dec 11"
+    Date = c("Mar 12", 
+             "Mar 19", 
+             "Mar 26",
+             "Apr 9",
+             "Apr 16",
+             "Apr 23",
+             "Apr 30",
+             "May 7"
              ),
     Day = c("Thursday", 
             "Thursday", 
@@ -98,28 +98,28 @@ mytable = data.frame(
             "Thursday",
             "Thursday"
              ),
-    Time = c("13:30 - 17:00",
-             "13:30 - 16:30",
-             "13:30 - 16:30",
-             "13:30 - 16:30",
-             "13:30 - 16:30",
-             "13:30 - 16:30",
-             "13:30 - 11:00",
-             "13:00 - 14:10"
+    Time = c("13:30 - 17:30",
+             "14:00 - 17:00",
+             "14:00 - 17:00",
+             "14:00 - 17:00",
+             "14:00 - 17:00",
+             "14:00 - 17:00",
+             "14:00 - 17:00",
+             "13:00 - 15:30"
              ),
-    Room = c("TC.2.01", 
-             "TC.4.03", 
-             "TC.4.03", 
-             "TC.4.03", 
-             "TC.4.03", 
-             "TC.4.03",
-             "TC.4.03",
-             "TC.5.01"
+    Room = c("TC.2.02", 
+             "TC.3.01", 
+             "TC.3.01", 
+             "TC.3.01", 
+             "TC.3.01", 
+             "TC.3.01",
+             "TC.3.01",
+             "D5.0.001"
              ),
     Topics = c("Introduction to the course <br>Basic concepts of research design", 
                "Introduction to R & R Markdown I", 
                "Introduction to R & R Markdown II<br>Descriptive analytics", 
-               "Introduction to inferential statistics",
+               "Descriptive analytics<br>Introduction to inferential statistics",
                "Supervised learning I",
                "Supervised learning II",
                "Experimental design <br>Group project coaching",
@@ -128,7 +128,7 @@ mytable = data.frame(
     Chapters = c("1, except: <br>1.2.3.1., <br>1.2.3.1.2.1, <br>1.2.3.2.2",
                  "2, 3, 4", 
                  "2, 3, 4", 
-                 "5", 
+                 "4, 5", 
                  "6",
                  "6",
                  "1: 1.2.3.1., 1.2.3.1.2.1, 1.2.3.2.2",
@@ -160,12 +160,12 @@ mytable_sub_1 = data.frame(
              "Assignment 2: Supervised learning"
              ),
     Assigned = c(
-      "TBA / see Canvas",
-      "TBA / see Canvas"
+      "Mar 26",
+      "Apr 16"
     ),
     Submission = c(
-      "TBA / see Canvas",
-      "TBA / see Canvas"
+      "Apr 7, 23:59",
+      "Apr 28, 23:59"
     )
     )
 
@@ -184,7 +184,7 @@ mytable_sub_1 %>% kable(escape = F,  col.names = gsub("[_]", " ", names(mytable_
 
 The group project consists of an extended analysis of a data set using the methods we covered in the course and the reporting of the results using the R markdown format. The **submission date** for the group project will be announced soon. 
 
-Again, please make sure that you have exhausted all other resources to solve a particular problem, such as the online tutorial, the forum on Canvas, and other web resources (see below) before you schedule a coaching session. If you feel that other students might have similar questions and would benefit from an answer to a particular question, you should post the question in the forum on Canvas.
+Again, please make sure that you have exhausted all other resources to solve a particular problem, such as the online tutorial, the Discussions on Canvas, and other web resources (see below) before you schedule a coaching session. If you feel that other students might have similar questions and would benefit from an answer to a particular question, you should post the question in the forum on Canvas.
 <br>
 
 ### Grading {-}
@@ -197,7 +197,7 @@ Grading is based on the following components:
 * **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
 
-The **final exam** will take place on **December 11, 2025 from 13:00 - 14:10** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
+The **final exam** will take place on **May 7, 2026 from 13:30 - 15:30** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
 
 In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
 

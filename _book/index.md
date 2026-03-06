@@ -71,66 +71,66 @@ The contents on this website are divided into weekly readings. To be able to fol
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Oct 16 </td>
+   <td style="text-align:left;"> Mar 12 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 17:00 </td>
-   <td style="text-align:left;"> TC.2.01 </td>
+   <td style="text-align:left;"> 13:30 - 17:30 </td>
+   <td style="text-align:left;"> TC.2.02 </td>
    <td style="text-align:left;"> Introduction to the course <br>Basic concepts of research design </td>
    <td style="text-align:left;"> 1, except: <br>1.2.3.1., <br>1.2.3.1.2.1, <br>1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Oct 23 </td>
+   <td style="text-align:left;"> Mar 19 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 16:30 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown I </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Oct 30 </td>
+   <td style="text-align:left;"> Mar 26 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 16:30 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown II<br>Descriptive analytics </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 6 </td>
+   <td style="text-align:left;"> Apr 9 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 16:30 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
-   <td style="text-align:left;"> Introduction to inferential statistics </td>
-   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
+   <td style="text-align:left;"> Descriptive analytics<br>Introduction to inferential statistics </td>
+   <td style="text-align:left;"> 4, 5 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 13 </td>
+   <td style="text-align:left;"> Apr 16 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 16:30 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
    <td style="text-align:left;"> Supervised learning I </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Nov 20 </td>
+   <td style="text-align:left;"> Apr 23 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 16:30 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
    <td style="text-align:left;"> Supervised learning II </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Dec 4 </td>
+   <td style="text-align:left;"> Apr 30 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 11:00 </td>
-   <td style="text-align:left;"> TC.4.03 </td>
+   <td style="text-align:left;"> 14:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.3.01 </td>
    <td style="text-align:left;"> Experimental design <br>Group project coaching </td>
    <td style="text-align:left;"> 1: 1.2.3.1., 1.2.3.1.2.1, 1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Dec 11 </td>
+   <td style="text-align:left;"> May 7 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:00 - 14:10 </td>
-   <td style="text-align:left;"> TC.5.01 </td>
+   <td style="text-align:left;"> 13:00 - 15:30 </td>
+   <td style="text-align:left;"> D5.0.001 </td>
    <td style="text-align:left;"> Exam </td>
    <td style="text-align:left;"> -- </td>
   </tr>
@@ -160,13 +160,13 @@ There will be 2 individual assignments. These assignments need to be submitted i
 <tbody>
   <tr>
    <td style="text-align:left;"> Assignment 1: R Basics </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
+   <td style="text-align:left;"> Mar 26 </td>
+   <td style="text-align:left;"> Apr 7, 23:59 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Assignment 2: Supervised learning </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
-   <td style="text-align:left;"> TBA / see Canvas </td>
+   <td style="text-align:left;"> Apr 16 </td>
+   <td style="text-align:left;"> Apr 28, 23:59 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -179,7 +179,7 @@ There will be 2 individual assignments. These assignments need to be submitted i
 
 The group project consists of an extended analysis of a data set using the methods we covered in the course and the reporting of the results using the R markdown format. The **submission date** for the group project will be announced soon. 
 
-Again, please make sure that you have exhausted all other resources to solve a particular problem, such as the online tutorial, the forum on Canvas, and other web resources (see below) before you schedule a coaching session. If you feel that other students might have similar questions and would benefit from an answer to a particular question, you should post the question in the forum on Canvas.
+Again, please make sure that you have exhausted all other resources to solve a particular problem, such as the online tutorial, the Discussions on Canvas, and other web resources (see below) before you schedule a coaching session. If you feel that other students might have similar questions and would benefit from an answer to a particular question, you should post the question in the forum on Canvas.
 <br>
 
 ### Grading {-}
@@ -192,7 +192,7 @@ Grading is based on the following components:
 * **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
 
 
-The **final exam** will take place on **December 11, 2025 from 13:00 - 14:10** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
+The **final exam** will take place on **May 7, 2026 from 13:30 - 15:30** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
 
 In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
 
