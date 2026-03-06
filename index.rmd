@@ -1,7 +1,7 @@
 ---
 knit: "bookdown::render_book"
 new_session: TRUE
-title: "Retail Marketing Analytics 2025"
+title: "Retail Marketing Analytics 2026"
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
