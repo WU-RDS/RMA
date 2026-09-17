@@ -1538,7 +1538,7 @@ fviz_cluster(kmeans_clusters, data = cluster_scale,
     ellipse.type = "convex", ggtheme = theme_minimal())
 ```
 
-<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="08-unsupervised_learning_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
 
 
 We could use the clustering to identify customers similar to each other to recommend them goods or services, chosen by their statistical "twins". For example, we want to find customers similar to the one with ID 19:

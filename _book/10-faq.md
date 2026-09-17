@@ -20,7 +20,7 @@ In this section, we provide answers to questions that students of previous cohor
 
 ## Common error messages
 
-<img src="./images/off_on.jpg" width="40%" style="display: block; margin: auto;" />
+<img src="./images/off_on.jpg" alt="" width="40%" style="display: block; margin: auto;" />
 
 ### A general note on error messages {-}
 
@@ -134,7 +134,8 @@ mean$value
 ```
 
 ```
-## Error in mean$value: object of type 'closure' is not subsettable
+## Error in `mean$value`:
+## ! object of type 'closure' is not subsettable
 ```
 
 instead of (i.e., correcting for the missing "s" to identify the data frame by its name)
@@ -158,7 +159,8 @@ summary(aov)[[1]]
 ```
 
 ```
-## Error in object[[i]]: object of type 'closure' is not subsettable
+## Error in `object[[i]]`:
+## ! object of type 'closure' is not subsettable
 ```
 
 Make sure all the relevant code is run first:
@@ -187,7 +189,8 @@ x$a
 ```
 
 ```
-## Error in x$a: $ operator is invalid for atomic vectors
+## Error in `x$a`:
+## ! $ operator is invalid for atomic vectors
 ```
 
 
@@ -211,7 +214,8 @@ mean(xdf$a, xdf$group)
 ```
 
 ```
-## Error in mean.default(xdf$a, xdf$group): 'trim' must be numeric of length one
+## Error in `mean.default()`:
+## ! 'trim' must be numeric of length one
 ```
 
 When you get this error make sure your data is in the format you expect it to be (e.g., using the `str` function). And that missing values (i.e., NA) are handles appropriately. 
@@ -244,7 +248,8 @@ This error occurs if a function name is either misspelled or some packages have 
 
 
 ```
-## Error in detach(package:ggplot2): invalid 'name' argument
+## Error in `detach()`:
+## ! invalid 'name' argument
 ```
 
 
@@ -253,7 +258,8 @@ ggplot(data)
 ```
 
 ```
-## Error in ggplot(data): could not find function "ggplot"
+## Error in `ggplot()`:
+## ! could not find function "ggplot"
 ```
 
 If you are not sure which package provides a given function, try running:
@@ -273,7 +279,8 @@ x[1,1]
 ```
 
 ```
-## Error in x[1, 1]: incorrect number of dimensions
+## Error in `x[1, 1]`:
+## ! incorrect number of dimensions
 ```
 
 
@@ -353,7 +360,7 @@ Some libraries require the [XQuartz](https://www.xquartz.org) window system for 
 1. When asked whether R should try to install a package from sources a package which needs compilation, enter "no" or "n".
 
 
-<img src="./images/error.png" width="70%" style="display: block; margin: auto;" />
+<img src="./images/error.png" alt="" width="70%" style="display: block; margin: auto;" />
 
 2.  If this doesn't solve the issue, try installing the free XCode package from the Apple Appstore, open a Terminal and enter "xcode-select --install". After that try to install the package again (answering "yes" to the question above). 
 
@@ -421,7 +428,8 @@ glm(y ~ x , data = dat, family=binomial())
 ```
 
 ```
-## Error in eval(family$initialize): y values must be 0 <= y <= 1
+## Error:
+## ! y values must be 0 <= y <= 1
 ```
 
 ### When using logistic regression: Error in weights * y : non-numeric argument to binary operator {-}
@@ -435,7 +443,8 @@ glm(char_y ~ x , data = dat, family=binomial())
 ```
 
 ```
-## Error in weights * y: non-numeric argument to binary operator
+## Error in `weights * y`:
+## ! non-numeric argument to binary operator
 ```
 
 ## General settings and options

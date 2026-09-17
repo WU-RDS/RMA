@@ -14,7 +14,7 @@ This chapter will provide you with a basic intuition on statistical inference. A
 
 Assume there are $25,000$ students at WU and every single one has kindly provided us with the hours they listened to music in the past month. Using the code below, the ```rnorm()``` function will be used to generate 25,000 observations from a normal distribution with a mean of 50 and a standard deviation of 10. Although you might not be used to working with this type of simulated (i.e., synthetic) data, it is useful when explaining statistical concepts because the properties of the data are known. In this case, for example, we know the true mean ($49.93$ hours) and the true standard deviation (SD = $10.02$) and thus we can easily summarize the entire distribution. Since the data follows a normal distribution, roughly 95% of the values lie within 2 standard deviations from the mean, as the following plot shows:
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" />
 
 
 In this case, we refer to all WU students as **the population**. In general, the population is the entire group we are interested in. This group does not have to necessarily consist of people, but could also be companies, stores, animals, etc.. The parameters of the distribution of population values (in hour case: "hours") are called population parameters. As already mentioned, we do not usually know population parameters but use inferential statistics to infer them based on our sample from the population, i.e., we measure statistics from a sample (e.g., the sample mean $\bar x$) to estimate population parameters (the population mean $\mu$). Here, we will use the following notation to refer to either the population parameters or the sample statistic: 
@@ -34,17 +34,17 @@ Using this notation, $N$ refers to the number of observations in the entire popu
 
 In the first step towards a realistic research setting, let us take one sample from this population and calculate the mean listening time. We can simply sample the row numbers of students and then subset the ```hours``` vector with the sampled row numbers. The ```sample()``` function will be used to draw a sample of size 100 from the population of 25,000 students, and one student can only be drawn once (i.e., ```replace = FALSE```). The following plot shows the distribution of listening times for our sample.
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-3-1.png" alt="" width="576" style="display: block; margin: auto;" />
 
 Observe that in this first draw the mean ($\bar x =$ 49.67) is quite close to the actual mean ($\mu =$ 49.93). It seems like the sample mean is a decent estimate of the population mean. However, we could just be lucky this time and the next sample could turn out to have a different mean. Let us continue by looking at four additional random samples, consisting of 100 students each. The following plot shows the distribution of listening times for the four different samples from the population.  
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-4-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 It becomes clear that the mean is slightly different for each sample. This is referred to as **sampling variation** and it is completely fine to get a slightly different mean every time we take a sample. We just need to find a way of expressing the uncertainty associated with the fact that we only have data from one sample, because in a realistic setting you are most likely only going to have access to a single sample. 
 
 So in order to make sure that the first draw is not just pure luck and the sample mean is in fact a good estimate for the population mean, let us take **many** (e.g., $20,000$) different samples from the population. That is, we repeatedly draw 100 students randomly from the population without replacement (that is, once a student has been drawn she or he is removed from the pool and cannot be drawn again) and calculate the mean of each sample. This will show us a range within which the sample mean of any sample we take is likely going to be. We are going to store the means of all the samples in a matrix and then plot a histogram of the means to observe the likely values. 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-5-1.png" alt="" width="576" style="display: block; margin: auto;" />
 
 As you can see, on average the sample mean ("mean of sample means") is extremely close to the population mean, despite only sampling $100$ people at a time. This distribution of sample means is also referred to as **sampling distribution** of the sample mean. However, there is some uncertainty, and the means are slightly different for the different samples and range from 45.95 to 54.31. 
 
@@ -69,7 +69,7 @@ The first thing to notice here is that an increase in the **number of observatio
 
 The following plots show the relationship between the sample size and the standard error in a slightly different way. The plots show the range of sample means resulting from the repeated sampling process for different sample sizes. Notice that the more students are contained in the individual samples, the less uncertainty there is when estimating the population mean from a sample (i.e., the possible values are more closely centered around the mean). So when the sample size is small, the sample mean can expected to be very different the next time we take a sample. When the sample size is large, we can expect the sample means to be more similar every time we take a sample.
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-7-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 As you can see, the standard deviation of the sample means ($\sigma_{\bar x}$) decreases as the sample size increases as a consequence of the reduced uncertainty about the true sample mean when we take larger samples. 
 
@@ -77,7 +77,7 @@ As you can see, the standard deviation of the sample means ($\sigma_{\bar x}$) d
 
 A second factor determining the standard deviation of the distribution of sample means ($\sigma_{\bar x}$) is the standard deviation associated with the population parameter ($\sigma$). Again, looking at the extremes illustrates this well. If all WU students listened to music for approximately the same amount of time, the samples would not differ much from each other. In other words, if the standard deviation in the population is lower, we expect the standard deviation of the sample means to be lower as well. This is illustrated by the following plots.    
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-8-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 In the first plot (panel A), we assume a much smaller population standard deviation (e.g., $\sigma$ = 1 instead of $\sigma$ = 10). Notice how the smaller (larger) the population standard deviation, the less (more) uncertainty there is when estimating the population mean from a sample (i.e., the possible values are more closely centered around the mean). So when the population SD is large, the sample mean can expected to be very different the next time we take a sample. When the population SD is small, we can expect the sample means to be more similar.
 
@@ -89,17 +89,17 @@ The central limit theorem states that if **(1)** the population distribution has
 
 To illustrate this, let's repeat the analysis above with a population from a gamma distribution. In the previous example, we assumed a normal distribution so it was more likely for a given student to spend around 50 hours per week listening to music. The following example depicts the case in which most students spend a similar amount of time listening to music, but there are a few students who very rarely listen to music, and some music enthusiasts with a very high level of listening time. In the following code, we will use the `rgamma()` function to generate 25,000 random observations from the gamma distribution. The gamma distribution is specified by shape and scale parameters instead of the mean and standard deviation of the normal distribution. Here is a histogram of the listening times in the population:
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-9-1.png" alt="" width="576" style="display: block; margin: auto;" />
 
 The vertical black line represents the population mean ($\mu$), which is 19.98 hours. The following plot depicts the histogram of listening times of four random samples from the population, each consisting of 100 students: 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-10-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 As in the previous example, the mean is slightly different every time we take a sample due to sampling variation. Also note that the distribution of listening times no longer follows a normal distribution as a result of the fact that we now assume a gamma distribution for the population with a positive skew (i.e., lower values more likely, higher values less likely). 
 
 Let's see what happens to the distribution of sample means if we take an increasing number of samples, each drawn from the same gamma population:
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-11-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 Two things are worth noting: **(1)** The more (hypothetical) samples we take, the more the sampling distribution approaches a normal distribution. **(2)** The mean of the sampling distribution of the sample mean ($\mu_{\bar x}$) is very similar to the population mean ($\mu$). From this we can see that the mean of a sample is a good estimate of the population mean. 
 
@@ -126,7 +126,7 @@ When we try to estimate parameters of populations (e.g., the population mean $\m
 
 Let us consider one random sample of 100 students from our population above. 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-12-1.png" width="576" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-12-1.png" alt="" width="576" />
 
 From the central limit theorem we know that the sampling distribution of the sample mean is approximately normal and we know that for the normal distribution, 95% of the values lie within about 2 standard deviations from the mean. Actually, it is not exactly 2 standard deviations from the mean. To get the exact number, we can use the quantile function for the normal distribution ```qnorm()```:  
 
@@ -179,7 +179,16 @@ Note the correct interpretation of the confidence interval: If we collected 100 
 
 This is illustrated in the plot below that shows the mean of the first 100 samples and their confidence intervals:
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-15-1.png" width="960" />
+
+```
+## Warning: `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
+## ℹ Please use the `orientation` argument of `geom_errorbar()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-15-1.png" alt="" width="960" />
 
 
 ::: {.infobox_red .caution data-latex="{caution}"}
@@ -193,7 +202,7 @@ We test hypotheses because we are confined to taking samples – we rarely work 
 
 Let us again begin by assuming we know the entire population using the example of music listening times among students from the previous example. As a reminder, the following plot shows the distribution of music listening times in the population of WU students. 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" />
 
 In this example, the population mean ($\mu$) is equal to 19.98, and the population standard deviation $\sigma$ is equal to 14.15. 
 
@@ -229,11 +238,11 @@ standard_error
 
 Since we know from the central limit theorem that the sampling distribution is normal for large enough samples, we can now visualize the expected sampling distribution **if our null hypothesis was in fact true** (i.e., if the was no difference between the true population mean and the hypothesized mean of 10). 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-18-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-18-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 We also know that 95% of the probability is within 1.96 standard deviations from the mean. Values higher than that are rather unlikely, if our hypothesis about the population mean was indeed true. This is shown by the shaded area, also known as the "rejection region". To test our hypothesis that the population mean is equal to $10$, let us take a random sample from the population.
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
 
 The mean listening time in the sample (black line) $\bar x$ is 18.59. We can already see from the graphic above that such a value is rather unlikely under the hypothesis that the population mean is $10$. Intuitively, such a result would therefore provide evidence against our null hypothesis. But how could we quantify specifically how unlikely it is to obtain such a value and decide whether or not to reject the null hypothesis? Significance tests can be used to provide answers to these questions. 
 
@@ -303,7 +312,7 @@ $$
 
 Here, $\bar X$ denotes the sample mean and $s$ the sample standard deviation. The t-distribution has more probability in its "tails", i.e. farther away from the mean. This reflects the higher uncertainty introduced by replacing the population standard deviation by its sample estimate. Intuitively, this is particularly relevant for small samples, since the uncertainty about the true population parameters decreases with increasing sample size. This is reflected by the fact that the exact shape of the t-distribution depends on the **degrees of freedom**, which is the sample size minus one (i.e., $n-1$). To see this, the following graph shows the t-distribution with different degrees of freedom for a two-tailed test and $\alpha = 0.05$. The grey curve shows the normal distribution. 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-23-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 Notice that as $n$ gets larger, the t-distribution gets closer and closer to the normal distribution, reflecting the fact that the uncertainty introduced by $s$ is reduced. To summarize, we now have an estimate for the standard deviation of the distribution of the sample mean (i.e., $SE_{\bar x}$) and an appropriate distribution that takes into account the necessary uncertainty (i.e., the t-distribution). Let us now compute the t-statistic according to the formula above:
 
@@ -344,7 +353,7 @@ abs(t_score) > abs(t_crit)
 
 The following graphics shows that the calculated test statistic (red line) falls into the rejection region so that in our example, we would reject the null hypothesis that the true population mean is equal to $10$. 
 
-<img src="06-statistical_inference_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-statistical_inference_files/figure-html/unnamed-chunk-27-1.png" alt="" width="768" style="display: block; margin: auto;" />
 
 **Decision:** Reject $H_0$, given that the calculated test statistic is larger than critical value.
 

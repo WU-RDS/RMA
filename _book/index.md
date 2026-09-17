@@ -71,66 +71,58 @@ The contents on this website are divided into weekly readings. To be able to fol
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> Mar 12 </td>
+   <td style="text-align:left;"> Oct 15 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:30 - 17:30 </td>
-   <td style="text-align:left;"> TC.2.02 </td>
+   <td style="text-align:left;"> 13:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.1.02 </td>
    <td style="text-align:left;"> Introduction to the course <br>Basic concepts of research design </td>
    <td style="text-align:left;"> 1, except: <br>1.2.3.1., <br>1.2.3.1.2.1, <br>1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mar 19 </td>
+   <td style="text-align:left;"> Oct 22 </td>
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
+   <td style="text-align:left;"> TC.1.02 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown I </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Mar 26 </td>
+   <td style="text-align:left;"> Oct 29 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
+   <td style="text-align:left;"> 13:00 - 17:00 </td>
+   <td style="text-align:left;"> TC.0.01 </td>
    <td style="text-align:left;"> Introduction to R &amp; R Markdown II<br>Descriptive analytics </td>
    <td style="text-align:left;"> 2, 3, 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Apr 9 </td>
+   <td style="text-align:left;"> Nov 12 </td>
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
-   <td style="text-align:left;"> Descriptive analytics<br>Introduction to inferential statistics </td>
-   <td style="text-align:left;"> 4, 5 </td>
+   <td style="text-align:left;"> TC.1.02 </td>
+   <td style="text-align:left;"> Introduction to inferential statistics<br>Supervised learning I </td>
+   <td style="text-align:left;"> 5, 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Apr 16 </td>
+   <td style="text-align:left;"> Nov 26 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
-   <td style="text-align:left;"> Supervised learning I </td>
-   <td style="text-align:left;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Apr 23 </td>
-   <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
+   <td style="text-align:left;"> 13:00 - 17:00 </td>
+   <td style="text-align:left;"> Online </td>
    <td style="text-align:left;"> Supervised learning II </td>
    <td style="text-align:left;"> 6 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Apr 30 </td>
+   <td style="text-align:left;"> Dec 3 </td>
    <td style="text-align:left;"> Thursday </td>
    <td style="text-align:left;"> 14:00 - 17:00 </td>
-   <td style="text-align:left;"> TC.3.01 </td>
+   <td style="text-align:left;"> TC.1.02 </td>
    <td style="text-align:left;"> Experimental design <br>Group project coaching </td>
    <td style="text-align:left;"> 1: 1.2.3.1., 1.2.3.1.2.1, 1.2.3.2.2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> May 7 </td>
+   <td style="text-align:left;"> Dec 17 </td>
    <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 13:00 - 15:30 </td>
-   <td style="text-align:left;"> D5.0.001 </td>
+   <td style="text-align:left;"> 14:00 - 16:00 </td>
+   <td style="text-align:left;"> TC.2.02 </td>
    <td style="text-align:left;"> Exam </td>
    <td style="text-align:left;"> -- </td>
   </tr>
@@ -160,13 +152,13 @@ There will be 2 individual assignments. These assignments need to be submitted i
 <tbody>
   <tr>
    <td style="text-align:left;"> Assignment 1: R Basics </td>
-   <td style="text-align:left;"> Mar 26 </td>
-   <td style="text-align:left;"> Apr 7, 23:59 </td>
+   <td style="text-align:left;"> TBA / See in Canvas </td>
+   <td style="text-align:left;"> TBA / See in Canvas </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Assignment 2: Supervised learning </td>
-   <td style="text-align:left;"> Apr 16 </td>
-   <td style="text-align:left;"> Apr 28, 23:59 </td>
+   <td style="text-align:left;"> TBA / See in Canvas </td>
+   <td style="text-align:left;"> TBA / See in Canvas </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -186,15 +178,14 @@ Again, please make sure that you have exhausted all other resources to solve a p
 
 Grading is based on the following components:
 
-* **Market research group project** (data analysis & reporting): **40%**
+* **Market research group project** (data analysis & reporting): **35%**
 * **Individual take-home computer exercises** (statistical analysis of data sets; 2 assignments accounting for 10% each: **20%**
-* **Final exam** (concepts & methods): **30%**
-* **Class participation** (weekly quizzes; quantity & quality of contributions during the weekly sessions): **10%**
+* **Final exam** (concepts & methods): **45%**
 
 
-The **final exam** will take place on **May 7, 2026 from 13:30 - 15:30** in room TC.5.01. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
+The **final exam** will take place on **December 17, 2026 from 14:00 - 16:00** in room TC.2.02. Details about the setup of the exam will be provided in the course. The exam covers the concepts and methods that we learn in this course; some sample questions from the previous years will be provided to you.   
 
-In order to ensure equal contribution to the group project, its grade consists of individual component (1/3) and group component (2/3). 
+In order to ensure equal contribution to the group project, all students will be required to perform a **peer review**.  
 
 **To successfully pass this course, your weighted final grade needs to exceed 60%.**
 

@@ -152,7 +152,7 @@ Keep `knitr::opts_chunk$set(echo = TRUE)` to print your code to the document you
 ##  Max.   :25.0   Max.   :120.00
 ```
 
-<img src="09-rmdIntro_files/figure-html/cars-1.png" width="672" />
+<img src="09-rmdIntro_files/figure-html/cars-1.png" alt="" width="672" />
 
  
     ```{r cars2, echo = TRUE}
@@ -181,7 +181,7 @@ summary(cars)
 plot(dist ~ speed, cars)
 ```
 
-<img src="09-rmdIntro_files/figure-html/cars2-1.png" width="672" />
+<img src="09-rmdIntro_files/figure-html/cars2-1.png" alt="" width="672" />
 
 A good overview of all available global/chunk options can be found [here](https://yihui.name/knitr/options/#chunk_options).
 
