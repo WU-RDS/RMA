@@ -1,9 +1,9 @@
 ## This is the beginning of the code
-
 ## Remember to run the code line by line, without skipping any of lines, top-to-bottom (i.e., never start in the middle of the code)
 
-x <- "hello world" # operator "<-" assigns the words "hello world" to the object x. You can read it as " x IS "hello world" "
 # this is a comment (any number of "#" denotes a comment; the number of "#" does not matter)
+
+x <- "hello world" # operator "<-" assigns the words "hello world" (VALUE) to the OBJECT called x and can be read as "IS". You can read it as " x IS "hello world" "
 
 x # print the value of x to the console
 #print(x) # - another way to print the results (in this case, the value of x)
@@ -11,25 +11,30 @@ x # print the value of x to the console
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 x <- 2 # assigns the value of 2 to the object x ("x IS 5")
 x
-x == 2  # checks whether the value of x is equal to 2
-x != 3  # checks whether the value of x is NOT equal to 3
-x < 3   # checks whether the value of x is less than 3
-x > 3   # checks whether the value of x is greater than 3
+x == 2  # checks whether the value of x is equal to 2 ("IS [the value of] x equal to 2?")
+x != 3  # checks whether the value of x is NOT equal to 3 ("IS [the value of] x NOT equal to 3?")
+x < 3   # checks whether the value of x is less than 3 ("IS [the value of] x less than 3?"
+x > 3   # checks whether the value of x is greater than 3 ("IS [the value of] x greater than 3?"
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 y <- 5 # assigns the value of 2 to the object x
+# How would you read the statement above?
+
 x == y # checks whether the value of x to the value of y
+# How would you read the statement above?
+
 x*y # multiplication of x and y
 x + y # adds the values of x and y together
 y^2 + 3*x # adds the value of y squared and 3x the value of x together
 
-# such operations can be performed not just with "single" values; we can do the same with values in data tables (see below): columns, rows.
+# Mathematical operations can be performed not just with "single" values; we can do the same with values in data tables (see below): columns, rows.
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #class(y) # check the class of the variable (what type of variable it is) - or hover over the "y" cell in the top right corner (Global Environment)
-y <- as.character(y)
-y <- as.numeric(y)
+y <- as.character(y) # ("y IS y but as a character value")
+y
+y <- as.numeric(y) # ("y IS y but as a numeric value")
 y
 
 
@@ -39,8 +44,11 @@ y
 ### Manual:
 # Numeric:
 sales <- c(163608, 126687, 120480, 110022, 108630, 95639, 94690, 89011, 87869, 85599) # function c() means "concatenate" (= merge) and serves for creating a row of values
-log(sales) # you can take logarithm - or apply any kind of mathematical transformation, such as square root, power, etc. - 
-# of the values in the row you created by applying the function log() to the whole object that contains the values of interest. 
+sales # ("sales IS a row of values 163608, 126687, ...")
+
+sales/1000 # you can apply any kind of mathematical action ...
+log(sales) # as well as you can take logarithm - or apply any kind of mathematical transformation, such as square root, power, etc. - 
+# of the ROW OF VALUES you created by applying the function log() to the whole object that contains the values of interest. 
 # It also works with columns in data tables (see further)
 
 # Character:
@@ -61,43 +69,53 @@ sales_data <- read.csv("https://raw.githubusercontent.com/WU-RDS/RMA2024/refs/he
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #sales_data # Returns the entire data frame. NEVER DO IT AGAIN. 
 
+nrow(sales_data) # returns the number of rows 
+ncol(sales_data) # returns the number of columns 
+
 head(sales_data, 3) # returns the first N rows (here, the first 3 rows)
 tail(sales_data, 3) # returns the last N rows (here, the last 3 rows)
 
 #names(sales_data) # returns the names of the variables in the data frame
 
+sales_data$top10_sales # this is the way to "call" a specific column from a data table (or data frame). Read: top10_sales from sales_data
+# It makes the column "active" - using this notation, you can perform any operations with a specified column
+
+
+## IMPORTANT: inspect your data before performing any analysis
+
 str(sales_data) # returns the structure of the data frame
 
 # Your to-dos when inspecting the structure of the data frame:
 # 1. Check if the data is read in correctly (e.g., if the columns are split correctly)
-# 2. Check how the columns are called and what the spelling is. You must refer to columns exactly how they are called in the data frame.
+# 2. Pay attention to how the columns are called and what the spelling is. You must refer to columns exactly how they are called in the data frame.
 # 3. Check data types: what columns (variables) should be numeric but are currently character? Are there any dates that are not in the date format?
 # 4. If something is wrong, change the data types, targeting specific columns:
 
 sales_data$top10_sales <- as.numeric(sales_data$top10_sales) # in this case, it's basically not necessary, because integer ("int") is by definition numeric
+# you can read $ as "from": top10_sales FROM sales_data
+
 sales_data$date_most_sold <- as.Date(sales_data$date_most_sold)
+# How would you read the statement above?
+
 sales_data$private_label <- as.factor(sales_data$private_label) # for most analyses, it doesn't matter if such variables are characters or factors, as characters will be treated as unique groups (or factors)
+# How would you read the statement above?
 
-
-nrow(sales_data) # returns the number of rows 
-ncol(sales_data) # returns the number of columns 
-
-## --------------------------------------------------------------------------------------------------------------------------------------------------------------
-sales_data$top10_sales # this is the way to "call" a specific column from a data table (or data frame). Read: top10_sales from sales_data
-# It makes the column "active" - using this notation, you can perform any operations with a specified column
 
 
 ## --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Operations with data
 
-# I want you to make two mistakes:
+# I want you to make four mistakes:
 Sales_data
-sales_data$top1_sales
+Sales_data$top10_sales
+sales_data$top_sales
 
 #sales_data
 #sales_data$top10_sales
+#sales_data$top10_sales
 
 select(sales_data, private_label)
+
 
 library(tidyverse)
 #select(sales_data, private_label)

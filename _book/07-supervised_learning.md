@@ -318,39 +318,33 @@ Role of theory | Theory neither required nor testable  | Theory required and tes
 
 In simple linear regression, we assess the relationship between one dependent (regressand) and one independent (regressor) variable. The goal is to fit a line through a scatterplot of observations in order to find the line that best describes the data (scatterplot).
 
-Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser *move_ounce* (in ounces, FYI: 1 oz = 29,57 ml), prices *price_ounce* (in dollars per ounce), and several other variables: bonus buy - a price reduction if customers buy a certain quantity of a product (*sale_B*), price reduction in % (*sale_S*), and others. Let's load and inspect the data first: 
+Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser *move_liter* (in liters per week), prices *price_liter* (in euros per liter), and several other variables: *discount* - a price reduction (in %), *display* - promotion through special placement, and others. Let's load and inspect the data first: 
 
 
 ``` r
-regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv",
+regression <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/bud_store102.csv",
     sep = ",", header = TRUE)  # read in data
 str(regression)
 ```
 
 ```
-## 'data.frame':	220 obs. of  22 variables:
+## 'data.frame':	220 obs. of  16 variables:
 ##  $ store           : int  102 102 102 102 102 102 102 102 102 102 ...
 ##  $ brand_id        : int  26 26 26 26 26 26 26 26 26 26 ...
 ##  $ brand           : chr  "Budweiser" "Budweiser" "Budweiser" "Budweiser" ...
 ##  $ week            : int  91 92 93 94 95 96 97 98 99 100 ...
-##  $ move_ounce      : num  41704 44212 28748 26169 35581 ...
-##  $ price_ounce     : num  4.67 4.58 4.58 4.53 4.54 ...
-##  $ sale_B          : num  0.133 0.133 0.125 0 0 ...
-##  $ sale_C          : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ sale_S          : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ summove_ounce   : num  158871900 158871900 158871900 158871900 158871900 ...
-##  $ nweeks          : int  220 220 220 220 220 220 220 220 220 220 ...
+##  $ move_liter      : num  485 516 398 597 316 ...
+##  $ price_liter     : num  3.4 3.35 3.73 2.83 3.86 3.42 2.95 2.31 2.65 2.87 ...
+##  $ discount        : num  5 5 5 0 0 0 0 0 0 0 ...
+##  $ display         : int  0 0 0 1 0 0 1 1 0 0 ...
 ##  $ mean_marketshare: num  0.0893 0.0893 0.0893 0.0893 0.0893 ...
 ##  $ sharerank       : int  3 3 3 3 3 3 3 3 3 3 ...
 ##  $ priclow         : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ pricmed         : int  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ prichigh        : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ logprice_ounce  : num  1.54 1.52 1.52 1.51 1.51 ...
-##  $ logmove_ounce   : num  10.6 10.7 10.3 10.2 10.5 ...
-##  $ saledummy_B     : int  1 1 1 0 0 0 0 0 0 0 ...
-##  $ saledummy_C     : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ saledummy_S     : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ promoweek       : int  91 92 93 NA NA NA NA NA NA NA ...
+##  $ discountdummy   : int  1 1 1 0 0 0 0 0 0 0 ...
+##  $ displaydummy    : int  0 0 0 1 0 0 1 1 0 0 ...
+##  $ promoweek       : int  91 92 93 94 NA NA 97 98 NA NA ...
 ```
 
 ``` r
@@ -361,7 +355,7 @@ head(regression)
 
 <div data-pagedtable="false">
   <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["store"],"name":[1],"type":["fct"],"align":["left"]},{"label":["brand_id"],"name":[2],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[3],"type":["chr"],"align":["left"]},{"label":["week"],"name":[4],"type":["int"],"align":["right"]},{"label":["move_ounce"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["price_ounce"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sale_B"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sale_C"],"name":[8],"type":["int"],"align":["right"]},{"label":["sale_S"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["summove_ounce"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["nweeks"],"name":[11],"type":["int"],"align":["right"]},{"label":["mean_marketshare"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["sharerank"],"name":[13],"type":["int"],"align":["right"]},{"label":["priclow"],"name":[14],"type":["int"],"align":["right"]},{"label":["pricmed"],"name":[15],"type":["int"],"align":["right"]},{"label":["prichigh"],"name":[16],"type":["int"],"align":["right"]},{"label":["logprice_ounce"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["logmove_ounce"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["saledummy_B"],"name":[19],"type":["int"],"align":["right"]},{"label":["saledummy_C"],"name":[20],"type":["int"],"align":["right"]},{"label":["saledummy_S"],"name":[21],"type":["int"],"align":["right"]},{"label":["promoweek"],"name":[22],"type":["int"],"align":["right"]}],"data":[{"1":"102","2":"26","3":"Budweiser","4":"91","5":"41704.00","6":"4.6652778","7":"0.13333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5401474","18":"10.638352","19":"1","20":"0","21":"0","22":"91"},{"1":"102","2":"26","3":"Budweiser","4":"92","5":"44212.48","6":"4.5758519","7":"0.13333333","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5207929","18":"10.696762","19":"1","20":"0","21":"0","22":"92"},{"1":"102","2":"26","3":"Budweiser","4":"93","5":"28748.48","6":"4.5756685","7":"0.12500000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5207528","18":"10.266340","19":"1","20":"0","21":"0","22":"93"},{"1":"102","2":"26","3":"Budweiser","4":"94","5":"26168.96","6":"4.5304602","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5108235","18":"10.172329","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"95","5":"35581.44","6":"4.5397982","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5128826","18":"10.479579","19":"0","20":"0","21":"0","22":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"96","5":"34128.00","6":"4.6502315","7":"0.00000000","8":"0","9":"0","10":"158871900","11":"220","12":"0.089330733","13":"3","14":"0","15":"1","16":"0","17":"1.5369170","18":"10.437873","19":"0","20":"0","21":"0","22":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["store"],"name":[1],"type":["fct"],"align":["left"]},{"label":["brand_id"],"name":[2],"type":["fct"],"align":["left"]},{"label":["brand"],"name":[3],"type":["chr"],"align":["left"]},{"label":["week"],"name":[4],"type":["int"],"align":["right"]},{"label":["move_liter"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["price_liter"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["discount"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["display"],"name":[8],"type":["int"],"align":["right"]},{"label":["mean_marketshare"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["sharerank"],"name":[10],"type":["int"],"align":["right"]},{"label":["priclow"],"name":[11],"type":["int"],"align":["right"]},{"label":["pricmed"],"name":[12],"type":["int"],"align":["right"]},{"label":["prichigh"],"name":[13],"type":["int"],"align":["right"]},{"label":["discountdummy"],"name":[14],"type":["int"],"align":["right"]},{"label":["displaydummy"],"name":[15],"type":["int"],"align":["right"]},{"label":["promoweek"],"name":[16],"type":["int"],"align":["right"]}],"data":[{"1":"102","2":"26","3":"Budweiser","4":"91","5":"484.95","6":"3.40","7":"5","8":"0","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"1","15":"0","16":"91"},{"1":"102","2":"26","3":"Budweiser","4":"92","5":"515.78","6":"3.35","7":"5","8":"0","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"1","15":"0","16":"92"},{"1":"102","2":"26","3":"Budweiser","4":"93","5":"397.88","6":"3.73","7":"5","8":"0","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"1","15":"0","16":"93"},{"1":"102","2":"26","3":"Budweiser","4":"94","5":"596.97","6":"2.83","7":"0","8":"1","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"0","15":"1","16":"94"},{"1":"102","2":"26","3":"Budweiser","4":"95","5":"316.46","6":"3.86","7":"0","8":"0","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"0","15":"0","16":"NA"},{"1":"102","2":"26","3":"Budweiser","4":"96","5":"493.50","6":"3.42","7":"0","8":"0","9":"0.089330733","10":"3","11":"0","12":"1","13":"0","14":"0","15":"0","16":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 
@@ -371,75 +365,40 @@ psych::describe(regression)  #descriptive statistics using psych
 ```
 
 ```
-##                  vars   n         mean      sd       median      trimmed
-## store*              1 220         1.00    0.00         1.00         1.00
-## brand_id*           2 220         1.00    0.00         1.00         1.00
-## brand*              3 220         1.00    0.00         1.00         1.00
-## week                4 220       202.12   65.75       200.50       201.65
-## move_ounce          5 220     19713.01 7837.08     17868.00     18580.18
-## price_ounce         6 220         4.88    0.21         4.90         4.88
-## sale_B              7 220         0.20    0.15         0.19         0.19
-## sale_C              8 220         0.00    0.00         0.00         0.00
-## sale_S              9 220         0.00    0.02         0.00         0.00
-## summove_ounce      10 220 158871900.16    0.00 158871900.16 158871900.16
-## nweeks             11 220       220.00    0.00       220.00       220.00
-## mean_marketshare   12 220         0.09    0.00         0.09         0.09
-## sharerank          13 220         3.00    0.00         3.00         3.00
-## priclow            14 220         0.00    0.00         0.00         0.00
-## pricmed            15 220         1.00    0.00         1.00         1.00
-## prichigh           16 220         0.00    0.00         0.00         0.00
-## logprice_ounce     17 220         1.58    0.04         1.59         1.59
-## logmove_ounce      18 220         9.83    0.34         9.79         9.81
-## saledummy_B        19 220         0.75    0.43         1.00         0.82
-## saledummy_C        20 220         0.00    0.00         0.00         0.00
-## saledummy_S        21 220         0.01    0.10         0.00         0.00
-## promoweek          22 167       212.28   62.15       217.00       212.78
-##                      mad          min          max    range  skew kurtosis
-## store*              0.00         1.00         1.00     0.00   NaN      NaN
-## brand_id*           0.00         1.00         1.00     0.00   NaN      NaN
-## brand*              0.00         1.00         1.00     0.00   NaN      NaN
-## week               82.28        91.00       317.00   226.00  0.06    -1.20
-## move_ounce       5538.99      7992.00     71032.00 63040.00  2.32     9.32
-## price_ounce         0.20         4.30         5.45     1.15 -0.15    -0.19
-## sale_B              0.18         0.00         0.67     0.67  0.28    -0.59
-## sale_C              0.00         0.00         0.00     0.00   NaN      NaN
-## sale_S              0.00         0.00         0.21     0.21 10.68   115.22
-## summove_ounce       0.00 158871900.16 158871900.16     0.00   Inf      NaN
-## nweeks              0.00       220.00       220.00     0.00   NaN      NaN
-## mean_marketshare    0.00         0.09         0.09     0.00  -Inf      NaN
-## sharerank           0.00         3.00         3.00     0.00   NaN      NaN
-## priclow             0.00         0.00         0.00     0.00   NaN      NaN
-## pricmed             0.00         1.00         1.00     0.00   NaN      NaN
-## prichigh            0.00         0.00         0.00     0.00   NaN      NaN
-## logprice_ounce      0.04         1.46         1.70     0.24 -0.27    -0.15
-## logmove_ounce       0.32         8.99        11.17     2.18  0.67     0.86
-## saledummy_B         0.00         0.00         1.00     1.00 -1.17    -0.62
-## saledummy_C         0.00         0.00         0.00     0.00   NaN      NaN
-## saledummy_S         0.00         0.00         1.00     1.00 10.27   104.03
-## promoweek          78.58        91.00       316.00   225.00 -0.08    -1.14
-##                      se
-## store*             0.00
-## brand_id*          0.00
-## brand*             0.00
-## week               4.43
-## move_ounce       528.38
-## price_ounce        0.01
-## sale_B             0.01
-## sale_C             0.00
-## sale_S             0.00
-## summove_ounce      0.00
-## nweeks             0.00
-## mean_marketshare   0.00
-## sharerank          0.00
-## priclow            0.00
-## pricmed            0.00
-## prichigh           0.00
-## logprice_ounce     0.00
-## logmove_ounce      0.02
-## saledummy_B        0.03
-## saledummy_C        0.00
-## saledummy_S        0.01
-## promoweek          4.81
+##                  vars   n   mean     sd median trimmed    mad    min     max
+## store*              1 220   1.00   0.00   1.00    1.00   0.00   1.00    1.00
+## brand_id*           2 220   1.00   0.00   1.00    1.00   0.00   1.00    1.00
+## brand*              3 220   1.00   0.00   1.00    1.00   0.00   1.00    1.00
+## week                4 220 202.12  65.75 200.50  201.65  82.28  91.00  317.00
+## move_liter          5 220 775.91 213.80 767.08  764.74 214.21 290.20 1466.74
+## price_liter         6 220   2.78   0.37   2.72    2.76   0.37   2.04    3.86
+## discount            7 220   6.02   4.63   5.00    5.68   7.41   0.00   20.00
+## display             8 220   0.21   0.41   0.00    0.14   0.00   0.00    1.00
+## mean_marketshare    9 220   0.09   0.00   0.09    0.09   0.00   0.09    0.09
+## sharerank          10 220   3.00   0.00   3.00    3.00   0.00   3.00    3.00
+## priclow            11 220   0.00   0.00   0.00    0.00   0.00   0.00    0.00
+## pricmed            12 220   1.00   0.00   1.00    1.00   0.00   1.00    1.00
+## prichigh           13 220   0.00   0.00   0.00    0.00   0.00   0.00    0.00
+## discountdummy      14 220   0.75   0.43   1.00    0.82   0.00   0.00    1.00
+## displaydummy       15 220   0.21   0.41   0.00    0.14   0.00   0.00    1.00
+## promoweek          16 179 208.80  63.48 212.00  209.17  80.06  91.00  316.00
+##                    range  skew kurtosis    se
+## store*              0.00   NaN      NaN  0.00
+## brand_id*           0.00   NaN      NaN  0.00
+## brand*              0.00   NaN      NaN  0.00
+## week              226.00  0.06    -1.20  4.43
+## move_liter       1176.54  0.52     0.22 14.41
+## price_liter         1.82  0.43    -0.12  0.03
+## discount           20.00  0.38    -0.55  0.31
+## display             1.00  1.39    -0.07  0.03
+## mean_marketshare    0.00  -Inf      NaN  0.00
+## sharerank           0.00   NaN      NaN  0.00
+## priclow             0.00   NaN      NaN  0.00
+## pricmed             0.00   NaN      NaN  0.00
+## prichigh            0.00   NaN      NaN  0.00
+## discountdummy       1.00 -1.17    -0.62  0.03
+## displaydummy        1.00  1.39    -0.07  0.03
+## promoweek         225.00 -0.05    -1.14  4.74
 ```
 
 As stated above, regression analysis may be used to relate a quantitative response ("dependent variable") to one or more predictor variables ("independent variables"). In a simple linear regression, we have one dependent and one independent variable and we regress the dependent variable on the independent variable.  
@@ -472,7 +431,7 @@ Sales=\beta_0+\beta_1*price+\epsilon
 (\#eq:regequadv)
 \end{equation} 
 
-The word "price" represents data on advertising expenditures that we have observed and &beta;<sub>1</sub> (the "slope"") represents the unknown relationship between prices and sales. It tells you by how much sales will increase or decrease for an additional dollar added to price. &beta;<sub>0</sub> (the "intercept") is the number of sales we would expect if the price is set to 0. Note that the last assumption is highly theoretical: in the majority of real world scenarios, we never have such variables as prices, advertising expenditures, kilometers to the nearest store set to 0. Hence, it is incorrect to interpret the intercept like this. Together, &beta;<sub>0</sub> and &beta;<sub>1</sub> represent the model coefficients or *parameters*. The error term (&epsilon;) captures everything that we miss by using our model, including, (1) misspecifications (the true relationship might not be linear), (2) omitted variables (other variables might drive sales), and (3) measurement error (our measurement of the variables might be imperfect).
+The word "price" represents the (observed) prices per liter that we have recorded and &beta;<sub>1</sub> (the "slope"") represents the unknown relationship between prices and sales. It tells you by how much sales will increase or decrease for an additional euro added to the price per liter. &beta;<sub>0</sub> (the "intercept") is the number of sales we would expect if the price is set to 0. Note that the last assumption is highly theoretical: in the majority of real world scenarios, we never have such variables as prices, advertising expenditures, kilometers to the nearest store set to 0. Hence, it is incorrect to interpret the intercept like this. Together, &beta;<sub>0</sub> and &beta;<sub>1</sub> represent the model coefficients or *parameters*. The error term (&epsilon;) captures everything that we miss by using our model, including, (1) misspecifications (the true relationship might not be linear), (2) omitted variables (other variables might drive sales), and (3) measurement error (our measurement of the variables might be imperfect).
 
 Once we have used our training data to produce estimates for the model coefficients, we can predict future sales on the basis of a particular value of price by computing:
 
@@ -519,21 +478,21 @@ The exact mathematical derivation of this formula is beyond the scope of this sc
 
 
 ``` r
-cov_y_x <- cov(regression$price_ounce, regression$move_ounce)
+cov_y_x <- cov(regression$price_liter, regression$move_liter)
 cov_y_x
 ```
 
 ```
-## [1] -405.29585
+## [1] -70.516161
 ```
 
 ``` r
-var_x <- var(regression$price_ounce)
+var_x <- var(regression$price_liter)
 var_x
 ```
 
 ```
-## [1] 0.04473198
+## [1] 0.13853377
 ```
 
 ``` r
@@ -542,12 +501,12 @@ beta_1
 ```
 
 ```
-## [1] -9060.5391
+## [1] -509.01784
 ```
 
 The interpretation of &beta;<sub>1</sub> is as follows: 
 
-For every extra dollar increase of the price, sales can be expected to decrease by -9060.539 oz, which is around 270 liters.
+For every extra euro increase of the price (per liter), weekly sales can be expected to decrease by 509 liters.
 
 Using the estimated coefficient for &beta;<sub>1</sub>, it is easy to compute &beta;<sub>0</sub> (the intercept) as follows:
 
@@ -560,22 +519,22 @@ The R code for this is:
 
 
 ``` r
-beta_0 <- mean(regression$move_ounce) - beta_1 * mean(regression$price_ounce)
+beta_0 <- mean(regression$move_liter) - beta_1 * mean(regression$price_liter)
 beta_0
 ```
 
 ```
-## [1] 63950.625
+## [1] 2189.5194
 ```
 
 You may also verify this based on a scatterplot of the data. The following plot shows the scatterplot including the regression line, which is estimated using OLS.  
 
 
 ``` r
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
+ggplot(regression, mapping = aes(price_liter, move_liter)) +
     geom_point(shape = 1) + geom_smooth(method = "lm",
-    fill = "blue", alpha = 0.1) + labs(x = "Price ($ per oz)",
-    y = "Sales (oz)") + theme_bw()
+    fill = "blue", alpha = 0.1) + labs(x = "Price (€ per liter)",
+    y = "Sales (liters)") + theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -583,7 +542,7 @@ ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
 <p class="caption">(\#fig:unnamed-chunk-19)Scatterplot</p>
 </div>
 
-The slope coefficient (&beta;<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit ($).   
+The slope coefficient (&beta;<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit (1 € per liter).   
 
 ##### Significance testing
 
@@ -608,36 +567,36 @@ t = \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}
 
 After calculating the test statistic, we compare its value to the values that we would expect to find if there was no effect based on the t-distribution. In a regression context, the degrees of freedom are given by ```N - p - 1``` where N is the sample size and p is the number of predictors. In our case, we have 220 observations and one predictor. Thus, the degrees of freedom is 220 - 1 - 1 = 218. In the regression output below, R provides the exact probability of observing a t value of this magnitude (or larger) if the null hypothesis was true. This probability  is the p-value. A small p-value indicates that it is unlikely to observe such a substantial association between the predictor and the outcome variable due to chance in the absence of any real association between the predictor and the outcome.
 
-To estimate the regression model in R, you can use the ```lm()``` function. Within the function, you first specify the dependent variable ("move_ounce") and independent variable ("price_ounce") separated by a ```~``` (tilde). As mentioned previously, this is known as _formula notation_ in R. The ```data = regression``` argument specifies that the variables come from the data frame named "regression". Strictly speaking, you use the ```lm()``` function to create an object called "sales_reg," which holds the regression output. You can then view the results using the ```summary()``` function: 
+To estimate the regression model in R, you can use the ```lm()``` function. Within the function, you first specify the dependent variable ("move_liter") and independent variable ("price_liter") separated by a ```~``` (tilde). As mentioned previously, this is known as _formula notation_ in R. The ```data = regression``` argument specifies that the variables come from the data frame named "regression". Strictly speaking, you use the ```lm()``` function to create an object called "sales_reg," which holds the regression output. You can then view the results using the ```summary()``` function: 
 
 
 ``` r
-sales_reg <- lm(move_ounce ~ price_ounce, data = regression)  #estimate linear model
+sales_reg <- lm(move_liter ~ price_liter, data = regression)  #estimate linear model
 summary(sales_reg)  #summary of results
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce, data = regression)
+## lm(formula = move_liter ~ price_liter, data = regression)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -11438.9  -4797.9  -1538.7   2743.9  50733.5 
+## -251.015  -61.084   -4.979   53.784  352.531 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value     Pr(>|t|)    
-## (Intercept)  63950.6    11892.5  5.3774 0.0000001941 ***
-## price_ounce  -9060.5     2433.5 -3.7233    0.0002504 ***
+##             Estimate Std. Error t value              Pr(>|t|)    
+## (Intercept) 2189.519     50.520   43.34 < 0.00000000000000022 ***
+## price_liter -509.018     18.031  -28.23 < 0.00000000000000022 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7616.6 on 218 degrees of freedom
-## Multiple R-squared:  0.059789,	Adjusted R-squared:  0.055476 
-## F-statistic: 13.863 on 1 and 218 DF,  p-value: 0.0002504
+## Residual standard error: 99.315 on 218 degrees of freedom
+## Multiple R-squared:  0.78521,	Adjusted R-squared:  0.78423 
+## F-statistic: 796.96 on 1 and 218 DF,  p-value: < 0.000000000000000222
 ```
 
-Note that the estimated coefficients for &beta;<sub>0</sub> (63950.625) and &beta;<sub>1</sub> (-9060.539) correspond to the results of our manual computation above. The associated t-values and p-values are given in the output. The t-values are larger than the critical t-values for the 95% confidence level, since the associated p-values are smaller than 0.05. In case of the coefficient for &beta;<sub>1</sub>, this means that the probability of an association between the prices and sales of the observed magnitude (or larger) is smaller than 0.05, if the value of &beta;<sub>1</sub> was, in fact, 0. This finding leads us to reject the null hypothesis of no association between prices and sales. 
+Note that the estimated coefficients for &beta;<sub>0</sub> (2189.519) and &beta;<sub>1</sub> (-509.018) correspond to the results of our manual computation above. The associated t-values and p-values are given in the output. The t-values are larger than the critical t-values for the 95% confidence level, since the associated p-values are smaller than 0.05. In case of the coefficient for &beta;<sub>1</sub>, this means that the probability of an association between the prices and sales of the observed magnitude (or larger) is smaller than 0.05, if the value of &beta;<sub>1</sub> was, in fact, 0. This finding leads us to reject the null hypothesis of no association between prices and sales. 
 
 The coefficients associated with the respective variables represent <b>point estimates</b>. To obtain a better understanding of the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>. A 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>1</sub>, the confidence interval can be computed as.
 
@@ -655,11 +614,11 @@ confint(sales_reg)
 
 ```
 ##                  2.5 %     97.5 %
-## (Intercept)  40511.669 87389.5815
-## price_ounce -13856.718 -4264.3604
+## (Intercept) 2089.95016 2289.08866
+## price_liter -544.55475 -473.48094
 ```
 
-For our model, the 95% confidence interval for &beta;<sub>0</sub> is [40511.67,87389.58], and the 95% confidence interval for &beta;<sub>1</sub> is [-13856.72,-4264.36]. Thus, we can conclude that when we do not spend any money on advertising, sales will be somewhere between 40512 and 87390 units on average. In addition, for each increase in advertising expenditures by one Euro, there will be an average increase in sales of between -13856.72 and -4264.36. If you revisit the graphic depiction of the regression model above, the uncertainty regarding the intercept and slope parameters can be seen in the confidence bounds (blue area) around the regression line. 
+For our model, the 95% confidence interval for &beta;<sub>0</sub> is [2089.95,2289.09], and the 95% confidence interval for &beta;<sub>1</sub> is [-544.55,-473.48]. Thus, we can conclude that when we do not spend any money on advertising, sales will be somewhere between 2090 and 2289 units on average. In addition, for each increase in advertising expenditures by one Euro, there will be an average increase in sales of between -544.55 and -473.48. If you revisit the graphic depiction of the regression model above, the uncertainty regarding the intercept and slope parameters can be seen in the confidence bounds (blue area) around the regression line. 
 
 ##### Assessing model fit
 
@@ -781,11 +740,11 @@ f_calc
 ```
 
 ```
-## [1] 14
+## [1] 797
 ```
 
 ``` r
-f_crit <- qf(0.95, df1 = 1, df2 = 100)  #critical value
+f_crit <- qf(0.95, df1 = 1, df2 = 218)  #critical value
 f_crit
 ```
 
@@ -803,9 +762,9 @@ f_calc > f_crit  #test if calculated test statistic is larger than critical valu
 
 ##### Using the model
 
-After fitting the model, we can use the estimated coefficients to predict sales of Budweiser for different values of prices. Suppose the store plans to set the price per ounce to 2 dollars. How much will it sell? You can easily compute this either by hand:
+After fitting the model, we can use the estimated coefficients to predict sales of Budweiser for different values of prices. Suppose the store plans to set the price per liter to 2 Euros. How much will it sell? You can easily compute this either by hand:
 
-$$\hat{sales}=63950.6 + (-9060.5)*2=45,829.6$$
+$$\hat{sales}=2189.5 + (-509.0)*2=1,171.5$$
 
 <br>
 
@@ -819,10 +778,10 @@ prediction
 ```
 
 ```
-## [1] 45830
+## [1] 1171
 ```
 
-The predicted value of the dependent variable is 45,829.6 oz, i.e., the store will sell around 45,829.6 oz (~1,355 liters) of Budweiser.
+The predicted value of the dependent variable is 1,171.5 liters, i.e., the store will sell around 1,171.5 liters of Budweiser per week if theprice is set to 2 Euros.
 
 
 #### Log-Log transformation
@@ -835,14 +794,14 @@ Let's have a look at the plot again:
 
 
 ``` r
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) +
+ggplot(regression, mapping = aes(price_liter, move_liter)) +
     geom_point(shape = 1) + geom_smooth(method = "lm",
     color = "lavenderblush4", fill = "red", alpha = 0.1) +
-    labs(x = "Price (ounce)", y = "Sales (ounce)") +
+    labs(x = "Price (€ per liter)", y = "Sales (liters)") +
     theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
 
 The way of obtaining a more reasonable view and interpretation in this case is called "multiplicative modeling", or log-log transformation (you can find additional details about log-log transformations below with a slightly different motivation and example). 
 
@@ -870,13 +829,13 @@ Let's test how the scatterplot would look like if we use the logarithm of our va
 
 
 ``` r
-ggplot(regression, mapping = aes(log(price_ounce),
-    log(move_ounce))) + geom_point(shape = 1) + geom_smooth(method = "lm",
+ggplot(regression, mapping = aes(log(price_liter),
+    log(move_liter))) + geom_point(shape = 1) + geom_smooth(method = "lm",
     color = "lavenderblush4", fill = "red", alpha = 0.1) +
-    labs(x = "Price", y = "Sales") + theme_minimal()
+    labs(x = "log(Price)", y = "log(Sales)") + theme_minimal()
 ```
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
 
 You can see how the scales changed, and how the observations got more normally distributed. Hence, we can log-transform our variables and estimate the following equation: 
 
@@ -889,7 +848,7 @@ Now, let's estimate a new regression by applying ```log()``` function to both sa
 
 
 ``` r
-sales_reg2 <- lm(log(move_ounce) ~ log(price_ounce),
+sales_reg2 <- lm(log(move_liter) ~ log(price_liter),
     data = regression)
 summary(sales_reg2)  #remember that now the interpretation changed
 ```
@@ -897,25 +856,25 @@ summary(sales_reg2)  #remember that now the interpretation changed
 ```
 ## 
 ## Call:
-## lm(formula = log(move_ounce) ~ log(price_ounce), data = regression)
+## lm(formula = log(move_liter) ~ log(price_liter), data = regression)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -0.8252 -0.2239 -0.0285  0.1818  1.3156 
+## -0.3006 -0.0806 -0.0020  0.0737  0.3462 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)        13.354      0.796   16.77 < 0.0000000000000002 ***
-## log(price_ounce)   -2.225      0.502   -4.43             0.000015 ***
+##                  Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept)        8.5723     0.0599     143 <0.0000000000000002 ***
+## log(price_liter)  -1.9322     0.0586     -33 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.32 on 218 degrees of freedom
-## Multiple R-squared:  0.0826,	Adjusted R-squared:  0.0784 
-## F-statistic: 19.6 on 1 and 218 DF,  p-value: 0.0000148
+## Residual standard error: 0.12 on 218 degrees of freedom
+## Multiple R-squared:  0.833,	Adjusted R-squared:  0.832 
+## F-statistic: 1.09e+03 on 1 and 218 DF,  p-value: <0.0000000000000002
 ```
 
-In this example, you would interpret the coefficient as follows: **A 1% increase in price leads to a 2.23% decrease in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.08 from 0.06). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.
+In this example, you would interpret the coefficient as follows: **A 1% increase in price leads to a 2.12% decrease in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.89 from 0.81). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.
 
 
 
@@ -936,7 +895,7 @@ Let's extend the previous example. Say, in addition to the influence of price it
 $$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\epsilon$$
 
 
-&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
+&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional euro increase of the price per liter (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
 
 With several predictors, the partitioning of sum of squares is the same as in the bivariate model, except that the model is no longer a 2-D straight line. With two predictors, the regression line becomes a 3-D regression plane. While multiple regression models that have more than two predictors are not as easy to visualize, you may apply the same principles when interpreting the model outcome:
 
@@ -955,40 +914,40 @@ This regression could be estimated as follows:
 
 
 ``` r
-multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) +
-    sale_B, data = regression)  # estimate the model
+multiple_sales_reg <- lm(log(move_liter) ~ log(price_liter) +
+    discount, data = regression)  # estimate the model
 summary(multiple_sales_reg)  #summary of results
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = log(move_ounce) ~ log(price_ounce) + sale_B, data = regression)
+## lm(formula = log(move_liter) ~ log(price_liter) + discount, data = regression)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.8039 -0.2212 -0.0316  0.1790  1.2940 
+##      Min       1Q   Median       3Q      Max 
+## -0.19577 -0.05462  0.00291  0.05728  0.23462 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)        13.213      0.819   16.13 < 0.0000000000000002 ***
-## log(price_ounce)   -2.150      0.513   -4.19              0.00004 ***
-## sale_B              0.111      0.151    0.74                 0.46    
+##                  Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept)       8.50111    0.04178   203.5 <0.0000000000000002 ***
+## log(price_liter) -1.96872    0.04073   -48.3 <0.0000000000000002 ***
+## discount          0.01796    0.00117    15.4 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.32 on 217 degrees of freedom
-## Multiple R-squared:  0.0849,	Adjusted R-squared:  0.0765 
-## F-statistic: 10.1 on 2 and 217 DF,  p-value: 0.0000659
+## Residual standard error: 0.08 on 217 degrees of freedom
+## Multiple R-squared:  0.92,	Adjusted R-squared:  0.919 
+## F-statistic: 1.25e+03 on 2 and 217 DF,  p-value: <0.0000000000000002
 ```
 
 The interpretation of the coefficients is as follows: 
 
-* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -2.15%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1% (which is one step on a scale from 0 to 100 for a discount, i.e., this is equal to 1-unit increase), sales will change by 11.1%
+* price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by -1.969%
+* discount (&beta;<sub>2</sub>): when discount increases by 1 (i.e., by 1 on the 0 to 100 scale of the variable - since it's a regular discount), sales will change (increase) by approximately 1.8%
 
 
-The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
+The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for both price and discount. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
 Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>. 
 
@@ -998,13 +957,13 @@ confint(multiple_sales_reg)
 ```
 
 ```
-##                  2.5 % 97.5 %
-## (Intercept)      11.60  14.83
-## log(price_ounce) -3.16  -1.14
-## sale_B           -0.19   0.41
+##                   2.5 % 97.5 %
+## (Intercept)       8.419   8.58
+## log(price_liter) -2.049  -1.89
+## discount          0.016   0.02
 ```
 
-What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>1</sub>, the confidence interval is [-3.1611733,-1.1394767]. Thus, although we have computed a point estimate of -2.15 for the effect of price on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
+What does this tell you? Recall that a 95% confidence interval is defined as a range of values such that with a 95% probability, the range will contain the true unknown value of the parameter. For example, for &beta;<sub>1</sub>, the confidence interval is [-2.0490015,-1.8884399]. Thus, although we have computed a point estimate of -1.969 for the effect of price on sales based on our sample, the effect might actually just as well take any other value within this range, considering the sample size and the variability in our data. You could also visualize the output from your regression model including the confidence intervals using the `ggstatsplot` package as follows: 
 
 
 ``` r
@@ -1017,21 +976,23 @@ ggcoefstats(x = multiple_sales_reg, title = "Sales predicted by price, bonus buy
 <p class="caption">(\#fig:unnamed-chunk-33)Confidence intervals for regression model</p>
 </div>
 
-The output also tells us that 8.491156% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
+The output also tells us that 91.9968061% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
 
 
 ``` r
-regression$logmove_ounce_hat <- fitted(multiple_sales_reg)
+regression$logmove_liter_hat <- fitted(multiple_sales_reg)
 ```
 
 We can now use this variable to plot the predicted values against the observed values. In the following plot, the model fit would be perfect if all points would fall on the diagonal line. The larger the distance between the points and the line, the worse the model fit. In other words, if all points would fall exactly on the diagonal line, the model would perfectly predict the observed values. 
 
 
 ``` r
-ggplot(data = regression, aes(week, log(move_ounce))) +
-    geom_vline(xintercept = regression$promoweek, colour = "lightgrey") +
-    geom_line(aes(y = log(move_ounce), colour = "logsales"),
-        size = 0.5) + geom_line(aes(y = (logmove_ounce_hat),
+ggplot(data = regression, aes(week, log(move_liter))) +
+    # geom_vline(xintercept =
+    # regression$promoweek, colour = 'lightgrey')
+    # +
+geom_line(aes(y = log(move_liter), colour = "logsales"),
+    size = 0.5) + geom_line(aes(y = (logmove_liter_hat),
     colour = "logsales (predicted)"), size = 0.5) +
     scale_color_manual(values = c("black", "gold")) +
     theme_minimal()
@@ -1065,7 +1026,7 @@ avPlots(multiple_sales_reg)
 
 
 ``` r
-categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical",
+categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/beer_categorical",
     sep = ",", header = TRUE)
 categories$store <- as.factor(categories$store)
 categories$brand <- as.factor(categories$brand)
@@ -1073,30 +1034,27 @@ str(categories)
 ```
 
 ```
-## 'data.frame':	3194 obs. of  19 variables:
+## 'data.frame':	3194 obs. of  16 variables:
 ##  $ store           : Factor w/ 2 levels "98","100": 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ brand_id        : int  2 2 2 2 2 2 2 2 2 2 ...
 ##  $ brand           : Factor w/ 6 levels "Amstel","Budweiser",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ week            : int  234 235 237 238 239 240 241 242 243 245 ...
-##  $ move_ounce      : num  763.2 741.6 259.2 165.6 21.6 ...
-##  $ price_ounce     : num  0.0773 0.0773 0.0887 0.0918 0.0921 ...
-##  $ sale_B          : num  0.5 0.5 0 0 0 ...
-##  $ sale_C          : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ sale_S          : num  0 0 0 0 0 0 0 0 0 0 ...
-##  $ summove_ounce   : num  6071191 6071191 6071191 6071191 6071191 ...
+##  $ move_liter      : num  69.2 99 103.4 77.6 72.6 ...
+##  $ price_liter     : num  3.17 2.92 2.83 2.95 3 3.25 3.57 3.42 3.58 3.55 ...
+##  $ discount        : num  0 15 10 0 0 0 0 0 0 0 ...
+##  $ display         : int  1 0 0 0 0 0 1 0 0 0 ...
 ##  $ mean_marketshare: num  0.00341 0.00341 0.00341 0.00341 0.00341 ...
 ##  $ sharerank       : int  24 24 24 24 24 24 24 24 24 24 ...
 ##  $ priclow         : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ pricmed         : int  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ prichigh        : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ saledummy_B     : int  1 1 0 0 0 0 0 0 0 1 ...
-##  $ saledummy_C     : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ saledummy_S     : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ promoweek       : int  234 235 NA NA NA NA NA NA NA 245 ...
+##  $ discountdummy   : int  0 1 1 0 0 0 0 0 0 0 ...
+##  $ displaydummy    : int  1 0 0 0 0 0 1 0 0 0 ...
+##  $ promoweek       : int  234 235 237 NA NA NA 241 NA NA NA ...
 ```
 
 
-We will use a slightly different data set to explore additional opportunities for regression analysis. Suppose, you wish to investigate the effect of the variable "store" on sales, which is a categorical variable that can only take two levels (i.e., 98 = store with ID 98, and 100 = store with ID 100). Categorical variables with two levels are also called binary predictors; in our example, however, they are not decoded into typical binary view (i.e., they are not 0 and 1). It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "store" variable, we can create a new predictor variable that takes the form:
+We will use a slightly different data set to explore additional opportunities for regression analysis. Suppose, you wish to investigate the effect of the variable "store" on sales, which is a categorical variable that can only take two levels (i.e., 98 = store with ID 98, and 100 = store with ID 100). Categorical variables with two levels are also called *binary* predictors; in our example, however, they are not decoded into typical binary view (i.e., they are not 0 and 1). It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "store" variable, we can create a new predictor variable that takes the form:
 
 \begin{equation} 
 x_4 =
@@ -1111,82 +1069,82 @@ This new variable is then added to our regression equation from before, so that 
 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
-      &+\beta_2*bonus\_buy\\
-      &+\beta_3*store+\epsilon
+      &+\beta_2*discount\\
+      &+\beta_3*store100+\epsilon
 \end{align}
 
-where "store" represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
+where "store100" represents the new dummy variable and is the coefficient associated with this variable - as a comparison of the selected level (in this case - store 100) to the reference level (in this case, store 98). Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
 
 First, let's reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).
 
 
 ``` r
-multiple_regression_new <- lm(move_ounce ~ price_ounce +
-    sale_B, data = categories)
+multiple_regression_new <- lm(move_liter ~ price_liter +
+    discount, data = categories)
 summary(multiple_regression_new)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B, data = categories)
+## lm(formula = move_liter ~ price_liter + discount, data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -10572  -2947  -1406    398  56451 
+## -866.3 -215.5  -32.8  180.5 2864.9 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value            Pr(>|t|)    
-## (Intercept)    14690        458   32.07 <0.0000000000000002 ***
-## price_ounce  -146571       5989  -24.47 <0.0000000000000002 ***
-## sale_B           616        456    1.35                0.18    
+## (Intercept) 2321.261     25.027    92.8 <0.0000000000000002 ***
+## price_liter -660.462      8.186   -80.7 <0.0000000000000002 ***
+## discount      11.653      0.666    17.5 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7430 on 3191 degrees of freedom
-## Multiple R-squared:  0.16,	Adjusted R-squared:  0.159 
-## F-statistic:  303 on 2 and 3191 DF,  p-value: <0.0000000000000002
+## Residual standard error: 325 on 3191 degrees of freedom
+## Multiple R-squared:  0.683,	Adjusted R-squared:  0.683 
+## F-statistic: 3.44e+03 on 2 and 3191 DF,  p-value: <0.0000000000000002
 ```
 
 Now, let's add the store variable:
 
 
 ``` r
-multiple_regression_store <- lm(move_ounce ~ price_ounce +
-    sale_B + store, data = categories)
+multiple_regression_store <- lm(move_liter ~ price_liter +
+    discount + store, data = categories)
 summary(multiple_regression_store)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + store, data = categories)
+## lm(formula = move_liter ~ price_liter + discount + store, data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -10704  -3149  -1317    681  55585 
+## -949.8 -185.2  -16.6  160.3 2784.4 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)    13828        473    29.2 < 0.0000000000000002 ***
-## price_ounce  -147070       5950   -24.7 < 0.0000000000000002 ***
-## sale_B           681        454     1.5                 0.13    
-## store100        1724        261     6.6       0.000000000048 ***
+##             Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept) 2224.789     24.961    89.1 <0.0000000000000002 ***
+## price_liter -657.582      7.903   -83.2 <0.0000000000000002 ***
+## discount      11.732      0.642    18.3 <0.0000000000000002 ***
+## store100     170.579     11.121    15.3 <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7380 on 3190 degrees of freedom
-## Multiple R-squared:  0.171,	Adjusted R-squared:  0.17 
-## F-statistic:  220 on 3 and 3190 DF,  p-value: <0.0000000000000002
+## Residual standard error: 314 on 3190 degrees of freedom
+## Multiple R-squared:  0.705,	Adjusted R-squared:  0.705 
+## F-statistic: 2.54e+03 on 3 and 3190 DF,  p-value: <0.0000000000000002
 ```
 
 
-You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100 artists, and whether this difference is significant. Specifically, it means that sales in store 100 are on average 1,724.92 oz higher than in store 98, and this difference is significant (i.e., p < 0.05).  
+You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100, and whether this difference is significant. Specifically, it means that sales in store 100 are, on average, 170.58 liters per week higher than in store 98, and this difference is significant (i.e., p < 0.05).  
 
 
 #### More than two categories
 
-Predictors with more than two categories, like our "brand"" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are many brands (i.e., 1 = Amstel, 2 = Budweiser, 3 = Corona, 4 = Fosters, 5 = Heineken, 6 = Old Milwaukee). Thus, we need to create additional dummy variables. For example, for our "brand" variable, we create five dummy variables as follows:
+Predictors with more than two categories, like our "brand" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are many brands (i.e., Amstel, Budweiser, Corona, Fosters, Heineken, Old Milwaukee). Thus, we need to create additional dummy variables. For example, for our "brand" variable with six levels, we create five dummy variables as follows (Amstel is the reference level):
 
 \begin{equation} 
 x_5 =
@@ -1213,8 +1171,8 @@ We would then add these variables as additional predictors in the regression equ
 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
-      &+\beta_2*bonus\_buy\\
-      &+\beta_3*store\\
+      &+\beta_2*discount\\
+      &+\beta_3*store100\\
       &+\beta_4*Budweiser\\
       &+\beta_5*Corona\\
       &+\beta_6*Fosters\\
@@ -1224,92 +1182,92 @@ Sales =\beta_0 &+\beta_1*price\\
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
 
-The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
+The interpretation of the coefficients is as follows: $\beta_4$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_5$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 
 ``` r
-multiple_regression_ext <- lm(move_ounce ~ price_ounce +
-    sale_B + store + brand, data = categories)
+multiple_regression_ext <- lm(move_liter ~ price_liter +
+    discount + store + brand, data = categories)
 summary(multiple_regression_ext)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + store + brand, 
+## lm(formula = move_liter ~ price_liter + discount + store + brand, 
 ##     data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -13307  -1182   -375   1094  40857 
+## -668.1 -101.9  -17.6   91.7 2734.7 
 ## 
 ## Coefficients:
 ##                   Estimate Std. Error t value             Pr(>|t|)    
-## (Intercept)          -1333       1349   -0.99               0.3230    
-## price_ounce           4241      14920    0.28               0.7763    
-## sale_B                1183        303    3.90  0.00009797345704262 ***
-## store100              1859        129   14.45 < 0.0000000000000002 ***
-## brandBudweiser       22176        609   36.43 < 0.0000000000000002 ***
-## brandCorona           2265        236    9.60 < 0.0000000000000002 ***
-## brandFosters          -124        240   -0.52               0.6042    
-## brandHeinekenBeer     1810        220    8.23  0.00000000000000026 ***
-## brandOldMilwaukee     2417        825    2.93               0.0034 ** 
+## (Intercept)        642.320     41.564   15.45 < 0.0000000000000002 ***
+## price_liter       -218.621     12.409  -17.62 < 0.0000000000000002 ***
+## discount            11.155      0.449   24.82 < 0.0000000000000002 ***
+## store100           200.052      7.808   25.62 < 0.0000000000000002 ***
+## brandBudweiser     501.605     16.693   30.05 < 0.0000000000000002 ***
+## brandCorona        124.082     14.155    8.77 < 0.0000000000000002 ***
+## brandFosters       -94.655     14.416   -6.57    0.000000000060072 ***
+## brandHeinekenBeer  102.005     13.293    7.67    0.000000000000022 ***
+## brandOldMilwaukee 1001.030     22.178   45.14 < 0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3620 on 3185 degrees of freedom
-## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
-## F-statistic: 1.6e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
+## Residual standard error: 220 on 3185 degrees of freedom
+## Multiple R-squared:  0.856,	Adjusted R-squared:  0.856 
+## F-statistic: 2.37e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
 ```
 
-How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 22,298.63 oz more than products from the "Amstel" brand, and that products from the "Corona" brand will sell on average 2,288.88 oz more than the products from the "Amstel" brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
+How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 501.6 liters more than products from the "Amstel" brand, if all other variables are held constant, and that products from the "Fosters" brand will sell on average 94.7 liters less than the products from the "Amstel" brand, if all other variables are held constant, etc. The p-value of both these and other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
 
 The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the ```relevel()``` function and set the reference category using the ```ref``` argument. The following would estimate the same model using the second category as the baseline:
 
 
 ``` r
-multiple_regression_ext <- lm(move_ounce ~ price_ounce +
-    sale_B + store + relevel(brand, ref = 2), data = categories)
+multiple_regression_ext <- lm(move_liter ~ price_liter +
+    discount + store + relevel(brand, ref = 2), data = categories)
 summary(multiple_regression_ext)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = move_ounce ~ price_ounce + sale_B + store + relevel(brand, 
+## lm(formula = move_liter ~ price_liter + discount + store + relevel(brand, 
 ##     ref = 2), data = categories)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -13307  -1182   -375   1094  40857 
+## -668.1 -101.9  -17.6   91.7 2734.7 
 ## 
 ## Coefficients:
 ##                                     Estimate Std. Error t value
-## (Intercept)                            20843        798   26.12
-## price_ounce                             4241      14920    0.28
-## sale_B                                  1183        303    3.90
-## store100                                1859        129   14.45
-## relevel(brand, ref = 2)Amstel         -22176        609  -36.43
-## relevel(brand, ref = 2)Corona         -19911        526  -37.84
-## relevel(brand, ref = 2)Fosters        -22301        609  -36.64
-## relevel(brand, ref = 2)HeinekenBeer   -20366        616  -33.06
-## relevel(brand, ref = 2)OldMilwaukee   -19760        327  -60.49
-##                                                 Pr(>|t|)    
-## (Intercept)                         < 0.0000000000000002 ***
-## price_ounce                                         0.78    
-## sale_B                                          0.000098 ***
-## store100                            < 0.0000000000000002 ***
-## relevel(brand, ref = 2)Amstel       < 0.0000000000000002 ***
-## relevel(brand, ref = 2)Corona       < 0.0000000000000002 ***
-## relevel(brand, ref = 2)Fosters      < 0.0000000000000002 ***
-## relevel(brand, ref = 2)HeinekenBeer < 0.0000000000000002 ***
-## relevel(brand, ref = 2)OldMilwaukee < 0.0000000000000002 ***
+## (Intercept)                         1143.925     33.610    34.0
+## price_liter                         -218.621     12.409   -17.6
+## discount                              11.155      0.449    24.8
+## store100                             200.052      7.808    25.6
+## relevel(brand, ref = 2)Amstel       -501.605     16.693   -30.1
+## relevel(brand, ref = 2)Corona       -377.523     19.342   -19.5
+## relevel(brand, ref = 2)Fosters      -596.260     16.125   -37.0
+## relevel(brand, ref = 2)HeinekenBeer -399.600     16.831   -23.7
+## relevel(brand, ref = 2)OldMilwaukee  499.425     16.584    30.1
+##                                                Pr(>|t|)    
+## (Intercept)                         <0.0000000000000002 ***
+## price_liter                         <0.0000000000000002 ***
+## discount                            <0.0000000000000002 ***
+## store100                            <0.0000000000000002 ***
+## relevel(brand, ref = 2)Amstel       <0.0000000000000002 ***
+## relevel(brand, ref = 2)Corona       <0.0000000000000002 ***
+## relevel(brand, ref = 2)Fosters      <0.0000000000000002 ***
+## relevel(brand, ref = 2)HeinekenBeer <0.0000000000000002 ***
+## relevel(brand, ref = 2)OldMilwaukee <0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3620 on 3185 degrees of freedom
-## Multiple R-squared:  0.801,	Adjusted R-squared:   0.8 
-## F-statistic: 1.6e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
+## Residual standard error: 220 on 3185 degrees of freedom
+## Multiple R-squared:  0.856,	Adjusted R-squared:  0.856 
+## F-statistic: 2.37e+03 on 8 and 3185 DF,  p-value: <0.0000000000000002
 ```
   
 Note that while your choice of the baseline category impacts the coefficients and the significance level, the prediction for each group will be the same regardless of this choice.
@@ -1604,7 +1562,7 @@ f(\mathbf{X}) = \frac{1}{1 + e^{-\mathbf{X}}}
 $$
 This function transforms all real numbers into the range between 0 and 1. We need this to model probabilities, as probabilities can only be between 0 and 1. 
 
-<img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" width="672" />
+<img src="07-supervised_learning_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" />
 
 
 
@@ -1976,7 +1934,7 @@ The prediction indicates that a customer who made $5$ orders last year, $10$ ord
 - [ ] None of the above
 
 
-<img src="./images/cor_table11.png" width="75%" style="display: block; margin: auto;" />
+<img src="./images/cor_table11.png" alt="" width="75%" style="display: block; margin: auto;" />
 **(LC4.7) When interpreting the statistical significance of a regression coefficient, the p-value…**
 
 - [ ] …of 0.05 means that, if the null hypothesis is true (i.e., if the independent variable would NOT affect the outcome), the odds are 19 in 20 of getting a regression coefficient as large or larger than the estimated coefficient

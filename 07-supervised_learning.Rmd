@@ -247,10 +247,10 @@ Role of theory | Theory neither required nor testable  | Theory required and tes
 
 In simple linear regression, we assess the relationship between one dependent (regressand) and one independent (regressor) variable. The goal is to fit a line through a scatterplot of observations in order to find the line that best describes the data (scatterplot).
 
-Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser *move_ounce* (in ounces, FYI: 1 oz = 29,57 ml), prices *price_ounce* (in dollars per ounce), and several other variables: bonus buy - a price reduction if customers buy a certain quantity of a product (*sale_B*), price reduction in % (*sale_S*), and others. Let's load and inspect the data first: 
+Suppose you are a marketing research analyst at a big retail group and your task is to suggest, on the basis of historical data, a marketing plan for the next year that will maximize product sales. The product in question is beer brand Budweiser. The data set that is available to you includes information on the sales of Budweiser *move_liter* (in liters per week), prices *price_liter* (in euros per liter), and several other variables: *discount* - a price reduction (in %), *display* - promotion through special placement, and others. Let's load and inspect the data first: 
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-regression <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv", 
+regression <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/bud_store102.csv", 
                           sep = ",", 
                           header = TRUE) # read in data
 str(regression)
@@ -293,7 +293,7 @@ Sales=\beta_0+\beta_1*price+\epsilon
 (\#eq:regequadv)
 \end{equation} 
 
-The word "price" represents data on advertising expenditures that we have observed and &beta;<sub>1</sub> (the "slope"") represents the unknown relationship between prices and sales. It tells you by how much sales will increase or decrease for an additional dollar added to price. &beta;<sub>0</sub> (the "intercept") is the number of sales we would expect if the price is set to 0. Note that the last assumption is highly theoretical: in the majority of real world scenarios, we never have such variables as prices, advertising expenditures, kilometers to the nearest store set to 0. Hence, it is incorrect to interpret the intercept like this. Together, &beta;<sub>0</sub> and &beta;<sub>1</sub> represent the model coefficients or *parameters*. The error term (&epsilon;) captures everything that we miss by using our model, including, (1) misspecifications (the true relationship might not be linear), (2) omitted variables (other variables might drive sales), and (3) measurement error (our measurement of the variables might be imperfect).
+The word "price" represents the (observed) prices per liter that we have recorded and &beta;<sub>1</sub> (the "slope"") represents the unknown relationship between prices and sales. It tells you by how much sales will increase or decrease for an additional euro added to the price per liter. &beta;<sub>0</sub> (the "intercept") is the number of sales we would expect if the price is set to 0. Note that the last assumption is highly theoretical: in the majority of real world scenarios, we never have such variables as prices, advertising expenditures, kilometers to the nearest store set to 0. Hence, it is incorrect to interpret the intercept like this. Together, &beta;<sub>0</sub> and &beta;<sub>1</sub> represent the model coefficients or *parameters*. The error term (&epsilon;) captures everything that we miss by using our model, including, (1) misspecifications (the true relationship might not be linear), (2) omitted variables (other variables might drive sales), and (3) measurement error (our measurement of the variables might be imperfect).
 
 Once we have used our training data to produce estimates for the model coefficients, we can predict future sales on the basis of a particular value of price by computing:
 
@@ -307,16 +307,16 @@ We use the hat symbol, <sup>^</sup>, to denote the estimated value for an unknow
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Ordinary least squares (OLS)"}
 library(dplyr)
 options(scipen = 999)
-regression1 <- read.table("https://raw.githubusercontent.com/dariayudaeva/RMA2024/main/data/bud_store102.csv", 
+regression1 <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/bud_store102.csv", 
                           sep = ",", 
                           header = TRUE)
-lm <- lm(move_ounce ~ price_ounce, data = regression1)
+lm <- lm(move_liter ~ price_liter, data = regression1)
 regression1$yhat <- predict(lm)
 
-ggplot(regression1, aes(x = price_ounce,y = move_ounce)) + 
+ggplot(regression1, aes(x = price_liter,y = move_liter)) + 
   geom_point(size = 2, color = "deepskyblue4") + 
-  labs(x = "Advertising expenditure (in Euros)", y = "Sales", size = 11) +
-  geom_segment(aes(x = price_ounce, y = move_ounce, xend = price_ounce, yend = yhat), 
+  labs(x = "Price (€ per liter)", y = "Sales (liters)", size = 11) +
+  geom_segment(aes(x = price_liter, y = move_liter, xend = price_liter, yend = yhat), 
                color = "grey",size = 0.5, linetype = "solid", alpha = 0.8) +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   theme(axis.title = element_text(size = 16),
@@ -356,9 +356,9 @@ This is also referred to as the <b>residual sum of squares (RSS)</b>. Now we nee
 The exact mathematical derivation of this formula is beyond the scope of this script, but the intuition is to calculate the first derivative of the squared residuals with respect to &beta;<sub>1</sub> and set it to zero, thereby finding the &beta;<sub>1</sub> that minimizes the term. Using the above formula, you can easily compute &beta;<sub>1</sub> using the following code:
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE}
-cov_y_x <- cov(regression$price_ounce, regression$move_ounce)
+cov_y_x <- cov(regression$price_liter, regression$move_liter)
 cov_y_x
-var_x <- var(regression$price_ounce)
+var_x <- var(regression$price_liter)
 var_x
 beta_1 <- cov_y_x/var_x
 beta_1
@@ -366,7 +366,7 @@ beta_1
 
 The interpretation of &beta;<sub>1</sub> is as follows: 
 
-For every extra dollar increase of the price, sales can be expected to decrease by `r round(beta_1,3)` oz, which is around 270 liters.
+For every extra euro increase of the price (per liter), weekly sales can be expected to decrease by `r round(abs(beta_1),1)` liters.
 
 Using the estimated coefficient for &beta;<sub>1</sub>, it is easy to compute &beta;<sub>0</sub> (the intercept) as follows:
 
@@ -378,21 +378,21 @@ Using the estimated coefficient for &beta;<sub>1</sub>, it is easy to compute &b
 The R code for this is:
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE}
-beta_0 <- mean(regression$move_ounce) - beta_1*mean(regression$price_ounce)
+beta_0 <- mean(regression$move_liter) - beta_1*mean(regression$price_liter)
 beta_0
 ```
 
 You may also verify this based on a scatterplot of the data. The following plot shows the scatterplot including the regression line, which is estimated using OLS.  
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE, fig.align="center", fig.cap = "Scatterplot"}
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
+ggplot(regression, mapping = aes(price_liter, move_liter)) + 
   geom_point(shape = 1) +
   geom_smooth(method = "lm", fill = "blue", alpha = 0.1) + 
-  labs(x = "Price ($ per oz)", y = "Sales (oz)") + 
+  labs(x = "Price (€ per liter)", y = "Sales (liters)") + 
   theme_bw()
 ```
 
-The slope coefficient (&beta;<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit ($).   
+The slope coefficient (&beta;<sub>1</sub>) tells you by how much sales (on the y-axis) would decrease if the price (on the x-axis) is increased by one unit (1 € per liter).   
 
 ##### Significance testing
 
@@ -417,10 +417,10 @@ t = \frac{\hat{\beta_1}}{SE(\hat{\beta_1})}
 
 After calculating the test statistic, we compare its value to the values that we would expect to find if there was no effect based on the t-distribution. In a regression context, the degrees of freedom are given by ```N - p - 1``` where N is the sample size and p is the number of predictors. In our case, we have 220 observations and one predictor. Thus, the degrees of freedom is 220 - 1 - 1 = 218. In the regression output below, R provides the exact probability of observing a t value of this magnitude (or larger) if the null hypothesis was true. This probability  is the p-value. A small p-value indicates that it is unlikely to observe such a substantial association between the predictor and the outcome variable due to chance in the absence of any real association between the predictor and the outcome.
 
-To estimate the regression model in R, you can use the ```lm()``` function. Within the function, you first specify the dependent variable ("move_ounce") and independent variable ("price_ounce") separated by a ```~``` (tilde). As mentioned previously, this is known as _formula notation_ in R. The ```data = regression``` argument specifies that the variables come from the data frame named "regression". Strictly speaking, you use the ```lm()``` function to create an object called "sales_reg," which holds the regression output. You can then view the results using the ```summary()``` function: 
+To estimate the regression model in R, you can use the ```lm()``` function. Within the function, you first specify the dependent variable ("move_liter") and independent variable ("price_liter") separated by a ```~``` (tilde). As mentioned previously, this is known as _formula notation_ in R. The ```data = regression``` argument specifies that the variables come from the data frame named "regression". Strictly speaking, you use the ```lm()``` function to create an object called "sales_reg," which holds the regression output. You can then view the results using the ```summary()``` function: 
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-sales_reg <- lm(move_ounce ~ price_ounce, data = regression) #estimate linear model
+sales_reg <- lm(move_liter ~ price_liter, data = regression) #estimate linear model
 summary(sales_reg) #summary of results
 ```
 
@@ -464,13 +464,13 @@ The following graph shows the total sum of squares:
 library(dplyr)
 options(scipen = 999)
 
-ggplot(regression1, aes(x = price_ounce, y = move_ounce)) + 
+ggplot(regression1, aes(x = price_liter, y = move_liter)) + 
   geom_point(size = 2, color = "deepskyblue4") + 
-  labs(x = "Price ($ per oz)", y = "Sales (oz)", size = 11) +
-  geom_segment(aes(x = price_ounce, y = move_ounce, xend = price_ounce, 
-                   yend = mean(move_ounce)), color = "grey", 
+  labs(x = "Price (€ per liter)", y = "Sales (liters)", size = 11) +
+  geom_segment(aes(x = price_liter, y = move_liter, xend = price_liter, 
+                   yend = mean(move_liter)), color = "grey", 
                size = 0.5, linetype = "solid", alpha = 0.8) + 
-  geom_hline(data = regression, aes(yintercept = mean(move_ounce)), color = "black", size = 1) +
+  geom_hline(data = regression, aes(yintercept = mean(move_liter)), color = "black", size = 1) +
   theme(axis.title = element_text(size = 16),
         axis.text  = element_text(size = 16),
         strip.text.x = element_text(size = 16),
@@ -488,13 +488,13 @@ SS_M= \sum_{i=1}^{N}  (\hat{Y}_i-\overline{Y})^2
 The model sum of squares represents the improvement in prediction resulting from using the regression model rather than the mean of the data. The following graph shows the model sum of squares for our example:
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Ordinary least squares (OLS)"}
-ggplot(regression1, aes(x = price_ounce, y = move_ounce)) + 
+ggplot(regression1, aes(x = price_liter, y = move_liter)) + 
   geom_point(size = 2, color = "deepskyblue4") + 
-  labs(x = "Price ($ per oz)",y = "Sales (oz)", size = 11) +
-  geom_segment(aes(x = price_ounce, y = yhat, xend = price_ounce, yend = mean(move_ounce)), 
+  labs(x = "Price (€ per liter)",y = "Sales (liters)", size = 11) +
+  geom_segment(aes(x = price_liter, y = yhat, xend = price_liter, yend = mean(move_liter)), 
                color = "grey", size = 0.5, linetype = "solid", alpha = 0.8) + 
   geom_smooth(method = "lm", se = FALSE, color = "black") +
-  geom_hline(data = regression, aes(yintercept = mean(move_ounce)), color = "black", size = 1) +
+  geom_hline(data = regression, aes(yintercept = mean(move_liter)), color = "black", size = 1) +
   theme(axis.title = element_text(size = 16),
         axis.text  = element_text(size = 16),
         strip.text.x = element_text(size = 16),
@@ -512,10 +512,10 @@ SS_R= \sum_{i=1}^{N} ({Y}_{i}-\hat{Y}_{i})^2
 The following graph shows the residual sum of squares for our example:
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE, fig.align="center", fig.cap = "Ordinary least squares (OLS)"}
-ggplot(regression1, aes(x = price_ounce, y = move_ounce)) + 
+ggplot(regression1, aes(x = price_liter, y = move_liter)) + 
   geom_point(size = 2, color = "deepskyblue4") + 
-  labs(x = "Price ($ per oz)",y = "Sales (oz)", size = 11) +
-  geom_segment(aes(x = price_ounce, y = move_ounce, xend = price_ounce, yend = yhat),
+  labs(x = "Price (€ per liter)",y = "Sales (liters)", size = 11) +
+  geom_segment(aes(x = price_liter, y = move_liter, xend = price_liter, yend = yhat),
                color = "grey", size = 0.5, linetype = "solid", alpha = 0.8) +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   theme(axis.title = element_text(size = 16),
@@ -647,16 +647,16 @@ The result of the F-test is provided in the regression output as well. However, 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE,paged.print = FALSE}
 f_calc <- anova(sales_reg)$'Mean Sq'[1]/anova(sales_reg)$'Mean Sq'[2] #compute F
 f_calc
-f_crit <- qf(.95, df1 = 1, df2 = 100) #critical value
+f_crit <- qf(.95, df1 = 1, df2 = 218) #critical value
 f_crit
 f_calc > f_crit #test if calculated test statistic is larger than critical value
 ```
 
 ##### Using the model
 
-After fitting the model, we can use the estimated coefficients to predict sales of Budweiser for different values of prices. Suppose the store plans to set the price per ounce to 2 dollars. How much will it sell? You can easily compute this either by hand:
+After fitting the model, we can use the estimated coefficients to predict sales of Budweiser for different values of prices. Suppose the store plans to set the price per liter to 2 Euros. How much will it sell? You can easily compute this either by hand:
 
-$$\hat{sales}=63950.6 + (-9060.5)*2=45,829.6$$
+$$\hat{sales}=2189.5 + (-509.0)*2=1,171.5$$
 
 <br>
 
@@ -668,7 +668,7 @@ prediction <- summary(sales_reg)$coefficients[1,1] +
 prediction
 ```
 
-The predicted value of the dependent variable is 45,829.6 oz, i.e., the store will sell around 45,829.6 oz (~1,355 liters) of Budweiser.
+The predicted value of the dependent variable is 1,171.5 liters, i.e., the store will sell around 1,171.5 liters of Budweiser per week if theprice is set to 2 Euros.
 
 
 #### Log-Log transformation
@@ -680,10 +680,10 @@ It is very rare that in the retailing context, the predictions are made as we di
 Let's have a look at the plot again:  
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE}
-ggplot(regression, mapping = aes(price_ounce, move_ounce)) + 
+ggplot(regression, mapping = aes(price_liter, move_liter)) + 
   geom_point(shape = 1) +
   geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
-  labs(x = "Price (ounce)", y = "Sales (ounce)") + 
+  labs(x = "Price (€ per liter)", y = "Sales (liters)") + 
   theme_minimal()
 ```
 
@@ -712,10 +712,10 @@ Let's test how the scatterplot would look like if we use the logarithm of our va
 
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE}
-ggplot(regression, mapping = aes(log(price_ounce), log(move_ounce))) + 
+ggplot(regression, mapping = aes(log(price_liter), log(move_liter))) + 
   geom_point(shape = 1) +
   geom_smooth(method = "lm", color = "lavenderblush4", fill = "red", alpha = 0.1) + 
-  labs(x = "Price", y = "Sales") + 
+  labs(x = "log(Price)", y = "log(Sales)") + 
   theme_minimal()
 ```
 
@@ -729,11 +729,11 @@ log(sales) = log(\beta_0) + \beta_1*log(price) + log(\epsilon)
 Now, let's estimate a new regression by applying ```log()``` function to both sales and prices:
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE,paged.print = FALSE}
-sales_reg2 <- lm(log(move_ounce) ~ log(price_ounce), data = regression)
+sales_reg2 <- lm(log(move_liter) ~ log(price_liter), data = regression)
 summary(sales_reg2) #remember that now the interpretation changed
 ```
 
-In this example, you would interpret the coefficient as follows: **A 1% increase in price leads to a 2.23% decrease in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.08 from 0.06). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.
+In this example, you would interpret the coefficient as follows: **A 1% increase in price leads to a 2.12% decrease in sales**. Hence, the interpretation is in proportional terms and no longer in units. This means that the coefficients in a log-log model can be directly interpreted as elasticities, which also makes communication easier. We can generally also inspect the R<sup>2</sup> statistic to see that the model fit has increased compared to the linear specification (i.e., R<sup>2</sup> has increased to 0.89 from 0.81). However, please note that the variables are now measured on a different scale, which means that the model fit in theory is not directly comparable.
 
 
 
@@ -754,7 +754,7 @@ Let's extend the previous example. Say, in addition to the influence of price it
 $$ Sales=\beta_0+\beta_1*price+\beta_2*bonus\_buy+\epsilon$$
 
 
-&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional dollar increase of price (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
+&beta;<sub>1</sub> and &beta;<sub>2</sub> represent the unknown relationship between sales and independent variables (price and bonus buy, respectively). The corresponding coefficients tell you by how much sales will change for an additional euro increase of the price per liter (when the other IVs are held constant) and by how much sales will change for an additional unit of price reduction (when price is held constant), etc. Thus, we can make predictions about sales using all these variables.
 
 With several predictors, the partitioning of sum of squares is the same as in the bivariate model, except that the model is no longer a 2-D straight line. With two predictors, the regression line becomes a 3-D regression plane. While multiple regression models that have more than two predictors are not as easy to visualize, you may apply the same principles when interpreting the model outcome:
 
@@ -772,17 +772,17 @@ $$ log(Sales) =log(\beta_0) + \beta_1*log(Price) + \beta_2*bonus\_buy + log(\eps
 This regression could be estimated as follows: 
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-multiple_sales_reg <- lm(log(move_ounce) ~ log(price_ounce) + sale_B, data = regression) # estimate the model
+multiple_sales_reg <- lm(log(move_liter) ~ log(price_liter) + discount, data = regression) # estimate the model
 summary(multiple_sales_reg) #summary of results
 ```
 
 The interpretation of the coefficients is as follows: 
 
 * price (&beta;<sub>1</sub>): when price increases by 1%, sales will change by `r round(summary(multiple_sales_reg)$coefficients[2],3)`%
-* bonus buy (&beta;<sub>2</sub>): when bonus buy increases by 1% (which is one step on a scale from 0 to 100 for a discount, i.e., this is equal to 1-unit increase), sales will change by `r round(summary(multiple_sales_reg)$coefficients[3],3)*100`%
+* discount (&beta;<sub>2</sub>): when discount increases by 1 (i.e., by 1 on the 0 to 100 scale of the variable - since it's a regular discount), sales will change (increase) by approximately `r round(summary(multiple_sales_reg)$coefficients[3],3)*100`%
 
 
-The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for price, while bonus sale is insignificant. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
+The associated t-values and p-values are also given in the output. You can see that the p-values are smaller than 0.05 for both price and discount. Moreover, the p-value for F-test is smaller than 0.05. This means that if the null hypothesis was true (i.e., there was no effect between the variables and sales), the probability of observing associations of the estimated magnitudes (or larger) is very small (e.g., smaller than 0.05).     
 
 Again, to get a better feeling for the range of values that the coefficients could take, it is helpful to compute <b>confidence intervals</b>. 
 
@@ -801,16 +801,16 @@ ggcoefstats(x = multiple_sales_reg,
 The output also tells us that `r summary(multiple_sales_reg)$r.squared*100`% of the variation can be explained by our model. You may also visually inspect the fit of the model by plotting the predicted values against the observed values. We can extract the predicted values using the ```predict()``` function. So let's create a new variable ```yhat```, which contains those predicted values.  
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE}
-regression$logmove_ounce_hat <- fitted(multiple_sales_reg)
+regression$logmove_liter_hat <- fitted(multiple_sales_reg)
 ```
 
 We can now use this variable to plot the predicted values against the observed values. In the following plot, the model fit would be perfect if all points would fall on the diagonal line. The larger the distance between the points and the line, the worse the model fit. In other words, if all points would fall exactly on the diagonal line, the model would perfectly predict the observed values. 
 
 ```{r message=FALSE, warning=FALSE, eval=TRUE, echo=TRUE, fig.align="center", fig.cap = "Model fit"}
-ggplot(data = regression, aes(week, log(move_ounce))) +
-  geom_vline(xintercept = regression$promoweek, colour = "lightgrey") +
-  geom_line(aes(y = log(move_ounce), colour = "logsales"), size = 0.5) +
-  geom_line(aes(y = (logmove_ounce_hat), colour = "logsales (predicted)"), size = 0.5) +
+ggplot(data = regression, aes(week, log(move_liter))) +
+  #geom_vline(xintercept = regression$promoweek, colour = "lightgrey") +
+  geom_line(aes(y = log(move_liter), colour = "logsales"), size = 0.5) +
+  geom_line(aes(y = (logmove_liter_hat), colour = "logsales (predicted)"), size = 0.5) +
   scale_color_manual(values = c("black", "gold")) +
   theme_minimal()
 ```
@@ -831,7 +831,7 @@ avPlots(multiple_sales_reg)
 #### Two categories
 
 ```{r}
-categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA2024/main/data/beer_categorical", 
+categories <- read.table("https://raw.githubusercontent.com/WU-RDS/RMA/refs/heads/main/data/beer_categorical", 
                          sep = ",", 
                          header = TRUE) 
 categories$store <- as.factor(categories$store)
@@ -840,7 +840,7 @@ str(categories)
 ```
 
 
-We will use a slightly different data set to explore additional opportunities for regression analysis. Suppose, you wish to investigate the effect of the variable "store" on sales, which is a categorical variable that can only take two levels (i.e., 98 = store with ID 98, and 100 = store with ID 100). Categorical variables with two levels are also called binary predictors; in our example, however, they are not decoded into typical binary view (i.e., they are not 0 and 1). It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "store" variable, we can create a new predictor variable that takes the form:
+We will use a slightly different data set to explore additional opportunities for regression analysis. Suppose, you wish to investigate the effect of the variable "store" on sales, which is a categorical variable that can only take two levels (i.e., 98 = store with ID 98, and 100 = store with ID 100). Categorical variables with two levels are also called *binary* predictors; in our example, however, they are not decoded into typical binary view (i.e., they are not 0 and 1). It is straightforward to include these variables in your model as "dummy" variables. Dummy variables are factor variables that can only take two values. For our "store" variable, we can create a new predictor variable that takes the form:
 
 \begin{equation} 
 x_4 =
@@ -855,33 +855,33 @@ This new variable is then added to our regression equation from before, so that 
 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
-      &+\beta_2*bonus\_buy\\
-      &+\beta_3*store+\epsilon
+      &+\beta_2*discount\\
+      &+\beta_3*store100+\epsilon
 \end{align}
 
-where "store" represents the new dummy variable and is the coefficient associated with this variable. Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
+where "store100" represents the new dummy variable and is the coefficient associated with this variable - as a comparison of the selected level (in this case - store 100) to the reference level (in this case, store 98). Estimating the model is straightforward - you just need to include the variable as an additional predictor variable. Note that the variable needs to be specified as a factor variable before including it in your model. If you haven't converted it to a factor variable before, you could also use the wrapper function ```as.factor()``` within the equation. 
 
 First, let's reestimate the regression we had before (note that the result slightly changes because we are using a different data set - you can recall that with different samples, the estimation of true value changes). For the sake of easier interpretation, we use regular regression specification (i.e., not log-log transformed).
 
 ```{r}
-multiple_regression_new <- lm(move_ounce ~ price_ounce + sale_B, data = categories) 
+multiple_regression_new <- lm(move_liter ~ price_liter + discount, data = categories) 
 summary(multiple_regression_new)
 ```
 
 Now, let's add the store variable:
 
 ```{r}
-multiple_regression_store <- lm(move_ounce ~ price_ounce + sale_B + store, data = categories) 
+multiple_regression_store <- lm(move_liter ~ price_liter + discount + store, data = categories) 
 summary(multiple_regression_store)
 ```
 
 
-You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100 artists, and whether this difference is significant. Specifically, it means that sales in store 100 are on average 1,724.92 oz higher than in store 98, and this difference is significant (i.e., p < 0.05).  
+You can see that we now have an additional coefficient in the regression output, which tells us the effect of the dummy predictor. The dummy variable can generally be interpreted as the average difference in the dependent variable between the two groups, conditional on the other variables you have included in your model. In this case, the coefficient tells you the difference in sales between store 98 and 100, and whether this difference is significant. Specifically, it means that sales in store 100 are, on average, 170.58 liters per week higher than in store 98, and this difference is significant (i.e., p < 0.05).  
 
 
 #### More than two categories
 
-Predictors with more than two categories, like our "brand"" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are many brands (i.e., 1 = Amstel, 2 = Budweiser, 3 = Corona, 4 = Fosters, 5 = Heineken, 6 = Old Milwaukee). Thus, we need to create additional dummy variables. For example, for our "brand" variable, we create five dummy variables as follows:
+Predictors with more than two categories, like our "brand" variable, can also be included in your model. However, in this case one dummy variable cannot represent all possible values, since there are many brands (i.e., Amstel, Budweiser, Corona, Fosters, Heineken, Old Milwaukee). Thus, we need to create additional dummy variables. For example, for our "brand" variable with six levels, we create five dummy variables as follows (Amstel is the reference level):
 
 \begin{equation} 
 x_5 =
@@ -908,8 +908,8 @@ We would then add these variables as additional predictors in the regression equ
 
 \begin{align}
 Sales =\beta_0 &+\beta_1*price\\
-      &+\beta_2*bonus\_buy\\
-      &+\beta_3*store\\
+      &+\beta_2*discount\\
+      &+\beta_3*store100\\
       &+\beta_4*Budweiser\\
       &+\beta_5*Corona\\
       &+\beta_6*Fosters\\
@@ -919,19 +919,19 @@ Sales =\beta_0 &+\beta_1*price\\
 
 where "Budweiser", "Corona", "Fosters", "Heineken", and "Old Milwaukee" represent our new dummy variables, and refer to the associated regression coefficients. You don't have to create the dummy variables manually as R will do this automatically when you add the variable to your equation.
 
-The interpretation of the coefficients is as follows: $\beta_5$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_6$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
+The interpretation of the coefficients is as follows: $\beta_4$ is the difference in average sales between the brands "Amstel" and "Budweiser", $\beta_5$ is the difference in average sales between the brands "Amstel" and "Corona", and so on. Note that the level for which no dummy variable is created is also referred to as the *baseline*. In our case, "Amstel" would be the baseline brand. This means that there will always be one fewer dummy variable than the number of levels.
 
 ```{r}
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + brand, data = categories) 
+multiple_regression_ext <- lm(move_liter ~ price_liter + discount + store + brand, data = categories) 
 summary(multiple_regression_ext) 
 ```
 
-How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 22,298.63 oz more than products from the "Amstel" brand, and that products from the "Corona" brand will sell on average 2,288.88 oz more than the products from the "Amstel" brand, etc. The p-value of both these and some other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
+How can we interpret the coefficients? It is estimated based on our model that products from the "Budweiser" brand will on average sell 501.6 liters more than products from the "Amstel" brand, if all other variables are held constant, and that products from the "Fosters" brand will sell on average 94.7 liters less than the products from the "Amstel" brand, if all other variables are held constant, etc. The p-value of both these and other brand-variables is smaller than 0.05, suggesting that there is statistical evidence for a real difference in sales between the brands
 
 The level of the baseline category is arbitrary. As you have seen, R simply selects the first level as the baseline. If you would like to use a different baseline category, you can use the ```relevel()``` function and set the reference category using the ```ref``` argument. The following would estimate the same model using the second category as the baseline:
 
 ```{r}
-multiple_regression_ext <- lm(move_ounce ~ price_ounce + sale_B + store + relevel(brand, ref = 2), data = categories) 
+multiple_regression_ext <- lm(move_liter ~ price_liter + discount + store + relevel(brand, ref = 2), data = categories) 
 summary(multiple_regression_ext) 
 ```
   
